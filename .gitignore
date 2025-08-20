@@ -1,0 +1,6 @@
+# Variables de entorno - NO SUBIR AL REPOSITORIO
+.env
+.env.local
+.env.production
+.env.*.local
+

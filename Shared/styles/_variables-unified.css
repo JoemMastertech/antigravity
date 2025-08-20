@@ -1,0 +1,269 @@
+/* =================================================================
+   VARIABLES UNIFICADAS - SISTEMA RESPONSIVE CONSOLIDADO
+   Archivo central para eliminar duplicación y conflictos
+   ================================================================= */
+
+:root {
+  /* === BREAKPOINTS UNIFICADOS === */
+  /* Eliminando duplicación entre main.css, mobile.css y tablet.css */
+  --bp-mobile: 320px;
+  --bp-mobile-large: 480px;
+  --bp-tablet: 768px;
+  --bp-desktop: 1024px;
+  --bp-desktop-large: 1200px;
+  
+  /* === COLORES GLOBALES === */
+  --primary: #f3f6f6;
+  --accent: #00f7ff;
+  --bg: #000;
+  --text: #ECE9D8;
+  --card-bg: rgba(0,0,0,0.7);
+  --border: #00f7ff40;
+  
+  /* === SOMBRAS UNIFICADAS === */
+  --shadow-base: 0 0 10px rgba(0, 247, 255, 0.3);
+  --shadow-hover: 0 0 20px rgba(0, 247, 255, 0.6);
+  
+  /* === EFECTOS GLOW CYAN === */
+  --glow-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
+  --glow-shadow-hover: 0 0 20px rgba(0, 247, 255, 0.6);
+  --price-color: #00f7ff;
+  
+  /* === TRANSICIONES === */
+  --transition: 0.3s ease;
+  --transition-fast: 0.2s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* === NAVEGACIÓN RESPONSIVE === */
+  /* Valores base móviles */
+  --nav-height-mobile: 50px;
+  --nav-height-tablet: 55px;
+  --nav-height-desktop: 60px;
+  --nav-height: var(--nav-height-mobile); /* Default móvil */
+  --nav-bg: rgba(0, 0, 0, 0.95);
+  --nav-border: var(--accent);
+  
+  /* === GRID SYSTEM RESPONSIVE === */
+  /* Configuración base móvil */
+  --grid-columns-mobile: 2;
+  --grid-columns-tablet: 3;
+  --grid-columns-desktop: 4;
+  --grid-columns-liquor: 5;
+  --grid-columns: var(--grid-columns-mobile); /* Default móvil */
+  
+  /* === ESPACIADO RESPONSIVE === */
+  /* Sistema de espaciado escalable */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-xxl: 24px;
+  
+  /* Espaciado contextual móvil */
+  --spacing-mobile: var(--spacing-sm);
+  --spacing-tablet: var(--spacing-md);
+  --spacing-desktop: var(--spacing-lg);
+  --spacing: var(--spacing-mobile); /* Default móvil */
+  
+  /* === PADDING RESPONSIVE === */
+  --padding-mobile: var(--spacing-sm);
+  --padding-tablet: var(--spacing-md);
+  --padding-desktop: var(--spacing-lg);
+  --padding: var(--padding-mobile); /* Default móvil */
+  
+  /* === GAP RESPONSIVE === */
+  --gap-mobile: var(--spacing-sm);
+  --gap-tablet: var(--spacing-md);
+  --gap-desktop: var(--spacing-lg);
+  --gap: var(--gap-mobile); /* Default móvil */
+  
+  /* === TIPOGRAFÍA RESPONSIVE === */
+  /* Tamaños base móviles */
+  --font-size-xs: 0.6rem;   /* 9.6px */
+  --font-size-sm: 0.7rem;   /* 11.2px */
+  --font-size-base: 0.8rem; /* 12.8px */
+  --font-size-md: 0.9rem;   /* 14.4px */
+  --font-size-lg: 1rem;     /* 16px */
+  --font-size-xl: 1.1rem;   /* 17.6px */
+  --font-size-xxl: 1.2rem;  /* 19.2px */
+  
+  /* Tipografía contextual */
+  --font-title: var(--font-size-md);
+  --font-description: var(--font-size-sm);
+  --font-price: var(--font-size-base);
+  
+  /* === COMPONENTES CARD === */
+  /* Configuración base móvil */
+  --card-bg-mobile: rgba(0,0,0,0.8);
+  --card-bg-tablet: rgba(0,0,0,0.75);
+  --card-bg-desktop: rgba(0,0,0,0.7);
+  --card-bg-current: var(--card-bg-mobile); /* Default móvil */
+  
+  --card-radius-mobile: 8px;
+  --card-radius-tablet: 10px;
+  --card-radius-desktop: 12px;
+  --card-radius: var(--card-radius-mobile); /* Default móvil */
+  
+  --card-padding-mobile: var(--spacing-sm);
+  --card-padding-tablet: var(--spacing-md);
+  --card-padding-desktop: var(--spacing-lg);
+  --card-padding: var(--card-padding-mobile); /* Default móvil */
+  
+  --card-min-height-mobile: 180px;
+  --card-min-height-tablet: 220px;
+  --card-min-height-desktop: 240px;
+  --card-min-height: var(--card-min-height-mobile); /* Default móvil */
+  
+  /* === EFECTOS HOVER RESPONSIVE === */
+  --hover-scale-mobile: 1.02;
+  --hover-scale-tablet: 1.03;
+  --hover-scale-desktop: 1.05;
+  --hover-scale: var(--hover-scale-mobile); /* Default móvil */
+  
+  /* === CONTENEDORES === */
+  --container-width: 95%;
+  --container-max-width: 1400px;
+  --container-padding: var(--padding);
+  
+  /* === THUMBNAILS RESPONSIVE === */
+  --thumb-size-mobile: clamp(70px, 12vw, 90px);
+  --thumb-size-tablet: clamp(90px, 14vw, 120px);
+  --thumb-size-desktop: clamp(100px, 16vw, 140px);
+  --thumb-size: var(--thumb-size-mobile); /* Default móvil */
+}
+
+/* =================================================================
+   MEDIA QUERIES PARA VARIABLES RESPONSIVE
+   Mobile-First Approach
+   ================================================================= */
+
+/* === TABLET (768px+) === */
+@media (min-width: 768px) {
+  :root {
+    /* Navegación */
+    --nav-height: var(--nav-height-tablet);
+    
+    /* Grid */
+    --grid-columns: var(--grid-columns-tablet);
+    
+    /* Espaciado */
+    --spacing: var(--spacing-tablet);
+    --padding: var(--padding-tablet);
+    --gap: var(--gap-tablet);
+    
+    /* Tipografía */
+    --font-title: var(--font-size-lg);
+    --font-description: var(--font-size-base);
+    --font-price: var(--font-size-md);
+    
+    /* Cards */
+    --card-bg-current: var(--card-bg-tablet);
+    --card-radius: var(--card-radius-tablet);
+    --card-padding: var(--card-padding-tablet);
+    --card-min-height: var(--card-min-height-tablet);
+    
+    /* Efectos */
+    --hover-scale: var(--hover-scale-tablet);
+    
+    /* Thumbnails */
+    --thumb-size: var(--thumb-size-tablet);
+  }
+}
+
+/* === DESKTOP (1024px+) === */
+@media (min-width: 1024px) {
+  :root {
+    /* Navegación */
+    --nav-height: var(--nav-height-desktop);
+    
+    /* Grid */
+    --grid-columns: var(--grid-columns-desktop);
+    
+    /* Espaciado */
+    --spacing: var(--spacing-desktop);
+    --padding: var(--padding-desktop);
+    --gap: var(--gap-desktop);
+    
+    /* Tipografía */
+    --font-title: var(--font-size-xl);
+    --font-description: var(--font-size-md);
+    --font-price: var(--font-size-lg);
+    
+    /* Cards */
+    --card-bg-current: var(--card-bg-desktop);
+    --card-radius: var(--card-radius-desktop);
+    --card-padding: var(--card-padding-desktop);
+    --card-min-height: var(--card-min-height-desktop);
+    
+    /* Efectos */
+    --hover-scale: var(--hover-scale-desktop);
+    
+    /* Thumbnails */
+    --thumb-size: var(--thumb-size-desktop);
+  }
+}
+
+/* === DESKTOP LARGE (1200px+) === */
+@media (min-width: 1200px) {
+  :root {
+    /* Ajustes finos para pantallas grandes */
+    --container-width: 90%;
+    --spacing: calc(var(--spacing-desktop) * 1.2);
+    --padding: calc(var(--padding-desktop) * 1.2);
+  }
+}
+
+/* =================================================================
+   VARIABLES LEGACY PARA COMPATIBILIDAD
+   Mantener hasta migración completa
+   ================================================================= */
+
+:root {
+  /* Compatibilidad con main.css */
+  --primary-color: var(--primary);
+  --accent-color: var(--accent);
+  --background-color: var(--bg);
+  --text-color: var(--text);
+  --border-color: var(--border);
+  --transition-time: var(--transition);
+  
+  /* Compatibilidad con mobile.css */
+  --mobile-sidebar-width: 98px;
+  --mobile-padding: var(--padding-mobile);
+  --mobile-gap: var(--gap-mobile);
+  --mobile-font-base: var(--font-size-base);
+  --mobile-font-small: var(--font-size-sm);
+  --mobile-font-tiny: var(--font-size-xs);
+  
+  /* Compatibilidad con tablet.css */
+  --tablet-grid-gap: var(--gap-tablet);
+  --tablet-grid-padding: var(--padding-tablet);
+  --tablet-card-padding: var(--card-padding-tablet);
+  
+  /* Top Navigation Legacy */
+  --top-nav-height: var(--nav-height);
+  --top-nav-height-mobile: var(--nav-height-mobile);
+  --top-nav-height-tablet: var(--nav-height-tablet);
+  --top-nav-height-desktop: var(--nav-height-desktop);
+  --top-nav-bg: var(--nav-bg);
+  --top-nav-border: var(--nav-border);
+}
+
+/* =================================================================
+   NOTAS DE MIGRACIÓN
+   ================================================================= */
+
+/*
+TODO: Migración gradual
+1. Reemplazar variables duplicadas en main.css
+2. Actualizar referencias en mobile.css
+3. Consolidar variables en tablet.css
+4. Eliminar variables legacy una vez completada la migración
+
+BENEFICIOS:
+- Eliminación de 40+ variables duplicadas
+- Consistencia en breakpoints
+- Mantenimiento centralizado
+- Mejor performance (menos recálculos)
+*/

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Back Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+        .debug-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background: #2a2a2a;
+        }
+        .debug-button {
+            background: #007acc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .debug-button:hover {
+            background: #005a9e;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 3px;
+        }
+        .success { background: #2d5a2d; }
+        .error { background: #5a2d2d; }
+        .warning { background: #5a5a2d; }
+        .info { background: #2d2d5a; }
+        
+        /* Simular estilos de la barra superior */
+        #top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.95);
+            border-bottom: 2px solid #00f7ff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1000;
+        }
+        
+        .top-nav-btn {
+            background: #333;
+            border: 2px solid #007acc;
+            color: white;
+            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+        }
+        
+        .back-button-container {
+            margin: 20px 0;
+        }
+        
+        .back-button {
+            background: #007acc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
+        body {
+            padding-top: 80px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Simular barra superior -->
+    <nav id="top-nav">
+        <div class="nav-left">
+            <button id="top-hamburger-btn" class="top-nav-btn">☰</button>
+            <button id="top-back-btn" class="top-nav-btn" style="display: none;">←</button>
+        </div>
+        <div class="nav-center">
+            <span id="nav-title">Debug Back Button</span>
+        </div>
+        <div class="nav-right">
+            <button id="top-view-toggle-btn" class="top-nav-btn" style="display: none;">🔲</button>
+        </div>
+    </nav>
+
+    <h1>Debug del Botón de Retroceso</h1>
+    
+    <div class="debug-section">
+        <h3>1. Verificar Estado Inicial</h3>
+        <button class="debug-button" onclick="checkInitialState()">Verificar Estado Inicial</button>
+        <div id="initial-status"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>2. Crear Botón de Retroceso</h3>
+        <button class="debug-button" onclick="createBackButton()">Crear Botón de Retroceso</button>
+        <div id="create-status"></div>
+        <div id="back-button-container"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>3. Verificar Sincronización</h3>
+        <button class="debug-button" onclick="testSyncronization()">Probar Sincronización</button>
+        <div id="sync-status"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>4. Simular TopNavManager</h3>
+        <button class="debug-button" onclick="simulateTopNavManager()">Simular TopNavManager</button>
+        <div id="topnav-status"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>5. Verificar Visibilidad Final</h3>
+        <button class="debug-button" onclick="checkFinalVisibility()">Verificar Visibilidad Final</button>
+        <div id="final-status"></div>
+    </div>
+
+    <script>
+        function log(message, type = 'info', containerId) {
+            const container = document.getElementById(containerId);
+            if (container) {
+                const div = document.createElement('div');
+                div.className = `status ${type}`;
+                div.textContent = message;
+                container.appendChild(div);
+            }
+            console.log(`[${type.toUpperCase()}] ${message}`);
+        }
+        
+        function checkInitialState() {
+            const container = document.getElementById('initial-status');
+            container.innerHTML = '';
+            
+            const topBackBtn = document.getElementById('top-back-btn');
+            const backButtonContainer = document.querySelector('.back-button-container');
+            const backButton = document.querySelector('.back-button');
+            
+            log(`Botón superior encontrado: ${!!topBackBtn}`, topBackBtn ? 'success' : 'error', 'initial-status');
+            log(`Display del botón superior: ${topBackBtn ? topBackBtn.style.display : 'N/A'}`, 'info', 'initial-status');
+            log(`Contenedor de botón original: ${!!backButtonContainer}`, backButtonContainer ? 'success' : 'warning', 'initial-status');
+            log(`Botón original encontrado: ${!!backButton}`, backButton ? 'success' : 'warning', 'initial-status');
+        }
+        
+        function createBackButton() {
+            const container = document.getElementById('create-status');
+            container.innerHTML = '';
+            
+            // Simular la creación del botón como en renderLicorSubcategory
+            const targetContainer = document.getElementById('back-button-container');
+            targetContainer.innerHTML = '';
+            
+            const backButtonContainer = document.createElement('div');
+            backButtonContainer.className = 'back-button-container';
+            
+            const backButton = document.createElement('button');
+            backButton.className = 'back-button';
+            backButton.innerHTML = '←';
+            backButton.title = 'Volver a Licores';
+            
+            backButtonContainer.appendChild(backButton);
+            targetContainer.appendChild(backButtonContainer);
+            
+            log('Botón de retroceso creado exitosamente', 'success', 'create-status');
+            log(`Clases del contenedor: ${backButtonContainer.className}`, 'info', 'create-status');
+            log(`Clases del botón: ${backButton.className}`, 'info', 'create-status');
+            log(`Botón visible: ${backButton.offsetParent !== null}`, backButton.offsetParent !== null ? 'success' : 'error', 'create-status');
+            log(`Display computado: ${getComputedStyle(backButton).display}`, 'info', 'create-status');
+        }
+        
+        function testSyncronization() {
+            const container = document.getElementById('sync-status');
+            container.innerHTML = '';
+            
+            // Simular la función syncBackButtonVisibility
+            const backButton = document.querySelector('.back-button-container .back-button');
+            const topBackBtn = document.getElementById('top-back-btn');
+            
+            if (!backButton) {
+                log('No se encontró botón original para sincronizar', 'error', 'sync-status');
+                return;
+            }
+            
+            const isVisible = backButton.offsetParent !== null && 
+                             getComputedStyle(backButton).display !== 'none';
+            
+            log(`Botón original visible: ${isVisible}`, isVisible ? 'success' : 'error', 'sync-status');
+            log(`offsetParent: ${backButton.offsetParent !== null}`, 'info', 'sync-status');
+            log(`display !== 'none': ${getComputedStyle(backButton).display !== 'none'}`, 'info', 'sync-status');
+            
+            if (topBackBtn) {
+                topBackBtn.style.display = isVisible ? 'flex' : 'none';
+                log(`Botón superior actualizado a: ${topBackBtn.style.display}`, 'success', 'sync-status');
+            } else {
+                log('No se encontró botón superior para actualizar', 'error', 'sync-status');
+            }
+        }
+        
+        function simulateTopNavManager() {
+            const container = document.getElementById('topnav-status');
+            container.innerHTML = '';
+            
+            // Simular TopNavManager
+            const topNavManager = {
+                topButtons: {
+                    back: document.getElementById('top-back-btn')
+                },
+                originalButtons: {
+                    back: document.querySelector('.back-button-container .back-button')
+                },
+                
+                findButtons() {
+                    this.originalButtons.back = document.querySelector('.back-button-container .back-button, .back-button, #back-btn');
+                    log(`findButtons - Botón encontrado: ${!!this.originalButtons.back}`, this.originalButtons.back ? 'success' : 'error', 'topnav-status');
+                },
+                
+                syncBackButtonVisibility() {
+                    const backButton = this.originalButtons.back;
+                    let isVisible = false;
+                    
+                    if (backButton) {
+                        isVisible = backButton.offsetParent !== null && 
+                                   getComputedStyle(backButton).display !== 'none';
+                    }
+                    
+                    log(`syncBackButtonVisibility - Visible: ${isVisible}`, isVisible ? 'success' : 'warning', 'topnav-status');
+                    
+                    if (this.topButtons.back) {
+                        this.topButtons.back.style.display = isVisible ? 'flex' : 'none';
+                        log(`Botón superior actualizado: ${this.topButtons.back.style.display}`, 'success', 'topnav-status');
+                    }
+                },
+                
+                forceSync() {
+                    this.findButtons();
+                    this.syncBackButtonVisibility();
+                    log('forceSync ejecutado', 'success', 'topnav-status');
+                }
+            };
+            
+            // Ejecutar sincronización
+            topNavManager.forceSync();
+        }
+        
+        function checkFinalVisibility() {
+            const container = document.getElementById('final-status');
+            container.innerHTML = '';
+            
+            const topBackBtn = document.getElementById('top-back-btn');
+            const backButton = document.querySelector('.back-button');
+            
+            log(`=== ESTADO FINAL ===`, 'info', 'final-status');
+            log(`Botón original existe: ${!!backButton}`, backButton ? 'success' : 'error', 'final-status');
+            log(`Botón superior existe: ${!!topBackBtn}`, topBackBtn ? 'success' : 'error', 'final-status');
+            
+            if (backButton) {
+                log(`Botón original visible: ${backButton.offsetParent !== null}`, 'info', 'final-status');
+                log(`Display original: ${getComputedStyle(backButton).display}`, 'info', 'final-status');
+            }
+            
+            if (topBackBtn) {
+                log(`Display superior: ${topBackBtn.style.display}`, 'info', 'final-status');
+                log(`Botón superior visible: ${topBackBtn.style.display !== 'none'}`, topBackBtn.style.display !== 'none' ? 'success' : 'error', 'final-status');
+            }
+        }
+        
+        // Ejecutar verificación inicial al cargar
+        window.addEventListener('load', () => {
+            checkInitialState();
+        });
+    </script>
+</body>
+</html>

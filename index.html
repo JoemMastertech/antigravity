@@ -1,0 +1,200 @@
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Master Technology Bar - Coctelería Premium</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.ico">
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Master Technology Bar - Experiencia premium en coctelería con tecnología avanzada. Descubre nuestros cócteles únicos y ambiente innovador.">
+  <meta name="keywords" content="coctelería, bar, cócteles, bebidas premium, tecnología, Master Technology Bar">
+  <meta name="author" content="Master Technology Bar">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:8000/">
+  <meta property="og:title" content="Master Technology Bar - Coctelería Premium">
+  <meta property="og:description" content="Experiencia premium en coctelería con tecnología avanzada. Descubre nuestros cócteles únicos y ambiente innovador.">
+  <meta property="og:image" content="https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/recursos/logos/Logo5.webp">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="http://localhost:8000/">
+  <meta property="twitter:title" content="Master Technology Bar - Coctelería Premium">
+  <meta property="twitter:description" content="Experiencia premium en coctelería con tecnología avanzada. Descubre nuestros cócteles únicos y ambiente innovador.">
+  <meta property="twitter:image" content="https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/recursos/logos/Logo5.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <!-- Variables unificadas primero -->
+  <link rel="stylesheet" href="Shared/styles/_variables-unified.css">
+  <!-- Estilos base mobile-first -->
+  <link rel="stylesheet" href="Shared/styles/main.css">
+  <!-- Estilos móviles con media query -->
+  <link rel="stylesheet" href="Shared/styles/mobile.css" media="screen and (max-width: 767px)">
+  <!-- Estilos tablet con rango específico -->
+  <link rel="stylesheet" href="Shared/styles/tablet.css" media="screen and (min-width: 768px) and (max-width: 1199px)">
+  <script type="importmap">
+    {
+      "imports": {
+        "@supabase/supabase-js": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+      }
+    }
+  </script>
+  <script src="Shared/libs/purify.min.js"></script>
+</head>
+<body>
+  <!-- Background video -->
+  <video id="background-video" autoplay muted loop playsinline>
+    <source src="https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/recursos/fondos/fondorojo.mp4" type="video/mp4">
+  </video>
+  
+  <div id="app">
+    <!-- Barra superior global para todos los dispositivos -->
+    <nav id="top-nav" class="top-nav" aria-label="Barra de navegación principal">
+      <div class="nav-left">
+        <button id="top-hamburger-btn" class="top-nav-btn" aria-label="Abrir menú lateral">☰</button>
+        <button id="top-back-btn" class="top-nav-btn" aria-label="Volver a Licores" style="display: none;">←</button>
+      </div>
+      <div class="nav-center">
+        <span id="nav-title"></span>
+      </div>
+      <div class="nav-right">
+        <button id="top-view-toggle-btn" class="top-nav-btn" aria-label="Cambiar a vista de cuadrícula" style="display: none;">🔲</button>
+      </div>
+    </nav>
+    
+    <div id="drawer-overlay" class="drawer-overlay"></div>
+    <div id="drawer-menu" class="drawer-menu">
+      <div class="drawer-content">
+        <!-- Navigation buttons will be added here dynamically -->
+      </div>
+    </div>
+    
+    <div class="screen welcome-screen">
+      <h1 class="welcome-text">¡BIENVENIDOS!</h1>
+    </div>
+    <div class="screen logo-screen screen-hidden">
+      <div class="logo-container">
+        <img src="https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/recursos/logos/Logo5.webp" alt="Master Technology Bar Logo" class="logo">
+        <h2 class="title-text">Master Technology Bar</h2>
+      </div>
+    </div>
+    <div class="screen category-title-screen screen-hidden">
+      <h2 class="category-title">Coctelería</h2>
+    </div>
+    <div class="screen main-content-screen screen-hidden" data-category="cocteleria">
+      <div class="page-header">
+        <!-- Botón hamburger eliminado - ahora se usa la barra superior independiente -->
+        <!-- Page title removed from here as it's now integrated into tables -->
+      </div>
+      <div class="content-wrapper">
+        <div class="content-container-flex">
+          <div id="content-container"></div>
+          <div id="order-sidebar" class="sidebar-hidden">
+            <h3>Tu Orden</h3>
+            <div id="order-items"></div>
+            <div class="order-total">
+              <h4>Total: <span id="order-total-amount">$0.00</span></h4>
+            </div>
+            <div class="order-actions">
+              <button id="complete-order-btn" class="nav-button">Completar Orden</button>
+              <button id="cancel-order-btn" class="nav-button">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <div id="drink-options-modal" class="modal modal-hidden"></div>
+  <div id="food-customization-modal" class="modal modal-hidden"></div>
+  <div id="meat-customization-modal" class="modal modal-hidden"></div>
+  
+  <!-- Modal Templates -->
+  <div id="modal-templates" class="screen-hidden">
+    <!-- Drink Options Modal Template -->
+    <template id="drink-options-template">
+      <div class="modal-content">
+        <h3>¿Con qué desea acompañar su bebida?</h3>
+        <div id="drink-options-container" class="options-grid"></div>
+        <div class="modal-actions">
+          <button id="confirm-drinks-btn" class="nav-button">Confirmar</button>
+          <button id="cancel-drinks-btn" class="nav-button">Cancelar</button>
+        </div>
+      </div>
+    </template>
+    
+    <!-- Food Customization Modal Template -->
+    <template id="food-customization-template">
+      <div class="modal-content">
+        <h3>¿Desea su platillo con todos los ingredientes?</h3>
+        <div class="modal-actions ingredients-choice">
+          <button id="keep-ingredients-btn" class="nav-button">Sí</button>
+          <button id="customize-ingredients-btn" class="nav-button">No</button>
+        </div>
+        <div id="ingredients-input-container" class="input-container-hidden">
+          <textarea id="ingredients-to-remove" placeholder="Indique los ingredientes que desea quitar"></textarea>
+          <div class="modal-actions">
+            <button id="confirm-ingredients-btn" class="nav-button">Confirmar</button>
+            <button id="cancel-ingredients-btn" class="nav-button">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </template>
+    
+    <!-- Meat Customization Modal Template -->
+    <template id="meat-customization-template">
+      <div class="modal-content">
+        <h3>Seleccione el término de cocción:</h3>
+        <div class="cooking-options">
+          <button class="cooking-option nav-button" data-term="medio">Término ½</button>
+          <button class="cooking-option nav-button" data-term="tres-cuartos">Término ¾</button>
+          <button class="cooking-option nav-button" data-term="bien-cocido">Bien Cocido</button>
+        </div>
+        <h3>¿Desea cambiar algo de la guarnición?</h3>
+        <div class="modal-actions garnish-choice">
+          <button id="change-garnish-btn" class="nav-button">Sí</button>
+          <button id="keep-garnish-btn" class="nav-button">No</button>
+        </div>
+        <div id="garnish-input-container" class="input-container-hidden">
+          <textarea id="garnish-modifications" placeholder="Indique los cambios en la guarnición"></textarea>
+          <div class="modal-actions">
+            <button id="confirm-garnish-btn" class="nav-button">Confirmar</button>
+            <button id="cancel-garnish-btn" class="nav-button">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <!-- Load data providers -->
+  
+  <script type="module" src="./Infraestructura/data-providers/product-data.js"></script>
+  <!-- Load UI components -->
+  <script type="module" src="./Interfaces/web/ui-adapters/components/product-table.js"></script>
+  <script type="module" src="./Interfaces/web/ui-adapters/screens/screen-manager.js"></script>
+  <!-- Load order system -->
+  <script type="module" src="./Interfaces/web/ui-adapters/components/order-system.js"></script>
+  <!-- Load independent top navigation system -->
+  <script src="./Shared/js/top-nav-independent.js"></script>
+  <!-- Initialize app -->
+  <script type="module">
+    import AppInit from './Shared/config/app-init.js';
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      AppInit.initialize();
+      
+      // Inicializar sistema de navegación independiente
+      if (window.IndependentTopNavManager) {
+        window.independentTopNavManager = new IndependentTopNavManager();
+        console.log('Sistema de navegación independiente inicializado');
+      }
+    });
+  </script>
+</body>
+</html>

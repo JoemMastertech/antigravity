@@ -1,0 +1,470 @@
+/* =================================================================
+   TABLET.CSS - ESTILOS MODULARES PARA DISPOSITIVOS TABLET
+   Fusión: tablet-portrait (768px+) + tablet-landscape (1024px+)
+   ================================================================= */
+
+/* === VARIABLES TABLET ESPECÍFICAS === */
+/* Variables globales están en _variables-unified.css */
+:root {
+  /* Variables específicas solo para tablet.css */
+  --tablet-grid-columns-portrait: 2;
+  --tablet-grid-columns-landscape: 3;
+  --tablet-card-margin: clamp(8px, 2vw, 12px);
+  
+  /* Alias para compatibilidad - usar variables unificadas */
+  --tablet-grid-gap: var(--gap);
+  --tablet-grid-padding: var(--padding);
+  --tablet-font-title: var(--font-title);
+  --tablet-font-description: var(--font-description);
+  --tablet-font-price: var(--font-price);
+  --tablet-card-padding: var(--card-padding);
+  --tablet-card-bg: var(--card-bg-current);
+  --tablet-border-color: var(--border);
+  --tablet-transition: var(--transition);
+  --tablet-hover-scale: var(--hover-scale);
+}
+
+/* === COMPONENTE BASE GRID TABLET (BEM) === */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--tablet-grid-columns-portrait), 1fr);
+  gap: var(--tablet-grid-gap);
+  padding: var(--tablet-grid-padding);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* === MODIFICADORES DE GRID TABLET === */
+.grid--products {
+  grid-auto-rows: minmax(240px, auto);
+}
+
+.grid--categories {
+  grid-template-rows: repeat(auto-fit, minmax(160px, 1fr));
+  grid-auto-rows: minmax(160px, auto);
+}
+
+/* === COMPONENTES DE CARD TABLET (BEM) === */
+.card {
+  background: var(--tablet-card-bg);
+  border-radius: 12px;
+  border: 1px solid var(--tablet-border-color);
+  transition: var(--tablet-transition);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 220px;
+  box-shadow: 0 2px 8px rgba(0, 247, 255, 0.1);
+}
+
+.card:hover {
+  transform: scale(var(--tablet-hover-scale));
+  box-shadow: 0 4px 16px rgba(0, 247, 255, 0.2);
+  border-color: #00f7ff80;
+}
+
+.card--product {
+  justify-content: space-between;
+}
+
+.card--category {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 160px;
+  aspect-ratio: 1.2;
+}
+
+/* === ELEMENTOS DE CARD === */
+.card__image {
+  width: 100%;
+  height: clamp(100px, 15vw, 150px);
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  transition: var(--tablet-transition);
+}
+
+.card:hover .card__image {
+  transform: scale(1.05);
+}
+
+.card__content {
+  padding: var(--tablet-card-padding);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card__title {
+  font-size: var(--tablet-font-title);
+  font-weight: 600;
+  margin-bottom: 6px;
+  line-height: 1.3;
+  color: #ECE9D8;
+}
+
+.card__description {
+  font-size: var(--tablet-font-description);
+  opacity: 0.85;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  color: #ECE9D8;
+  flex-grow: 1;
+}
+
+.card__price {
+  margin-top: auto;
+}
+
+/* === BOTÓN DE PRECIO TABLET === */
+.price-button {
+  font-size: var(--tablet-font-price);
+  padding: clamp(6px, 1.2vw, 10px) clamp(8px, 1.8vw, 14px);
+  background: transparent;
+  color: var(--price-color);
+  border: 1px solid var(--price-color);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--tablet-transition);
+  width: 100%;
+  font-weight: 600;
+  box-shadow: 0 0 15px var(--price-color);
+}
+
+.price-button:hover {
+  background-color: transparent;
+  transform: scale(1.02);
+  border-color: var(--price-color);
+  color: var(--price-color);
+  box-shadow: 0 0 15px var(--price-color);
+}
+
+.price-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* === UTILIDADES TABLET === */
+.u-tablet-only {
+  display: block;
+}
+
+.u-hide-tablet {
+  display: none;
+}
+
+.u-tablet-center {
+  text-align: center;
+}
+
+.u-tablet-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === ESTADOS TABLET === */
+.grid--loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.grid--empty {
+  min-height: 300px;
+  place-items: center;
+  grid-template-columns: 1fr;
+}
+
+.card--loading {
+  opacity: 0.6;
+  animation: pulse-tablet 2s infinite;
+}
+
+@keyframes pulse-tablet {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.9; }
+}
+
+/* === RESPONSIVE TABLET INTERNO === */
+
+/* Tablet Portrait (768px - 1023px) */
+@media (min-width: var(--bp-tablet)) and (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(var(--tablet-grid-columns-portrait), 1fr);
+    gap: clamp(12px, 2.5vw, 16px);
+    padding: clamp(15px, 3vw, 18px);
+  }
+  
+  .card {
+    min-height: 220px;
+  }
+  
+  .card__image {
+    height: clamp(100px, 15vw, 140px);
+  }
+}
+
+/* Tablet Landscape (1024px+) */
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(var(--tablet-grid-columns-landscape), 1fr);
+    gap: clamp(16px, 2.8vw, 20px);
+    padding: clamp(18px, 3.2vw, 22px);
+  }
+  
+  .grid--categories {
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas en tablet horizontal */
+}
+
+/* Licores grid responsive para tablet */
+.category-grid[data-category="licores"] {
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(9px, 1.8vw, 18px);
+  padding: clamp(9px, 1.8vw, 18px);
+}
+
+/* Tarjetas responsive para tablet */
+.category-card, .product-card {
+  padding: clamp(8px, 2vw, 16px);
+  min-height: clamp(140px, 18vw, 220px);
+}
+
+/* Imágenes responsive para tablet */
+.category-image, .product-image {
+  width: clamp(50px, 7vw, 100px);
+  height: clamp(50px, 7vw, 100px);
+}
+
+/* Texto responsive para tablet */
+.category-card .category-name,
+.product-card .product-name {
+  font-size: clamp(11px, 2.2vw, 16px);
+  min-height: clamp(1.8rem, 3.5vw, 2.8rem);
+}
+
+/* Reducir espaciado del encabezado para licores en tablet */
+.category-grid[data-category="licores"] .page-title {
+  margin: 0 0 8px 0 !important;
+  padding: 8px var(--spacing) !important;
+}
+
+/* Reducir espaciado del pie de página para licores en tablet */
+.category-grid[data-category="licores"] .subcategory-prompt {
+  margin: 2px 0 8px 0 !important;
+}
+
+.category-grid[data-category="licores"] .category-card {
+  min-height: 194px;
+  max-height: 194px;
+  padding: 13px;
+  overflow: visible;
+}
+
+.category-grid[data-category="licores"] .category-image {
+  height: 86px;
+  margin-bottom: 4px;
+  object-fit: contain;
+  transform: scale(1.1) !important;
+  transform-origin: center !important;
+}
+
+.category-grid[data-category="licores"] .category-name {
+  font-size: 0.9rem !important;
+  height: 40px !important;
+  line-height: 1.2 !important;
+}
+  
+  .card {
+    min-height: 240px;
+  }
+  
+  .card__image {
+    height: clamp(110px, 16vw, 160px);
+  }
+  
+  .card__title {
+    font-size: clamp(15px, 2.1vw, 17px);
+  }
+  
+  .card__description {
+    font-size: clamp(13px, 1.9vw, 15px);
+  }
+  
+  .price-button {
+    font-size: clamp(13px, 1.9vw, 15px);
+    padding: clamp(8px, 1.4vw, 12px) clamp(10px, 2vw, 16px);
+  }
+}
+
+/* === ORIENTACIÓN TABLET === */
+@media (orientation: portrait) and (min-width: var(--bp-tablet)) {
+  .grid--products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid--categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .card--category {
+    aspect-ratio: 1.1;
+  }
+}
+
+@media (orientation: landscape) and (min-width: var(--bp-tablet)) {
+  .grid--products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .grid--categories {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .card--category {
+    aspect-ratio: 1;
+  }
+}
+
+/* === TABLET ESPECÍFICO POR TAMAÑO === */
+
+/* iPad Mini / Small Tablets */
+@media (min-width: 768px) and (max-width: 834px) {
+  .grid {
+    max-width: 100%;
+    padding: clamp(12px, 2.5vw, 16px);
+  }
+  
+  .card {
+    min-height: 200px;
+  }
+}
+
+/* iPad Pro / Large Tablets */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .grid {
+    max-width: 1100px;
+    padding: clamp(20px, 3.5vw, 24px);
+  }
+  
+  .card {
+    min-height: 260px;
+  }
+  
+  .card__image {
+    height: clamp(120px, 18vw, 180px);
+  }
+}
+
+/* === ACCESIBILIDAD TABLET === */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card__image,
+  .price-button {
+    transition: none;
+  }
+  
+  .card:hover {
+    transform: none;
+  }
+  
+  .card:hover .card__image {
+    transform: none;
+  }
+  
+  .card--loading {
+    animation: none;
+  }
+}
+
+/* === MODO OSCURO TABLET === */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tablet-card-bg: rgba(0,0,0,0.85);
+    --tablet-border-color: #00f7ff60;
+  }
+}
+
+/* === ALTO CONTRASTE TABLET === */
+@media (prefers-contrast: high) {
+  .card {
+    border-width: 2px;
+    box-shadow: 0 4px 12px rgba(0, 247, 255, 0.3);
+  }
+  
+  .card__title {
+    font-weight: 700;
+  }
+  
+  .price-button {
+    font-weight: 700;
+    border: 2px solid #000;
+  }
+}
+
+/* === INTERACCIONES TÁCTILES === */
+@media (hover: none) and (pointer: coarse) {
+  .card:hover {
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0, 247, 255, 0.1);
+  }
+  
+  .card:active {
+    transform: scale(0.98);
+  }
+  
+  .price-button:hover {
+    transform: none;
+  }
+  
+  .price-button:active {
+    transform: scale(0.95);
+  }
+}
+
+/* === NAVEGACIÓN SUPERIOR TABLET === */
+@media (min-width: 481px) and (max-width: 1024px) {
+  #top-nav {
+    height: var(--top-nav-height-tablet) !important;
+    min-height: var(--top-nav-height-tablet) !important;
+    max-height: var(--top-nav-height-tablet) !important;
+    padding: 0 18px;
+    background: var(--top-nav-bg);
+    border-bottom: 1px solid var(--top-nav-border);
+  }
+  
+  body.top-nav-visible {
+    padding-top: var(--top-nav-height-tablet) !important;
+  }
+}
+
+/* === TOUCH TARGETS TABLET === */
+@media (max-width: 1024px) {
+  .nav-button {
+    min-height: 44px;
+    padding: 12px 18px;
+    touch-action: manipulation;
+  }
+  
+  .price-button {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+  }
+  
+  .view-toggle-btn {
+    min-height: 50px;
+    min-width: 50px;
+    touch-action: manipulation;
+  }
+  
+  .hamburger-btn,
+  .back-button {
+    min-height: 50px;
+    min-width: 50px;
+    touch-action: manipulation;
+  }
+}

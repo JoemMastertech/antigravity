@@ -1,0 +1,191 @@
+/* =================================================================
+   TOP NAVIGATION BAR - ISOLATED STYLES
+   ================================================================= */
+
+/* Top Navigation Variables */
+:root {
+  /* Desktop Variables */
+  --top-nav-height: 60px;
+  --top-nav-height-desktop: 60px;
+  --top-nav-bg: rgba(0, 0, 0, 0.95);
+  --top-nav-border: #00f7ff;
+}
+
+/* =================================================================
+   BARRA SUPERIOR GLOBAL
+   ================================================================= */
+#top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: var(--top-nav-height);
+  min-height: var(--top-nav-height);
+  max-height: var(--top-nav-height);
+  background: var(--top-nav-bg);
+  border-bottom: 1px solid rgba(0, 247, 255, 0.3);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-shadow: var(--glow-shadow);
+  /* Ocultar inicialmente hasta que termine la inicialización */
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  /* Prevent content from affecting the navbar size */
+  flex-shrink: 0;
+  flex-grow: 0;
+  overflow: hidden;
+}
+
+/* Mostrar la barra superior cuando la app esté lista */
+#top-nav.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-left,
+.nav-center,
+.nav-right {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+  min-height: var(--top-nav-height);
+  max-height: var(--top-nav-height);
+  overflow: hidden;
+}
+
+.nav-center {
+  justify-content: center;
+}
+
+.nav-right {
+  justify-content: flex-end;
+}
+
+#nav-title {
+  color: var(--accent-color);
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.top-nav-btn {
+  background: var(--card-bg);
+  border: 2px solid var(--primary-color);
+  color: var(--text-color);
+  font-size: 1.2rem;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  max-width: 40px;
+  max-height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all var(--transition-time) ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+  backdrop-filter: blur(5px);
+  flex-shrink: 0;
+  flex-grow: 0;
+  overflow: hidden;
+  line-height: 1;
+  box-shadow: 0 0 8px rgba(0, 247, 255, 0.2);
+}
+
+.top-nav-btn:hover, .top-nav-btn.active {
+  background-color: transparent;
+  transform: scale(1.02);
+  border-color: var(--price-color);
+  color: var(--price-color);
+  box-shadow: 0 0 15px var(--price-color);
+}
+
+.top-nav-btn:active {
+  transform: scale(0.95);
+}
+
+/* Ajustes para el contenido principal */
+body {
+  padding-top: 0;
+  transition: padding-top 0.5s ease;
+}
+
+/* Agregar padding cuando la barra superior esté visible */
+body.top-nav-visible {
+  padding-top: var(--top-nav-height);
+}
+
+#app {
+  padding-top: 0;
+}
+
+/* =================================================================
+   RESPONSIVE DESIGN - TOP NAVIGATION
+   ================================================================= */
+
+/* Desktop */
+@media (min-width: 1025px) {
+  #top-nav {
+    height: var(--top-nav-height-desktop) !important;
+    min-height: var(--top-nav-height-desktop) !important;
+    max-height: var(--top-nav-height-desktop) !important;
+  }
+  
+  body.top-nav-visible {
+    padding-top: var(--top-nav-height-desktop) !important;
+  }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --top-nav-height-tablet: 60px;
+  }
+  
+  #top-nav {
+    height: var(--top-nav-height-tablet) !important;
+    min-height: var(--top-nav-height-tablet) !important;
+    max-height: var(--top-nav-height-tablet) !important;
+    background: var(--top-nav-bg);
+    border-bottom: 1px solid var(--top-nav-border);
+  }
+  
+  body.top-nav-visible {
+    padding-top: var(--top-nav-height-tablet) !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  :root {
+    --top-nav-height-mobile: 60px;
+  }
+  
+  #top-nav {
+    height: var(--top-nav-height-mobile) !important;
+    min-height: var(--top-nav-height-mobile) !important;
+    max-height: var(--top-nav-height-mobile) !important;
+    background: var(--top-nav-bg);
+    border-bottom: 1px solid var(--top-nav-border);
+  }
+  
+  body.top-nav-visible {
+    padding-top: var(--top-nav-height-mobile) !important;
+  }
+}
