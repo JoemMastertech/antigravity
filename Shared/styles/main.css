@@ -2380,8 +2380,27 @@ body.order-mode-active #order-sidebar {
 
 /* Video modal specific styles */
 .modal-content.image-modal.video-modal {
-  width: 69.83%; /* Increased another 10% from 63.48% (total 45.48% from original 48%) */
-  max-width: 699px; /* Increased another 10% from 635px (total 45.63% from original 480px) */
+  width: 69.83%; /* Base size for reference */
+  max-width: 699px; /* Base size for reference */
+}
+
+/* Desktop video modal sizing fix: ensure visible controls and prevent crop */
+@media (min-width: 769px) {
+  .modal-content.image-modal.video-modal {
+    /* Increased by 33% for desktop */
+    width: 92.87%; /* 69.83% * 1.33 */
+    max-width: 930px; /* 699px * 1.33 */
+    /* Allow taller modals on desktop and enable scrolling if necessary */
+    max-height: 92vh;
+    overflow-y: auto;
+  }
+  .modal-content.image-modal.video-modal video {
+    /* Keep aspect ratio, avoid clipping bottom controls */
+    width: 100%;
+    height: auto;
+    max-height: calc(92vh - 120px); /* space for title and close button */
+    object-fit: contain;
+  }
 }
 
 /* Modal content elements */
@@ -3258,8 +3277,8 @@ textarea:focus {
   }
   
   .modal-content.image-modal.video-modal {
-    width: 55.2%; /* Increased 15% from 48% */
-    max-width: 552px; /* Increased 15% from 480px */
+    width: 73.42%; /* Increased 33% from 55.2% */
+    max-width: 734px; /* Increased 33% from 552px */
   }
   
   .modal-content.image-modal img {
@@ -3418,8 +3437,8 @@ textarea:focus {
   }
   
   .modal-content.image-modal.video-modal {
-    width: 55.2%; /* Increased 15% from 48% */
-    max-width: 552px; /* Increased 15% from 480px */
+    width: 63.48%; /* Increased 15% from 55.2% */
+    max-width: 635px; /* Increased 15% from 552px */
   }
   
   .modal-content.image-modal img {
@@ -3895,8 +3914,8 @@ textarea:focus {
   }
   
   .modal-content.image-modal.video-modal {
-    width: 45%;
-    max-width: 320px;
+    width: 59.85%; /* Increased 33% from 45% */
+    max-width: 426px; /* Increased 33% from 320px */
   }
   
   .modal-content.image-modal img {
