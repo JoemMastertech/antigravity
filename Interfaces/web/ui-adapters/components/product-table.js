@@ -673,9 +673,25 @@ const ProductRenderer = {
         if (item.imagen) {
           thumbnailUrl = item.imagen.replace(/[`\s]/g, '');
         }
+      } else if (categoryTitle && (categoryTitle.toLowerCase() === 'cafes' || categoryTitle.toLowerCase() === 'café' || categoryTitle.toLowerCase() === 'cafe')) {
+        // Preferir imagen directa si existe
+        if (item.imagen) {
+          thumbnailUrl = item.imagen.replace(/[`\s]/g, '');
+        } else {
+          // Usar función genérica pasando la categoría para que use nombre del producto
+          thumbnailUrl = this.getThumbnailUrl(item.video, item.nombre, 'cafes');
+        }
+      } else if (categoryTitle && categoryTitle.toLowerCase() === 'postres') {
+        // Preferir imagen directa si existe
+        if (item.imagen) {
+          thumbnailUrl = item.imagen.replace(/[`\s]/g, '');
+        } else {
+          // Usar función genérica pasando la categoría para que use nombre del producto
+          thumbnailUrl = this.getThumbnailUrl(item.video, item.nombre, 'postres');
+        }
       } else {
-        // Para otras categorías, usar la función existente
-        thumbnailUrl = this.getThumbnailUrl(item.video, item.nombre, '');
+        // Para otras categorías, usar la función existente (pasando el título de categoría)
+        thumbnailUrl = this.getThumbnailUrl(item.video, item.nombre, categoryTitle || '');
       }
       
       const thumbnailImg = document.createElement('img');
@@ -1047,7 +1063,7 @@ const ProductRenderer = {
     const thumbnailFilename = specialCases[videoFilename] || videoFilename;
     
     // Para la sección de carnes, usar directamente la URL de imagen almacenada en Supabase
-    if (extractedCategory === 'carnes' || category === 'carnes') {
+    if (extractedCategory === 'carnes' || (category && category.toLowerCase() === 'carnes')) {
       // Buscar si hay una imagen directamente en los datos del producto
       const productData = this.getProductByName(productName, 'carnes');
       if (productData && productData.imagen) {
@@ -1057,6 +1073,38 @@ const ProductRenderer = {
       
       // Si no se encuentra, construir la URL basada en el nombre del archivo de video
       return `https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/thumbnail/cortes%20de%20carne/${videoFilename}.webp`;
+    }
+    
+    // Helper para generar slug desde el nombre del producto
+    const slugify = (s) => {
+      if (!s || typeof s !== 'string') return '';
+      return s
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '')
+        .trim();
+    };
+    
+    // Para cafés: preferir coincidencia por nombre
+    if (extractedCategory === 'cafes' || (category && (category.toLowerCase() === 'cafes' || category.toLowerCase() === 'café' || category.toLowerCase() === 'cafe'))) {
+      const productData = this.getProductByName(productName, 'cafes');
+      if (productData && productData.imagen) {
+        return productData.imagen.replace(/[`\s]/g, '');
+      }
+      const nameSlug = slugify(productName) || thumbnailFilename;
+      return `https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/imagenes/bebidas/mini-cafes/${nameSlug}.webp`;
+    }
+    
+    // Para postres: preferir coincidencia por nombre
+    if (extractedCategory === 'postres' || (category && category.toLowerCase() === 'postres')) {
+      const productData = this.getProductByName(productName, 'postres');
+      if (productData && productData.imagen) {
+        return productData.imagen.replace(/[`\s]/g, '');
+      }
+      const nameSlug = slugify(productName) || thumbnailFilename;
+      return `https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/imagenes/bebidas/mini-postres/${nameSlug}.webp`;
     }
     
     // Para otras categorías, mantener la lógica original

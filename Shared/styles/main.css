@@ -1733,6 +1733,14 @@ body.order-mode-active #order-sidebar {
     align-items: center;
     flex-wrap: nowrap;
   }
+  
+  /* Corrección para alineación de precios en refrescos y cervezas */
+  .product-table[data-category="refrescos"] td.product-price,
+  .product-table[data-category="cervezas"] td.product-price {
+    width: 25%;
+    text-align: center;
+    flex: 0 0 25%;
+  }
 }
 
 /* =================================================================
@@ -1752,7 +1760,9 @@ body.order-mode-active #order-sidebar {
 
 .liquor-table td.image-icon img,
 .product-table[data-category="cervezas"] td.image-icon img,
-.product-table[data-category="refrescos"] td.image-icon img {
+.product-table[data-category="refrescos"] td.image-icon img,
+.product-table[data-category="jarras-jugo"] td.image-icon img,
+.product-table[data-category="vasos-jugo"] td.image-icon img {
   width: 52px;
   height: 52px;
 }
@@ -2453,6 +2463,32 @@ body.order-mode-active #order-sidebar {
   display: block;
   margin: 10px auto 0;
   align-self: center;
+}
+
+/* Estilos para el botón de cierre X en modales de video */
+.modal-content.image-modal.video-modal .modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.modal-content.image-modal.video-modal .modal-close-btn:hover {
+  color: #ff0000;
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 @keyframes modalGlow {

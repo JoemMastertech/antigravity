@@ -30,6 +30,23 @@ class ProductDataAdapter extends BaseAdapter {
   }
 
   /**
+   * Generic method to fetch products for a category
+   * @param {string} tableName - Supabase table name
+   * @param {string} [localKey] - Key in local productData (defaults to tableName)
+   * @returns {Promise<Array>}
+   * @private
+   */
+  async _getGenericCategory(tableName, localKey = tableName) {
+    try {
+      const data = await this._fetchFromSupabase(tableName);
+      return data.length > 0 ? data : this.productData[localKey] || [];
+    } catch (error) {
+      Logger.error(`Error in get${tableName.charAt(0).toUpperCase() + tableName.slice(1)}:`, error);
+      return this.productData[localKey] || [];
+    }
+  }
+
+  /**
    * Fetch data from Supabase table with immediate local data return
    * @param {string} tableName - Name of the Supabase table
    * @returns {Promise<Array>} Array of records from the table
@@ -192,13 +209,7 @@ class ProductDataAdapter extends BaseAdapter {
    * @returns {Promise<Array>} Array of cocktail objects
    */
   async getCocteles() {
-    try {
-      const data = await this._fetchFromSupabase('cocteleria');
-      return data.length > 0 ? data : this.productData.cocteles || [];
-    } catch (error) {
-      Logger.error('Error in getCocteles:', error);
-      return this.productData.cocteles || [];
-    }
+    return this._getGenericCategory('cocteleria', 'cocteles');
   }
 
   /**
@@ -206,13 +217,7 @@ class ProductDataAdapter extends BaseAdapter {
    * @returns {Promise<Array>} Array of beverage objects
    */
   async getRefrescos() {
-    try {
-      const data = await this._fetchFromSupabase('refrescos');
-      return data.length > 0 ? data : this.productData.refrescos || [];
-    } catch (error) {
-      Logger.error('Error in getRefrescos:', error);
-      return this.productData.refrescos || [];
-    }
+    return this._getGenericCategory('refrescos');
   }
 
   /**
@@ -250,13 +255,7 @@ class ProductDataAdapter extends BaseAdapter {
    * @returns {Promise<Array>} Array of beer objects
    */
   async getCervezas() {
-    try {
-      const data = await this._fetchFromSupabase('cervezas');
-      return data.length > 0 ? data : this.productData.cervezas || [];
-    } catch (error) {
-      Logger.error('Error in getCervezas:', error);
-      return this.productData.cervezas || [];
-    }
+    return this._getGenericCategory('cervezas');
   }
 
   /**
@@ -264,13 +263,7 @@ class ProductDataAdapter extends BaseAdapter {
    * @returns {Promise<Array>} Array of pizza objects
    */
   async getPizzas() {
-    try {
-      const data = await this._fetchFromSupabase('pizzas');
-      return data.length > 0 ? data : this.productData.pizzas || [];
-    } catch (error) {
-      Logger.error('Error in getPizzas:', error);
-      return this.productData.pizzas || [];
-    }
+    return this._getGenericCategory('pizzas');
   }
 
   /**
@@ -278,13 +271,7 @@ class ProductDataAdapter extends BaseAdapter {
    * @returns {Promise<Array>} Array of wing objects
    */
   async getAlitas() {
-    try {
-      const data = await this._fetchFromSupabase('alitas');
-      return data.length > 0 ? data : this.productData.alitas || [];
-    } catch (error) {
-      Logger.error('Error in getAlitas:', error);
-      return this.productData.alitas || [];
-    }
+    return this._getGenericCategory('alitas');
   }
 
   /**
@@ -292,13 +279,7 @@ class ProductDataAdapter extends BaseAdapter {
    * @returns {Promise<Array>} Array of soup objects
    */
   async getSopas() {
-    try {
-      const data = await this._fetchFromSupabase('sopas');
-      return data.length > 0 ? data : this.productData.sopas || [];
-    } catch (error) {
-      Logger.error('Error in getSopas:', error);
-      return this.productData.sopas || [];
-    }
+    return this._getGenericCategory('sopas');
   }
 
   /**
@@ -306,13 +287,7 @@ class ProductDataAdapter extends BaseAdapter {
    * @returns {Promise<Array>} Array of salad objects
    */
   async getEnsaladas() {
-    try {
-      const data = await this._fetchFromSupabase('ensaladas');
-      return data.length > 0 ? data : this.productData.ensaladas || [];
-    } catch (error) {
-      Logger.error('Error in getEnsaladas:', error);
-      return this.productData.ensaladas || [];
-    }
+    return this._getGenericCategory('ensaladas');
   }
 
   /**
@@ -320,13 +295,7 @@ class ProductDataAdapter extends BaseAdapter {
    * @returns {Promise<Array>} Array of meat objects
    */
   async getCarnes() {
-    try {
-      const data = await this._fetchFromSupabase('carnes');
-      return data.length > 0 ? data : this.productData.carnes || [];
-    } catch (error) {
-      Logger.error('Error in getCarnes:', error);
-      return this.productData.carnes || [];
-    }
+    return this._getGenericCategory('carnes');
   }
 
   /**
@@ -334,13 +303,7 @@ class ProductDataAdapter extends BaseAdapter {
    * @returns {Promise<Array>} Array of coffee objects
    */
   async getCafe() {
-    try {
-      const data = await this._fetchFromSupabase('cafe');
-      return data.length > 0 ? data : this.productData.cafes || [];
-    } catch (error) {
-      Logger.error('Error in getCafe:', error);
-      return this.productData.cafes || [];
-    }
+    return this._getGenericCategory('cafe', 'cafes');
   }
 
   /**
@@ -348,13 +311,7 @@ class ProductDataAdapter extends BaseAdapter {
    * @returns {Promise<Array>} Array of sparkling wine objects
    */
   async getEspumosos() {
-    try {
-      const data = await this._fetchFromSupabase('espumosos');
-      return data.length > 0 ? data : this.productData.espumosos || [];
-    } catch (error) {
-      Logger.error('Error in getEspumosos:', error);
-      return this.productData.espumosos || [];
-    }
+    return this._getGenericCategory('espumosos');
   }
 
   /**
@@ -362,13 +319,7 @@ class ProductDataAdapter extends BaseAdapter {
    * @returns {Promise<Array>} Array of dessert objects
    */
   async getPostres() {
-    try {
-      const data = await this._fetchFromSupabase('postres');
-      return data.length > 0 ? data : this.productData.postres || [];
-    } catch (error) {
-      Logger.error('Error in getPostres:', error);
-      return this.productData.postres || [];
-    }
+    return this._getGenericCategory('postres');
   }
 
   /**
@@ -435,7 +386,9 @@ class ProductDataAdapter extends BaseAdapter {
       'carnes': () => this.getCarnes(),
       'cafe': () => this.getCafe(),
       'café': () => this.getCafe(),
-      'postres': () => this.getPostres()
+      'postres': () => this.getPostres(),
+      'snacks': () => this._getGenericCategory('snacks'),
+      'bebidas': () => this._getGenericCategory('bebidas')
     };
     
     if (categoryMethods[normalizedCategory]) {
@@ -509,13 +462,7 @@ class ProductDataAdapter extends BaseAdapter {
    * @returns {Promise<Array>} Array of liquor category objects
    */
   async getLicoresCategories() {
-    try {
-      const data = await this._fetchFromSupabase('licores');
-      return data.length > 0 ? data : this.productData.licoresCategories || [];
-    } catch (error) {
-      Logger.error('Error in getLicoresCategories:', error);
-      return this.productData.licoresCategories || [];
-    }
+    return this._getGenericCategory('licores', 'licoresCategories');
   }
 
   /**
@@ -524,13 +471,7 @@ class ProductDataAdapter extends BaseAdapter {
    * @returns {Promise<Array>} Array of products in the subcategory
    */
   async getLiquorSubcategory(subcategory) {
-    try {
-       const data = await this._fetchFromSupabase(subcategory);
-       return data.length > 0 ? data : this.productData[subcategory] || [];
-     } catch (error) {
-       Logger.error(`Error in getLiquorSubcategory for ${subcategory}:`, error);
-       return [];
-     }
+    return this._getGenericCategory(subcategory);
   }
 
   /**
