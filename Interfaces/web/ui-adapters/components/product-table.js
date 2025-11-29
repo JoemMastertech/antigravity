@@ -13,19 +13,19 @@ const ProductRenderer = {
   // Phase 3: Event delegation system
   eventDelegationInitialized: false,
   boundDelegatedHandler: null,
-  
+
   // Toggle between table and grid view
-  toggleViewMode: async function() {
+  toggleViewMode: async function () {
     this.currentViewMode = this.currentViewMode === 'table' ? 'grid' : 'table';
     Logger.info('View mode toggled to:', this.currentViewMode);
-    
+
     // Update toggle button text
     const toggleBtn = document.querySelector('.view-toggle-btn');
     if (toggleBtn) {
       toggleBtn.textContent = this.currentViewMode === 'table' ? '🔲' : '📋';
       toggleBtn.classList.toggle('active', this.currentViewMode === 'grid');
     }
-    
+
     // Refresh the current view to apply the new mode
     const container = document.getElementById('content-container');
     if (container) {
@@ -33,25 +33,25 @@ const ProductRenderer = {
       // Ensure new view content is translated according to current language
       this._retranslateIfNeeded(container);
     }
-    
+
     return this.currentViewMode;
   },
-  
+
   // Phase 3: Initialize intelligent event delegation
-  initEventDelegation: function() {
+  initEventDelegation: function () {
     if (this.eventDelegationInitialized) return;
-    
+
     this.boundDelegatedHandler = this.handleDelegatedEvent.bind(this);
     document.addEventListener('click', this.boundDelegatedHandler);
     this.eventDelegationInitialized = true;
-    
+
     Logger.info('Event delegation system initialized for ProductRenderer');
   },
-  
+
   // Phase 3: Centralized event handler
-  handleDelegatedEvent: function(e) {
+  handleDelegatedEvent: function (e) {
     const target = e.target;
-    
+
     // Handle view toggle buttons
     if (target.classList && target.classList.contains('view-toggle-btn')) {
       e.preventDefault();
@@ -66,7 +66,7 @@ const ProductRenderer = {
       });
       return;
     }
-    
+
     // Handle back buttons (both floating and top nav)
     if (target.classList && (target.classList.contains('back-button') || target.classList.contains('top-back-btn'))) {
       e.preventDefault();
@@ -74,60 +74,60 @@ const ProductRenderer = {
       if (container) this.handleBackButton(target);
       return;
     }
-    
+
     // Handle price buttons
     if (target.classList && target.classList.contains('price-button')) {
       e.preventDefault();
       this.handlePriceButtonClick(target, e);
       return;
     }
-    
+
     // Handle video thumbnails
     if ((target.classList && target.classList.contains('video-thumb')) || (target.classList && target.classList.contains('video-thumbnail'))) {
       e.preventDefault();
       this.handleVideoClick(target);
       return;
     }
-    
+
     // Handle product images
     if (target.classList && target.classList.contains('product-image')) {
       e.preventDefault();
       this.handleImageClick(target);
       return;
     }
-    
+
     // Handle product cards (grid view)
     if (target.classList && target.classList.contains('product-card')) {
       e.preventDefault();
       this.handleCardClick(target, e);
       return;
     }
-    
+
     // Handle category cards
     if ((target.classList && target.classList.contains('category-card')) || target.closest('.category-card')) {
       e.preventDefault();
       this.handleCategoryCardClick(target);
       return;
     }
-    
+
     // Handle modal close buttons
     if (target.classList && target.classList.contains('modal-close-btn')) {
       e.preventDefault();
       this.handleModalClose(target);
       return;
     }
-    
+
     // Handle modal backdrop clicks
-    if ((target.classList && target.classList.contains('modal-backdrop')) || 
-        (target.classList && target.classList.contains('video-modal-backdrop')) || 
-        (target.classList && target.classList.contains('image-modal-backdrop'))) {
+    if ((target.classList && target.classList.contains('modal-backdrop')) ||
+      (target.classList && target.classList.contains('video-modal-backdrop')) ||
+      (target.classList && target.classList.contains('image-modal-backdrop'))) {
       this.handleModalBackdropClick(target, e);
       return;
     }
   },
-  
+
   // Phase 3: Cleanup event delegation
-  destroyEventDelegation: function() {
+  destroyEventDelegation: function () {
     if (this.boundDelegatedHandler) {
       document.removeEventListener('click', this.boundDelegatedHandler);
       this.boundDelegatedHandler = null;
@@ -135,30 +135,30 @@ const ProductRenderer = {
       Logger.info('Event delegation system destroyed');
     }
   },
-  
+
   // Create view toggle button (optimized)
-  createViewToggle: function(container) {
+  createViewToggle: function (container) {
     // Initialize event delegation if not already done
     this.initEventDelegation();
-    
+
     const toggleContainer = document.createElement('div');
     toggleContainer.className = 'view-toggle-container';
-    
+
     const toggleBtn = document.createElement('button');
     toggleBtn.className = 'view-toggle-btn';
     toggleBtn.textContent = this.currentViewMode === 'table' ? '🔲' : '📋';
     toggleBtn.classList.toggle('active', this.currentViewMode === 'grid');
-    
+
     // No individual event listener needed - handled by delegation
     toggleContainer.appendChild(toggleBtn);
     return toggleContainer;
   },
-  
+
   // Refresh current view with new mode
-  refreshCurrentView: async function(container) {
+  refreshCurrentView: async function (container) {
     const viewData = this._extractViewData(container);
     if (!viewData) return;
-    
+
     const backButtonHTML = this._preserveBackButton(container);
     const targetContainer = this._clearAndRestoreContainer(container, backButtonHTML);
     await this._renderCategoryView(targetContainer, viewData.category);
@@ -166,22 +166,22 @@ const ProductRenderer = {
     this._retranslateIfNeeded(targetContainer);
   },
 
-  _extractViewData: function(container) {
+  _extractViewData: function (container) {
     const existingTable = container.querySelector('table, .product-grid');
     if (!existingTable) return null;
-    
+
     const category = existingTable.dataset.category;
     if (!category) return null;
-    
+
     return { category };
   },
 
-  _preserveBackButton: function(container) {
+  _preserveBackButton: function (container) {
     const backButtonContainer = container.querySelector('.back-button-container');
     return backButtonContainer ? backButtonContainer.outerHTML : null;
   },
 
-  _clearAndRestoreContainer: function(container, backButtonHTML) {
+  _clearAndRestoreContainer: function (container, backButtonHTML) {
     // Get or create content container without destroying sidebar structure
     let targetContainer = document.getElementById('content-container');
     if (!targetContainer) {
@@ -207,35 +207,35 @@ const ProductRenderer = {
       // Clear only the content container, leaving sidebar untouched
       targetContainer.innerHTML = '';
     }
-    
+
     if (backButtonHTML) {
       this._restoreBackButton(targetContainer, backButtonHTML);
     }
-    
+
     return targetContainer;
   },
 
-  _restoreBackButton: function(container, backButtonHTML) {
+  _restoreBackButton: function (container, backButtonHTML) {
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = backButtonHTML;
     const restoredBackButton = tempDiv.firstChild;
-    
+
     // No need to add individual event listener - handled by delegation
     container.appendChild(restoredBackButton);
   },
-  
+
   // Phase 3: Specific event handlers
-  handleCategoryCardClick: function(target) {
+  handleCategoryCardClick: function (target) {
     const categoryCard = target.closest('.category-card') || target;
     const category = categoryCard.dataset.category;
-    
+
     Logger.info(`🎯 Clic en categoría de licor: ${category}`);
-    
+
     // Log current DOM state before navigation
     const currentMainScreen = document.getElementById('main-screen');
     const currentContentContainer = document.getElementById('content-container');
     const currentOrdersBox = document.getElementById('orders-box');
-    
+
     Logger.debug('📊 Estado DOM antes de clic en categoría:', {
       category: category,
       mainScreen: !!currentMainScreen,
@@ -244,7 +244,7 @@ const ProductRenderer = {
       mainScreenVisible: currentMainScreen ? !currentMainScreen.classList.contains('hidden') : false,
       mainScreenClasses: currentMainScreen ? Array.from(currentMainScreen.classList) : []
     });
-    
+
     if (category) {
       const container = categoryCard.closest('.content-wrapper') || document.querySelector('.content-wrapper');
       if (container) {
@@ -257,22 +257,22 @@ const ProductRenderer = {
       Logger.warn('⚠️ No se encontró categoría en el elemento clickeado');
     }
   },
-  
-  handleModalClose: function(target) {
+
+  handleModalClose: function (target) {
     const modal = target.closest('.modal-backdrop');
     if (modal) {
       modal.remove();
     }
   },
-  
-  handleModalBackdropClick: function(target, event) {
+
+  handleModalBackdropClick: function (target, event) {
     // Only close if clicking directly on the backdrop, not on modal content
     if (event.target === target) {
       target.remove();
     }
   },
-  
-  handlePriceButtonClick: function(target, event) {
+
+  handlePriceButtonClick: function (target, event) {
     if (target.disabled || (target.classList && target.classList.contains('non-selectable'))) {
       return;
     }
@@ -285,16 +285,16 @@ const ProductRenderer = {
       }
       return;
     }
-    
+
     const row = target.closest('tr');
     const card = target.closest('.product-card');
-    
+
     if (row) {
       // Table view handling
       const nameCell = row.querySelector('.product-name');
       const priceText = target.textContent;
       const productName = nameCell.textContent;
-      
+
       if (window.OrderSystem && window.OrderSystem.handleProductSelection) {
         window.OrderSystem.handleProductSelection(productName, priceText, row, event);
       }
@@ -302,7 +302,7 @@ const ProductRenderer = {
       // Grid view handling
       const productName = target.dataset.productName;
       const priceText = target.textContent;
-      
+
       Logger.debug('[GRID DEBUG] Price button clicked:', {
         productName,
         priceText,
@@ -310,59 +310,60 @@ const ProductRenderer = {
         orderSystemExists: !!window.OrderSystem,
         isOrderMode: window.OrderSystem?.isOrderMode
       });
-      
+
       if (window.OrderSystem && window.OrderSystem.handleProductSelection) {
         window.OrderSystem.handleProductSelection(productName, priceText, card, event);
       }
     }
   },
-  
-  handleVideoClick: function(target) {
+
+  handleVideoClick: function (target) {
     const videoUrl = target.dataset.videoUrl || target.src;
+    const fallbackUrl = target.dataset.videoUrlFallback;
     const productName = target.alt?.replace('Ver video de ', '') || target.alt?.replace('Video de ', '') || 'Producto';
     const categoryElement = target.closest('table, .product-grid');
     const category = categoryElement?.dataset.category;
-    
+
     const modalCategory = (category === 'cervezas' || category === 'refrescos') ? category : null;
-    this.showVideoModal(videoUrl, productName, modalCategory);
+    this.showVideoModal(videoUrl, productName, modalCategory, fallbackUrl);
   },
-  
-  handleImageClick: function(target) {
+
+  handleImageClick: function (target) {
     const imageUrl = target.src;
     const productName = target.alt || 'Producto';
     const categoryElement = target.closest('table, .product-grid');
     const category = categoryElement?.dataset.category;
-    
+
     const modalCategory = (category === 'cervezas' || category === 'refrescos') ? category : null;
     this.showImageModal(imageUrl, productName, modalCategory);
   },
-  
-  handleCardClick: function(target, event) {
+
+  handleCardClick: function (target, event) {
     // Handle card clicks if needed for future functionality
     Logger.debug('Product card clicked:', target);
   },
-  
-  handleBackButton: function(target) {
+
+  handleBackButton: function (target) {
     // Handle back button navigation based on context
     const wrapper = target.closest('.content-wrapper') || document.querySelector('.content-wrapper');
-    
+
     if (wrapper) {
       // Check if we're in a liquor subcategory and need to go back to licores
       if (target.title === 'Volver a Licores' || target.dataset.action === 'back-to-licores') {
         Logger.info('🔄 Navegando de vuelta a Licores desde subcategoría');
-        
+
         // Log current DOM state before manipulation
         const currentMainScreen = document.getElementById('main-screen');
         const currentContentContainer = document.getElementById('content-container');
         const currentOrdersBox = document.getElementById('orders-box');
-        
+
         Logger.debug('📊 Estado DOM antes de volver a Licores:', {
           mainScreen: !!currentMainScreen,
           contentContainer: !!currentContentContainer,
           ordersBox: !!currentOrdersBox,
           mainScreenVisible: currentMainScreen ? !currentMainScreen.classList.contains('hidden') : false
         });
-        
+
         // Get or create content container for rendering
         let container = wrapper.querySelector('#content-container');
         if (!container) {
@@ -382,36 +383,36 @@ const ProductRenderer = {
           // Clear only the content container, preserving sidebar
           container.innerHTML = '';
         }
-        
+
         Logger.info('🍷 Renderizando vista de Licores');
         this.renderLicores(container);
-        
+
         // Ocultar botón de back en la barra superior y limpiar título
         const topBackBtn = document.getElementById('top-back-btn');
         const navTitle = document.getElementById('nav-title');
-        
+
         if (topBackBtn) {
           topBackBtn.classList.add('back-btn-hidden');
           topBackBtn.removeAttribute('data-action');
           topBackBtn.removeAttribute('title');
-          
+
           // Limpiar event listener específico
           if (this._topBackBtnHandler) {
             topBackBtn.removeEventListener('click', this._topBackBtnHandler);
             this._topBackBtnHandler = null;
           }
         }
-        
+
         if (navTitle) {
           navTitle.textContent = '';
         }
-        
+
         // Log DOM state after rendering
         setTimeout(() => {
           const afterMainScreen = document.getElementById('main-screen');
           const afterContentContainer = document.getElementById('content-container');
           const afterOrdersBox = document.getElementById('orders-box');
-          
+
           Logger.debug('📊 Estado DOM después de renderizar Licores:', {
             mainScreen: !!afterMainScreen,
             contentContainer: !!afterContentContainer,
@@ -426,10 +427,10 @@ const ProductRenderer = {
     }
   },
 
-  _renderCategoryView: async function(container, category) {
+  _renderCategoryView: async function (container, category) {
     const categoryRenderers = this._getCategoryRenderers();
     const renderer = categoryRenderers[category];
-    
+
     if (renderer) {
       await renderer(container);
       // Translate after category renderer completes
@@ -439,7 +440,7 @@ const ProductRenderer = {
     }
   },
 
-  _getCategoryRenderers: function() {
+  _getCategoryRenderers: function () {
     return {
       'cocteleria': (container) => this.renderCocktails(container),
       'pizzas': (container) => this.renderPizzas(container),
@@ -464,12 +465,12 @@ const ProductRenderer = {
     };
   },
 
-  createProductTable: function(container, headers, data, fields, tableClass, categoryTitle) {
+  createProductTable: function (container, headers, data, fields, tableClass, categoryTitle) {
     const table = this._createTableElement(tableClass, categoryTitle);
     const titleRow = this._createTitleRow(categoryTitle, headers.length);
     const tableHead = this._createTableHeader(headers, titleRow);
     const tbody = this._createTableBody(data, fields, categoryTitle);
-    
+
     table.appendChild(tableHead);
     table.appendChild(tbody);
     container.appendChild(table);
@@ -477,25 +478,25 @@ const ProductRenderer = {
     this._retranslateIfNeeded(container);
   },
 
-  _createTableElement: function(tableClass, categoryTitle) {
+  _createTableElement: function (tableClass, categoryTitle) {
     const table = document.createElement('table');
     table.className = tableClass;
-    
+
     const normalizedCategory = this._normalizeCategory(categoryTitle);
     table.dataset.category = normalizedCategory;
     table.dataset.productType = this._determineProductType(normalizedCategory, tableClass, categoryTitle);
-    
+
     return table;
   },
 
-  _normalizeCategory: function(categoryTitle) {
+  _normalizeCategory: function (categoryTitle) {
     return categoryTitle
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase();
   },
 
-  _determineProductType: function(normalizedCategory, tableClass, categoryTitle) {
+  _determineProductType: function (normalizedCategory, tableClass, categoryTitle) {
     const foodCategories = ['pizzas', 'alitas', 'sopas', 'ensaladas', 'carnes'];
     const beverageCategories = ['cocteleria', 'refrescos', 'cervezas', 'cafe', 'postres'];
 
@@ -511,7 +512,7 @@ const ProductRenderer = {
     }
   },
 
-  _createTitleRow: function(categoryTitle, headerLength) {
+  _createTitleRow: function (categoryTitle, headerLength) {
     const titleRow = document.createElement('tr');
     titleRow.className = 'title-row';
     const titleCell = document.createElement('td');
@@ -531,13 +532,13 @@ const ProductRenderer = {
     return titleRow;
   },
 
-  _createTableHeader: function(headers, titleRow) {
+  _createTableHeader: function (headers, titleRow) {
     const tableHead = document.createElement('thead');
     tableHead.appendChild(titleRow);
-    
+
     const headerRow = document.createElement('tr');
     headerRow.setAttribute('data-nombre-column', 'true');
-    
+
     headers.forEach(header => {
       const th = document.createElement('th');
       th.textContent = header;
@@ -553,36 +554,36 @@ const ProductRenderer = {
       }
       headerRow.appendChild(th);
     });
-    
+
     tableHead.appendChild(headerRow);
     return tableHead;
   },
 
-  _createTableBody: function(data, fields, categoryTitle) {
+  _createTableBody: function (data, fields, categoryTitle) {
     const tbody = document.createElement('tbody');
-    
+
     data.forEach(item => {
       const row = this._createTableRow(item, fields, categoryTitle);
       tbody.appendChild(row);
     });
-    
+
     return tbody;
   },
 
-  _createTableRow: function(item, fields, categoryTitle) {
+  _createTableRow: function (item, fields, categoryTitle) {
     const row = document.createElement('tr');
-    
+
     fields.forEach(field => {
       const td = this._createTableCell(item, field, categoryTitle);
       row.appendChild(td);
     });
-    
+
     return row;
   },
 
-  _createTableCell: function(item, field, categoryTitle) {
+  _createTableCell: function (item, field, categoryTitle) {
     const td = document.createElement('td');
-    
+
     if (field === 'nombre') {
       this._createNameCell(td, item[field]);
     } else if (field === 'ingredientes') {
@@ -596,11 +597,11 @@ const ProductRenderer = {
     } else {
       td.textContent = item[field] || '';
     }
-    
+
     return td;
   },
 
-  _createNameCell: function(td, nombre) {
+  _createNameCell: function (td, nombre) {
     td.className = 'product-name';
     td.textContent = nombre;
     const key = `product-name_${this.simpleHash((nombre || '').trim())}`;
@@ -609,7 +610,7 @@ const ProductRenderer = {
     td.setAttribute('data-original-text', nombre || '');
   },
 
-  _createIngredientsCell: function(td, ingredientes) {
+  _createIngredientsCell: function (td, ingredientes) {
     td.className = 'product-ingredients';
     td.textContent = ingredientes || '';
     if (ingredientes) {
@@ -620,24 +621,24 @@ const ProductRenderer = {
     }
   },
 
-  _isPriceField: function(field) {
+  _isPriceField: function (field) {
     return field.includes('precio') || field === 'precioBotella' || field === 'precioLitro' || field === 'precioCopa';
   },
 
-  _formatPriceForLiquor: function(priceValue) {
+  _formatPriceForLiquor: function (priceValue) {
     // Check if price already has $ symbol
     if (typeof priceValue === 'string' && priceValue.includes('$')) {
       return priceValue;
     }
-    
+
     // Add $ symbol for liquor prices
     return `$${priceValue}`;
   },
 
-  _createPriceCell: function(td, item, field) {
+  _createPriceCell: function (td, item, field) {
     td.className = 'product-price';
     const priceButton = document.createElement('button');
-    
+
     const priceValue = item[field];
     if (!priceValue || priceValue === '--') {
       priceButton.textContent = '--';
@@ -653,70 +654,63 @@ const ProductRenderer = {
       // Provide a unified attribute used by OrderSystem for grid/table views
       priceButton.dataset.field = field;
     }
-    
+
     td.appendChild(priceButton);
   },
 
-  _createVideoCell: function(td, item, categoryTitle) {
+  _createVideoCell: function (td, item, categoryTitle) {
     td.className = 'video-icon';
-    
+
     if (item.video) {
-      let thumbnailUrl;
-      
-      // Manejo especial para la sección de carnes
-      if (categoryTitle && (categoryTitle.toLowerCase() === 'carnes')) {
-        // Extraer el nombre del archivo de video sin extensión
-        const videoFilename = item.video.split('/').pop().replace('.mp4', '');
-        thumbnailUrl = `https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/thumbnail/cortes%20de%20carne/${videoFilename}.webp`;
-        
-        // Si hay una imagen directamente en el objeto item, usarla (limpiando comillas)
-        if (item.imagen) {
-          thumbnailUrl = item.imagen.replace(/[`\s]/g, '');
-        }
-      } else if (categoryTitle && (categoryTitle.toLowerCase() === 'cafes' || categoryTitle.toLowerCase() === 'café' || categoryTitle.toLowerCase() === 'cafe')) {
-        // Preferir imagen directa si existe
-        if (item.imagen) {
-          thumbnailUrl = item.imagen.replace(/[`\s]/g, '');
-        } else {
-          // Usar función genérica pasando la categoría para que use nombre del producto
-          thumbnailUrl = this.getThumbnailUrl(item.video, item.nombre, 'cafes');
-        }
-      } else if (categoryTitle && categoryTitle.toLowerCase() === 'postres') {
-        // Preferir imagen directa si existe
-        if (item.imagen) {
-          thumbnailUrl = item.imagen.replace(/[`\s]/g, '');
-        } else {
-          // Usar función genérica pasando la categoría para que use nombre del producto
-          thumbnailUrl = this.getThumbnailUrl(item.video, item.nombre, 'postres');
-        }
-      } else {
-        // Para otras categorías, usar la función existente (pasando el título de categoría)
-        thumbnailUrl = this.getThumbnailUrl(item.video, item.nombre, categoryTitle || '');
-      }
-      
+      // 1. URL del Video
+      // Intentamos usar la versión .webm cambiando la extensión de la URL original
+      const videoUrl = item.video.replace(/\.(mp4|mov|avi)$/i, '.webm');
+      const videoFallback = item.video; // La URL original de la BD es el fallback
+
+      // 2. URL del Thumbnail
+      // Usamos la imagen que viene en la BD. 
+      // Si no hay imagen, podríamos intentar derivarla del video, pero confiamos en la BD.
+      const thumbnailUrl = item.imagen || item.video.replace(/\.(mp4|mov|avi)$/i, '.webp');
+
       const thumbnailImg = document.createElement('img');
       thumbnailImg.className = 'video-thumb';
       thumbnailImg.src = thumbnailUrl;
       thumbnailImg.alt = `Ver video de ${item.nombre}`;
-      thumbnailImg.dataset.videoUrl = item.video;
-      
+      thumbnailImg.dataset.videoUrl = videoUrl;
+      thumbnailImg.dataset.videoUrlFallback = videoFallback;
+
+      // Fallback para el thumbnail
+      thumbnailImg.onerror = function () {
+        if (!this.dataset.fallenBack) {
+          this.dataset.fallenBack = 'true';
+          Logger.warn(`Thumbnail falló: ${this.src}.`);
+          // Si falló la carga, no tenemos un fallback claro si item.imagen ya era el intento.
+          // Podríamos intentar usar el video como imagen (algunos navegadores lo soportan) o un placeholder.
+        }
+      };
+
       td.appendChild(thumbnailImg);
     } else {
       td.textContent = '--';
     }
   },
 
-  _createImageCell: function(td, item, field, categoryTitle) {
+  _createImageCell: function (td, item, field, categoryTitle) {
     td.className = 'image-icon';
     if (item[field]) {
       const img = document.createElement('img');
+      // Usamos directamente la URL de la base de datos
       img.src = item[field];
       img.alt = item.nombre;
-      
+
+      img.onerror = function () {
+        Logger.warn(`Error loading image: ${this.src}`);
+      };
+
       const liquorCategories = ['whisky', 'tequila', 'ron', 'vodka', 'ginebra', 'mezcal', 'cognac', 'brandy', 'digestivos', 'espumosos'];
       const isBeverage = categoryTitle && (categoryTitle.toLowerCase() === 'cervezas' || categoryTitle.toLowerCase() === 'refrescos');
       const isLiquorSubcategory = categoryTitle && liquorCategories.includes(categoryTitle.toLowerCase());
-      
+
       img.className = 'product-image';
       if (isBeverage || isLiquorSubcategory) {
         img.classList.add('product-image-large');
@@ -730,27 +724,27 @@ const ProductRenderer = {
     }
   },
 
-  _getCategoryForModal: function(categoryTitle) {
+  _getCategoryForModal: function (categoryTitle) {
     return categoryTitle && (categoryTitle.toLowerCase() === 'cervezas' || categoryTitle.toLowerCase() === 'refrescos') ? categoryTitle.toLowerCase() : null;
   },
-  
+
   // Create product grid view
-  createProductGrid: function(container, data, fields, categoryTitle) {
+  createProductGrid: function (container, data, fields, categoryTitle) {
     const grid = document.createElement('div');
     grid.className = 'product-grid';
-    
+
     // Normalize categoryTitle for data-attribute
     const normalizedCategory = categoryTitle
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase();
     grid.dataset.category = normalizedCategory;
-    
+
     // Determine productType based on category
     let productType;
     const foodCategories = ['pizzas', 'alitas', 'sopas', 'ensaladas', 'carnes'];
     const beverageCategories = ['cocteleria', 'refrescos', 'cervezas', 'cafe', 'postres'];
-    
+
     if (foodCategories.includes(normalizedCategory)) {
       productType = 'food';
     } else if (beverageCategories.includes(normalizedCategory)) {
@@ -759,7 +753,7 @@ const ProductRenderer = {
       productType = 'unknown';
     }
     grid.dataset.productType = productType;
-    
+
     // Add title
     const titleElement = document.createElement('h2');
     titleElement.className = 'page-title';
@@ -771,12 +765,12 @@ const ProductRenderer = {
       titleElement.setAttribute('data-namespace', 'category.title');
     }
     grid.appendChild(titleElement);
-    
+
     // Create product cards
     data.forEach(item => {
       const card = document.createElement('div');
       card.className = 'product-card';
-      
+
       // Product name
       const nameElement = document.createElement('div');
       nameElement.className = 'product-name';
@@ -786,7 +780,7 @@ const ProductRenderer = {
       nameElement.setAttribute('data-namespace', 'products');
       nameElement.setAttribute('data-original-text', item.nombre || '');
       card.appendChild(nameElement);
-      
+
       // Product ingredients (if available)
       if (item.ingredientes) {
         const ingredientsElement = document.createElement('div');
@@ -798,51 +792,69 @@ const ProductRenderer = {
         ingredientsElement.setAttribute('data-original-text', item.ingredientes || '');
         card.appendChild(ingredientsElement);
       }
-      
+
       // Media container (video or image)
       const mediaContainer = document.createElement('div');
       mediaContainer.className = 'product-media';
-      
+
       if (item.video) {
+        // 1. URL del Video
+        const videoUrl = item.video.replace(/\.(mp4|mov|avi)$/i, '.webm');
+        const videoFallback = item.video;
+
+        // 2. URL del Thumbnail
+        const thumbnailUrl = item.imagen || item.video.replace(/\.(mp4|mov|avi)$/i, '.webp');
+
         const videoThumbnail = document.createElement('img');
         videoThumbnail.className = 'video-thumbnail';
-        videoThumbnail.src = this.getThumbnailUrl(item.video);
+        videoThumbnail.src = thumbnailUrl;
         videoThumbnail.alt = `Video de ${item.nombre}`;
-        videoThumbnail.dataset.videoUrl = item.video;
-        // No individual event listener - handled by delegation
+        videoThumbnail.dataset.videoUrl = videoUrl;
+        videoThumbnail.dataset.videoUrlFallback = videoFallback;
+
+        videoThumbnail.onerror = function () {
+          if (!this.dataset.fallenBack) {
+            this.dataset.fallenBack = 'true';
+            Logger.warn(`Grid Thumbnail falló: ${this.src}`);
+          }
+        };
+
         mediaContainer.appendChild(videoThumbnail);
       } else if (item.imagen || item.ruta_archivo) {
         const image = document.createElement('img');
         image.className = 'product-image';
         image.src = item.imagen || item.ruta_archivo;
         image.alt = item.nombre;
-        // No individual event listener - handled by delegation
+
+        image.onerror = function () {
+          Logger.warn(`Grid Image failed: ${this.src}`);
+        };
+
         mediaContainer.appendChild(image);
       }
-      
       card.appendChild(mediaContainer);
-      
+
       // Prices container
       const pricesContainer = document.createElement('div');
       pricesContainer.className = 'product-prices';
-      
+
       // Check if this is a liquor subcategory
       const liquorCategories = ['whisky', 'tequila', 'ron', 'vodka', 'ginebra', 'mezcal', 'cognac', 'brandy', 'digestivos', 'espumosos'];
       const isLiquorCategory = liquorCategories.includes(normalizedCategory);
-      
+
       if (isLiquorCategory) {
         card.classList.add('liquor-card');
         card.dataset.productType = 'liquor';
         card.dataset.category = normalizedCategory;
       }
-      
+
       // Price labels mapping for liquors
       const priceLabels = {
         'precioBotella': 'Botella',
-        'precioLitro': 'Litro', 
+        'precioLitro': 'Litro',
         'precioCopa': 'Copa'
       };
-      
+
       // Add price buttons based on available fields
       fields.forEach(field => {
         if (field.includes('precio') || field === 'precioBotella' || field === 'precioLitro' || field === 'precioCopa') {
@@ -852,7 +864,7 @@ const ProductRenderer = {
               // Create price item container for liquors
               const priceItem = document.createElement('div');
               priceItem.className = 'price-item';
-              
+
               // Create price label
               const priceLabel = document.createElement('span');
               priceLabel.className = 'price-label';
@@ -862,7 +874,7 @@ const ProductRenderer = {
               priceLabel.setAttribute('data-namespace', 'products');
               priceLabel.setAttribute('data-original-text', (priceLabels[field] + ':'));
               priceItem.appendChild(priceLabel);
-              
+
               // Create price button
               const priceButton = document.createElement('button');
               priceButton.className = 'price-button';
@@ -872,9 +884,9 @@ const ProductRenderer = {
               priceButton.dataset.productName = item.nombre;
               priceButton.dataset.price = priceValue;
               priceButton.dataset.field = field;
-              
+
               // No individual event listener - handled by delegation
-              
+
               priceItem.appendChild(priceButton);
               pricesContainer.appendChild(priceItem);
             } else {
@@ -885,21 +897,21 @@ const ProductRenderer = {
               priceButton.dataset.productName = item.nombre;
               priceButton.dataset.price = priceValue;
               priceButton.dataset.field = field;
-              
+
               // No individual event listener - handled by delegation
-              
+
               pricesContainer.appendChild(priceButton);
             }
           }
         }
       });
-      
+
       card.appendChild(pricesContainer);
       grid.appendChild(card);
     });
-    
+
     container.appendChild(grid);
-    
+
     // Apply intelligent text truncation after grid is rendered
     this.applyIntelligentTruncation(grid);
     // Ensure grid content is translated if a non-Spanish language is active
@@ -907,7 +919,7 @@ const ProductRenderer = {
   },
 
   // Simple hash to generate stable keys per text
-  simpleHash: function(str) {
+  simpleHash: function (str) {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
       const char = str.charCodeAt(i);
@@ -916,13 +928,13 @@ const ProductRenderer = {
     }
     return Math.abs(hash).toString(36);
   },
-  
+
   // Apply intelligent text truncation to product cards
-  applyIntelligentTruncation: function(gridContainer) {
+  applyIntelligentTruncation: function (gridContainer) {
     // Wait for the DOM to be fully rendered
     setTimeout(() => {
       const productCards = gridContainer.querySelectorAll('.product-card');
-      
+
       productCards.forEach(card => {
         // Skip product names - no truncation for titles
         const nameElement = card.querySelector('.product-name');
@@ -931,7 +943,7 @@ const ProductRenderer = {
           nameElement.removeAttribute('data-truncated');
           nameElement.classList.remove('height-auto', 'min-height-auto');
         }
-        
+
         // Handle product ingredients only
         const ingredientsElement = card.querySelector('.product-ingredients');
         if (ingredientsElement) {
@@ -940,32 +952,32 @@ const ProductRenderer = {
       });
     }, 50); // Small delay to ensure rendering is complete
   },
-  
+
   // Handle text overflow for individual elements
-  handleTextOverflow: function(element, maxLines) {
+  handleTextOverflow: function (element, maxLines) {
     if (!element || !element.textContent) return;
-    
+
     const originalText = element.textContent.trim();
     if (!originalText) return;
-    
+
     // Reset any previous modifications
     element.textContent = originalText;
     element.removeAttribute('data-truncated');
     element.classList.remove('height-auto', 'min-height-auto');
-    
+
     // Force a reflow to get accurate measurements
     element.offsetHeight;
-    
+
     // Get the computed dimensions after CSS has been applied
     const computedStyle = window.getComputedStyle(element);
     const elementHeight = parseFloat(computedStyle.height);
     const lineHeight = parseFloat(computedStyle.lineHeight);
-    
+
     // Check if content overflows the CSS-defined space
     // Add a small tolerance to account for rounding errors
     const tolerance = 2;
     const actualScrollHeight = element.scrollHeight;
-    
+
     if (actualScrollHeight > (elementHeight + tolerance) && elementHeight > 0) {
       // Content overflows - apply JavaScript truncation as fallback
       let start = 0;
@@ -973,15 +985,15 @@ const ProductRenderer = {
       let bestFit = originalText;
       let iterations = 0;
       const maxIterations = 15;
-      
+
       while (start <= end && iterations < maxIterations) {
         const mid = Math.floor((start + end) / 2);
         const testText = originalText.substring(0, mid) + '...';
         element.textContent = testText;
-        
+
         // Force reflow for accurate measurement
         element.offsetHeight;
-        
+
         if (element.scrollHeight <= (elementHeight + tolerance)) {
           bestFit = testText;
           start = mid + 1;
@@ -990,34 +1002,34 @@ const ProductRenderer = {
         }
         iterations++;
       }
-      
+
       element.textContent = bestFit;
-      
+
       // Mark as truncated for CSS pseudo-element
       if (bestFit !== originalText) {
         element.setAttribute('data-truncated', 'true');
       }
     }
-    
+
     // Let CSS handle all sizing - don't override heights
   },
 
-  getProductByName: function(productName, category) {
+  getProductByName: function (productName, category) {
     // Obtener el repositorio de productos
     const productRepository = getProductRepository();
-    
+
     // Verificar si tenemos datos en caché
     if (this.productCache && this.productCache[category]) {
-      return this.productCache[category].find(product => 
+      return this.productCache[category].find(product =>
         product.nombre && product.nombre.trim().toLowerCase() === productName.trim().toLowerCase()
       );
     }
-    
+
     // Si no hay caché, devolver null (se usará la ruta alternativa)
     return null;
   },
 
-  getThumbnailUrl: function(videoUrl, productName, category) {
+  getThumbnailUrl: function (videoUrl, productName, category) {
     // Extract category from video URL
     let extractedCategory = '';
     if (videoUrl.includes('/cocteleria/')) {
@@ -1037,31 +1049,31 @@ const ProductRenderer = {
     } else if (videoUrl.includes('/postres/')) {
       extractedCategory = 'postres';
     }
-    
+
     // Extract video filename without extension
     const videoFilename = videoUrl.split('/').pop().replace('.mp4', '');
-    
+
     // Special cases mapping for incorrect thumbnail URLs
-   const specialCases = {
-  'bufanda-negra': 'bufanda',
-  'cantarito-fresa': 'Cantarito fresa',
-  'martini-bealys': 'martini-baileys',
-  'mojito-frutos-rojos': 'mojito-frutos-rojo',
-  'alitas- habanero': 'alitas-habanero',
-  'cafe-express': 'cafe-expess',
-  'ensalada-mixta-con-pollo-parrilla': 'ensalada-mixta-con-pollo',
-  'carajillo 1': 'mini-carajillo',
-  'cosmopolitan 1': 'mini-cosmopolitan',
-  'mojito 1': 'mini-mojito',
-  'pina colada 1': 'mini-colada',
-  'negroni 1': 'mini-negroni',
-  'mint julep 1': 'mini-mint-julep',
-  'margarita 1': 'mini-margarita'
-};
-    
+    const specialCases = {
+      'bufanda-negra': 'bufanda',
+      'cantarito-fresa': 'Cantarito fresa',
+      'martini-bealys': 'martini-baileys',
+      'mojito-frutos-rojos': 'mojito-frutos-rojo',
+      'alitas- habanero': 'alitas-habanero',
+      'cafe-express': 'cafe-expess',
+      'ensalada-mixta-con-pollo-parrilla': 'ensalada-mixta-con-pollo',
+      'carajillo 1': 'mini-carajillo',
+      'cosmopolitan 1': 'mini-cosmopolitan',
+      'mojito 1': 'mini-mojito',
+      'pina colada 1': 'mini-colada',
+      'negroni 1': 'mini-negroni',
+      'mint julep 1': 'mini-mint-julep',
+      'margarita 1': 'mini-margarita'
+    };
+
     // Use special case mapping if available, otherwise use the original filename
     const thumbnailFilename = specialCases[videoFilename] || videoFilename;
-    
+
     // Para la sección de carnes, usar directamente la URL de imagen almacenada en Supabase
     if (extractedCategory === 'carnes' || (category && category.toLowerCase() === 'carnes')) {
       // Buscar si hay una imagen directamente en los datos del producto
@@ -1070,11 +1082,11 @@ const ProductRenderer = {
         // Limpiar la URL de comillas o espacios
         return productData.imagen.replace(/[`\s]/g, '');
       }
-      
+
       // Si no se encuentra, construir la URL basada en el nombre del archivo de video
       return `https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/thumbnail/cortes%20de%20carne/${videoFilename}.webp`;
     }
-    
+
     // Helper para generar slug desde el nombre del producto
     const slugify = (s) => {
       if (!s || typeof s !== 'string') return '';
@@ -1086,7 +1098,7 @@ const ProductRenderer = {
         .replace(/^-+|-+$/g, '')
         .trim();
     };
-    
+
     // Para cafés: preferir coincidencia por nombre
     if (extractedCategory === 'cafes' || (category && (category.toLowerCase() === 'cafes' || category.toLowerCase() === 'café' || category.toLowerCase() === 'cafe'))) {
       const productData = this.getProductByName(productName, 'cafes');
@@ -1096,7 +1108,7 @@ const ProductRenderer = {
       const nameSlug = slugify(productName) || thumbnailFilename;
       return `https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/imagenes/bebidas/mini-cafes/${nameSlug}.webp`;
     }
-    
+
     // Para postres: preferir coincidencia por nombre
     if (extractedCategory === 'postres' || (category && category.toLowerCase() === 'postres')) {
       const productData = this.getProductByName(productName, 'postres');
@@ -1106,47 +1118,55 @@ const ProductRenderer = {
       const nameSlug = slugify(productName) || thumbnailFilename;
       return `https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/imagenes/bebidas/mini-postres/${nameSlug}.webp`;
     }
-    
+
     // Para otras categorías, mantener la lógica original
     return `https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/imagenes/bebidas/mini-${extractedCategory}/${thumbnailFilename}.webp`;
   },
 
-  showVideoModal: function(videoUrl, title, category = null) {
+  showVideoModal: function (videoUrl, title, category = null, fallbackUrl = null) {
     // Create modal backdrop
     const modalBackdrop = document.createElement('div');
     modalBackdrop.className = 'modal-backdrop';
-    
+
     // Create modal content
     const modalContent = document.createElement('div');
     modalContent.className = 'modal-content image-modal video-modal';
     if (category) {
       modalContent.setAttribute('data-category', category);
     }
-    
+
     // Add title
     const modalTitle = document.createElement('h3');
     modalTitle.textContent = title;
     modalContent.appendChild(modalTitle);
-    
+
     // Add video
     const video = document.createElement('video');
     video.src = videoUrl;
     video.controls = true;
     video.autoplay = true;
-    
+
     // Add error handling for video loading
     video.addEventListener('error', (e) => {
+      // Intentar fallback si está disponible
+      if (fallbackUrl && !video.dataset.usedFallback) {
+        Logger.info(`Video primario falló, intentando fallback: ${fallbackUrl}`);
+        video.dataset.usedFallback = 'true';
+        video.src = fallbackUrl;
+        return;
+      }
+
       logWarning('Video loading error', e, { videoUrl });
       video.className = 'video-hidden';
-      
+
       const errorMessage = document.createElement('p');
       errorMessage.textContent = 'Video no disponible en este momento';
       errorMessage.className = 'error-message';
       modalContent.insertBefore(errorMessage, video.nextSibling);
     });
-    
+
     modalContent.appendChild(video);
-    
+
     // Add close button as X in top right corner
     const closeButton = document.createElement('button');
     closeButton.textContent = '×';
@@ -1155,33 +1175,33 @@ const ProductRenderer = {
     closeButton.setAttribute('aria-label', 'Cerrar');
     // No individual event listener - handled by delegation
     modalContent.appendChild(closeButton);
-    
+
     // Add modal to body
     modalBackdrop.className += ' video-modal-backdrop';
     modalBackdrop.appendChild(modalContent);
     document.body.appendChild(modalBackdrop);
   },
 
-  showImageModal: function(imageUrl, title, category = null) {
+  showImageModal: function (imageUrl, title, category = null) {
     // Create modal backdrop
     const modalBackdrop = document.createElement('div');
     modalBackdrop.className = 'modal-backdrop';
-    
+
     // Create modal content
     const modalContent = document.createElement('div');
     modalContent.className = 'modal-content image-modal';
-    
+
     // Add title
     const modalTitle = document.createElement('h3');
     modalTitle.textContent = title;
     modalContent.appendChild(modalTitle);
-    
+
     // Add image with standardized size
     const image = document.createElement('img');
     image.src = imageUrl;
     image.alt = title;
     modalContent.appendChild(image);
-    
+
     // Add close button
     const closeButton = document.createElement('button');
     closeButton.textContent = 'Cerrar';
@@ -1189,17 +1209,17 @@ const ProductRenderer = {
     closeButton.dataset.modalId = 'image-modal';
     // No individual event listener - handled by delegation
     modalContent.appendChild(closeButton);
-    
+
     // Add modal to body
     modalBackdrop.className += ' image-modal-backdrop';
     modalBackdrop.appendChild(modalContent);
     document.body.appendChild(modalBackdrop);
   },
 
-  renderLicores: async function(container) {
+  renderLicores: async function (container) {
     // Ensure we're working with the correct content container, not destroying the sidebar
     let targetContainer = container;
-    
+
     // If container is not the specific content-container, find or create it
     if (container.id !== 'content-container') {
       targetContainer = document.getElementById('content-container');
@@ -1226,10 +1246,10 @@ const ProductRenderer = {
         }
       }
     }
-    
+
     const licoresCategoriesHTML = await this.createLicoresCategories();
-    
-  const licoresHTML = `
+
+    const licoresHTML = `
       <div class="category-grid" data-product-type="liquor" data-category="licores">
         <h2 class="page-title" data-translate="category.title.licores" data-original-text="Licores" data-namespace="categories">Licores</h2>
         ${licoresCategoriesHTML}
@@ -1238,21 +1258,21 @@ const ProductRenderer = {
         </div>
       </div>
     `;
-    
+
     // Contenido dinámico: HTML generado con datos de Supabase
     // Se usa sanitización como medida preventiva
     setSafeInnerHTML(targetContainer, licoresHTML);
     // Translate newly injected liquor category content if a language is active
     this._retranslateIfNeeded(targetContainer);
-    
+
     // No individual event listeners needed - handled by delegation
     // Category cards will be handled by the centralized event system
   },
 
-  createLicoresCategories: async function() {
+  createLicoresCategories: async function () {
     const productRepository = getProductRepository();
     const licoresCategories = await productRepository.getLicoresCategories();
-    
+
     const html = licoresCategories.map(category => {
       const name = (category.nombre || '').trim();
       const key = `liquor-category_${ProductRenderer.simpleHash(name)}`;
@@ -1263,18 +1283,18 @@ const ProductRenderer = {
         </div>
       `;
     }).join('');
-    
+
     return html;
   },
 
-  renderLicorSubcategory: async function(container, category) {
+  renderLicorSubcategory: async function (container, category) {
     Logger.info(`🍾 Navegando hacia subcategoría de licores: ${category}`);
-    
+
     // Log current DOM state before manipulation
     const currentMainScreen = document.getElementById('main-screen');
     const currentContentContainer = document.getElementById('content-container');
     const currentOrdersBox = document.getElementById('orders-box');
-    
+
     Logger.debug('📊 Estado DOM antes de renderizar subcategoría:', {
       category: category,
       mainScreen: !!currentMainScreen,
@@ -1283,7 +1303,7 @@ const ProductRenderer = {
       mainScreenVisible: currentMainScreen ? !currentMainScreen.classList.contains('hidden') : false,
       mainScreenClasses: currentMainScreen ? Array.from(currentMainScreen.classList) : []
     });
-    
+
     // Preserve the sidebar before clearing content
     // Look for sidebar in the correct location within the DOM structure
     const sidebar = document.getElementById('order-sidebar');
@@ -1299,7 +1319,7 @@ const ProductRenderer = {
         containerType: container.className || container.tagName
       });
     }
-    
+
     // Get or create content container without destroying sidebar
     let targetContainer = document.getElementById('content-container');
     if (targetContainer) {
@@ -1326,30 +1346,30 @@ const ProductRenderer = {
         return;
       }
     }
-    
+
     // Mostrar barra superior y botón de back
     const topNavBar = document.getElementById('top-nav-bar');
     const topBackBtn = document.getElementById('top-back-btn');
     const navTitle = document.getElementById('nav-title');
-    
+
     // Mostrar la barra superior
     if (topNavBar) {
       topNavBar.classList.remove('top-nav-hidden');
       topNavBar.classList.add('top-nav-visible');
     }
-    
+
     // Mostrar botón de back
     if (topBackBtn) {
       topBackBtn.classList.remove('back-btn-hidden');
       topBackBtn.dataset.action = 'back-to-licores';
       topBackBtn.title = 'Volver a Licores';
-      
+
       // Agregar event listener específico para el botón de back
       // Remover listener anterior si existe
       if (this._topBackBtnHandler) {
         topBackBtn.removeEventListener('click', this._topBackBtnHandler);
       }
-      
+
       // Crear y agregar nuevo listener
       this._topBackBtnHandler = (e) => {
         e.preventDefault();
@@ -1357,10 +1377,10 @@ const ProductRenderer = {
         Logger.info('🔙 Botón de back clickeado - navegando a licores');
         this.handleBackButton(topBackBtn);
       };
-      
+
       topBackBtn.addEventListener('click', this._topBackBtnHandler);
     }
-    
+
     // ELIMINADO: No mostrar el título de la subcategoría en la barra superior
     // ya que el título aparece en el contenedor padre
     // if (navTitle) {
@@ -1370,9 +1390,9 @@ const ProductRenderer = {
 
     // Update the title for all subcategory renderings
     const categoryTitle = category.charAt(0).toUpperCase() + category.slice(1);
-    
+
     // Load specific subcategory
-    switch(category) {
+    switch (category) {
       case 'whisky':
         await this.renderWhisky(targetContainer, categoryTitle);
         break;
@@ -1409,13 +1429,13 @@ const ProductRenderer = {
     }
     // Translate subcategory content after rendering
     this._retranslateIfNeeded(targetContainer);
-    
+
     // Log DOM state after rendering subcategory
     setTimeout(() => {
       const afterMainScreen = document.getElementById('main-screen');
       const afterContentContainer = document.getElementById('content-container');
       const afterOrdersBox = document.getElementById('orders-box');
-      
+
       Logger.debug('📊 Estado DOM después de renderizar subcategoría:', {
         category: category,
         mainScreen: !!afterMainScreen,
@@ -1424,13 +1444,13 @@ const ProductRenderer = {
         mainScreenVisible: afterMainScreen ? !afterMainScreen.classList.contains('hidden') : false,
         mainScreenClasses: afterMainScreen ? Array.from(afterMainScreen.classList) : []
       });
-      
+
       Logger.info(`✅ Subcategoría ${category} renderizada completamente`);
     }, 100);
   },
 
   // Helper: translate newly rendered content when language is not Spanish
-  _retranslateIfNeeded: function(scopeElement) {
+  _retranslateIfNeeded: function (scopeElement) {
     try {
       const currentLang = TranslationService.getCurrentLanguage();
       if (currentLang && currentLang !== 'es') {
@@ -1449,29 +1469,29 @@ const ProductRenderer = {
   },
 
   // Generic liquor renderer - eliminates code duplication
-  renderLiquorCategory: async function(container, subcategory, title) {
+  renderLiquorCategory: async function (container, subcategory, title) {
     const productRepository = getProductRepository();
-    
+
     // Add view toggle button - DISABLED: Using top nav button instead
     // const toggleElement = this.createViewToggle(container);
     // container.appendChild(toggleElement);
-    
+
     const liquorFields = ['nombre', 'imagen', 'precioBotella', 'precioLitro', 'precioCopa'];
     const liquorHeaders = ['NOMBRE', 'IMAGEN', 'PRECIO BOTELLA', 'PRECIO LITRO', 'PRECIO COPA'];
-    
+
     try {
       const data = await productRepository.getLiquorSubcategory(subcategory);
-      
+
       if (this.currentViewMode === 'grid') {
-        this.createProductGrid(container, 
-          data, 
+        this.createProductGrid(container,
+          data,
           liquorFields,
           title
         );
       } else {
-        this.createProductTable(container, 
-          liquorHeaders, 
-          data, 
+        this.createProductTable(container,
+          liquorHeaders,
+          data,
           liquorFields,
           'liquor-table',
           title
@@ -1484,58 +1504,58 @@ const ProductRenderer = {
   },
 
   // Optimized render methods using generic function
-  renderWhisky: async function(container, title = 'Whisky') {
+  renderWhisky: async function (container, title = 'Whisky') {
     await this.renderLiquorCategory(container, 'whisky', title);
   },
 
-  renderTequila: async function(container, title = 'Tequila') {
+  renderTequila: async function (container, title = 'Tequila') {
     await this.renderLiquorCategory(container, 'tequila', title);
   },
 
-  renderRon: async function(container, title = 'Ron') {
+  renderRon: async function (container, title = 'Ron') {
     await this.renderLiquorCategory(container, 'ron', title);
   },
 
-  renderVodka: async function(container, title = 'Vodka') {
+  renderVodka: async function (container, title = 'Vodka') {
     await this.renderLiquorCategory(container, 'vodka', title);
   },
 
-  renderGinebra: async function(container, title = 'Ginebra') {
+  renderGinebra: async function (container, title = 'Ginebra') {
     await this.renderLiquorCategory(container, 'ginebra', title);
   },
 
-  renderMezcal: async function(container, title = 'Mezcal') {
+  renderMezcal: async function (container, title = 'Mezcal') {
     await this.renderLiquorCategory(container, 'mezcal', title);
   },
 
-  renderCognac: async function(container, title = 'Cognac') {
+  renderCognac: async function (container, title = 'Cognac') {
     await this.renderLiquorCategory(container, 'cognac', title);
   },
 
-  renderBrandy: async function(container, title = 'Brandy') {
+  renderBrandy: async function (container, title = 'Brandy') {
     await this.renderLiquorCategory(container, 'brandy', title);
   },
 
-  renderDigestivos: async function(container, title = 'Digestivos') {
+  renderDigestivos: async function (container, title = 'Digestivos') {
     const productRepository = getProductRepository();
-    
+
     // Add view toggle button - DISABLED: Using top nav button instead
     // const toggleElement = this.createViewToggle(container);
     // container.appendChild(toggleElement);
-    
+
     try {
       const data = await productRepository.getLiquorSubcategory('digestivos');
-      
+
       if (this.currentViewMode === 'grid') {
-        this.createProductGrid(container, 
-          data, 
+        this.createProductGrid(container,
+          data,
           ['nombre', 'imagen', 'precioBotella', 'precioLitro', 'precioCopa'],
           title
         );
       } else {
-        this.createProductTable(container, 
-          ['NOMBRE', 'IMAGEN', 'PRECIO BOTELLA', 'PRECIO LITRO', 'PRECIO COPA'], 
-          data, 
+        this.createProductTable(container,
+          ['NOMBRE', 'IMAGEN', 'PRECIO BOTELLA', 'PRECIO LITRO', 'PRECIO COPA'],
+          data,
           ['nombre', 'imagen', 'precioBotella', 'precioLitro', 'precioCopa'],
           'liquor-table',
           title
@@ -1547,24 +1567,24 @@ const ProductRenderer = {
     }
   },
 
-  renderEspumosos: async function(container, title = 'Espumosos') {
+  renderEspumosos: async function (container, title = 'Espumosos') {
     await this.renderLiquorCategory(container, 'espumosos', title);
   },
 
-  renderCervezas: async function(container) {
+  renderCervezas: async function (container) {
     const productRepository = getProductRepository();
-    
+
     try {
       const data = await productRepository.getCervezas();
-      
+
       // Organizar productos en 3 bloques
       const cervezasEnBotella = [];
       const tarros = [];
       const vasos = [];
-      
+
       data.forEach(product => {
         const nombre = product.nombre.toUpperCase();
-        
+
         if (nombre.startsWith('TARRO')) {
           tarros.push(product);
         } else if (nombre.startsWith('VASO')) {
@@ -1573,24 +1593,24 @@ const ProductRenderer = {
           cervezasEnBotella.push(product);
         }
       });
-      
+
       // Ordenar alfabéticamente cada bloque
       const sortByName = (a, b) => a.nombre.localeCompare(b.nombre);
       cervezasEnBotella.sort(sortByName);
       tarros.sort(sortByName);
       vasos.sort(sortByName);
-      
+
       // Limpiar contenedor
       container.innerHTML = '';
-      
+
       // Renderizar cada bloque
       if (cervezasEnBotella.length > 0) {
         const cervezasContainer = document.createElement('div');
         cervezasContainer.className = 'cervezas-botella-section';
-        
+
         if (this.currentViewMode === 'grid') {
-          this.createProductGrid(cervezasContainer, 
-            cervezasEnBotella, 
+          this.createProductGrid(cervezasContainer,
+            cervezasEnBotella,
             ['nombre', 'ruta_archivo', 'precio'],
             'Cervezas en botella'
           );
@@ -1600,9 +1620,9 @@ const ProductRenderer = {
             productGrid.setAttribute('data-category', 'cervezas');
           }
         } else {
-          this.createProductTable(cervezasContainer, 
-            ['NOMBRE', 'IMAGEN', 'PRECIO'], 
-            cervezasEnBotella, 
+          this.createProductTable(cervezasContainer,
+            ['NOMBRE', 'IMAGEN', 'PRECIO'],
+            cervezasEnBotella,
             ['nombre', 'ruta_archivo', 'precio'],
             'product-table',
             'Cervezas en botella'
@@ -1615,14 +1635,14 @@ const ProductRenderer = {
         }
         container.appendChild(cervezasContainer);
       }
-      
+
       if (tarros.length > 0) {
         const tarrosContainer = document.createElement('div');
         tarrosContainer.className = 'tarros-section';
-        
+
         if (this.currentViewMode === 'grid') {
-          this.createProductGrid(tarrosContainer, 
-            tarros, 
+          this.createProductGrid(tarrosContainer,
+            tarros,
             ['nombre', 'ruta_archivo', 'precio'],
             'Tarros'
           );
@@ -1632,9 +1652,9 @@ const ProductRenderer = {
             productGrid.setAttribute('data-category', 'cervezas');
           }
         } else {
-          this.createProductTable(tarrosContainer, 
-            ['NOMBRE', 'IMAGEN', 'PRECIO'], 
-            tarros, 
+          this.createProductTable(tarrosContainer,
+            ['NOMBRE', 'IMAGEN', 'PRECIO'],
+            tarros,
             ['nombre', 'ruta_archivo', 'precio'],
             'product-table',
             'Tarros'
@@ -1647,14 +1667,14 @@ const ProductRenderer = {
         }
         container.appendChild(tarrosContainer);
       }
-      
+
       if (vasos.length > 0) {
         const vasosContainer = document.createElement('div');
         vasosContainer.className = 'vasos-cerveza-section';
-        
+
         if (this.currentViewMode === 'grid') {
-          this.createProductGrid(vasosContainer, 
-            vasos, 
+          this.createProductGrid(vasosContainer,
+            vasos,
             ['nombre', 'ruta_archivo', 'precio'],
             'Vasos'
           );
@@ -1664,9 +1684,9 @@ const ProductRenderer = {
             productGrid.setAttribute('data-category', 'cervezas');
           }
         } else {
-          this.createProductTable(vasosContainer, 
-            ['NOMBRE', 'IMAGEN', 'PRECIO'], 
-            vasos, 
+          this.createProductTable(vasosContainer,
+            ['NOMBRE', 'IMAGEN', 'PRECIO'],
+            vasos,
             ['nombre', 'ruta_archivo', 'precio'],
             'product-table',
             'Vasos'
@@ -1679,7 +1699,7 @@ const ProductRenderer = {
         }
         container.appendChild(vasosContainer);
       }
-      
+
       // Ajustes específicos para dispositivos móviles en portrait
       // Esto solucionará el problema de tamaño y alineación de imágenes
       setTimeout(() => {
@@ -1692,7 +1712,7 @@ const ProductRenderer = {
             img.style.display = 'block';
             img.style.margin = '0 auto';
           });
-          
+
           // Ajustar alineación de columnas - SOLO para celdas de imagen
           const imageCells = container.querySelectorAll('td.image-icon, .product-image');
           imageCells.forEach(cell => {
@@ -1701,33 +1721,33 @@ const ProductRenderer = {
           });
         }
       }, 100);
-      
+
     } catch (error) {
       logError('Error rendering Cervezas:', error);
       container.innerHTML = '<p>Error cargando Cervezas. Por favor, intente de nuevo.</p>';
     }
   },
 
-  renderPizzas: async function(container) {
+  renderPizzas: async function (container) {
     const productRepository = getProductRepository();
-    
+
     // Add view toggle button - DISABLED: Using top nav button instead
     // const toggleElement = this.createViewToggle(container);
     // container.appendChild(toggleElement);
-    
+
     try {
       const data = await productRepository.getPizzas();
-      
+
       if (this.currentViewMode === 'grid') {
-        this.createProductGrid(container, 
-          data, 
+        this.createProductGrid(container,
+          data,
           ['nombre', 'ingredientes', 'video', 'precio'],
           'Pizzas'
         );
       } else {
-        this.createProductTable(container, 
-          ['NOMBRE', 'INGREDIENTES', 'VIDEO', 'PRECIO'], 
-          data, 
+        this.createProductTable(container,
+          ['NOMBRE', 'INGREDIENTES', 'VIDEO', 'PRECIO'],
+          data,
           ['nombre', 'ingredientes', 'video', 'precio'],
           'product-table',
           'Pizzas'
@@ -1742,33 +1762,33 @@ const ProductRenderer = {
   },
 
   // Generic food/beverage renderer - eliminates code duplication
-  renderFoodCategory: async function(container, methodName, title, fields = null, headers = null) {
+  renderFoodCategory: async function (container, methodName, title, fields = null, headers = null) {
     const productRepository = getProductRepository();
-    
+
     // Add view toggle button - DISABLED: Using top nav button instead
     // const toggleElement = this.createViewToggle(container);
     // container.appendChild(toggleElement);
-    
+
     // Default fields and headers for food items
     const defaultFields = ['nombre', 'ingredientes', 'video', 'precio'];
     const defaultHeaders = ['NOMBRE', 'INGREDIENTES', 'VIDEO', 'PRECIO'];
-    
+
     const finalFields = fields || defaultFields;
     const finalHeaders = headers || defaultHeaders;
-    
+
     try {
       const data = await productRepository[methodName]();
-      
+
       if (this.currentViewMode === 'grid') {
-        this.createProductGrid(container, 
-          data, 
+        this.createProductGrid(container,
+          data,
           finalFields,
           title
         );
       } else {
-        this.createProductTable(container, 
-          finalHeaders, 
-          data, 
+        this.createProductTable(container,
+          finalHeaders,
+          data,
           finalFields,
           'product-table',
           title
@@ -1781,44 +1801,44 @@ const ProductRenderer = {
   },
 
   // Optimized render methods using generic function
-  renderAlitas: async function(container) {
+  renderAlitas: async function (container) {
     await this.renderFoodCategory(container, 'getAlitas', 'Alitas');
   },
 
-  renderSopas: async function(container) {
+  renderSopas: async function (container) {
     await this.renderFoodCategory(container, 'getSopas', 'Sopas');
   },
 
-  renderEnsaladas: async function(container) {
+  renderEnsaladas: async function (container) {
     await this.renderFoodCategory(container, 'getEnsaladas', 'Ensaladas');
   },
 
-  renderCarnes: async function(container) {
+  renderCarnes: async function (container) {
     await this.renderFoodCategory(container, 'getCarnes', 'Carnes');
   },
 
-  renderCafe: async function(container) {
+  renderCafe: async function (container) {
     await this.renderFoodCategory(container, 'getCafe', 'Café');
   },
 
-  renderPostres: async function(container) {
+  renderPostres: async function (container) {
     await this.renderFoodCategory(container, 'getPostres', 'Postres');
   },
 
-  renderRefrescos: async function(container) {
+  renderRefrescos: async function (container) {
     const productRepository = getProductRepository();
-    
+
     try {
       const data = await productRepository.getRefrescos();
-      
+
       // Organizar productos en 3 bloques
       const refrescos = [];
       const jarrasDeJugo = [];
       const vasosDeJugo = [];
-      
+
       data.forEach(product => {
         const nombre = product.nombre.toUpperCase();
-        
+
         if (nombre.startsWith('JARRA')) {
           jarrasDeJugo.push(product);
         } else if (nombre.startsWith('VASO DE JUGO')) {
@@ -1827,31 +1847,31 @@ const ProductRenderer = {
           refrescos.push(product);
         }
       });
-      
+
       // Ordenar alfabéticamente cada bloque
       const sortByName = (a, b) => a.nombre.localeCompare(b.nombre);
       refrescos.sort(sortByName);
       jarrasDeJugo.sort(sortByName);
       vasosDeJugo.sort(sortByName);
-      
+
       // Limpiar contenedor
       container.innerHTML = '';
-      
+
       // Renderizar cada bloque
       if (refrescos.length > 0) {
         const refrescosContainer = document.createElement('div');
         refrescosContainer.className = 'refrescos-section';
-        
+
         if (this.currentViewMode === 'grid') {
-          this.createProductGrid(refrescosContainer, 
-            refrescos, 
+          this.createProductGrid(refrescosContainer,
+            refrescos,
             ['nombre', 'ruta_archivo', 'precio'],
             'Refrescos'
           );
         } else {
-          this.createProductTable(refrescosContainer, 
-            ['NOMBRE', 'IMAGEN', 'PRECIO'], 
-            refrescos, 
+          this.createProductTable(refrescosContainer,
+            ['NOMBRE', 'IMAGEN', 'PRECIO'],
+            refrescos,
             ['nombre', 'ruta_archivo', 'precio'],
             'product-table',
             'Refrescos'
@@ -1859,21 +1879,21 @@ const ProductRenderer = {
         }
         container.appendChild(refrescosContainer);
       }
-      
+
       if (jarrasDeJugo.length > 0) {
         const jarrasContainer = document.createElement('div');
         jarrasContainer.className = 'jarras-section';
-        
+
         if (this.currentViewMode === 'grid') {
-          this.createProductGrid(jarrasContainer, 
-            jarrasDeJugo, 
+          this.createProductGrid(jarrasContainer,
+            jarrasDeJugo,
             ['nombre', 'ruta_archivo', 'precio'],
             'Jarras de jugo'
           );
         } else {
-          this.createProductTable(jarrasContainer, 
-            ['NOMBRE', 'IMAGEN', 'PRECIO'], 
-            jarrasDeJugo, 
+          this.createProductTable(jarrasContainer,
+            ['NOMBRE', 'IMAGEN', 'PRECIO'],
+            jarrasDeJugo,
             ['nombre', 'ruta_archivo', 'precio'],
             'product-table',
             'Jarras de jugo'
@@ -1881,21 +1901,21 @@ const ProductRenderer = {
         }
         container.appendChild(jarrasContainer);
       }
-      
+
       if (vasosDeJugo.length > 0) {
         const vasosContainer = document.createElement('div');
         vasosContainer.className = 'vasos-section';
-        
+
         if (this.currentViewMode === 'grid') {
-          this.createProductGrid(vasosContainer, 
-            vasosDeJugo, 
+          this.createProductGrid(vasosContainer,
+            vasosDeJugo,
             ['nombre', 'ruta_archivo', 'precio'],
             'Vasos de jugo'
           );
         } else {
-          this.createProductTable(vasosContainer, 
-            ['NOMBRE', 'IMAGEN', 'PRECIO'], 
-            vasosDeJugo, 
+          this.createProductTable(vasosContainer,
+            ['NOMBRE', 'IMAGEN', 'PRECIO'],
+            vasosDeJugo,
             ['nombre', 'ruta_archivo', 'precio'],
             'product-table',
             'Vasos de jugo'
@@ -1903,14 +1923,14 @@ const ProductRenderer = {
         }
         container.appendChild(vasosContainer);
       }
-      
+
     } catch (error) {
       logError('Error rendering Refrescos:', error);
       container.innerHTML = '<p>Error cargando Refrescos. Por favor, intente de nuevo.</p>';
     }
   },
 
-  renderCocktails: async function(container) {
+  renderCocktails: async function (container) {
     await this.renderFoodCategory(container, 'getCocteles', 'Coctelería');
   },
 };
