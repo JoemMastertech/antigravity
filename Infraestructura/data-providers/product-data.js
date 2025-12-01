@@ -1,4 +1,13 @@
 import { STORAGE_CONFIG } from '../../Shared/config/storage.js';
+import { createClient } from '@supabase/supabase-js';
+import AppConfig from '../../Shared/core/AppConfig.js';
+
+// Initialize Supabase client
+const appConfig = AppConfig.getAll();
+const supabase = createClient(
+  appConfig.database.supabaseUrl,
+  appConfig.database.supabaseKey
+);
 
 /* data refresh interval in minutes */
 const ProductData = {
@@ -141,7 +150,7 @@ const ProductData = {
       imagen: 'https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/imagenes/cocteleria/pina-colada.webp'
     }
   ],
-  
+
   // REFRESCOS
   refrescos: [
     {
@@ -321,7 +330,7 @@ const ProductData = {
       precio: '$55.00'
     }
   ],
-  
+
   // CERVEZAS
   cervezas: [
     {
@@ -485,7 +494,7 @@ const ProductData = {
       precio: '$20.00'
     }
   ],
-  
+
   // LICORES CATEGORÍAS
   licoresCategories: [
     { id: '10', nombre: 'WHISKY', icono: 'https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/recursos/iconos-licores/WhikysX3.webp' },
@@ -1242,7 +1251,7 @@ const ProductData = {
       precioCopa: '$110.00'
     }
   ],
-  
+
   // ALITAS
   alitas: [
     {
@@ -1444,7 +1453,7 @@ const ProductData = {
       precio: '$110.00'
     }
   ],
-  
+
   // PIZZAS
   pizzas: [
     {
@@ -1483,7 +1492,7 @@ const ProductData = {
       precio: '$100.00'
     }
   ],
-  
+
   // SOPAS
   sopas: [
     {
@@ -1514,7 +1523,36 @@ const ProductData = {
       video: 'https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/videos/comida/sopas/sopa-de-tortilla.mp4',
       precio: '$95.00'
     }
-  ]
+  ],
+
+  // PLATOS FUERTES (Dynamic from Supabase)
+  getPlatosFuertes: async function () {
+    try {
+      const { data, error } = await supabase
+        .from('platos_fuertes')
+        .select('*')
+        .order('nombre');
+
+      if (error) {
+        console.error('Error fetching platos fuertes:', error);
+        return [];
+      }
+
+      // Map Supabase fields to UI fields if necessary
+      // Assuming table columns: id, nombre, ingredientes, video, precio, imagen
+      return data.map(item => ({
+        id: item.id,
+        nombre: item.nombre,
+        ingredientes: item.ingredientes,
+        video: item.video, // URL to video
+        precio: item.precio,
+        imagen: item.thumbnail || item.imagen // Map thumbnail column to imagen property
+      }));
+    } catch (err) {
+      console.error('Unexpected error fetching platos fuertes:', err);
+      return [];
+    }
+  }
 };
 
 export default ProductData;

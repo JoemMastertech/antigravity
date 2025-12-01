@@ -51,14 +51,14 @@ const AppInit = {
   startTime: null,
   modules: new Map(),
   isRecovering: false,
-  
+
   // Retry mechanism for DOM elements
   retryCount: 0,
   maxRetries: 3,
-  
+
   // Loading state to prevent concurrent calls
   isLoading: false,
-  
+
   /**
    * Enhanced initialization method
    * Integrates with new AppConfig system while maintaining legacy functionality
@@ -93,40 +93,40 @@ const AppInit = {
     try {
       this.startTime = performance.now();
       Logger.info('Starting Enhanced Master Technology Bar Application...');
-      
+
       // Clear any stale cache on app start if needed
       if (options.clearCache) {
         SimpleCache.clear();
         Logger.debug('AppInit: Cache cleared on startup');
       }
-      
+
       // Make AppInit globally available first
       window.AppInit = this;
-      
+
       // Phase 1: Initialize enhanced configuration system
       if (options.enableEnhancedFeatures !== false) {
         await this.initializeEnhancedConfig(options.customConfig || {});
       }
-      
+
       // Phase 2: Initialize core systems
       await this.initializeCoreSystem();
-      
+
       // Phase 3: Initialize legacy systems (if not skipped)
       if (!options.skipLegacyInit) {
         await this.initializeLegacySystems();
       }
-      
+
       // Phase 4: Initialize enhanced modules
       if (options.enableEnhancedFeatures !== false) {
         await this.initializeEnhancedModules();
       }
-      
+
       // Phase 5: Start application
       await this.startApplication();
-      
+
       this.isInitialized = true;
       this.logInitializationSuccess();
-      
+
       return true;
     } catch (error) {
       ErrorHandler.handle(error, 'AppInit.enhancedInitialize');
@@ -146,9 +146,9 @@ const AppInit = {
       // Just validate the configuration
       AppConfig.validateConfiguration();
       const configSuccess = true;
-      
+
       Logger.info('Enhanced configuration initialized');
-      
+
       // Store reference for easy access
       this.modules.set('appConfig', AppConfig);
     } catch (error) {
@@ -166,10 +166,10 @@ const AppInit = {
   async initializeCoreSystem() {
     // Initialize Dependency Injection Container
     this.setupDIContainer();
-    
+
     // SafeModal auto-registers itself as 'safe-modal' when imported
     // No need to register it manually here
-    
+
     Logger.info('Core systems initialized');
   },
 
@@ -183,7 +183,7 @@ const AppInit = {
     if (!this.modules.has('appConfig')) {
       this.initializeLegacyConfig();
     }
-    
+
     Logger.info('Legacy systems initialized');
   },
 
@@ -196,15 +196,15 @@ const AppInit = {
     try {
       // Enhanced modules initialization
       // Performance modules would be initialized here when available
-      
+
       // Set up enhanced error handling
       this.setupEnhancedErrorHandling();
-      
+
       // Set up performance monitoring
       if (AppConfig.get('performance.enableMonitoring')) {
         this.setupPerformanceMonitoring();
       }
-      
+
       Logger.info('Enhanced modules initialized');
     } catch (error) {
       logWarning('Some enhanced modules failed to initialize', error);
@@ -219,18 +219,18 @@ const AppInit = {
   async startApplication() {
     // Enhance existing modals now that DOM is ready
     this.enhanceExistingModals();
-    
+
     // Start the welcome sequence with enhanced timing
     const delay = AppConfig.get('ui.initialDelay') || INITIAL_DELAY;
-    
+
     setTimeout(() => {
       this.startWelcomeSequence();
       this.initializeDrawerMenu();
-      
+
       // Initialize enhanced UI features
       this.initializeEnhancedUI();
     }, delay);
-    
+
     Logger.info('Application started');
   },
 
@@ -247,7 +247,7 @@ const AppInit = {
         stockEnabled: false // Stock validation disabled but ready for future implementation
       }
     };
-    
+
     Logger.info('Legacy configuration initialized');
   },
 
@@ -265,7 +265,7 @@ const AppInit = {
         error: event.error
       });
     });
-    
+
     // Unhandled promise rejection handler
     window.addEventListener('unhandledrejection', (event) => {
       logError('Unhandled promise rejection in AppInit context', event.reason);
@@ -286,7 +286,7 @@ const AppInit = {
             }
           }
         });
-        
+
         observer.observe({ entryTypes: ['longtask'] });
       } catch (error) {
         logWarning('Performance monitoring setup failed', error);
@@ -300,14 +300,14 @@ const AppInit = {
    */
   enhanceExistingModals() {
     // Create a global modal enhancement function
-    window.enhanceModalGlobally = function(modal) {
+    window.enhanceModalGlobally = function (modal) {
       if (!modal || !modal.id) {
         Logger.warn('enhanceModalGlobally: Invalid modal provided');
         return;
       }
-      
+
       // Force add show method (always override)
-      modal.show = function() {
+      modal.show = function () {
         this.classList.remove('modal-hidden');
         this.classList.add('modal-flex');
         // Semantic open state for drink modal
@@ -315,9 +315,9 @@ const AppInit = {
           this.classList.add('is-open');
         }
       };
-      
+
       // Force add hide method (always override)
-      modal.hide = function() {
+      modal.hide = function () {
         this.classList.remove('modal-flex');
         this.classList.add('modal-hidden');
         // Clear semantic open state for drink modal
@@ -326,13 +326,13 @@ const AppInit = {
         }
       };
     };
-    
+
     // Enhance all existing modals
     const modalElements = document.querySelectorAll('.modal');
     modalElements.forEach((modal) => {
       window.enhanceModalGlobally(modal);
     });
-    
+
     // Set up a MutationObserver to automatically enhance new modals
     if (typeof MutationObserver !== 'undefined') {
       const observer = new MutationObserver((mutations) => {
@@ -356,7 +356,7 @@ const AppInit = {
           }
         });
       });
-      
+
       observer.observe(document.body, {
         childList: true,
         subtree: true
@@ -371,16 +371,16 @@ const AppInit = {
     // Apply theme from configuration
     const theme = AppConfig.get('ui.theme') || 'light-blue';
     document.documentElement.setAttribute('data-theme', theme);
-    
+
     // Enable animations if configured
     if (AppConfig.get('ui.animations')) {
       document.documentElement.classList.add('animations-enabled');
     }
-    
+
     // Add progressive enhancement classes
     document.documentElement.classList.add('js-enabled', 'enhanced-features');
     document.documentElement.classList.remove('no-js');
-    
+
     Logger.info('Enhanced UI features initialized');
   },
 
@@ -393,15 +393,15 @@ const AppInit = {
    */
   async handleInitializationError(error, options) {
     logError('AppInit initialization failed, attempting recovery', error);
-    
+
     // Prevent multiple recovery attempts
     if (this.isRecovering) {
       Logger.warn('Recovery already in progress, skipping duplicate attempt');
       return false;
     }
-    
+
     this.isRecovering = true;
-    
+
     try {
       // Try fallback initialization without enhanced features
       if (options.enableEnhancedFeatures !== false) {
@@ -413,7 +413,7 @@ const AppInit = {
         this.isRecovering = false;
         return result;
       }
-      
+
       // Last resort: basic legacy initialization
       Logger.info('Attempting basic legacy initialization...');
       this.basicLegacyInitialize();
@@ -432,16 +432,16 @@ const AppInit = {
   basicLegacyInitialize() {
     // Make AppInit globally available
     window.AppInit = this;
-    
+
     // Initialize basic DI container
     this.setupDIContainer();
-    
+
     // Initialize legacy config
     this.initializeLegacyConfig();
-    
+
     // SafeModal auto-registers itself as 'safe-modal' when imported
     // No manual registration needed
-    
+
     // Start basic welcome sequence
     setTimeout(() => {
       try {
@@ -451,7 +451,7 @@ const AppInit = {
         logError('Basic initialization failed', error);
       }
     }, INITIAL_DELAY);
-    
+
     this.isInitialized = true;
     Logger.info('Basic legacy initialization completed');
   },
@@ -462,18 +462,18 @@ const AppInit = {
   logInitializationSuccess() {
     const endTime = performance.now();
     const totalTime = endTime - this.startTime;
-    
+
     Logger.info('Enhanced AppInit initialization completed successfully!', {
       totalTime: `${totalTime.toFixed(2)}ms`,
       modules: Array.from(this.modules.keys()).length
     });
-    
+
     if (AppConfig.get && AppConfig.get('ui.debugMode')) {
-       Logger.debug('Initialization modules', Array.from(this.modules.keys()));
-       // Logger.debug('AppConfig stats', AppConfig.getStats()); // Method doesn't exist
+      Logger.debug('Initialization modules', Array.from(this.modules.keys()));
+      // Logger.debug('AppConfig stats', AppConfig.getStats()); // Method doesn't exist
       Logger.debug('SimpleCache stats', SimpleCache.getStats());
     }
-    
+
     // Emit event to notify other components that initialization is complete
     const event = new CustomEvent('app-init-complete', {
       detail: {
@@ -510,17 +510,17 @@ const AppInit = {
       appConfigStats: this.modules.has('appConfig') ? 'Available' : null
     };
   },
-  
-  startWelcomeSequence: function() {
+
+  startWelcomeSequence: function () {
     ScreenManager.startWelcomeSequence();
   },
-  
-  initializeDrawerMenu: function() {
+
+  initializeDrawerMenu: function () {
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const drawerMenu = document.getElementById('drawer-menu');
     const drawerOverlay = document.getElementById('drawer-overlay');
     const drawerContent = document.querySelector('.drawer-content');
-    
+
     // Add logo at the top of the drawer
     const logoContainer = document.createElement('div');
     logoContainer.className = 'drawer-logo-container';
@@ -530,7 +530,7 @@ const AppInit = {
     logoImage.className = 'drawer-logo';
     logoContainer.appendChild(logoImage);
     drawerContent.appendChild(logoContainer);
-    
+
     // Define navigation items with their content types
     const navigationItems = [
       { label: 'Coctelería', target: 'cocteleria' },
@@ -542,12 +542,13 @@ const AppInit = {
       { label: 'Sopas', target: 'sopas' },
       { label: 'Ensaladas', target: 'ensaladas' },
       { label: 'Carnes', target: 'carnes' },
+      { label: 'Platos Fuertes', target: 'platos-fuertes' },
       { label: 'Café', target: 'cafe' },
       { label: 'Postres', target: 'postres' },
       { label: 'Órdenes', action: 'orders' },
       { label: 'Crear orden', action: 'createOrder' }
     ];
-    
+
     // Create menu items with translation attributes
     navigationItems.forEach(item => {
       const button = document.createElement('button');
@@ -593,43 +594,43 @@ const AppInit = {
 
       drawerContent.appendChild(button);
     });
-    
+
     // Add footer with registered trademark
     const footerContainer = document.createElement('div');
     footerContainer.className = 'drawer-footer';
     // Asignación segura: cadena estática sin riesgo XSS
     footerContainer.innerHTML = '® MasterTechnologyBar.com';
     drawerContent.appendChild(footerContainer);
-    
+
     // Toggle drawer menu on hamburger button click
     hamburgerBtn.addEventListener('click', () => {
       drawerMenu.classList.toggle('open');
       drawerOverlay.classList.toggle('active');
     });
-    
+
     // Close drawer when clicking overlay
     drawerOverlay.addEventListener('click', () => {
       drawerMenu.classList.remove('open');
       drawerOverlay.classList.remove('active');
     });
-    
+
     // Menu item click handlers
     const menuButtons = drawerMenu.querySelectorAll('.nav-button');
     menuButtons.forEach(button => {
       button.addEventListener('click', async () => {
         const target = button.getAttribute('data-target');
         const action = button.getAttribute('data-action');
-        
+
         // Clear active state from all buttons
         menuButtons.forEach(btn => btn.classList.remove('active'));
-        
+
         // Set active state on clicked button
         button.classList.add('active');
-        
+
         // Close the drawer
         drawerMenu.classList.remove('open');
         drawerOverlay.classList.remove('active');
-        
+
         // Execute the appropriate action
         if (target) {
           await this.loadContent(target);
@@ -648,7 +649,7 @@ const AppInit = {
         }
       });
     });
-    
+
     // Set first button as active by default
     if (menuButtons && menuButtons.length > 0) {
       const defaultButton = menuButtons[0];
@@ -657,55 +658,55 @@ const AppInit = {
       }
     };
   },
-  
+
   /**
    * Ensures the main screen is visible by removing hidden class
    * Used as a fallback when DOM elements are not found
    */
-  ensureMainScreenVisible: function(contentType) {
+  ensureMainScreenVisible: function (contentType) {
     Logger.info(`[NAVIGATION DEBUG] ensureMainScreenVisible called with contentType: ${contentType}`);
-    
+
     setTimeout(() => {
       Logger.info(`[NAVIGATION DEBUG] ensureMainScreenVisible timeout executed`);
-      
-      const mainScreen = document.querySelector('.main-content-screen') || 
-                        document.querySelector('[data-category]');
-      
+
+      const mainScreen = document.querySelector('.main-content-screen') ||
+        document.querySelector('[data-category]');
+
       Logger.info(`[NAVIGATION DEBUG] ensureMainScreenVisible - element search:`, {
         mainScreenFound: !!mainScreen,
         mainScreenClasses: mainScreen?.className,
         mainScreenDisplay: mainScreen ? getComputedStyle(mainScreen).display : 'N/A',
         mainScreenVisibility: mainScreen ? getComputedStyle(mainScreen).visibility : 'N/A'
       });
-      
+
       if (mainScreen) {
         Logger.info(`[NAVIGATION DEBUG] Attempting to make mainScreen visible`);
-        
+
         const beforeClasses = mainScreen.className;
         mainScreen.classList.remove('screen-hidden');
         mainScreen.classList.add('screen-visible');
         const afterClasses = mainScreen.className;
-        
+
         Logger.info(`[NAVIGATION DEBUG] Class changes:`, {
           before: beforeClasses,
           after: afterClasses,
           displayAfter: getComputedStyle(mainScreen).display,
           visibilityAfter: getComputedStyle(mainScreen).visibility
         });
-        
+
         // Screen visibility fixed, but not retrying loadContent to avoid recursion
         Logger.info(`[NAVIGATION DEBUG] Screen visibility fixed, but stopping here to avoid recursion`);
         this.isLoading = false; // Release lock
       } else {
         Logger.error(`[NAVIGATION DEBUG] MainScreen still not found in ensureMainScreenVisible`);
-        
+
         // Log all available elements for debugging
         const allElements = document.querySelectorAll('*');
-        const screenElements = Array.from(allElements).filter(el => 
+        const screenElements = Array.from(allElements).filter(el =>
           el.className && (el.className.includes('screen') || el.className.includes('content'))
         );
-        
-        Logger.info(`[NAVIGATION DEBUG] Available screen/content elements:`, 
+
+        Logger.info(`[NAVIGATION DEBUG] Available screen/content elements:`,
           screenElements.map(el => ({
             tag: el.tagName,
             id: el.id,
@@ -713,42 +714,42 @@ const AppInit = {
             display: getComputedStyle(el).display
           }))
         );
-        
+
         logError('Cannot find main screen element to make visible');
       }
     }, 100);
   },
-  
+
   /**
    * Loads and renders content based on the specified category
    * Handles content switching with smooth transitions and proper state management
    * @param {string} contentType - The category of content to load (cocteleria, refrescos, etc.)
    */
-  loadContent: async function(contentType = 'cocteleria') {
+  loadContent: async function (contentType = 'cocteleria') {
     // Prevent concurrent calls
     if (this.isLoading) {
       Logger.warn(`[NAVIGATION DEBUG] loadContent already in progress, ignoring call for: ${contentType}`);
       return;
     }
-    
+
     // Check if user is actively navigating (DOM is being modified)
     const isUserNavigating = this.checkUserNavigation();
     if (isUserNavigating && contentType === 'cocteleria') {
       Logger.info('🚫 User navigation detected, skipping automatic cocteleria load');
       return;
     }
-    
+
     this.isLoading = true;
     Logger.info(`[NAVIGATION DEBUG] loadContent called with contentType: ${contentType}`);
     Logger.info(`[NAVIGATION DEBUG] Current URL: ${window.location.href}`);
     Logger.info(`[NAVIGATION DEBUG] Current retry count: ${this.retryCount || 0}`);
-    
+
     const contentContainer = document.getElementById('content-container');
     const pageTitle = document.querySelector('.page-header .page-title');
     // Use a more robust selector that finds the element even if hidden
     const mainScreen = document.querySelector('.main-content-screen') || document.querySelector('[data-category]');
     const hamburgerBtn = document.getElementById('hamburger-btn');
-    
+
     // Log detailed element states
     Logger.info(`[NAVIGATION DEBUG] Element search results:`, {
       contentContainer: {
@@ -767,7 +768,7 @@ const AppInit = {
         hasScreenVisible: mainScreen?.classList.contains('screen-visible')
       }
     });
-    
+
     // Log all elements with relevant classes for debugging
     const allScreens = document.querySelectorAll('[class*="screen"]');
     Logger.info(`[NAVIGATION DEBUG] All screen elements found: ${allScreens.length}`);
@@ -779,7 +780,7 @@ const AppInit = {
         visibility: getComputedStyle(screen).visibility
       });
     });
-    
+
     // Additional debugging right before validation
     Logger.info(`[NAVIGATION DEBUG] Pre-validation check:`, {
       contentContainer: {
@@ -797,7 +798,7 @@ const AppInit = {
         parentNode: !!mainScreen?.parentNode
       }
     });
-    
+
     // Additional debugging for mainScreen validation issue
     Logger.info(`[NAVIGATION DEBUG] Validation check details:`, {
       contentContainer: {
@@ -813,14 +814,14 @@ const AppInit = {
         nodeType: mainScreen?.nodeType
       }
     });
-    
+
     if (!contentContainer || !mainScreen) {
       Logger.warn(`[NAVIGATION DEBUG] Required DOM elements not found, retrying in 100ms... (attempt ${(this.retryCount || 0) + 1})`);
       Logger.warn('[NAVIGATION DEBUG] Missing elements:', {
         contentContainer: !!contentContainer,
         mainScreen: !!mainScreen
       });
-      
+
       // Retry once after a short delay, but limit retries to prevent infinite loops
       if (!this.retryCount) this.retryCount = 0;
       if (this.retryCount < 3) {
@@ -828,12 +829,12 @@ const AppInit = {
         setTimeout(() => {
           const retryContainer = document.getElementById('content-container');
           const retryMainScreen = document.querySelector('.main-content-screen') || document.querySelector('[data-category]');
-          
+
           Logger.info(`[NAVIGATION DEBUG] Retry ${this.retryCount} - Element check:`, {
             retryContainer: !!retryContainer,
             retryMainScreen: !!retryMainScreen
           });
-          
+
           if (!retryContainer || !retryMainScreen) {
             logError('Required DOM elements still not found after retry ' + this.retryCount);
             this.isLoading = false; // Release lock on error
@@ -845,7 +846,7 @@ const AppInit = {
             }
             return;
           }
-          
+
           // Elements found in retry, but not calling loadContent recursively to avoid concurrency issues
           Logger.info(`[NAVIGATION DEBUG] Elements found in retry, releasing lock`);
           this.isLoading = false; // Release lock
@@ -859,12 +860,12 @@ const AppInit = {
         return;
       }
     }
-    
+
     // Reset retry count on successful element finding
     this.retryCount = 0;
-    
+
     Logger.info(`[NAVIGATION DEBUG] Elements found successfully. Processing visibility...`);
-    
+
     // Ensure main screen is visible
     if (mainScreen.classList.contains('screen-hidden')) {
       Logger.info(`[NAVIGATION DEBUG] MainScreen was hidden, making it visible`);
@@ -880,10 +881,10 @@ const AppInit = {
 
     // Ensure contentType is valid - Fallback to default if invalid category provided
     contentType = this.validateContentType(contentType);
-    
+
     // Update data-category attribute - Important for CSS styling and order system logic
     mainScreen.setAttribute('data-category', contentType);
-    
+
     // No longer needed as title is integrated in tables
     if (pageTitle) {
       pageTitle.classList.add('page-title-hidden');
@@ -892,12 +893,12 @@ const AppInit = {
 
     contentContainer.classList.add('opacity-0');
     contentContainer.classList.remove('opacity-1');
-    
+
     setTimeout(async () => {
       // Preserve sidebar while clearing content
       const sidebar = document.getElementById('order-sidebar');
       const sidebarHTML = sidebar ? sidebar.outerHTML : null;
-      
+
       // Clear only the content, not the entire container structure
       const actualContentContainer = document.getElementById('content-container');
       if (actualContentContainer) {
@@ -910,22 +911,22 @@ const AppInit = {
           contentContainer.insertAdjacentHTML('beforeend', sidebarHTML);
         }
       }
-      
+
       const success = await this.initializeContent(contentType, actualContentContainer || contentContainer);
-      
+
       if (success) {
         contentContainer.classList.add('opacity-1');
         contentContainer.classList.remove('opacity-0');
-        
+
         // Hamburger button position is now fixed via CSS - no dynamic repositioning needed
-        
+
         // Dispatch event to notify that content initialization is complete
         document.dispatchEvent(new CustomEvent('app-content-ready', {
           detail: { contentType }
         }));
       }
     }, 50);
-    
+
     // Update active state in drawer menu
     const drawerButtons = document.querySelectorAll('#drawer-menu .nav-button');
     if (drawerButtons) {
@@ -940,35 +941,35 @@ const AppInit = {
         }
       });
     }
-    
+
     // Always release the loading lock
     this.isLoading = false;
   },
-  
-  validateContentType: function(contentType) {
+
+  validateContentType: function (contentType) {
     const validTypes = [
-      'cocteleria', 'refrescos', 'licores', 'cervezas', 
-      'pizzas', 'alitas', 'sopas', 'ensaladas', 
-      'carnes', 'cafe', 'postres'
+      'cocteleria', 'refrescos', 'licores', 'cervezas',
+      'pizzas', 'alitas', 'sopas', 'ensaladas',
+      'carnes', 'platos-fuertes', 'cafe', 'postres'
     ];
-    
+
     return validTypes.includes(contentType) ? contentType : 'cocteleria';
   },
-  
-  getContentTypes: function() {
+
+  getContentTypes: function () {
     return [
-      'cocteleria', 'refrescos', 'licores', 'cervezas', 
-      'pizzas', 'alitas', 'sopas', 'ensaladas', 
-      'carnes', 'cafe', 'postres'
+      'cocteleria', 'refrescos', 'licores', 'cervezas',
+      'pizzas', 'alitas', 'sopas', 'ensaladas',
+      'carnes', 'platos-fuertes', 'cafe', 'postres'
     ];
   },
-  
-  getCategoryTitle: function(contentType) {
+
+  getCategoryTitle: function (contentType) {
     // Ensure contentType is not null/undefined
     if (!contentType) {
       return 'Coctelería';
     }
-    
+
     // Map content type to display title
     const titles = {
       'cocteleria': 'Coctelería',
@@ -980,19 +981,20 @@ const AppInit = {
       'sopas': 'Sopas',
       'ensaladas': 'Ensaladas',
       'carnes': 'Carnes',
+      'platos-fuertes': 'Platos Fuertes',
       'cafe': 'Café',
       'postres': 'Postres'
     };
-    
+
     return titles[contentType] || contentType.charAt(0).toUpperCase() + contentType.slice(1);
   },
 
-  initializeContent: async function(contentType, container) {
+  initializeContent: async function (contentType, container) {
     if (!container) return false;
-    
+
     // Always work with content-container to preserve sidebar structure
     let targetContainer = document.getElementById('content-container');
-    
+
     if (!targetContainer) {
       // Create content-container within the proper structure
       const flexContainer = document.querySelector('.content-container-flex');
@@ -1015,11 +1017,11 @@ const AppInit = {
       // Simply clear the existing content-container
       targetContainer.innerHTML = '';
     }
-    
+
     container = targetContainer;
-    
+
     try {
-      switch(contentType) {
+      switch (contentType) {
         case 'cocteleria':
           await ProductRenderer.renderCocktails(container);
           break;
@@ -1047,6 +1049,12 @@ const AppInit = {
         case 'carnes':
           await ProductRenderer.renderCarnes(container);
           break;
+        case 'carnes':
+          await ProductRenderer.renderCarnes(container);
+          break;
+        case 'platos-fuertes':
+          await ProductRenderer.renderPlatosFuertes(container);
+          break;
         case 'cafe':
           await ProductRenderer.renderCafe(container);
           break;
@@ -1058,10 +1066,10 @@ const AppInit = {
           setSafeInnerHTML(container, '<p>Contenido no disponible</p>');
           return false;
       }
-      
+
       // Initialize ProductRenderer event delegation after content is rendered
       ProductRenderer.initEventDelegation();
-      
+
       return true;
     } catch (err) {
       logError('Error loading content', err);
@@ -1074,13 +1082,13 @@ const AppInit = {
    * Checks if user is actively navigating by detecting recent DOM changes
    * @returns {boolean} True if user navigation is detected
    */
-  checkUserNavigation: function() {
+  checkUserNavigation: function () {
     // Check if drawer menu is open (user is selecting)
     const drawerMenu = document.getElementById('drawer-menu');
     if (drawerMenu && drawerMenu.classList.contains('open')) {
       return true;
     }
-    
+
     // Check if any navigation button was recently clicked
     const activeButtons = document.querySelectorAll('.nav-button.active');
     if (activeButtons.length > 0) {
@@ -1091,7 +1099,7 @@ const AppInit = {
         return true;
       }
     }
-    
+
     return false;
   },
 
@@ -1099,15 +1107,15 @@ const AppInit = {
    * Setup Dependency Injection Container
    * Simplified version - using monolithic system instead of modular services
    */
-  setupDIContainer: function() {
+  setupDIContainer: function () {
     // Create minimal DI container for ProductDataAdapter only
     window.container = new DIContainer();
-    
+
     // Register AppConfig as singleton
     window.container.singleton('AppConfig', () => {
       return AppConfig;
     });
-    
+
     // Register ProductRepository as singleton (still used by some components)
     window.container.singleton('ProductRepository', () => {
       return new ProductDataAdapter();

@@ -461,7 +461,8 @@ const ProductRenderer = {
       'cognac': (container) => this.renderCognac(container),
       'brandy': (container) => this.renderBrandy(container),
       'digestivos': (container) => this.renderDigestivos(container),
-      'espumosos': (container) => this.renderEspumosos(container)
+      'espumosos': (container) => this.renderEspumosos(container),
+      'platos-fuertes': (container) => this.renderPlatosFuertes(container)
     };
   },
 
@@ -497,7 +498,7 @@ const ProductRenderer = {
   },
 
   _determineProductType: function (normalizedCategory, tableClass, categoryTitle) {
-    const foodCategories = ['pizzas', 'alitas', 'sopas', 'ensaladas', 'carnes'];
+    const foodCategories = ['pizzas', 'alitas', 'sopas', 'ensaladas', 'carnes', 'platos fuertes'];
     const beverageCategories = ['cocteleria', 'refrescos', 'cervezas', 'cafe', 'postres'];
 
     if (foodCategories.includes(normalizedCategory)) {
@@ -681,11 +682,32 @@ const ProductRenderer = {
 
       // Fallback para el thumbnail
       thumbnailImg.onerror = function () {
-        if (!this.dataset.fallenBack) {
-          this.dataset.fallenBack = 'true';
-          Logger.warn(`Thumbnail falló: ${this.src}.`);
-          // Si falló la carga, no tenemos un fallback claro si item.imagen ya era el intento.
-          // Podríamos intentar usar el video como imagen (algunos navegadores lo soportan) o un placeholder.
+        const currentSrc = this.src;
+        // Avoid infinite loops
+        if (this.dataset.triedJpg && this.dataset.triedPng) {
+          if (!this.dataset.fallenBack) {
+            this.dataset.fallenBack = 'true';
+            Logger.warn(`Thumbnail falló definitivamente: ${this.src}`);
+          }
+          return;
+        }
+
+        if (!this.dataset.triedJpg) {
+          this.dataset.triedJpg = 'true';
+          // Try JPG
+          const jpgUrl = currentSrc.replace(/\.webp$/i, '.jpg');
+          Logger.debug(`Thumbnail webp falló, intentando jpg: ${jpgUrl}`);
+          this.src = jpgUrl;
+          return;
+        }
+
+        if (!this.dataset.triedPng) {
+          this.dataset.triedPng = 'true';
+          // Try PNG
+          const pngUrl = currentSrc.replace(/\.jpg$/i, '.png');
+          Logger.debug(`Thumbnail jpg falló, intentando png: ${pngUrl}`);
+          this.src = pngUrl;
+          return;
         }
       };
 
@@ -1815,6 +1837,10 @@ const ProductRenderer = {
 
   renderCarnes: async function (container) {
     await this.renderFoodCategory(container, 'getCarnes', 'Carnes');
+  },
+
+  renderPlatosFuertes: async function (container) {
+    await this.renderFoodCategory(container, 'getPlatosFuertes', 'Platos Fuertes');
   },
 
   renderCafe: async function (container) {

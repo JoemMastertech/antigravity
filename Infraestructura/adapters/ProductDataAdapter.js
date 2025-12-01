@@ -15,14 +15,14 @@ class ProductDataAdapter extends BaseAdapter {
   constructor() {
     super();
     this.productData = ProductData;
-    
+
     // Initialize Supabase configuration
     this.supabaseUrl = AppConfig.get('database.supabaseUrl');
     this.supabaseKey = AppConfig.get('database.supabaseKey');
-    
+
     // Initialize sync service
     this.syncService = new DataSyncService(this);
-    
+
     // Start auto-sync if enabled
     if (SYNC_CONFIG.AUTO_UPDATE_ENABLED) {
       this.syncService.startAutoSync();
@@ -53,12 +53,21 @@ class ProductDataAdapter extends BaseAdapter {
    * @private
    */
   async _fetchFromSupabase(tableName) {
-    // Return local data immediately for instant UX
-    const localData = this.productData[tableName] || [];
-    
-    // Start background sync without blocking
-    this._updateFromSupabaseBackground(tableName);
-    
+    // Check if we have local data
+    let localData = this.productData[tableName];
+
+    // If no local data (or empty array), we MUST wait for the fetch
+    // This is critical for new categories that don't have hardcoded fallback data
+    if (!localData || (Array.isArray(localData) && localData.length === 0)) {
+      Logger.info(`No local data for '${tableName}', waiting for Supabase fetch...`);
+      await this._updateFromSupabaseBackground(tableName);
+      // Refresh local data after fetch
+      localData = this.productData[tableName] || [];
+    } else {
+      // If we have data, return immediately and update in background
+      this._updateFromSupabaseBackground(tableName);
+    }
+
     return localData;
   }
 
@@ -89,17 +98,17 @@ class ProductDataAdapter extends BaseAdapter {
 
       const data = await response.json();
       Logger.info(`Datos actualizados en background desde Supabase tabla '${tableName}': ${data.length} registros`);
-      
+
       // Normalize and cache the fresh data
       const normalizedData = this._normalizeSupabaseData(data, tableName);
       if (normalizedData && normalizedData.length > 0) {
         // Update local data for next immediate load
         this.productData[tableName] = normalizedData;
-        
+
         // Cache for persistence
         const SimpleCache = (await import('../../Shared/utils/simpleCache.js')).default;
         SimpleCache.set(`supabase_${tableName}`, normalizedData, 3600000); // 1 hour cache
-        
+
         Logger.info(`Cache actualizado para tabla '${tableName}'`);
       }
     } catch (error) {
@@ -117,25 +126,25 @@ class ProductDataAdapter extends BaseAdapter {
    */
   _normalizeSupabaseData(data, tableName) {
     if (!Array.isArray(data)) return [];
-    
+
     // List of liquor tables that need price normalization
     const liquorTables = ['vodka', 'whisky', 'tequila', 'ron', 'brandy', 'cognac', 'digestivos', 'ginebra', 'mezcal', 'licores'];
-    
+
     return data.map(item => {
       const normalizedItem = { ...item };
-      
+
       // Ensure ID is string for consistency
       if (normalizedItem.id !== undefined) {
         normalizedItem.id = String(normalizedItem.id);
       }
-      
+
       // Normalize image fields - ensure 'ruta_archivo' is available for cervezas and refrescos
       if ((tableName === 'cervezas' || tableName === 'refrescos') && item.imagen && !item.ruta_archivo) {
         normalizedItem.ruta_archivo = item.imagen;
       } else if ((tableName === 'cervezas' || tableName === 'refrescos') && item.ruta_archivo && !item.imagen) {
         normalizedItem.imagen = item.ruta_archivo;
       }
-      
+
       // Normalize price fields for liquor tables
       if (liquorTables.includes(tableName)) {
         // Handle different possible field names from Supabase
@@ -144,11 +153,11 @@ class ProductDataAdapter extends BaseAdapter {
           'precioLitro': ['precioLitro', 'precio_litro', 'precioLiter', 'liter_price'],
           'precioCopa': ['precioCopa', 'precio_copa', 'precioCup', 'cup_price']
         };
-        
+
         Object.keys(priceFields).forEach(standardField => {
           const possibleFields = priceFields[standardField];
           let foundValue = null;
-          
+
           // Look for the field in different possible names
           for (const fieldName of possibleFields) {
             if (item[fieldName] !== undefined && item[fieldName] !== null) {
@@ -156,7 +165,7 @@ class ProductDataAdapter extends BaseAdapter {
               break;
             }
           }
-          
+
           // Set the standardized field
           if (foundValue !== null && foundValue !== undefined) {
             // Store price as number or clean string without currency symbol
@@ -179,7 +188,7 @@ class ProductDataAdapter extends BaseAdapter {
           normalizedItem.precio = formatPrice(item.precio);
         }
       }
-      
+
       // Log image fields for cervezas and refrescos to debug
       if (tableName === 'cervezas' || tableName === 'refrescos') {
         Logger.debug(`Normalized ${tableName} item:`, {
@@ -199,7 +208,7 @@ class ProductDataAdapter extends BaseAdapter {
           precio: normalizedItem.precio
         });
       }
-      
+
       return normalizedItem;
     });
   }
@@ -239,7 +248,7 @@ class ProductDataAdapter extends BaseAdapter {
         this._fetchFromSupabase('mezcal'),
         this._fetchFromSupabase('licores')
       ]);
-      
+
       const allLiquors = [...vodka, ...whisky, ...tequila, ...ron, ...brandy, ...cognac, ...digestivos, ...ginebra, ...mezcal, ...licores];
       return allLiquors.length > 0 ? allLiquors : this.productData.licores || [];
     } catch (error) {
@@ -299,6 +308,14 @@ class ProductDataAdapter extends BaseAdapter {
   }
 
   /**
+   * Get all main courses (platos fuertes) (async with Supabase)
+   * @returns {Promise<Array>} Array of main course objects
+   */
+  async getPlatosFuertes() {
+    return this._getGenericCategory('platos_fuertes');
+  }
+
+  /**
    * Get all coffee products (async with Supabase)
    * @returns {Promise<Array>} Array of coffee objects
    */
@@ -353,7 +370,7 @@ class ProductDataAdapter extends BaseAdapter {
    */
   async getProductsByCategory(category) {
     const normalizedCategory = category.toLowerCase();
-    
+
     // Map category to appropriate method
     const categoryMethods = {
       'cocteles': () => this.getCocteles(),
@@ -384,25 +401,27 @@ class ProductDataAdapter extends BaseAdapter {
       'sopas': () => this.getSopas(),
       'ensaladas': () => this.getEnsaladas(),
       'carnes': () => this.getCarnes(),
+      'carnes': () => this.getCarnes(),
+      'platos-fuertes': () => this.getPlatosFuertes(),
       'cafe': () => this.getCafe(),
       'café': () => this.getCafe(),
       'postres': () => this.getPostres(),
       'snacks': () => this._getGenericCategory('snacks'),
       'bebidas': () => this._getGenericCategory('bebidas')
     };
-    
+
     if (categoryMethods[normalizedCategory]) {
       return await categoryMethods[normalizedCategory]();
     }
-    
+
     // Fallback to direct Supabase query if no specific method exists
     try {
-       const data = await this._fetchFromSupabase(normalizedCategory);
-       return data.length > 0 ? data : this.productData[normalizedCategory] || [];
-     } catch (error) {
-       Logger.error(`Error in getProductsByCategory for ${category}:`, error);
-       return [];
-     }
+      const data = await this._fetchFromSupabase(normalizedCategory);
+      return data.length > 0 ? data : this.productData[normalizedCategory] || [];
+    } catch (error) {
+      Logger.error(`Error in getProductsByCategory for ${category}:`, error);
+      return [];
+    }
   }
 
   /**
