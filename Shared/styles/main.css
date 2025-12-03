@@ -36,150 +36,8 @@ Archivo CSS funcional optimizado con mejoras organizacionales:
    Convenciones:
    - Nombres en BEM: bloque__elemento--modificador
    - Especificidad baja: evite ids salvo para legacy (#order-sidebar)
-   - Breakpoints Ãºnicos y coherentes: 
-     MOBILE â‰¤480, TABLET 481â€“767, LAPTOP 768â€“1023, DESKTOP â‰¥1024
-   - Marcadores de regiÃ³n: === REGION: NOMBRE ===
-   - Busque por â€œREGION:â€ para saltar a secciones rÃ¡pidamente
-   ============================================================================= */
-
-/* =============================================================================
-   1. VARIABLES CSS - SISTEMA DE TEMAS COMPLETO
-   ============================================================================= */
-
-:root {
-  /* Default theme (dark-blue) */
-  --primary-color: #f3f6f6;
-  --accent-color: #00f7ff;
-  --background-color: #000;
-  --text-color: #ECE9D8;
-  --price-color: #00f7ff;
-
-  /* Component Colors */
-  --card-bg: rgba(0, 0, 0, 0.7);
-  --border-color: #00f7ff40;
-  --glow-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
-  --glow-shadow-hover: 0 0 20px rgba(0, 247, 255, 0.6);
-
-  /* Layout Variables */
-  --transition-time: 0.3s;
-  --table-width: 95%;
-  --table-max-width: 1400px;
-  --table-margin: 20px;
-
-  /* Mobile Sidebar Variables */
-  --sidebar-width-mobile: 140px;
-  --sidebar-height-portrait: 180px;
-  --sidebar-padding-mobile: 12px;
-  --sidebar-z-index: 1000;
-  --sidebar-transition: transform 0.3s ease, width 0.3s ease;
-
-  /* Legacy support */
-  --primary: var(--primary-color);
-  --accent: var(--accent-color);
-  --bg: var(--background-color);
-  --text: var(--text-color);
-  --card: var(--card-bg);
-  --border: var(--border-color);
-  --transition: var(--transition-time);
-}
-
-/* Tema Dark Blue (por defecto) */
-[data-theme="dark-blue"] {
-  --primary-color: #f3f6f6;
-  --accent-color: #00f7ff;
-  --background-color: #000;
-  --text-color: #ECE9D8;
-  --price-color: #00f7ff;
-  --card-bg: rgba(0, 0, 0, 0.7);
-  --border-color: #00f7ff40;
-  --glow-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
-  --glow-shadow-hover: 0 0 20px rgba(0, 247, 255, 0.6);
-}
-
-/* Tema Dark Red */
-[data-theme="dark-red"] {
-  --primary-color: #f3f6f6;
-  --accent-color: #ff4d4d;
-  --background-color: #000;
-  --text-color: #ECE9D8;
-  --price-color: #ff4d4d;
-  --card-bg: rgba(0, 0, 0, 0.7);
-  --border-color: #ff4d4d40;
-  --glow-shadow: 0 0 10px rgba(255, 77, 77, 0.3);
-  --glow-shadow-hover: 0 0 20px rgba(255, 77, 77, 0.6);
-}
-
-/* Light Blue Theme - now uses bright blue color */
-[data-theme="light-blue"] {
-  --primary-color: #f3f6f6;
-  --accent-color: #85C7FF;
-  --background-color: #000;
-  --text-color: #ECE9D8;
-  --price-color: #85C7FF;
-  --card-bg: rgba(0, 0, 0, 0.7);
-  --border-color: #85C7FF40;
-  --glow-shadow: 0 0 10px rgba(133, 199, 255, 0.3);
-  --glow-shadow-hover: 0 0 20px rgba(133, 199, 255, 0.6);
-}
-
-/* Light White Theme */
-[data-theme="light-white"] {
-  --primary-color: #1e293b;
-  --accent-color: #3b82f6;
-  --background-color: #ffffff;
-  --text-color: #1e293b;
-  --price-color: #1e40af;
-  --card-bg: rgba(255, 255, 255, 0.9);
-  --border-color: #1e40af40;
-  --glow-shadow: 0 0 10px rgba(30, 64, 175, 0.3);
-  --glow-shadow-hover: 0 0 20px rgba(30, 64, 175, 0.6);
-  /* Variables nuevas para degradado y color de ingredientes */
-  --gradient-overlay: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(30, 64, 175, 0.2) 100%);
-  --color-ingredientes: #1a1a1a;
-  /* Aumentar tamaÃ±o mÃ¡ximo del contenedor padre para reducir el espacio con el sidebar */
-  --table-max-width: 1520px;
-}
-
-/* Background video styles */
-#background-video {
-  position: fixed;
-  top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-  opacity: 1;
-}
-
-/* =============================================================================
-   2. ESTILOS BASE Y LAYOUT PRINCIPAL
-   ============================================================================= */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Montserrat', sans-serif;
-  color: var(--text);
-  background: var(--background-color);
-  min-height: 100vh;
-  overflow-y: auto;
-}
-
-/* Ocultar barras de scroll durante transiciones (logo + categorÃ­a) */
-html.no-scrollbars,
-body.no-scrollbars {
-  overflow: hidden !important;
-}
-
-#app {
-  width: 100%;
-  max-width: var(--table-max-width);
-  min-height: 100vh;
   position: relative;
   margin: 0 auto;
   padding: 0 max(20px, calc((100vw - var(--table-max-width)) / 2));
@@ -269,6 +127,18 @@ body.order-mode-active #app {
   height: auto;
   display: block;
   margin: 0 auto;
+}
+
+/* Background video styles */
+#background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 1;
 }
 
 .main-content-screen {
@@ -2978,70 +2848,6 @@ textarea {
     overflow-y: auto;
   }
 
-  .modal-content img {
-    max-height: 40vh;
-  }
-
-  /* Drink options modal specific adjustments for portrait - Mobile & Tablet */
-}
-
-/* Optimized animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(0, 247, 255, 0.4);
-  }
-
-  70% {
-    box-shadow: 0 0 0 10px rgba(0, 247, 255, 0);
-  }
-
-  100% {
-    box-shadow: 0 0 0 0 rgba(0, 247, 255, 0);
-  }
-}
-
-.fade-in {
-  animation: fadeIn 1s ease-in-out forwards;
-}
-
-.fade-out {
-  animation: fadeOut 1s ease-in-out forwards;
-}
-
-.order-item {
-  border-bottom: 1px solid var(--border-color);
-  padding: 10px 0;
-  margin-bottom: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-
-.order-item-name {
-  font-weight: 600;
-  color: var(--primary-color);
-  margin-bottom: 5px;
   width: 100%;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -7266,6 +7072,7 @@ body.order-mode-active #app {
     min-height: 32px;
   }
 }
+
 /* Override to remove white background on selected drink options */
 .drink-option-container.selected {
   background-color: transparent !important;

@@ -1,0 +1,178 @@
+/*
+=============================================================================
+MASTER TECHNOLOGY BAR - CORE STYLES
+=============================================================================
+Contenido:
+- 1. Variables (temas y colores)
+- 2. Reset y elementos globales
+- 3. Animaciones base
+=============================================================================
+*/
+
+/* =============================================================================
+   1. VARIABLES CSS - SISTEMA DE TEMAS COMPLETO
+   ============================================================================= */
+
+:root {
+    /* Default theme (dark-blue) */
+    --primary-color: #f3f6f6;
+    --accent-color: #00f7ff;
+    --background-color: #000;
+    --text-color: #ECE9D8;
+    --price-color: #00f7ff;
+
+    /* Component Colors */
+    --card-bg: rgba(0, 0, 0, 0.7);
+    --border-color: #00f7ff40;
+    --glow-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
+    --glow-shadow-hover: 0 0 20px rgba(0, 247, 255, 0.6);
+
+    /* Layout Variables */
+    --transition-time: 0.3s;
+    --table-width: 95%;
+    --table-max-width: 1400px;
+    --table-margin: 20px;
+
+    /* Mobile Sidebar Variables */
+    --sidebar-width-mobile: 140px;
+    --sidebar-height-portrait: 180px;
+    --sidebar-padding-mobile: 12px;
+    --sidebar-z-index: 1000;
+    --sidebar-transition: transform 0.3s ease, width 0.3s ease;
+
+    /* Legacy support */
+    --primary: var(--primary-color);
+    --accent: var(--accent-color);
+    --bg: var(--background-color);
+    --text: var(--text-color);
+    --card: var(--card-bg);
+    --border: var(--border-color);
+    --transition: var(--transition-time);
+}
+
+/* Tema Dark Blue (por defecto) */
+[data-theme="dark-blue"] {
+    --primary-color: #f3f6f6;
+    --accent-color: #00f7ff;
+    --background-color: #000;
+    --text-color: #ECE9D8;
+    --price-color: #00f7ff;
+    --card-bg: rgba(0, 0, 0, 0.7);
+    --border-color: #00f7ff40;
+    --glow-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
+    --glow-shadow-hover: 0 0 20px rgba(0, 247, 255, 0.6);
+}
+
+/* Tema Dark Red */
+[data-theme="dark-red"] {
+    --primary-color: #f3f6f6;
+    --accent-color: #ff4d4d;
+    --background-color: #000;
+    --text-color: #ECE9D8;
+    --price-color: #ff4d4d;
+    --card-bg: rgba(0, 0, 0, 0.7);
+    --border-color: #ff4d4d40;
+    --glow-shadow: 0 0 10px rgba(255, 77, 77, 0.3);
+    --glow-shadow-hover: 0 0 20px rgba(255, 77, 77, 0.6);
+}
+
+/* Light Blue Theme - now uses bright blue color */
+[data-theme="light-blue"] {
+    --primary-color: #f3f6f6;
+    --accent-color: #85C7FF;
+    --background-color: #000;
+    --text-color: #ECE9D8;
+    --price-color: #85C7FF;
+    --card-bg: rgba(0, 0, 0, 0.7);
+    --border-color: #85C7FF40;
+    --glow-shadow: 0 0 10px rgba(133, 199, 255, 0.3);
+    --glow-shadow-hover: 0 0 20px rgba(133, 199, 255, 0.6);
+}
+
+/* Light White Theme */
+[data-theme="light-white"] {
+    --primary-color: #1e293b;
+    --accent-color: #3b82f6;
+    --background-color: #ffffff;
+    --text-color: #1e293b;
+    --price-color: #1e40af;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --border-color: #1e40af40;
+    --glow-shadow: 0 0 10px rgba(30, 64, 175, 0.3);
+    --glow-shadow-hover: 0 0 20px rgba(30, 64, 175, 0.6);
+    /* Variables nuevas para degradado y color de ingredientes */
+    --gradient-overlay: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(30, 64, 175, 0.2) 100%);
+    --color-ingredientes: #1a1a1a;
+    /* Aumentar tamaño máximo del contenedor padre para reducir el espacio con el sidebar */
+    --table-max-width: 1520px;
+}
+
+/* =============================================================================
+   2. ESTILOS BASE Y RESET
+   ============================================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text);
+    background: var(--background-color);
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+/* Ocultar barras de scroll durante transiciones */
+html.no-scrollbars,
+body.no-scrollbars {
+    overflow: hidden !important;
+}
+
+/* =============================================================================
+   3. ANIMACIONES BASE
+   ============================================================================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 247, 255, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 247, 255, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 247, 255, 0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+.fade-out {
+    animation: fadeOut 1s ease-in-out forwards;
+}
