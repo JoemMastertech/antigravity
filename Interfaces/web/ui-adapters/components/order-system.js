@@ -66,6 +66,16 @@ class OrderSystem {
       return;
     }
 
+    if (target.id === 'confirm-drinks-btn') {
+      this.confirmDrinkOptions();
+      return;
+    }
+
+    if (target.id === 'cancel-drinks-btn') {
+      this.cancelProductSelection();
+      return;
+    }
+
     // Handle Modal Actions
     if (target.closest('.drink-option-container') || target.closest('.modal-actions')) {
       // Handled by specific listeners or we can delegate here if we move logic to delegation
@@ -98,11 +108,22 @@ class OrderSystem {
     const priceType = this.logic.getPriceType(rowOrCard, clickedElement);
     const { category } = this.logic.getProductMetadata(rowOrCard);
 
+    // Extract dynamic mixers if available
+    let mixers = null;
+    if (clickedElement.dataset.mixers) {
+      try {
+        mixers = JSON.parse(clickedElement.dataset.mixers);
+      } catch (e) {
+        Logger.warn('Failed to parse mixers data', e);
+      }
+    }
+
     const product = {
       name: productName,
       price: price,
       priceType: priceType,
-      category: category
+      category: category,
+      mixers: mixers
     };
 
     this.logic.setCurrentProduct(product, category);
@@ -116,16 +137,20 @@ class OrderSystem {
       this.ui.showMeatCustomizationModal();
     } else if (this.logic.isPlatosFuertesProduct()) {
       this.ui.showPlatosCustomizationModal();
-    } else if (this.logic.isBottleProduct(document.querySelector('tr'))) { // Mock row?
-      // We need to check if it is a bottle product based on logic
-      // logic.isBottleProduct takes a row.
-      // We should have passed this info or determined it earlier.
-      // For now, let's assume logic.bottleCategory is set.
-      if (this.logic.bottleCategory !== 'OTROS') {
+    } else if (this.logic.currentProduct.priceType === CONSTANTS.PRICE_TYPES.BOTTLE ||
+      this.logic.currentProduct.priceType === CONSTANTS.PRICE_TYPES.LITER ||
+      this.logic.currentProduct.priceType === CONSTANTS.PRICE_TYPES.CUP) {
+
+      // Check if we should show modal based on category or if dynamic mixers exist
+      const hasDynamicMixers = this.logic.currentProduct.mixers &&
+        Array.isArray(this.logic.currentProduct.mixers) &&
+        this.logic.currentProduct.mixers.length > 0;
+
+      if (this.logic.bottleCategory !== 'OTROS' || hasDynamicMixers) {
         this.showDrinkOptionsModal();
       } else {
         this.addProductToOrder({
-          name: this.logic.currentProduct.name,
+          name: this._getFormattedProductName(),
           price: this.logic.currentProduct.price,
           category: this.logic.currentCategory,
           customizations: []
@@ -134,7 +159,14 @@ class OrderSystem {
     } else {
       // Simple product
       this.addProductToOrder({
-        name: this.logic.currentProduct.name,
+        name: this.logic.currentProduct.name, // Simple products don't need prefix usually, or we can use the helper too if desired. 
+        // But the helper relies on priceType. Simple products might not have priceType 'precioBotella' etc.
+        // Let's check logic.currentProduct.priceType for simple products.
+        // Usually it's 'precio' or null.
+        // So calling _getFormattedProductName() is safe if it handles default case.
+        // Let's stick to simple name for now unless user wants it everywhere.
+        // User said "si es botella... en Litro... en Copa".
+        // So only for those types.
         price: this.logic.currentProduct.price,
         category: this.logic.currentCategory,
         customizations: []
@@ -144,20 +176,62 @@ class OrderSystem {
 
   showDrinkOptionsModal() {
     this.logic.resetSelectionState();
-    const optionsResult = this.logic.getDrinkOptionsForProduct(this.logic.currentProduct.name);
+    this.ui.showDrinkOptionsModal();
+  }
 
-    // We need to render the modal content
-    const modal = document.getElementById('drink-options-modal');
-    if (!modal) return;
+  confirmDrinkOptions() {
+    // Validate selection
+    // We can use logic.hasValidDrinkSelection() if it exists, or check counts
+    // For now, simple check if any drinks selected if required?
+    // Actually, logic.validateSpecialBottleRules is used during increment.
+    // So if we are here, it should be valid or we check min requirements?
+    // Legacy code didn't seem to enforce min requirements strictly on confirm, just max limits.
+    // But let's check if we need to validate "5 sodas OR 2 pitchers".
+    // If user selected 1 soda, is it allowed? Yes.
 
-    const optionsContainer = modal.querySelector('.drink-options-container');
-    if (optionsContainer) {
-      optionsContainer.innerHTML = '';
-      this.ui.renderDrinkOptions(optionsContainer, optionsResult.drinkOptions);
+    // Construct customizations string
+    // Construct customizations string
+    const customizations = [];
+
+    // Check if we have counts (Bottle mode)
+    const hasCounts = Object.values(this.logic.drinkCounts).some(count => count > 0);
+
+    if (hasCounts) {
+      Object.entries(this.logic.drinkCounts).forEach(([drink, count]) => {
+        if (count > 0) {
+          customizations.push(`${count} x ${drink}`);
+        }
+      });
+    } else if (this.logic.selectedDrinks.length > 0) {
+      // Single selection mode (Liter/Cup) or "Ninguno"
+      const selection = this.logic.selectedDrinks[0];
+      if (selection !== 'Ninguno') {
+        customizations.push(selection);
+      } else {
+        customizations.push('Sin acompañamientos');
+      }
     }
 
-    this.ui.updateTotalDrinkCount();
-    this.ui.showModal('drink-options-modal');
+    if (customizations.length === 0) {
+      customizations.push('Sin acompañamientos');
+    }
+
+    const formattedName = this._getFormattedProductName();
+
+    this.addProductToOrder({
+      name: formattedName,
+      price: this.logic.currentProduct.price,
+      category: this.logic.currentCategory,
+      customizations: customizations
+    });
+
+    this.ui.hideModal('drink-options-modal');
+    this.logic.resetSelectionState();
+  }
+
+  cancelProductSelection() {
+    this.ui.hideModal('drink-options-modal');
+    this.logic.resetSelectionState();
   }
 
   handleDrinkDecrement(option) {
@@ -380,6 +454,23 @@ class OrderSystem {
   // Proxy methods for tests or legacy calls
   getDrinkOptionsForProduct(name) {
     return this.logic.getDrinkOptionsForProduct(name);
+  }
+
+  _getFormattedProductName() {
+    if (!this.logic.currentProduct) return '';
+
+    const name = this.logic.currentProduct.name;
+    const priceType = this.logic.currentProduct.priceType;
+
+    if (priceType === CONSTANTS.PRICE_TYPES.BOTTLE) {
+      return `Botella ${name}`;
+    } else if (priceType === CONSTANTS.PRICE_TYPES.LITER) {
+      return `Litro ${name}`;
+    } else if (priceType === CONSTANTS.PRICE_TYPES.CUP) {
+      return `Copa ${name}`;
+    }
+
+    return name;
   }
 
   // For tests that access core directly

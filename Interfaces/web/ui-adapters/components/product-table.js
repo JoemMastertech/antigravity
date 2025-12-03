@@ -462,7 +462,8 @@ const ProductRenderer = {
       'brandy': (container) => this.renderBrandy(container),
       'digestivos': (container) => this.renderDigestivos(container),
       'espumosos': (container) => this.renderEspumosos(container),
-      'platos fuertes': (container) => this.renderPlatosFuertes(container)
+      'platos fuertes': (container) => this.renderPlatosFuertes(container),
+      'snacks': (container) => this.renderSnacks(container)
     };
   },
 
@@ -498,7 +499,7 @@ const ProductRenderer = {
   },
 
   _determineProductType: function (normalizedCategory, tableClass, categoryTitle) {
-    const foodCategories = ['pizzas', 'alitas', 'sopas', 'ensaladas', 'carnes', 'platos fuertes'];
+    const foodCategories = ['pizzas', 'alitas', 'sopas', 'ensaladas', 'carnes', 'platos fuertes', 'snacks'];
     const beverageCategories = ['cocteleria', 'refrescos', 'cervezas', 'cafe', 'postres'];
 
     if (foodCategories.includes(normalizedCategory)) {
@@ -659,6 +660,16 @@ const ProductRenderer = {
       priceButton.dataset.priceType = field;
       // Provide a unified attribute used by OrderSystem for grid/table views
       priceButton.dataset.field = field;
+
+      // Attach mixer options if available
+      let mixers = null;
+      if (field === 'precioBotella') mixers = item.mixersBotella;
+      else if (field === 'precioLitro') mixers = item.mixersLitro;
+      else if (field === 'precioCopa') mixers = item.mixersCopa;
+
+      if (mixers && Array.isArray(mixers) && mixers.length > 0) {
+        priceButton.dataset.mixers = JSON.stringify(mixers);
+      }
     }
 
     td.appendChild(priceButton);
@@ -769,7 +780,7 @@ const ProductRenderer = {
 
     // Determine productType based on category
     let productType;
-    const foodCategories = ['pizzas', 'alitas', 'sopas', 'ensaladas', 'carnes', 'platos fuertes'];
+    const foodCategories = ['pizzas', 'alitas', 'sopas', 'ensaladas', 'carnes', 'platos fuertes', 'snacks'];
     const beverageCategories = ['cocteleria', 'refrescos', 'cervezas', 'cafe', 'postres'];
 
     if (foodCategories.includes(normalizedCategory)) {
@@ -1890,6 +1901,10 @@ const ProductRenderer = {
 
   renderCarnes: async function (container) {
     await this.renderFoodCategory(container, 'getCarnes', 'Carnes');
+  },
+
+  renderSnacks: async function (container) {
+    await this.renderFoodCategory(container, 'getSnacks', 'Snacks');
   },
 
   renderPlatosFuertes: async function (container) {

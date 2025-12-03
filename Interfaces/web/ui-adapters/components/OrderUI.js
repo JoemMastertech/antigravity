@@ -312,6 +312,13 @@ export class OrderUI {
 
 
     // Drink Options UI
+    // Drink Options UI
+    showDrinkOptionsModal() {
+        this.renderModalFromTemplate('drink-options-modal', 'drink-options-template');
+        // Use setTimeout to ensure DOM is updated before setup
+        setTimeout(() => this._setupDrinkModal(), 50);
+    }
+
     renderDrinkOptions(container, options) {
         if (!Array.isArray(options)) {
             Logger.error('renderDrinkOptions: options is not an array:', options);
@@ -321,6 +328,124 @@ export class OrderUI {
         options.forEach(option => {
             container.appendChild(option === 'Ninguno' ? this._createNoneOption(option) : this._createDrinkOption(option));
         });
+    }
+
+    renderOptionsGrid(container, options) {
+        if (!Array.isArray(options)) {
+            Logger.error('renderOptionsGrid: options is not an array:', options);
+            return;
+        }
+
+        const optionsGrid = this._createElement('div', 'options-grid drink-modal__grid');
+
+        options.forEach(option => {
+            const optionButton = this._createElement('button', 'drink-option drink-modal__option nav-button');
+            optionButton.textContent = option;
+
+            // Translation attributes
+            const key = `drink_options.${simpleHash(option)}`;
+            optionButton.setAttribute('data-translate', key);
+            optionButton.setAttribute('data-namespace', 'menu');
+            optionButton.setAttribute('data-original-text', option);
+
+            // Add click handler for single selection
+            optionButton.addEventListener('click', () => {
+                // Deselect all
+                container.querySelectorAll('.drink-option').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                // Select clicked
+                optionButton.classList.add('selected');
+                // Update controller state
+                this.controller.logic.selectedDrinks = [option];
+                this.controller.logic.drinkCounts = {};
+            });
+
+            optionsGrid.appendChild(optionButton);
+        });
+
+        container.appendChild(optionsGrid);
+    }
+
+    _setupDrinkModal() {
+        const { drinkOptions } = this.controller.logic.getDrinkOptionsForProduct(this.controller.logic.currentProduct.name);
+        const optionsContainer = document.getElementById('drink-options-container');
+        const priceType = this.controller.logic.currentProduct.priceType;
+
+        if (optionsContainer) {
+            optionsContainer.innerHTML = '';
+
+            // Use grid for Liter/Cup, standard list with counters for Bottle
+            if (priceType === CONSTANTS.PRICE_TYPES.LITER || priceType === CONSTANTS.PRICE_TYPES.CUP) {
+                this.renderOptionsGrid(optionsContainer, drinkOptions);
+                // Hide total count container for Liter/Cup as it's not relevant
+                const totalCount = document.getElementById('total-drinks-count');
+                if (totalCount && totalCount.parentElement) totalCount.parentElement.style.display = 'none';
+            } else {
+                this.renderDrinkOptions(optionsContainer, drinkOptions);
+                // Ensure total count is visible for bottles
+                const totalCount = document.getElementById('total-drinks-count');
+                if (totalCount && totalCount.parentElement) totalCount.parentElement.style.display = '';
+                this.updateTotalDrinkCount();
+            }
+        }
+
+        this._updateModalTitle();
+        this.showModal('drink-options-modal');
+    }
+
+    _updateModalTitle() {
+        if (!this.controller.logic.currentProduct) {
+            Logger.error('No current product selected for modal title update');
+            return;
+        }
+        const modalTitle = document.querySelector('#drink-options-modal h3');
+        if (!modalTitle) return;
+
+        const { message } = this.controller.logic.getDrinkOptionsForProduct(this.controller.logic.currentProduct.name);
+        const baseTitle = '¿Con qué desea acompañar su bebida?';
+        const styleSpan = '<span class="modal-subtitle">';
+        const bottleCategory = this.controller.logic.bottleCategory;
+
+        if (bottleCategory === 'VODKA' || bottleCategory === 'GINEBRA' || this.controller.logic.isSpecialBottleCategory()) {
+            modalTitle.innerHTML = `${baseTitle}${styleSpan}Puedes elegir 2 Jarras de jugo ó 5 Refrescos ó 1 Jarra de jugo y 2 Refrescos</span>`;
+        } else if (message === "Puedes elegir 5 refrescos") {
+            modalTitle.innerHTML = `${baseTitle}${styleSpan}Puedes elegir 5 refrescos</span>`;
+        } else {
+            modalTitle.innerHTML = `${baseTitle}${styleSpan}${message}</span>`;
+        }
+        // Re-apply translation
+        this._retranslateIfNeeded(document.getElementById('drink-options-modal'));
+    }
+
+    async _retranslateIfNeeded(scopeElement) {
+        try {
+            const TranslationServiceModule = await import('../../../../Shared/services/TranslationService.js');
+            const TranslationService = TranslationServiceModule.default || TranslationServiceModule;
+            const currentLang = typeof TranslationService.getCurrentLanguage === 'function'
+                ? TranslationService.getCurrentLanguage()
+                : 'es';
+            if (currentLang && currentLang !== 'es') {
+                try {
+                    const DOMTranslatorModule = await import('../../../../Shared/services/DOMTranslator.js');
+                    const DOMTranslator = DOMTranslatorModule.default || DOMTranslatorModule;
+                    if (DOMTranslator && typeof DOMTranslator.translateElement === 'function') {
+                        const root = scopeElement || document;
+                        const elements = root.querySelectorAll('[data-translate], [data-translate-placeholder]');
+                        await Promise.all(Array.from(elements).map(el => DOMTranslator.translateElement(el, currentLang)));
+                    } else if (typeof TranslationService.translatePage === 'function') {
+                        TranslationService.translatePage(currentLang);
+                    }
+                } catch (err) {
+                    Logger.warn('DOMTranslator not available, using translatePage', err);
+                    if (typeof TranslationService.translatePage === 'function') {
+                        TranslationService.translatePage(currentLang);
+                    }
+                }
+            }
+        } catch (error) {
+            Logger.warn('Failed to re-apply translation in OrderUI', error);
+        }
     }
 
     _createNoneOption(option) {
@@ -354,7 +479,6 @@ export class OrderUI {
         // Initialize count if exists in logic
         const currentCount = this.controller.logic.drinkCounts[option] || 0;
         countDisplay.textContent = currentCount;
-        if (currentCount > 0) optionContainer.classList.add('selected');
 
         const decrementBtn = this._createCounterButton('-', () => this._handleDrinkDecrement(option, countDisplay, optionContainer));
         const incrementBtn = this._createCounterButton('+', () => this._handleDrinkIncrement(option, countDisplay, optionContainer));
@@ -380,9 +504,6 @@ export class OrderUI {
         const newCount = this.controller.handleDrinkDecrement(option);
         if (newCount !== null) {
             countDisplay.textContent = newCount;
-            if (newCount === 0) {
-                optionContainer.classList.remove('selected');
-            }
             this.updateTotalDrinkCount();
         }
     }
@@ -391,7 +512,6 @@ export class OrderUI {
         const newCount = this.controller.handleDrinkIncrement(option);
         if (newCount !== null) {
             countDisplay.textContent = newCount;
-            optionContainer.classList.add('selected');
             this.updateTotalDrinkCount();
         }
     }
@@ -460,6 +580,17 @@ export class OrderUI {
     }
 
     renderModalFromTemplate(modalId, templateId) {
+        const modal = document.getElementById(modalId);
+        const template = document.getElementById(templateId);
+
+        if (!modal || !template) {
+            Logger.error('renderModalFromTemplate: Modal or Template not found', { modalId, templateId });
+            return;
+        }
+
+        modal.innerHTML = '';
+        const content = template.content.cloneNode(true);
+        modal.appendChild(content);
     }
 
     _initOrientationListener() {

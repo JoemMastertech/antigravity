@@ -25,6 +25,7 @@ export const CONSTANTS = {
         FOOD: ['pizzas', 'alitas', 'sopas', 'ensaladas'],
         MEAT: 'carnes',
         PLATOS_FUERTES: 'platos fuertes',
+        SNACKS: 'snacks',
         DIGESTIVOS: 'digestivos',
         ESPUMOSOS: 'espumosos'
     },
@@ -47,14 +48,8 @@ export const CONSTANTS = {
         TOTAL_AMOUNT: 'order-total-amount'
     },
     PRODUCT_OPTIONS: {
-        RON: ['Mineral', 'Coca', 'Manzana'],
-        TEQUILA: ['Mineral', 'Toronja', 'Botella de Agua', 'Coca'],
-        BRANDY: ['Mineral', 'Coca', 'Manzana'],
-        WHISKY: ['Mineral', 'Manzana', 'Ginger ale', 'Botella de Agua'],
-        VODKA: ['Jugo de Piña', 'Jugo de Uva', 'Jugo de Naranja', 'Jugo de Arándano', 'Jugo de Mango', 'Jugo de Durazno', 'Mineral', 'Quina'],
-        GINEBRA: ['Jugo de Piña', 'Jugo de Uva', 'Jugo de Naranja', 'Jugo de Arándano', 'Jugo de Mango', 'Jugo de Durazno', 'Mineral', 'Quina'],
-        MEZCAL: ['Mineral', 'Toronja'],
-        COGNAC: ['Mineral', 'Coca', 'Manzana', 'Botella de Agua'],
+        // Options are now loaded dynamically from the database (Supabase)
+        // This object is kept empty to avoid breaking legacy references if any remain
         DEFAULT: ['Mineral', 'Agua', 'Coca', 'Manzana']
     }
 };
@@ -79,7 +74,7 @@ export class OrderLogic {
     setCurrentProduct(product, category) {
         this.currentProduct = product;
         this.currentCategory = category;
-        this.bottleCategory = this.getLiquorType(product.name);
+        this.bottleCategory = this.getLiquorType(product.name, category);
     }
 
     extractPrice(priceText) {
@@ -145,7 +140,22 @@ export class OrderLogic {
         return 'precio';
     }
 
-    getLiquorType(productName) {
+    getLiquorType(productName, category = null) {
+        // Prioritize category if provided
+        if (category) {
+            const normalizedCategory = category.toLowerCase();
+            if (normalizedCategory === 'tequila') return 'TEQUILA';
+            if (normalizedCategory === 'ron') return 'RON';
+            if (normalizedCategory === 'brandy') return 'BRANDY';
+            if (normalizedCategory === 'whisky') return 'WHISKY';
+            if (normalizedCategory === 'vodka') return 'VODKA';
+            if (normalizedCategory === 'ginebra') return 'GINEBRA';
+            if (normalizedCategory === 'mezcal') return 'MEZCAL';
+            if (normalizedCategory === 'cognac') return 'COGNAC';
+            if (normalizedCategory === 'digestivos') return 'DIGESTIVOS';
+            if (normalizedCategory === 'espumosos') return 'ESPUMOSOS';
+        }
+
         if (!productName) return 'OTROS';
         const name = productName.toUpperCase();
 
@@ -174,9 +184,20 @@ export class OrderLogic {
     isMeatProduct() { return this.currentCategory === CONSTANTS.CATEGORIES.MEAT; }
     isPlatosFuertesProduct() { return this.currentCategory === CONSTANTS.CATEGORIES.PLATOS_FUERTES; }
 
-    calculateTotalJagerDrinkCount() { return calculateTotalJagerDrinkCount(this.selectedDrinks, this.drinkCounts); }
-    calculateTotalDrinkCount() { return calculateTotalDrinkCount(this.drinkCounts); }
-    calculateTotalJuiceCount() { return calculateTotalJuiceCount(this.drinkCounts); }
+    calculateTotalJagerDrinkCount() {
+        // Jager logic might be specific, but for now let's count total drinks if it's Jager bottle
+        return this.calculateTotalDrinkCount();
+    }
+
+    calculateTotalDrinkCount() {
+        return Object.values(this.drinkCounts).reduce((total, count) => total + count, 0);
+    }
+
+    calculateTotalJuiceCount() {
+        return Object.entries(this.drinkCounts).reduce((total, [option, count]) => {
+            return isJuiceOption(option) ? total + count : total;
+        }, 0);
+    }
 
     hasValidDrinkSelection() {
         if (!this.currentProduct) {
@@ -220,8 +241,21 @@ export class OrderLogic {
             return { drinkOptions: ['Ninguno'], message: 'Error: Producto no válido' };
         }
 
-        const productType = this.getLiquorType(productName);
+        const productType = this.getLiquorType(productName, this.currentCategory);
         const normalizedName = productName.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
+        const priceType = this.currentProduct ? this.currentProduct.priceType : CONSTANTS.PRICE_TYPES.BOTTLE;
+
+        // 1. Dynamic options from Database (Highest Priority)
+        if (this.currentProduct && this.currentProduct.mixers && Array.isArray(this.currentProduct.mixers) && this.currentProduct.mixers.length > 0) {
+            const options = this.currentProduct.mixers;
+            // Determine message based on options
+            const isOnlySodas = this.isOnlySodaCategory(options);
+            const message = isOnlySodas ?
+                (CONSTANTS.MESSAGES.ONLY_SODAS || 'Puedes elegir hasta 5 refrescos') :
+                (CONSTANTS.MESSAGES.DEFAULT || 'Seleccione acompañamiento');
+
+            return { drinkOptions: options, message };
+        }
 
         // Check special products first
         const specialProduct = this._getSpecialProductOptions(normalizedName);
@@ -242,10 +276,21 @@ export class OrderLogic {
             return { drinkOptions: ['Ninguno'], message: CONSTANTS.MESSAGES.NO_REFRESCOS || 'Sin acompañamientos' };
         }
 
-        // Get standard options with fallback
+        // Get standard options with fallback based on price type
         let options = null;
         if (CONSTANTS.PRODUCT_OPTIONS && CONSTANTS.PRODUCT_OPTIONS[productType]) {
-            options = CONSTANTS.PRODUCT_OPTIONS[productType];
+            const typeOptions = CONSTANTS.PRODUCT_OPTIONS[productType];
+
+            // Special handling for Tequila Bottles (Simple Array)
+            if (productType === 'TEQUILA' && Array.isArray(typeOptions)) {
+                options = typeOptions;
+            } else if (priceType === CONSTANTS.PRICE_TYPES.LITER && typeOptions.LITER) {
+                options = typeOptions.LITER;
+            } else if (priceType === CONSTANTS.PRICE_TYPES.CUP && typeOptions.CUP) {
+                options = typeOptions.CUP;
+            } else {
+                options = typeOptions.DEFAULT || typeOptions; // Fallback to default or the object itself if no sub-keys
+            }
         } else if (CONSTANTS.PRODUCT_OPTIONS && CONSTANTS.PRODUCT_OPTIONS.DEFAULT) {
             options = CONSTANTS.PRODUCT_OPTIONS.DEFAULT;
         } else {
@@ -270,9 +315,9 @@ export class OrderLogic {
         if (!normalizedName || typeof normalizedName !== 'string') return null;
 
         const specialProducts = {
-            'BACARDI MANGO': ['Sprite', 'Mineral', 'Quina', 'Jugo de Mango', 'Jugo de Arándano'],
-            'BACARDI RASPBERRY': ['Sprite', 'Mineral', 'Quina', 'Jugo de Mango', 'Jugo de Arándano'],
-            'MALIBU': ['Sprite', 'Mineral', 'Jugo de Piña']
+            'BACARDI MANGO': ['Sprite', 'Mineral', 'Jugo de Piña'],
+            'BACARDI RASPBERRY': ['Sprite', 'Mineral', 'Jugo de Arándano'],
+            'MALIBU': ['Jugo de Piña', 'Sprite', 'Mineral']
         };
 
         for (const [key, options] of Object.entries(specialProducts)) {

@@ -1525,6 +1525,9 @@ const ProductData = {
     }
   ],
 
+  // SNACKS
+  // snacks: [], // Data fetched dynamically from Supabase
+
   // PLATOS FUERTES (Dynamic from Supabase)
   getPlatosFuertes: async function () {
     try {
@@ -1550,6 +1553,378 @@ const ProductData = {
       }));
     } catch (err) {
       console.error('Unexpected error fetching platos fuertes:', err);
+      return [];
+    }
+  },
+
+  // TEQUILAS (Dynamic from Supabase)
+  getTequilas: async function () {
+    try {
+      const { data, error } = await supabase
+        .from('tequila')
+        .select('*')
+        .order('nombre');
+
+      if (error) {
+        console.error('Error fetching tequilas:', error);
+        return [];
+      }
+
+      // Map Supabase fields to UI fields
+      return data.map(item => ({
+        id: item.id,
+        nombre: item.nombre,
+        imagen: item.imagen,
+        precioBotella: item.precio_botella ? `$${item.precio_botella}.00` : '--',
+        precioLitro: item.precio_litro ? `$${item.precio_litro}.00` : '--',
+        precioCopa: item.precio_copa ? `$${item.precio_copa}.00` : '--',
+        // Pass mixer options to be used by OrderLogic
+        mixersBotella: item.mixers_botella,
+        mixersLitro: item.mixers_litro,
+        mixersCopa: item.mixers_copa
+      }));
+    } catch (err) {
+      console.error('Unexpected error fetching tequilas:', err);
+      return [];
+    }
+  },
+
+  // VODKA (Dynamic from Supabase)
+  vodka: [],
+  getVodkas: async function () {
+    try {
+      const { data, error } = await supabase
+        .from('vodka')
+        .select('*')
+        .order('nombre');
+
+      if (error) {
+        console.error('Error fetching vodkas:', error);
+        return [];
+      }
+
+      // Map Supabase fields to UI fields
+      return data.map(item => ({
+        id: item.id,
+        nombre: item.nombre,
+        imagen: item.imagen,
+        precioBotella: item.precio_botella ? `$${item.precio_botella}.00` : '--',
+        precioLitro: item.precio_litro ? `$${item.precio_litro}.00` : '--',
+        precioCopa: item.precio_copa ? `$${item.precio_copa}.00` : '--',
+        // Pass mixer options to be used by OrderLogic
+        mixersBotella: item.mixers_botella,
+        mixersLitro: item.mixers_litro,
+        mixersCopa: item.mixers_copa
+      }));
+    } catch (err) {
+      console.error('Unexpected error fetching vodkas:', err);
+      return [];
+    }
+  },
+
+  // WHISKY (Dynamic from Supabase)
+  whisky: [],
+  getWhiskies: async function () {
+    try {
+      const { data, error } = await supabase
+        .from('whisky')
+        .select('*')
+        .order('nombre');
+
+      if (error) {
+        console.error('Error fetching whiskies:', error);
+        return [];
+      }
+
+      return data.map(item => ({
+        id: item.id,
+        nombre: item.nombre,
+        imagen: item.imagen,
+        precioBotella: item.precio_botella ? `$${item.precio_botella}.00` : '--',
+        precioLitro: item.precio_litro ? `$${item.precio_litro}.00` : '--',
+        precioCopa: item.precio_copa ? `$${item.precio_copa}.00` : '--',
+        mixersBotella: item.mixers_botella,
+        mixersLitro: item.mixers_litro,
+        mixersCopa: item.mixers_copa
+      }));
+    } catch (err) {
+      console.error('Unexpected error fetching whiskies:', err);
+      return [];
+    }
+  },
+
+  // RON (Dynamic from Supabase)
+  ron: [],
+  getRones: async function () {
+    try {
+      const { data, error } = await supabase
+        .from('ron')
+        .select('*')
+        .order('nombre');
+
+      if (error) {
+        console.error('Error fetching rones:', error);
+        return [];
+      }
+
+      return data.map(item => ({
+        id: item.id,
+        nombre: item.nombre,
+        imagen: item.imagen,
+        precioBotella: item.precio_botella ? `$${item.precio_botella}.00` : '--',
+        precioLitro: item.precio_litro ? `$${item.precio_litro}.00` : '--',
+        precioCopa: item.precio_copa ? `$${item.precio_copa}.00` : '--',
+        mixersBotella: item.mixers_botella,
+        mixersLitro: item.mixers_litro,
+        mixersCopa: item.mixers_copa
+      }));
+    } catch (err) {
+      console.error('Unexpected error fetching rones:', err);
+      return [];
+    }
+  },
+
+  // BRANDY (Dynamic from Supabase)
+  brandy: [],
+  getBrandies: async function () {
+    try {
+      const { data, error } = await supabase
+        .from('brandy')
+        .select('*')
+        .order('nombre');
+
+      if (error) {
+        console.error('Error fetching brandies:', error);
+        return [];
+      }
+
+      return data.map(item => ({
+        id: item.id,
+        nombre: item.nombre,
+        imagen: item.imagen,
+        precioBotella: item.precio_botella ? `$${item.precio_botella}.00` : '--',
+        precioLitro: item.precio_litro ? `$${item.precio_litro}.00` : '--',
+        precioCopa: item.precio_copa ? `$${item.precio_copa}.00` : '--',
+        mixersBotella: item.mixers_botella,
+        mixersLitro: item.mixers_litro,
+        mixersCopa: item.mixers_copa
+      }));
+    } catch (err) {
+      console.error('Unexpected error fetching brandies:', err);
+      return [];
+    }
+  },
+
+  // COGNAC (Dynamic from Supabase)
+  cognac: [],
+  getCognacs: async function () {
+    try {
+      const { data, error } = await supabase
+        .from('cognac')
+        .select('*')
+        .order('nombre');
+
+      if (error) {
+        console.error('Error fetching cognacs:', error);
+        return [];
+      }
+
+      return data.map(item => ({
+        id: item.id,
+        nombre: item.nombre,
+        imagen: item.imagen,
+        precioBotella: item.precio_botella ? `$${item.precio_botella}.00` : '--',
+        precioLitro: item.precio_litro ? `$${item.precio_litro}.00` : '--',
+        precioCopa: item.precio_copa ? `$${item.precio_copa}.00` : '--',
+        mixersBotella: item.mixers_botella,
+        mixersLitro: item.mixers_litro,
+        mixersCopa: item.mixers_copa
+      }));
+    } catch (err) {
+      console.error('Unexpected error fetching cognacs:', err);
+      return [];
+    }
+  },
+
+  // GINEBRA (Dynamic from Supabase)
+  ginebra: [],
+  getGinebras: async function () {
+    try {
+      const { data, error } = await supabase
+        .from('ginebra')
+        .select('*')
+        .order('nombre');
+
+      if (error) {
+        console.error('Error fetching ginebras:', error);
+        return [];
+      }
+
+      return data.map(item => ({
+        id: item.id,
+        nombre: item.nombre,
+        imagen: item.imagen,
+        precioBotella: item.precio_botella ? `$${item.precio_botella}.00` : '--',
+        precioLitro: item.precio_litro ? `$${item.precio_litro}.00` : '--',
+        precioCopa: item.precio_copa ? `$${item.precio_copa}.00` : '--',
+        mixersBotella: item.mixers_botella,
+        mixersLitro: item.mixers_litro,
+        mixersCopa: item.mixers_copa
+      }));
+    } catch (err) {
+      console.error('Unexpected error fetching ginebras:', err);
+      return [];
+    }
+  },
+
+  // MEZCAL (Dynamic from Supabase)
+  mezcal: [],
+  getMezcales: async function () {
+    try {
+      const { data, error } = await supabase
+        .from('mezcal')
+        .select('*')
+        .order('nombre');
+
+      if (error) {
+        console.error('Error fetching mezcales:', error);
+        return [];
+      }
+
+      return data.map(item => ({
+        id: item.id,
+        nombre: item.nombre,
+        imagen: item.imagen,
+        precioBotella: item.precio_botella ? `$${item.precio_botella}.00` : '--',
+        precioLitro: item.precio_litro ? `$${item.precio_litro}.00` : '--',
+        precioCopa: item.precio_copa ? `$${item.precio_copa}.00` : '--',
+        mixersBotella: item.mixers_botella,
+        mixersLitro: item.mixers_litro,
+        mixersCopa: item.mixers_copa
+      }));
+    } catch (err) {
+      console.error('Unexpected error fetching mezcales:', err);
+      return [];
+    }
+  },
+
+  // DIGESTIVOS (Dynamic from Supabase)
+  digestivos: [],
+  getDigestivos: async function () {
+    try {
+      const { data, error } = await supabase
+        .from('digestivos')
+        .select('*')
+        .order('nombre');
+
+      if (error) {
+        console.error('Error fetching digestivos:', error);
+        return [];
+      }
+
+      return data.map(item => ({
+        id: item.id,
+        nombre: item.nombre,
+        imagen: item.imagen,
+        precioBotella: item.precio_botella ? `$${item.precio_botella}.00` : '--',
+        precioLitro: item.precio_litro ? `$${item.precio_litro}.00` : '--',
+        precioCopa: item.precio_copa ? `$${item.precio_copa}.00` : '--',
+        mixersBotella: item.mixers_botella,
+        mixersLitro: item.mixers_litro,
+        mixersCopa: item.mixers_copa
+      }));
+    } catch (err) {
+      console.error('Unexpected error fetching digestivos:', err);
+      return [];
+    }
+  },
+
+  // LICORES (Dynamic from Supabase)
+  licores: [],
+  getLicores: async function () {
+    try {
+      const { data, error } = await supabase
+        .from('licores')
+        .select('*')
+        .order('nombre');
+
+      if (error) {
+        console.error('Error fetching licores:', error);
+        return [];
+      }
+
+      return data.map(item => ({
+        id: item.id,
+        nombre: item.nombre,
+        imagen: item.imagen,
+        precioBotella: item.precio_botella ? `$${item.precio_botella}.00` : '--',
+        precioLitro: item.precio_litro ? `$${item.precio_litro}.00` : '--',
+        precioCopa: item.precio_copa ? `$${item.precio_copa}.00` : '--',
+        mixersBotella: item.mixers_botella,
+        mixersLitro: item.mixers_litro,
+        mixersCopa: item.mixers_copa
+      }));
+    } catch (err) {
+      console.error('Unexpected error fetching licores:', err);
+      return [];
+    }
+  },
+
+  // ESPUMOSOS (Dynamic from Supabase)
+  espumosos: [],
+  getEspumosos: async function () {
+    try {
+      const { data, error } = await supabase
+        .from('espumosos')
+        .select('*')
+        .order('nombre');
+
+      if (error) {
+        console.error('Error fetching espumosos:', error);
+        return [];
+      }
+
+      return data.map(item => ({
+        id: item.id,
+        nombre: item.nombre,
+        imagen: item.imagen,
+        precioBotella: item.precio_botella ? `$${item.precio_botella}.00` : '--',
+        precioLitro: item.precio_litro ? `$${item.precio_litro}.00` : '--',
+        precioCopa: item.precio_copa ? `$${item.precio_copa}.00` : '--',
+        mixersBotella: item.mixers_botella,
+        mixersLitro: item.mixers_litro,
+        mixersCopa: item.mixers_copa
+      }));
+    } catch (err) {
+      console.error('Unexpected error fetching espumosos:', err);
+      return [];
+    }
+  },
+
+  // SNACKS (Dynamic from Supabase)
+  getSnacks: async function () {
+    try {
+      const { data, error } = await supabase
+        .from('snacks')
+        .select('*')
+        .order('nombre');
+
+      if (error) {
+        console.error('Error fetching snacks:', error);
+        return [];
+      }
+
+      // Map Supabase fields to UI fields
+      return data.map(item => ({
+        id: item.id,
+        nombre: item.nombre,
+        ingredientes: item.ingredientes,
+        video: item.video,
+        precio: item.precio,
+        imagen: item.thumbnail || item.imagen
+      }));
+    } catch (err) {
+      console.error('Unexpected error fetching snacks:', err);
       return [];
     }
   }

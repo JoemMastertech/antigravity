@@ -145,6 +145,11 @@ class ProductDataAdapter extends BaseAdapter {
         normalizedItem.imagen = item.ruta_archivo;
       }
 
+      // Normalize thumbnail to imagen (common in snacks and other food categories)
+      if (item.thumbnail && !item.imagen) {
+        normalizedItem.imagen = item.thumbnail;
+      }
+
       // Normalize price fields for liquor tables
       if (liquorTables.includes(tableName)) {
         // Handle different possible field names from Supabase
@@ -182,6 +187,11 @@ class ProductDataAdapter extends BaseAdapter {
             normalizedItem[standardField] = '--';
           }
         });
+
+        // Normalize mixer fields
+        if (item.mixers_botella) normalizedItem.mixersBotella = item.mixers_botella;
+        if (item.mixers_litro) normalizedItem.mixersLitro = item.mixers_litro;
+        if (item.mixers_copa) normalizedItem.mixersCopa = item.mixers_copa;
       } else {
         // For non-liquor tables, normalize the precio field using unified formatter
         if (item.precio !== undefined && item.precio !== null) {
@@ -422,6 +432,14 @@ class ProductDataAdapter extends BaseAdapter {
       Logger.error(`Error in getProductsByCategory for ${category}:`, error);
       return [];
     }
+  }
+
+  /**
+   * Get all snacks (async with Supabase)
+   * @returns {Promise<Array>} Array of snack objects
+   */
+  async getSnacks() {
+    return this._getGenericCategory('snacks');
   }
 
   /**

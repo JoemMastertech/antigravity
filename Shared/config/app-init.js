@@ -543,6 +543,7 @@ const AppInit = {
       { label: 'Ensaladas', target: 'ensaladas' },
       { label: 'Carnes', target: 'carnes' },
       { label: 'Platos Fuertes', target: 'platos-fuertes' },
+      { label: 'Snacks', target: 'snacks' },
       { label: 'Café', target: 'cafe' },
       { label: 'Postres', target: 'postres' },
       { label: 'Órdenes', action: 'orders' },
@@ -950,7 +951,7 @@ const AppInit = {
     const validTypes = [
       'cocteleria', 'refrescos', 'licores', 'cervezas',
       'pizzas', 'alitas', 'sopas', 'ensaladas',
-      'carnes', 'platos-fuertes', 'cafe', 'postres'
+      'carnes', 'platos-fuertes', 'snacks', 'cafe', 'postres'
     ];
 
     return validTypes.includes(contentType) ? contentType : 'cocteleria';
@@ -982,6 +983,7 @@ const AppInit = {
       'ensaladas': 'Ensaladas',
       'carnes': 'Carnes',
       'platos-fuertes': 'Platos Fuertes',
+      'snacks': 'Snacks',
       'cafe': 'Café',
       'postres': 'Postres'
     };
@@ -1054,6 +1056,9 @@ const AppInit = {
           break;
         case 'platos-fuertes':
           await ProductRenderer.renderPlatosFuertes(container);
+          break;
+        case 'snacks':
+          await ProductRenderer.renderSnacks(container);
           break;
         case 'cafe':
           await ProductRenderer.renderCafe(container);
