@@ -1,0 +1,66 @@
+/* =================================================================
+   TYPOGRAPHY & BRANDING
+   ================================================================= */
+.welcome-text,
+.title-text,
+.category-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--text-color);
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.welcome-text {
+  font-size: 3rem;
+}
+
+.title-text,
+.category-title {
+  font-size: 2.5rem;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  max-width: 300px;
+  height: auto;
+  animation: fadeIn 1s ease-in-out;
+  /* filter: drop-shadow(0 0 10px rgba(0, 247, 255, 0.3)); */
+  transition: all var(--transition-time) ease;
+}
+
+/* Responsive: reducir 25% el tamaÃ±o del logo en mÃ³viles */
+@media (max-width: 768px) {
+
+  .logo,
+  .drawer-logo {
+    transform: scale(0.75);
+    transform-origin: center;
+  }
+}
+
+/* .logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 20px rgba(0, 247, 255, 0.6));
+} */
+
+/* Logo especÃ­fico para la pÃ¡gina */
+.main-logo {
+  content: url('https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/recursos/logos/Logo5.webp');
+  max-width: 300px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.main-content-screen {
+  position: relative;
+  padding: 20px;
+  justify-content: flex-start;
+  background-color: transparent;
+}

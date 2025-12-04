@@ -1,0 +1,56 @@
+/* =================================================================
+   NAVIGATION & BUTTONS
+   ================================================================= */
+.navigation-menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.nav-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav-button,
+.view-toggle-btn {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--text-color);
+  padding: 8px 15px;
+  font: 600 1rem 'Montserrat', sans-serif;
+  cursor: pointer;
+  transition: all var(--transition-time) ease;
+}
+
+.view-toggle-btn {
+  font-size: 1.2rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  font-weight: bold;
+}
+
+.nav-button:hover,
+.nav-button.active,
+.view-toggle-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+}
+
+.view-toggle-btn:hover {
+  transform: scale(1.05);
+}
+
+.view-toggle-btn.active {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+}

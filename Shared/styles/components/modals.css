@@ -1,0 +1,543 @@
+/* Extracted Modals Styles */
+/* === REGION: MODALES (BEM) === */
+/* Modal Component - BEM Structure */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+}
+
+.modal__content {
+  position: relative;
+  background: var(--background-color);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 1001;
+}
+
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal__title {
+  font: 700 1.2rem 'Montserrat', sans-serif;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.modal__close {
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.3s ease;
+}
+
+.modal__close:hover {
+  color: var(--primary-color);
+}
+
+.modal__body {
+  margin-bottom: 20px;
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* === REGION: MODALES (Consolidado) === */
+/* =================================================================
+   MODALS - CONSOLIDATED STYLES
+   ================================================================= */
+
+/* Modal backdrop */
+.modal-backdrop,
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-backdrop {
+  z-index: 9999;
+}
+
+.modal {
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Base modal content - SINGLE SOURCE OF TRUTH */
+.modal-content {
+  position: relative;
+  width: 30%;
+  max-width: 400px;
+  max-height: 78.2vh;
+  background: rgba(0, 0, 0, 0.95);
+  border-radius: 15px;
+  box-shadow: 0 0 30px var(--price-color);
+  border: 1px solid var(--border-color);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Modal header - fixed at top */
+.modal-content h3 {
+  padding: 25px 15px 15px 15px;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* Modal scrollable content area */
+.modal-content .options-grid {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 15px;
+  margin-bottom: 10px;
+}
+
+/* Modal footer - fixed at bottom */
+.modal-content .modal-actions {
+  padding: 15px;
+  margin: 0;
+  flex-shrink: 0;
+  border-top: 1px solid rgba(0, 247, 255, 0.2);
+  background: rgba(0, 0, 0, 0.95);
+  border-radius: 0 0 15px 15px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+/* Meat customization modal specific sizing */
+#meat-customization-modal .modal-content {
+  width: 60%;
+  max-width: 650px;
+  max-height: 80vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Contenedor de contenido scrollable del modal de carnes */
+#meat-customization-modal .modal-scrollable-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 21px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* RESPONSIVE MODAL ADJUSTMENTS - CONSISTENT SIZING */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    max-width: none;
+    padding: 0;
+  }
+
+  #meat-customization-modal .modal-content {
+    width: 90%;
+    max-width: none;
+    max-height: 85vh;
+  }
+
+  #meat-customization-modal .modal-scrollable-content {
+    padding: 17px;
+  }
+
+  /* Centrar botones de confirmar y cancelar en dispositivos mÃ³viles landscape */
+  #meat-customization-modal .modal-content .modal-actions.garnish-actions.input-container-visible {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal {
+    padding: 5px;
+    padding-top: 15px;
+  }
+
+  .modal-content {
+    width: 98%;
+    padding: 0;
+    border-radius: 10px;
+  }
+
+  .modal-content h3 {
+    font-size: 1.1rem;
+  }
+
+  #meat-customization-modal .modal-content {
+    width: 98%;
+    max-width: none;
+    max-height: 90vh;
+  }
+
+  #meat-customization-modal .modal-scrollable-content {
+    padding: 13px;
+  }
+
+  /* Centrar botones de confirmar y cancelar en dispositivos mÃ³viles portrait */
+  #meat-customization-modal .modal-content .modal-actions.garnish-actions.input-container-visible {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 15px;
+  }
+}
+
+/* Image modals exception */
+.modal-content.image-modal {
+  width: auto;
+  max-width: 450px;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Video modal specific styles */
+.modal-content.image-modal.video-modal {
+  width: 69.83%;
+  /* Base size for reference */
+  max-width: 699px;
+  /* Base size for reference */
+}
+
+/* Desktop video modal sizing fix: ensure visible controls and prevent crop */
+@media (min-width: 769px) {
+  .modal-content.image-modal.video-modal {
+    /* Decreased width by 15%, increased height by 10% */
+    width: 78.94%;
+    /* 92.87% * 0.85 */
+    max-width: 790px;
+    /* 930px * 0.85 */
+    /* Allow taller modals on desktop and enable scrolling if necessary */
+    max-height: 101.2vh;
+    /* 92vh * 1.10 */
+    overflow-y: auto;
+  }
+
+  .modal-content.image-modal.video-modal video {
+    /* Keep aspect ratio, avoid clipping bottom controls */
+    width: 100%;
+    height: auto;
+    max-height: calc(92vh - 120px);
+    /* space for title and close button */
+    object-fit: contain;
+  }
+}
+
+/* Modal content elements */
+.modal-content h3 {
+  color: var(--primary-color);
+  margin-bottom: 2.25vh;
+  text-align: center;
+  line-height: 1.4;
+  font-size: clamp(0.9rem, 2.25vw, 1.26rem);
+  font-weight: 600;
+}
+
+/* Meat modal specific title sizing */
+#meat-customization-modal .modal-content h3 {
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  margin-bottom: 2vh;
+}
+
+.modal-content h3 span {
+  display: block;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.modal-content img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 50vh;
+  object-fit: contain;
+  border-radius: 10px;
+  margin: 10px 0;
+  animation: modalGlow 2s infinite;
+}
+
+.modal-content.image-modal video {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.modal-content.image-modal .error-message {
+  color: var(--text-color);
+  text-align: center;
+  padding: 20px;
+}
+
+.modal-content.image-modal .nav-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  display: block;
+  margin: 10px auto 0;
+  align-self: center;
+}
+
+/* Estilos para el botÃ³n de cierre X en modales de video */
+.modal-content.image-modal.video-modal .modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.modal-content.image-modal.video-modal .modal-close-btn:hover {
+  color: #ff0000;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+@keyframes modalGlow {
+
+  0%,
+  100% {
+    box-shadow: var(--glow-shadow);
+  }
+
+  50% {
+    box-shadow: var(--glow-shadow-hover);
+  }
+}
+
+/* Product table and image styles */
+
+
+
+
+
+
+
+
+.modal-actions {
+  margin-top: 0;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  display: flex;
+}
+
+.modal-actions .nav-button {
+  min-width: 80px;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+}
+
+
+
+
+
+
+
+
+
+/* Portrait Orientation Modals - Unified for Mobile and Tablet */
+@media (max-width: 1024px) and (orientation: portrait) {
+  .modal-content {
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Ensure proper scrolling in portrait */
+  .modal-content .options-grid {
+    max-height: none;
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .modal-content img {
+    max-height: 40vh;
+  }
+
+  /* Drink options modal specific adjustments for portrait - Mobile & Tablet */
+}
+
+/* Optimized animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 247, 255, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 247, 255, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 247, 255, 0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+.fade-out {
+  animation: fadeOut 1s ease-in-out forwards;
+}
+
+
+
+
+
+
+
+
+
+.modal-actions {
+  margin-top: 2.25vh;
+  display: flex;
+  gap: 1.8vw;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+[data-theme="light-white"] .modal-content {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 0 30px var(--price-color);
+}
+
+[data-theme="light-white"] .modal-content .modal-actions {
+  background: rgba(255, 255, 255, 0.95);
+  border-top: 1px solid var(--border-color);
+}
+
+/* Tema blanco: sidebar de ajustes estilo claro */
+[data-theme="light-white"] #settings-menu {
+  background: rgba(255, 255, 255, 0.95);
+  border-left: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+}
+
+
+
+
+
+
+
+
+
+.price-selection-mode .price-button:not(.product-grid .product-card.liquor-card .price-button) {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px var(--price-color);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

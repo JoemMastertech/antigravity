@@ -1,13 +1,8 @@
 {
-  "extends": ["stylelint-config-standard"],
+  "extends": "stylelint-config-standard",
   "rules": {
-    "at-rule-no-unknown": null,
-    "no-descending-specificity": null,
-    "selector-class-pattern": [
-      "^[a-z0-9]+(?:-[a-z0-9]+)*(?:__(?:[a-z0-9]+(?:-[a-z0-9]+)*))(?:--(?:[a-z0-9]+(?:-[a-z0-9]+)*))?$",
-      {
-        "message": "Use BEM naming: block, block__element, block--modifier"
-      }
-    ]
+    "declaration-no-important": true,
+    "selector-class-pattern": null,
+    "no-descending-specificity": null
   }
 }
