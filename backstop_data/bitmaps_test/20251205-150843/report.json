@@ -1,10 +1,10 @@
-report({
+{
   "testSuite": "BackstopJS",
   "tests": [
     {
       "pair": {
         "reference": "..\\bitmaps_reference\\backstop_default_Homepage_Default_0__0_phone.png",
-        "test": "..\\bitmaps_test\\20251205-164710\\backstop_default_Homepage_Default_0__0_phone.png",
+        "test": "..\\bitmaps_test\\20251205-150843\\backstop_default_Homepage_Default_0__0_phone.png",
         "selector": "",
         "fileName": "backstop_default_Homepage_Default_0__0_phone.png",
         "label": "Homepage Default",
@@ -29,7 +29,7 @@ report({
     {
       "pair": {
         "reference": "..\\bitmaps_reference\\backstop_default_Homepage_Default_0__1_tablet.png",
-        "test": "..\\bitmaps_test\\20251205-164710\\backstop_default_Homepage_Default_0__1_tablet.png",
+        "test": "..\\bitmaps_test\\20251205-150843\\backstop_default_Homepage_Default_0__1_tablet.png",
         "selector": "",
         "fileName": "backstop_default_Homepage_Default_0__1_tablet.png",
         "label": "Homepage Default",
@@ -54,7 +54,7 @@ report({
     {
       "pair": {
         "reference": "..\\bitmaps_reference\\backstop_default_Grid_View_0_product-grid_0_phone.png",
-        "test": "..\\bitmaps_test\\20251205-164710\\backstop_default_Grid_View_0_product-grid_0_phone.png",
+        "test": "..\\bitmaps_test\\20251205-150843\\backstop_default_Grid_View_0_product-grid_0_phone.png",
         "selector": ".product-grid",
         "fileName": "backstop_default_Grid_View_0_product-grid_0_phone.png",
         "label": "Grid View",
@@ -79,7 +79,7 @@ report({
     {
       "pair": {
         "reference": "..\\bitmaps_reference\\backstop_default_Grid_View_0_product-grid_1_tablet.png",
-        "test": "..\\bitmaps_test\\20251205-164710\\backstop_default_Grid_View_0_product-grid_1_tablet.png",
+        "test": "..\\bitmaps_test\\20251205-150843\\backstop_default_Grid_View_0_product-grid_1_tablet.png",
         "selector": ".product-grid",
         "fileName": "backstop_default_Grid_View_0_product-grid_1_tablet.png",
         "label": "Grid View",
@@ -103,4 +103,4 @@ report({
     }
   ],
   "id": "backstop_default"
-});
+}
