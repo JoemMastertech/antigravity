@@ -22,7 +22,7 @@
       "referenceUrl": "",
       "readyEvent": "",
       "readySelector": ".category-grid",
-      "delay": 5000,
+      "delay": 12000,
       "hideSelectors": [],
       "removeSelectors": [
         "#background-video"
