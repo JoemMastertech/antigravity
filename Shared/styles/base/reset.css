@@ -1,0 +1,29 @@
+/* =================================================================
+   RESET & BASE STYLES
+   ================================================================= */
+/* =================================================================
+   RESET & BASE STYLES
+   ================================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #ECE9D8;
+    /* Fallback */
+    color: var(--text-color);
+    background: #000;
+    /* Fallback */
+    background: var(--background-color);
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+/* Ocultar barras de scroll durante transiciones (logo + categorÃ­a) */
+html.no-scrollbars,
+body.no-scrollbars {
+    overflow: hidden !important;
+}

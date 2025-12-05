@@ -16,22 +16,14 @@
   "onReadyScript": null,
   "scenarios": [
     {
-      "label": "Homepage",
+      "label": "Homepage Default",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
-      "url": "http://localhost:8080/",
+      "url": "http://localhost:8081/",
       "referenceUrl": "",
       "readyEvent": "",
-      "readySelector": "",
+      "readySelector": ".category-grid",
       "delay": 5000,
-      "hideSelectors": [
-        ".product__image",
-        ".product__video-thumbnail",
-        ".product__title",
-        ".product__ingredients",
-        ".product__prices",
-        ".video-thumb",
-        "#background-video"
-      ],
+      "hideSelectors": [],
       "removeSelectors": [
         "#background-video"
       ],
@@ -41,7 +33,29 @@
       "selectors": [],
       "selectorExpansion": true,
       "expect": 0,
-      "misMatchThreshold": 1.0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Grid View",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://localhost:8081/",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".category-grid",
+      "delay": 2000,
+      "hideSelectors": [],
+      "removeSelectors": [
+        "#background-video"
+      ],
+      "clickSelector": ".category-card:first-child",
+      "postInteractionWait": 2000,
+      "selectors": [
+        ".product-grid"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
       "requireSameDimensions": true
     }
   ],

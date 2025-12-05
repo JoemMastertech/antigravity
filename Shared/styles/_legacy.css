@@ -52,6 +52,7 @@ Archivo CSS funcional optimizado con mejoras organizacionales:
    2. ESTILOS BASE Y LAYOUT PRINCIPAL
    ============================================================================= */
 
+/* MIGRATED TO base/reset.css
 * {
   margin: 0;
   padding: 0;
@@ -66,11 +67,11 @@ body {
   overflow-y: auto;
 }
 
-/* Ocultar barras de scroll durante transiciones (logo + categorÃ­a) */
 html.no-scrollbars,
 body.no-scrollbars {
   overflow: hidden !important;
 }
+*/
 
 
 
@@ -89,6 +90,7 @@ body.no-scrollbars {
    ================================================================= */
 
 
+/* MIGRATED TO base/typography.css
 .page-title {
   font-family: 'Playfair Display', serif;
   color: var(--text-color);
@@ -101,6 +103,7 @@ body.no-scrollbars {
   border-bottom: 2px solid var(--border-color);
   margin-bottom: 15px;
 }
+*/
 
 #create-order-btn,
 #orders-btn {
@@ -136,6 +139,7 @@ body.no-scrollbars {
   position: relative;
 }
 
+/* MIGRATED TO base/typography.css
 .orders-screen-title {
   font-family: 'Playfair Display', serif;
   color: var(--text-color);
@@ -148,6 +152,7 @@ body.no-scrollbars {
   margin: 0;
   white-space: nowrap;
 }
+*/
 
 .orders-back-btn,
 .history-btn {

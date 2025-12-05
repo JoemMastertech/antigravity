@@ -7,9 +7,10 @@
     "doc": "docs"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 8081",
     "build": "vite build",
     "preview": "vite preview",
+    "test:visual": "backstop test",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "postcss Shared/styles/main.css -o dist/main.css",
     "build:css:prod": "set NODE_ENV=production&& postcss Shared/styles/main.css -o dist/main.min.css",

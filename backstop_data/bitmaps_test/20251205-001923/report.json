@@ -1,0 +1,56 @@
+{
+  "testSuite": "BackstopJS",
+  "tests": [
+    {
+      "pair": {
+        "reference": "..\\bitmaps_reference\\backstop_default_Homepage_0__0_phone.png",
+        "test": "..\\bitmaps_test\\20251205-001923\\backstop_default_Homepage_0__0_phone.png",
+        "selector": "",
+        "fileName": "backstop_default_Homepage_0__0_phone.png",
+        "label": "Homepage",
+        "requireSameDimensions": true,
+        "misMatchThreshold": 1,
+        "url": "http://localhost:8081/",
+        "referenceUrl": "",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "engineErrorMsg": "Waiting for selector `.category-grid` failed: Waiting failed: 30000ms exceeded",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "..\\bitmaps_reference\\backstop_default_Homepage_0__1_tablet.png",
+        "test": "..\\bitmaps_test\\20251205-001923\\backstop_default_Homepage_0__1_tablet.png",
+        "selector": "",
+        "fileName": "backstop_default_Homepage_0__1_tablet.png",
+        "label": "Homepage",
+        "requireSameDimensions": true,
+        "misMatchThreshold": 1,
+        "url": "http://localhost:8081/",
+        "referenceUrl": "",
+        "expect": 0,
+        "viewportLabel": "tablet",
+        "engineErrorMsg": "Waiting for selector `.category-grid` failed: Waiting failed: 30000ms exceeded",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    }
+  ],
+  "id": "backstop_default"
+}
