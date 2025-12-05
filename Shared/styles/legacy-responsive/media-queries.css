@@ -1,0 +1,2562 @@
+/*  LEGACY RESPONSIVE: All @media blocks extracted from _legacy.css  */
+@media (max-width: 768px) {
+  .orders-screen-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    min-height: 120px;
+  }
+
+  .orders-screen-title {
+    position: static;
+    transform: none;
+    left: auto;
+    font-size: 1.5rem;
+    margin: 0;
+    order: 1;
+    width: 100%;
+  }
+
+  .orders-back-btn {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    order: 2;
+    min-width: 100px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  .history-btn {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    order: 3;
+    margin-left: 0;
+    min-width: 100px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+}
+@media (min-width: 481px) and (max-width: 1024px) {
+
+  [data-theme="light-white"] .theme-btn[data-theme="light-blue"],
+  [data-theme="light-white"] .theme-btn[data-theme="dark-blue"],
+  [data-theme="light-white"] .theme-btn[data-theme="dark-red"] {
+    color: #1e40af;
+  }
+}
+@media (max-width: 480px) {
+  .orders-screen-header {
+    min-height: 100px;
+    gap: 15px;
+  }
+
+  .orders-screen-title {
+    font-size: 1.2rem;
+  }
+
+  .orders-back-btn {
+    top: 45px;
+    min-width: 80px;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  .history-btn {
+    top: 45px;
+    min-width: 80px;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 768px) {
+
+  /* Video thumbnails */
+  .video-thumb {
+    width: 70px;
+    height: 49px;
+  }
+
+  /* Order sidebar title */
+  #order-sidebar h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+
+  /* Settings menu */
+  .settings-title {
+    font-size: 1.1rem;
+    margin: 10px 0 20px 0;
+  }
+
+  #settings-menu {
+    width: 250px;
+    right: -250px;
+  }
+}
+@media (max-width: 480px) {
+
+  /* Video thumbnails */
+  .video-thumb {
+    width: 60px;
+    height: 42px;
+  }
+
+  /* Order sidebar */
+  #order-sidebar {
+    width: 100%;
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 15px 0 0 0;
+    padding: 12px;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  /* Order sidebar title */
+  #order-sidebar h3 {
+    font-size: 0.96rem;
+    margin-bottom: 8px;
+  }
+
+  /* === REGION: SETTINGS SIDEBAR === */
+  /* Settings menu */
+  .settings-title {
+    font-size: 1rem;
+    margin: 8px 0 15px 0;
+  }
+
+  #settings-menu {
+    width: 220px;
+    right: -220px;
+  }
+
+  .settings-panel {
+    padding: 15px;
+    gap: 12px;
+  }
+}
+@media (max-width: 768px) and (orientation: landscape) {
+  .drawer-menu {
+    width: 240px;
+    left: -240px;
+  }
+}
+@media (max-width: 600px) and (orientation: landscape) {
+  .drawer-menu {
+    width: 210px;
+    left: -210px;
+  }
+}
+@media (max-width: 480px) and (orientation: portrait) {
+  .drawer-menu {
+    left: -100vw;
+    width: 60vw;
+    max-width: 224px;
+    background: rgba(0, 0, 0, 0.95);
+  }
+}
+@media (max-width: 768px) {
+  #order-sidebar {
+    width: 100%;
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 20px 0 0 0;
+    padding: 15px;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+}
+@media (max-width: 480px) and (orientation: landscape) {
+  #order-sidebar {
+    width: 100vw;
+    /* Ocupa todo el ancho, sobrepone al contenedor padre */
+    padding: 12px;
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    margin: 0;
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
+    border-radius: 0;
+  }
+}
+@media (min-width: 1200px) {
+  #order-sidebar {
+    max-height: 85vh;
+  }
+}
+@media (max-width: 768px) {
+  #settings-menu {
+    width: 240px;
+    right: -240px;
+  }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+
+  /* Prevent layout deformation by avoiding full absolute screens */
+  .screen {
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  /* Ensure sidebars remain off-screen when closed */
+  #drawer-menu {
+    left: -240px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  #drawer-menu.open {
+    left: 0;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  #settings-menu {
+    width: 240px;
+    right: -240px;
+  }
+
+  #settings-menu.open {
+    right: 0;
+  }
+}
+@media (max-width: 768px) {
+  :root {
+    --table-width: 95%;
+    --table-margin: 15px;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  .content-wrapper {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  body #app {
+    padding: 0 max(15px, calc((100vw - var(--table-max-width)) / 2));
+    margin: 0 auto;
+    width: 85%;
+    max-width: var(--table-max-width);
+  }
+
+  /* En tablets y mÃ³viles, sidebar va abajo - resetear padding */
+  body.order-mode-active #app {
+    padding: 0 max(15px, calc((100vw - var(--table-max-width)) / 2));
+  }
+
+  /* ORDER SIDEBAR - Consolidado en secciÃ³n principal */
+  .order-item {
+    padding: 8px 0;
+    margin-bottom: 8px;
+  }
+
+  .order-item-name {
+    font-size: 0.9rem;
+  }
+
+  .order-item-price {
+    font-size: 0.85rem;
+  }
+
+  .order-item-customization {
+    font-size: 0.8rem;
+  }
+
+  .order-total h4 {
+    font-size: 1.1rem;
+  }
+
+  .order-actions {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .order-actions button {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 6px;
+    font-size: 0.85rem;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .category-image {
+    width: clamp(70px, 10vw, 110px);
+    height: clamp(70px, 10vw, 110px);
+  }
+
+  .view-toggle-container {
+    padding: 0 15px;
+  }
+
+
+
+
+  .content-wrapper.order-active {
+    gap: 2px;
+  }
+
+  /* Hamburger and back button positioning */
+  .hamburger-btn {
+    left: calc((100vw - var(--table-width)) / 2 + 15px);
+  }
+
+  .back-button-container {
+    left: calc((100vw - var(--table-width)) / 2 + 15px);
+    top: 80px;
+  }
+
+  /* Category-specific table adjustments */
+  .product-table[data-category="refrescos"] th:nth-child(2),
+  .product-table[data-category="refrescos"] td:nth-child(2),
+  .product-table[data-category="cervezas"] th:nth-child(2),
+  .product-table[data-category="cervezas"] td:nth-child(2) {
+    width: 30%;
+  }
+
+  /* Ajustes responsivos para contenedores de Ã³rdenes en mÃ³viles */
+  .orders-list-container,
+  .order-history-container {
+    max-height: 60vh;
+    padding-right: 5px;
+    margin-top: 15px;
+  }
+
+  .orders-list-container::-webkit-scrollbar,
+  .order-history-container::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .saved-order {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .saved-order h3 {
+    font-size: 1.1rem;
+  }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+
+  .product-grid .product-card.liquor-card .price-button,
+  .product-grid .product-card.liquor-card .price-button:not(.non-selectable),
+  .product-grid .product-card.liquor-card .price-button:not(:disabled) {
+    /* ConfiguraciÃ³n compacta como thumbnails */
+    padding: 3px 6px;
+    font-size: 0.7rem;
+    min-width: 45px;
+    background: var(--button-bg);
+    border: 1px solid var(--border-color);
+    transform: none;
+    animation: none;
+    /* Mantener flexibilidad */
+    flex: 1;
+    max-width: 100%;
+  }
+
+  /* Image modal responsive for tablet */
+  .modal-content.image-modal {
+    max-width: 437px;
+    /* Increased 15% from 380px */
+    padding: 15px 12px;
+  }
+
+  .modal-content.image-modal.video-modal {
+    width: 73.42%;
+    /* Increased 33% from 55.2% */
+    max-width: 734px;
+    /* Increased 33% from 552px */
+  }
+
+  .modal-content.image-modal img {
+    max-height: 45vh;
+    margin: 8px 0;
+  }
+
+  .modal-content.image-modal .nav-button {
+    padding: 8px 16px;
+    margin: 8px auto 0;
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 480px) {
+  :root {
+    --table-width: 96%;
+    --table-margin: 8px;
+  }
+
+  body {
+    font-size: 13px;
+  }
+
+  .welcome-text,
+  .title-text,
+  .category-title {
+    font-size: 1.8rem;
+  }
+
+  .nav-row {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+
+  /* Product table styles consolidated in main section */
+  #content-container {
+    padding: 0 3px;
+  }
+
+  #app {
+    padding: 0 2vw;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+
+  /* En mÃ³viles, sidebar va abajo - resetear padding */
+  body.order-mode-active #app {
+    padding: 0 2vw;
+  }
+
+  /* ORDER SIDEBAR - Consolidado en secciÃ³n principal */
+  .order-item {
+    padding: 6px 0;
+    margin-bottom: 6px;
+  }
+
+  .order-item-name {
+    font-size: 0.85rem;
+    line-height: 1.2;
+  }
+
+  .order-item-price {
+    font-size: 0.8rem;
+  }
+
+  .order-item-customization {
+    font-size: 0.75rem;
+    margin-top: 3px;
+  }
+
+  .order-total {
+    margin-top: 15px;
+    padding-top: 8px;
+  }
+
+  .order-total h4 {
+    font-size: 1rem;
+  }
+
+  .order-actions {
+    flex-direction: row;
+    gap: 6px;
+    margin-top: 15px;
+  }
+
+  .order-actions button {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 5px;
+    font-size: 0.8rem;
+  }
+
+  .order-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 5px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .remove-order-item {
+    font-size: 0.9rem;
+    margin-left: 5px;
+  }
+
+  .category-image {
+    width: clamp(60px, 8vw, 90px);
+    height: clamp(60px, 8vw, 90px);
+  }
+
+  /* Grid por defecto para mÃ³viles (se sobrescribe con orientation) */
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto auto repeat(5, auto);
+    gap: 10px;
+    padding: 10px;
+  }
+
+
+
+
+
+
+
+  .product-grid .product-card.liquor-card .price-button,
+  .product-grid .product-card.liquor-card .price-button:not(.non-selectable),
+  .product-grid .product-card.liquor-card .price-button:not(:disabled) {
+    padding: 2px 5px;
+    font-size: 0.65rem;
+    min-width: 40px;
+    background: var(--button-bg);
+    border: 1px solid var(--border-color);
+    transform: none;
+    animation: none;
+    flex: 1;
+    max-width: 100%;
+    min-height: 26px;
+  }
+
+  .view-toggle-container {
+    padding: 0 15px;
+  }
+
+  .options-grid:not(#drink-options-modal .options-grid) {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+  }
+
+  .drink-option {
+    min-height: 40px;
+    padding: 10px 8px;
+  }
+
+  .drink-option-container {
+    padding: 10px;
+    min-height: 70px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border-radius: 6px;
+  }
+
+  /* Hamburger and back button positioning - solo para tablets */
+  @media (max-width: 768px) {
+    .top-nav-content {
+      padding: 0 15px;
+    }
+
+    .nav-buttons-container {
+      gap: 10px;
+    }
+
+    .top-nav-btn {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+      padding: 6px;
+    }
+
+    .top-nav-bar .hamburger-btn {
+      width: 40px;
+      height: 40px;
+      font-size: 1.3rem;
+    }
+
+    .hamburger-btn {
+      left: calc((100vw - var(--table-width)) / 2 + 15px);
+    }
+
+    .back-button-container {
+      left: calc((100vw - var(--table-width)) / 2 + 10px);
+      top: 80px;
+    }
+  }
+
+  /* Category-specific table adjustments */
+  .product-table[data-category="refrescos"] th:nth-child(2),
+  .product-table[data-category="refrescos"] td:nth-child(2),
+  .product-table[data-category="cervezas"] th:nth-child(2),
+  .product-table[data-category="cervezas"] td:nth-child(2) {
+    width: 35%;
+  }
+
+  /* Image modal responsive for mobile */
+  .modal-content.image-modal {
+    max-width: 368px;
+    /* Increased 15% from 320px */
+    padding: 12px 10px;
+    margin: 10px;
+  }
+
+  .modal-content.image-modal.video-modal {
+    width: 63.48%;
+    /* Increased 15% from 55.2% */
+    max-width: 635px;
+    /* Increased 15% from 552px */
+  }
+
+  .modal-content.image-modal img {
+    max-height: 40vh;
+    margin: 6px 0;
+  }
+
+  .modal-content.image-modal .nav-button {
+    padding: 8px 14px;
+    margin: 6px auto 0;
+    font-size: 0.85rem;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .content-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* En tablet portrait, evitar centrado: ancho completo sin padding lateral */
+  #app {
+    padding: 0 !important;
+  }
+
+  /* OptimizaciÃ³n de espacios para landscape tablet */
+  .top-nav {
+    padding: 10px 15px;
+  }
+
+  .nav-buttons-container {
+    gap: 8px;
+  }
+
+  .top-nav-btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  /* REGLAS ESPECÃFICAS PARA PORTRAIT TABLET - SOLO EN PORTRAIT */
+  /* Vista tablet portrait: fijar sidebar inferior y ancho completo del contenedor */
+  :root {
+    --order-sidebar-height-portrait-tablet: clamp(240px, 32vh, 380px);
+  }
+
+  /* El contenedor padre debe ocupar todo el ancho en tablet portrait (sin depender de order-mode-active) */
+  #app,
+  .content-wrapper {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .content-wrapper {
+    display: block !important;
+  }
+
+  /* Sidebar inferior fijo como en mÃ³vil portrait, aplicado directamente en este bloque */
+  #order-sidebar {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    width: 100vw !important;
+    height: auto !important;
+    max-height: 50vh !important;
+    min-height: var(--order-sidebar-height-portrait-tablet) !important;
+    margin: 0 !important;
+    padding: 16px !important;
+    overflow-y: auto !important;
+    border-radius: 15px 15px 0 0 !important;
+    z-index: 1000 !important;
+    background: var(--card-bg) !important;
+    border-top: 2px solid var(--border-color) !important;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3) !important;
+    transform: translateY(100%) !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  /* Reservar espacio inferior para el sidebar en el contenido */
+  .content-container-flex,
+  #content-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-bottom: var(--order-sidebar-height-portrait-tablet) !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Asegurar visibilidad del sidebar cuando estÃ¡ activo en este rango */
+  #order-sidebar.active,
+  body.order-mode-active #order-sidebar {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+
+  /* ORDER SIDEBAR - Consolidado en secciÃ³n principal */
+
+  /* Sidebar visible cuando estÃ¡ activo en portrait tablet */
+
+  /* ===== PROTECCIÃ“N DE CONFIGURACIÃ“N TABLET PORTRAIT ===== */
+  /* Estas reglas protegen la configuraciÃ³n de tablet portrait de cambios futuros */
+
+  /* ConfiguraciÃ³n protegida para tablas de licores en tablet portrait - directo en este bloque */
+  /* Optimized liquor table styles with higher specificity - removed !important */
+  body .liquor-table {
+    /* Mantener configuraciÃ³n estÃ¡ndar de tabla */
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+  }
+
+  body .liquor-table th,
+  body .liquor-table td {
+    /* Mantener padding y configuraciÃ³n estÃ¡ndar */
+    padding: 12px 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    white-space: normal;
+    word-break: normal;
+  }
+
+  /* Proteger encabezados de dos palabras - NO aplicar cambios de mÃ³vil */
+  body .liquor-table th:nth-child(3),
+  /* PRECIO BOTELLA */
+  body .liquor-table th:nth-child(4),
+  /* PRECIO LITRO */
+  body .liquor-table th:nth-child(5)
+
+  /* PRECIO COPA */
+    {
+    /* ConfiguraciÃ³n estÃ¡ndar para tablet - sin modificaciones de mÃ³vil */
+    font-size: 0.9rem;
+    padding: 12px 8px;
+    line-height: 1.4;
+    white-space: normal;
+    word-break: normal;
+    max-width: none;
+    min-width: auto;
+    text-align: center;
+    hyphens: none;
+  }
+
+  body #order-sidebar.active {
+    transform: translateY(0);
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    padding: 18px;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    padding: 18px;
+  }
+
+}
+@media (max-width: 480px) {
+  .top-nav-content {
+    padding: 0 10px;
+  }
+
+  .nav-buttons-container {
+    gap: 8px;
+  }
+
+  .top-nav-btn {
+    min-width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+    padding: 4px 8px;
+  }
+
+  .top-nav-bar .hamburger-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
+  }
+
+  .top-nav-bar {
+    height: 60px;
+  }
+
+  .main-content-screen.with-top-nav {
+    padding-top: 64px;
+  }
+}
+@media (max-width: 1024px) and (orientation: landscape) {
+
+  /* Eliminar paddings del body y app para aprovechar toda la pantalla */
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body #app {
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+  }
+
+  /* Modal adjustments for landscape */
+
+  /* Ensure proper scrolling in landscape */
+  .modal-content .options-grid {
+    max-height: none;
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  /* ConfiguraciÃ³n para contenedor padre en landscape - sidebar fixed */
+  .content-wrapper {
+    display: block;
+    /* Cambiar a block ya que sidebar es fixed */
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Contenedor principal ocupa todo el ancho disponible */
+  #content-container {
+    width: 100%;
+    padding: 8px;
+    /* Padding interno mÃ­nimo */
+    margin-right: 0;
+    /* Sin margen ya que sidebar es fixed */
+  }
+
+  /* Ajustar margen derecho cuando sidebar estÃ¡ activo (se gestiona por breakpoints especÃ­ficos) */
+  .content-wrapper.order-active #content-container {
+    margin-right: 0;
+    /* Evitar conflictos en mÃ³vil; tablet tiene su propio ajuste */
+  }
+
+  /* NUEVA CONFIGURACIÃ“N: ReducciÃ³n proporcional del contenido cuando sidebar estÃ¡ activo */
+  .content-wrapper.order-active .product-table,
+  .content-wrapper.order-active .liquor-table {
+    /* Aplicar la misma lÃ³gica que en portrait para reducir contenido */
+    table-layout: fixed;
+    font-size: 0.85rem;
+    /* Reducir tamaÃ±o base */
+  }
+
+  /* Reducir tamaÃ±os de headers cuando sidebar estÃ¡ activo */
+  .content-wrapper.order-active .product-table th,
+  .content-wrapper.order-active .liquor-table th {
+    padding: 8px 4px;
+    font-size: 0.75rem;
+    letter-spacing: 0.1px;
+  }
+
+  /* Reducir tamaÃ±os de celdas cuando sidebar estÃ¡ activo */
+  .content-wrapper.order-active .product-table td,
+  .content-wrapper.order-active .liquor-table td {
+    padding: 8px 4px;
+    font-size: 0.8rem;
+  }
+
+  /* Nombres de productos mÃ¡s compactos cuando sidebar estÃ¡ activo */
+  .content-wrapper.order-active .product-table td.product-name,
+  .content-wrapper.order-active .liquor-table td.product-name {
+    font-size: 0.75rem;
+    line-height: 1.2;
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  /* Ingredientes mÃ¡s compactos cuando sidebar estÃ¡ activo */
+  .content-wrapper.order-active .product-table td.product-ingredients {
+    font-size: 0.7rem;
+    line-height: 1.1;
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  /* ImÃ¡genes mÃ¡s pequeÃ±as cuando sidebar estÃ¡ activo */
+  .content-wrapper.order-active .product-table td.image-icon img,
+  .content-wrapper.order-active .liquor-table td.image-icon img {
+    width: 35px;
+    height: 35px;
+  }
+
+  /* Cervezas y refrescos mantienen tamaÃ±o mÃ¡s grande incluso con sidebar activo */
+  .content-wrapper.order-active .product-table[data-category="cervezas"] td.image-icon img,
+  .content-wrapper.order-active .product-table[data-category="refrescos"] td.image-icon img {
+    width: 42px;
+    height: 42px;
+  }
+
+  /* Precios mÃ¡s compactos cuando sidebar estÃ¡ activo */
+  .content-wrapper.order-active .product-table td.product-price,
+  .content-wrapper.order-active .liquor-table td.product-price {
+    font-size: 0.75rem;
+    padding: 6px 4px;
+  }
+
+  /* Botones de precio optimizados cuando sidebar estÃ¡ activo */
+  .content-wrapper.order-active .price-button {
+    max-width: 85px;
+    min-width: 50px;
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    box-sizing: border-box;
+  }
+
+  /* Navigation sidebar - consolidated in main section */
+
+  /* Settings sidebar - consolidated in main section */
+
+  /* ORDER SIDEBAR - Consolidado en secciÃ³n principal */
+
+  .order-item {
+    padding: 6px 0;
+  }
+
+  .order-item-name {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .order-item-price {
+    font-size: 0.75rem;
+  }
+
+  .order-total h4 {
+    font-size: 0.95rem;
+  }
+
+  /* Sin gap cuando el sidebar estÃ¡ activo - pantalla completa */
+  .content-wrapper.order-active {
+    gap: 0;
+    /* Sin espacios para aprovechar toda la pantalla */
+  }
+
+  /* OptimizaciÃ³n de espacios para landscape mÃ³vil */
+  #app {
+    padding: 0 max(8px, calc((100vw - var(--table-max-width)) / 2));
+  }
+
+  .top-nav {
+    padding: 8px 12px;
+  }
+
+  .nav-buttons-container {
+    gap: 6px;
+  }
+
+  .top-nav-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  /* Grid con 3 columnas en landscape - ancho completo */
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding: 6px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding: 6px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+
+
+
+  .category-image {
+    width: clamp(50px, 8vw, 80px);
+    height: clamp(50px, 8vw, 80px);
+  }
+
+  /* Tabla de productos - ancho completo para coincidir con grid */
+  .product-table {
+    width: 100%;
+    /* Ancho completo para coincidir con grid */
+    max-width: 100%;
+    margin: 0 auto;
+    /* Centrado */
+    box-sizing: border-box;
+    /* Incluir padding y border en el ancho */
+  }
+
+  .liquor-table {
+    width: 100%;
+    /* Mismo ancho que product-table */
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    /* Incluir padding y border en el ancho */
+  }
+
+  /* Ajuste especÃ­fico cuando el sidebar estÃ¡ visible */
+  body #content-container .product-table,
+  body #content-container .liquor-table {
+    width: 100%;
+    max-width: 100%;
+    table-layout: auto;
+    /* Permitir que la tabla se ajuste al contenido */
+    overflow: visible;
+    /* Permitir expansiÃ³n del contenido */
+  }
+
+  /* Permitir expansiÃ³n del texto en mÃºltiples lÃ­neas como en portrait */
+  #content-container .product-table td,
+  #content-container .product-table th,
+  #content-container .liquor-table td,
+  #content-container .liquor-table th {
+    overflow: visible !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Reglas especÃ­ficas para nombres de productos e ingredientes */
+  #content-container .product-table td.product-name,
+  #content-container .liquor-table td.product-name {
+    overflow: visible !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    line-height: 1.2 !important;
+  }
+
+  #content-container .product-table td.product-ingredients,
+  #content-container .liquor-table td.product-ingredients {
+    overflow: visible !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Sobrescribir reglas especÃ­ficas de categorÃ­as cuando el sidebar estÃ¡ visible */
+  body #content-container .product-table[data-category="refrescos"],
+  body #content-container .product-table[data-category="cervezas"] {
+    width: 100%;
+    max-width: 100%;
+    table-layout: auto;
+  }
+
+  #content-container {
+    padding: 0;
+    width: 100%;
+  }
+
+  /* ConfiguraciÃ³n de #app ya manejada en la media query principal */
+
+  /* ===== LIQUOR TABLE (modo tabla) - landscape tablet: evitar saltos ===== */
+  .liquor-table {
+    table-layout: fixed;
+    /* columnas estables */
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .liquor-table tr {
+    display: table-row !important;
+  }
+
+  .liquor-table th,
+  .liquor-table td {
+    display: table-cell !important;
+    vertical-align: middle;
+    box-sizing: border-box;
+  }
+
+  /* Proporciones por columna (nombre, imagen, botella, litro, copa) */
+  .liquor-table th:nth-child(1),
+  .liquor-table td:nth-child(1) {
+    width: 25%;
+  }
+
+  .liquor-table th:nth-child(2),
+  .liquor-table td:nth-child(2) {
+    width: 20%;
+  }
+
+  .liquor-table th:nth-child(3),
+  .liquor-table td:nth-child(3) {
+    width: 18%;
+  }
+
+  .liquor-table th:nth-child(4),
+  .liquor-table td:nth-child(4) {
+    width: 18%;
+  }
+
+  .liquor-table th:nth-child(5),
+  .liquor-table td:nth-child(5) {
+    width: 19%;
+  }
+
+  /* Mantener precios en una lÃ­nea sin truncar */
+  .liquor-table td.product-price,
+  .liquor-table th:nth-child(3),
+  .liquor-table th:nth-child(4),
+  .liquor-table th:nth-child(5) {
+    white-space: nowrap;
+    word-break: keep-all;
+    hyphens: none;
+  }
+
+  .liquor-table .price-button {
+    width: auto;
+    min-width: unset;
+    max-width: none;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: nowrap;
+    /* sin (â€¦) */
+    display: inline-block;
+  }
+
+  /* Modales mÃ¡s pequeÃ±os para landscape mÃ³vil */
+  .modal-content.image-modal {
+    max-width: 280px;
+    padding: 10px 8px;
+    margin: 8px;
+  }
+
+  .modal-content.image-modal.video-modal {
+    width: 59.85%;
+    /* Increased 33% from 45% */
+    max-width: 426px;
+    /* Increased 33% from 320px */
+  }
+
+  .modal-content.image-modal img {
+    max-height: 30vh;
+    margin: 4px 0;
+  }
+
+  /* ========================================
+   CONSOLIDATED PORTRAIT ORIENTATION STYLES
+   ======================================== */
+  @media (orientation: portrait) {
+
+    /* ORDER SIDEBAR - MOBILE PORTRAIT (pegado al borde derecho) */
+    body.order-mode-active #app {
+      padding-right: calc(max(10px, calc((100vw - var(--table-max-width)) / 2)) + 160px);
+    }
+
+    /* Contenedor principal para portrait - optimized specificity */
+    body .content-wrapper {
+      display: flex;
+      flex-direction: row;
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      box-sizing: border-box;
+      transition: width 0.3s ease;
+    }
+
+    /* Configurar botones de acompaÃ±amiento en dos columnas para portrait - optimized specificity */
+    body #drink-options-modal.modal-flex .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    body #drink-options-modal .drink-option-container {
+      width: 100%;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    /* Drawer menu styles for portrait orientation */
+    .drawer-menu {
+      top: 60px;
+      max-height: calc(100vh - 60px);
+    }
+
+    /* Table alignment styles for portrait orientation - Maximum specificity */
+    html body div .product-table td:first-child,
+    html body div .product-table td.product-name,
+    html body div .liquor-table td:first-child,
+    html body div .liquor-table td.product-name,
+    html body div.main-container .product-table tbody tr td:first-child,
+    html body div.main-container .product-table tbody tr td.product-name,
+    html body div.main-container .liquor-table tbody tr td:first-child,
+    html body div.main-container .liquor-table tbody tr td.product-name {
+      text-align: left;
+      white-space: normal;
+      padding-left: 15px;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+
+    /* Table ingredients alignment for portrait orientation */
+    html body div .product-table td:nth-child(2),
+    html body div .product-table td.ingredients,
+    html body div .liquor-table td:nth-child(2),
+    html body div .liquor-table td.ingredients,
+    html body div.main-container .product-table tbody tr td:nth-child(2),
+    html body div.main-container .product-table tbody tr td.product-ingredients,
+    html body div.main-container .liquor-table tbody tr td:nth-child(2),
+    html body div.main-container .liquor-table tbody tr td.ingredients {
+      text-align: left;
+      white-space: normal;
+      padding-left: 10px;
+    }
+
+    /* Ajustes para pantallas landscape grandes - tablas a ancho completo */
+    @media (min-width: 1200px) and (orientation: landscape) {
+
+      .product-table,
+      .liquor-table {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+
+    /* Ajustes para pantallas landscape medianas - tablas a ancho completo */
+    @media (max-width: 768px) and (orientation: landscape) {
+
+      /* Eliminar padding de #app que limita el ancho */
+      body #app {
+        padding: 0;
+        width: 100vw;
+        max-width: 100vw;
+      }
+
+      /* Contenedor con sidebar activo en landscape mÃ³vil */
+      body .content-wrapper.with-sidebar {
+        /* Usar la variable del ancho del sidebar para evitar inconsistencias */
+        width: calc(100vw - var(--order-sidebar-width-mobile));
+      }
+
+      /* Navigation sidebar - consolidated in main section */
+
+      /* Settings sidebar - consolidated in main section */
+
+      .product-table,
+      .liquor-table {
+        width: 100% !important;
+        max-width: 100% !important;
+        table-layout: fixed;
+        /* Evitar expansiÃ³n por contenido en landscape */
+      }
+
+      /* Botones de precio optimizados para landscape mÃ³vil - mantener en una sola fila con efecto permanente */
+      body .product-table .price-button,
+      body .liquor-table .price-button {
+        width: auto;
+        max-width: 64px;
+        min-width: 38px;
+        padding: 2px 5px;
+        font-size: 0.62rem;
+        margin: 0;
+        box-sizing: border-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+        transform: scale(1.02);
+        box-shadow: 0 0 15px var(--price-color);
+        line-height: 1.2;
+      }
+
+      /* Celda de precio con configuraciÃ³n especÃ­fica para landscape */
+      body .product-table td.product-price,
+      body .liquor-table td.product-price {
+        flex: 0 0 auto;
+        width: auto;
+        min-width: 45px;
+        max-width: 68px;
+        padding: 4px 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Evitar divisiÃ³n de palabras en encabezados de tabla - landscape mÃ³vil */
+      .product-table th,
+      .liquor-table th {
+        /* Permitir wrap para evitar desbordes del lado izquierdo */
+        white-space: normal !important;
+        word-break: break-word !important;
+        hyphens: auto !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        min-width: 0 !important;
+        padding: 6px 4px !important;
+      }
+
+      /* Celdas compactas para aprovechar ancho: evitar mÃ­nimos rÃ­gidos */
+      .product-table td,
+      .liquor-table td {
+        white-space: normal !important;
+        word-break: break-word !important;
+        min-width: 0 !important;
+        padding: 6px 4px !important;
+      }
+    }
+
+    /* Override especÃ­fico: Tablet pequeÃ±a en landscape (641â€“768px)
+   Mantener el sidebar a la derecha con +10% de ancho y ajustar padding */
+    @media (min-width: 641px) and (max-width: 768px) and (orientation: landscape) {
+
+      /* Unificar con variable para evitar desbordes y mantener consistencia */
+      #order-sidebar {
+        width: var(--order-sidebar-width-mobile);
+        position: fixed;
+        top: 90px;
+        right: 20px;
+        margin: 0;
+        max-height: 75vh;
+        overflow-y: auto;
+      }
+
+      /* No aÃ±adir padding derecho adicional: provoca desplazamiento/recorte del contenido */
+      body.order-mode-active #app {
+        padding-right: 0 !important;
+      }
+
+      body .content-wrapper.with-sidebar {
+        width: calc(100vw - var(--order-sidebar-width-mobile));
+      }
+    }
+
+    /* Ajustes especÃ­ficos para pantallas landscape muy pequeÃ±as */
+    @media (max-width: 480px) and (orientation: landscape) {
+
+      /* Eliminar padding de #app que limita el ancho */
+      #app {
+        padding: 0 !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+      }
+
+      /* Order sidebar - consolidated in main section */
+
+      /* Contenedor con sidebar activo en landscape mÃ³vil pequeÃ±o */
+      .content-wrapper.with-sidebar {
+        width: calc(100vw - var(--order-sidebar-width-mobile)) !important;
+        box-sizing: border-box;
+        /* Eliminar escalado que recorta el lado izquierdo y evita reflow */
+        transform: none;
+        transform-origin: initial;
+        transition: none;
+      }
+
+      /* Navigation sidebar - consolidated in main section */
+
+      .content-wrapper {
+        gap: 0 !important;
+        /* Sin gap para aprovechar toda la pantalla */
+      }
+
+      .content-wrapper.order-active {
+        gap: 0 !important;
+        /* Sin gap */
+      }
+
+      #content-container {
+        padding: 6px !important;
+        /* Padding reducido para pantallas pequeÃ±as */
+      }
+
+      /* Tablas a ancho completo en pantallas muy pequeÃ±as para coincidir con grid */
+      .product-table,
+      .liquor-table {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+
+      /* Botones de precio ultra compactos para landscape muy pequeÃ±o */
+      .product-table .price-button,
+      .liquor-table .price-button {
+        width: auto !important;
+        max-width: 60px !important;
+        min-width: 35px !important;
+        padding: 2px 4px !important;
+        font-size: 0.6rem !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+        display: inline-block !important;
+        line-height: 1.1 !important;
+      }
+
+      /* Celda de precio ultra compacta para landscape muy pequeÃ±o */
+      .product-table td.product-price,
+      .liquor-table td.product-price {
+        flex: 0 0 auto;
+        width: auto;
+        min-width: 40px;
+        max-width: 65px;
+        padding: 2px 1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+    }
+
+  }
+
+  #order-sidebar h3 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  .order-item {
+    padding: 4px 0;
+    margin-bottom: 4px;
+  }
+
+  .order-item-name {
+    font-size: 0.75rem;
+    line-height: 1.1;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .order-item-price {
+    font-size: 0.7rem;
+  }
+
+  .order-item-customization {
+    font-size: 0.65rem;
+    margin-top: 2px;
+  }
+
+  .order-total h4 {
+    font-size: 0.85rem;
+    margin: 8px 0 4px 0;
+  }
+
+  .order-actions {
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 8px;
+  }
+
+  .order-actions button {
+    padding: 6px 4px;
+    font-size: 0.7rem;
+    min-height: 28px;
+  }
+
+  /* Botones hamburguesa y volver superpuestos */
+  .hamburger-btn,
+  .back-button-container {
+    position: fixed;
+    z-index: 900;
+  }
+
+  .hamburger-btn {
+    left: 15px;
+    top: 85px;
+  }
+
+  .back-button-container {
+    left: 15px;
+    top: 145px;
+  }
+}
+@media (max-width: 480px) and (orientation: portrait) {
+
+  /* Optimizar viewport para mÃ³vil portrait - centrado perfecto */
+  :root {
+    --table-width: 96%;
+    --table-margin: 0px;
+    --table-max-width: 100vw;
+  }
+
+  /* Eliminar cualquier padding/margin del navegador */
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Contenedor principal optimizado para centrado */
+  #app {
+    padding: 0 8px;
+    max-width: 100vw;
+    box-sizing: border-box;
+    width: 100vw;
+    margin: 0;
+  }
+
+  #content-container {
+    padding: 0 1px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Grid con 2 columnas en portrait - ligeramente mÃ¡s ancho */
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    padding: 6px 2px;
+    width: 98%;
+    max-width: 98%;
+    margin: 0 auto;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    padding: 6px 2px;
+    width: 98%;
+    max-width: 98%;
+    margin: 0 auto;
+  }
+
+  /* Tablas de productos - optimizadas para portrait */
+  .product-table,
+  .liquor-table {
+    width: 92%;
+    max-width: 92%;
+    margin: 0 auto;
+    padding: 12px 8px;
+    font-size: 0.85rem;
+  }
+
+  /* Ajustar celdas de tabla para portrait */
+  .product-table th,
+  .liquor-table th {
+    padding: 8px 4px;
+    font-size: 0.75rem;
+    letter-spacing: 0.3px;
+  }
+
+  .product-table td,
+  .liquor-table td {
+    padding: 8px 4px;
+    font-size: 0.8rem;
+  }
+
+  .product-table th:first-child,
+  .liquor-table th:first-child,
+  .product-table td:first-child,
+  .liquor-table td:first-child {
+    padding-left: 8px;
+  }
+
+  /* Ajustar nombres de productos para que no se corten */
+  .product-table td.product-name,
+  .liquor-table td.product-name {
+    font-size: 0.75rem;
+    word-break: break-word;
+    white-space: normal;
+    line-height: 1.2;
+  }
+
+  /* Ajustar ingredientes para que se adapten */
+  .product-table td.product-ingredients {
+    font-size: 0.7rem;
+    line-height: 1.1;
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  /* Barra superior optimizada para mÃ³vil portrait */
+  .top-nav-bar {
+    height: 48px;
+    padding: 0;
+  }
+
+  .top-nav-content {
+    padding: 0 8px;
+    gap: 8px;
+  }
+
+  .top-nav-btn {
+    padding: 6px;
+    font-size: 1rem;
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+  }
+
+  .top-nav-bar .hamburger-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1.3rem;
+    border-radius: 6px;
+  }
+
+
+
+}
+@media (orientation: portrait) {
+  #order-sidebar {
+    /* ConfiguraciÃ³n especÃ­fica para mobile portrait */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: auto;
+    max-height: 50vh;
+    min-height: 200px;
+    margin: 0;
+    padding: 16px;
+    overflow-y: auto;
+    border-radius: 15px 15px 0 0;
+    z-index: 1000;
+    background: var(--card-bg);
+    border-top: 2px solid var(--border-color);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+}
+@media (orientation: portrait) {
+
+  #order-sidebar.active,
+  #order-sidebar.is-open,
+  .order-sidebar.is-open {
+    transform: translateY(0);
+  }
+
+  /* Espacio para sidebar inferior en portrait */
+  .content-container-flex {
+    display: block !important;
+    width: 100% !important;
+    position: relative !important;
+    padding-bottom: 300px !important;
+  }
+}
+@media (orientation: portrait) and (max-width: 480px) {
+
+  /* Contenedor principal optimizado */
+  #app {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+  }
+
+  /* Contenedor de contenido optimizado */
+  #content-container {
+    width: 100%;
+    max-width: none;
+    padding: 0 !important;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  /* Content wrapper optimizado para portrait */
+  .content-wrapper {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+  }
+
+  /* Content container flex optimizado para portrait */
+  .content-container-flex {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    padding: 0 0 300px 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+  }
+
+  /* Drawer menu adaptado para portrait mÃ³vil */
+  /* Navigation sidebar - consolidated in main section */
+
+  /* Tablas con distribuciÃ³n optimizada */
+  .product-table,
+  .liquor-table {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0;
+    padding: 8px 4px;
+    font-size: 0.8rem;
+    table-layout: fixed;
+    box-sizing: border-box;
+  }
+
+  /* Celdas mÃ¡s compactas para portrait */
+  .product-table th,
+  .liquor-table th {
+    padding: 6px 3px !important;
+    font-size: 0.7rem !important;
+    letter-spacing: 0.2px;
+  }
+
+  .product-table td,
+  .liquor-table td {
+    padding: 6px 3px !important;
+    font-size: 0.75rem !important;
+  }
+
+  /* Nombres de productos mÃ¡s compactos */
+  .product-table td.product-name,
+  .liquor-table td.product-name {
+    font-size: 0.7rem !important;
+    word-break: break-word;
+    white-space: normal;
+    line-height: 1.1;
+  }
+
+  /* Ingredientes mÃ¡s compactos */
+  .product-table td.product-ingredients {
+    font-size: 0.65rem !important;
+    line-height: 1.0;
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  /* Ajustar imÃ¡genes en tablas */
+  .product-table td.image-icon img,
+  .liquor-table td.image-icon img {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  /* Cervezas y refrescos mantienen tamaÃ±o mÃ¡s grande en mÃ³viles */
+  .product-table[data-category="cervezas"] td.image-icon img,
+  .product-table[data-category="refrescos"] td.image-icon img {
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  /* Precios mÃ¡s compactos */
+  .product-table td.product-price,
+  .liquor-table td.product-price {
+    font-size: 0.7rem !important;
+    padding: 6px 2px !important;
+  }
+
+  /* Botones de precio optimizados para portrait */
+
+  /* Filas de tabla con flexbox para mejor distribuciÃ³n */
+  .product-table tr,
+  .liquor-table tr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  /* Celdas con distribuciÃ³n flexible */
+  .product-table td,
+  .liquor-table td {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Celda de precio con ancho fijo */
+  .product-table td.product-price,
+  .liquor-table td.product-price {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 60px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+  /* Modal adjustments for landscape tablets */
+
+  /* Ensure proper scrolling in landscape tablets */
+  .modal-content .options-grid {
+    max-height: none;
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  /* Layout adjustments for landscape */
+  .content-wrapper {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  #app {
+    padding: 0 max(15px, calc((100vw - var(--table-max-width)) / 2));
+  }
+
+  .content-wrapper.order-active {
+    gap: 6px;
+    justify-content: flex-start;
+    transition: gap 0.2s ease-in-out;
+  }
+
+  /* ConfiguraciÃ³n especÃ­fica de sidebar y margen para tablet landscape */
+  :root {
+    --order-sidebar-width-tl: 284px;
+    /* ancho base del sidebar en este rango */
+    --order-sidebar-width-tl-reduced: calc(var(--order-sidebar-width-tl) * 0.95);
+    /* -5% */
+  }
+
+  /* Ajuste de padding cuando el sidebar de Ã³rdenes estÃ¡ activo (bloque general 768â€“1024, valores originales) */
+  body.order-mode-active #app {
+    padding-right: calc(max(15px, calc((100vw - var(--table-max-width)) / 2)) + 284px);
+  }
+
+  /* Contenedor con sidebar activo en landscape tablet */
+  body .content-wrapper.with-sidebar {
+    width: calc(100vw - 284px);
+  }
+
+  /* Reducir el ancho del sidebar de Ã³rdenes en 5% dentro del rango especificado */
+  body.order-mode-active #order-sidebar {
+    width: var(--order-sidebar-width-tl-reduced);
+  }
+
+  /* Order sidebar - consolidated in main section */
+
+  /* Botones de precio optimizados para landscape tablet - product-table */
+  .product-table .price-button {
+    width: auto !important;
+    max-width: 75px !important;
+    min-width: 45px !important;
+    padding: 4px 8px !important;
+    font-size: 0.7rem !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    display: inline-block !important;
+    transform: scale(1.02) !important;
+    box-shadow: 0 0 15px var(--price-color) !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Celda de precio con configuraciÃ³n especÃ­fica para landscape tablet - product-table */
+  .product-table td.product-price {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: 55px !important;
+    max-width: 85px !important;
+    padding: 6px 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* ConfiguraciÃ³n especÃ­fica para .liquor-table en tablet landscape: mantener celdas como table-cell y evitar recortes */
+  .liquor-table td.product-price {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .liquor-table .price-button {
+    overflow: visible;
+    text-overflow: clip;
+    white-space: nowrap;
+  }
+
+  #order-sidebar h3 {
+    font-size: 1.4rem;
+  }
+
+  .order-item {
+    padding: 9px 0;
+  }
+
+  .order-item-name {
+    font-size: 0.95rem;
+  }
+
+  .order-item-price {
+    font-size: 0.9rem;
+  }
+
+  .order-total h4 {
+    font-size: 1.15rem;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .category-image {
+    width: clamp(70px, 9vw, 100px);
+    height: clamp(70px, 9vw, 100px);
+  }
+
+
+
+
+  /* CONFIGURACIÃ“N ESPECÃFICA PARA TABLET LANDSCAPE (768â€“1024) - LIQUOR TABLE */
+  :root {
+    --liquor-col-name: 27%;
+    --liquor-col-image: 18%;
+    --liquor-col-bottle: 18%;
+    --liquor-col-liter: 18%;
+    --liquor-col-glass: 19%;
+  }
+
+  .liquor-table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .liquor-table th:nth-child(1),
+  .liquor-table td:nth-child(1) {
+    width: var(--liquor-col-name);
+  }
+
+  .liquor-table th:nth-child(2),
+  .liquor-table td:nth-child(2) {
+    width: var(--liquor-col-image);
+  }
+
+  .liquor-table th:nth-child(3),
+  .liquor-table td:nth-child(3) {
+    width: var(--liquor-col-bottle);
+  }
+
+  .liquor-table th:nth-child(4),
+  .liquor-table td:nth-child(4) {
+    width: var(--liquor-col-liter);
+  }
+
+  .liquor-table th:nth-child(5),
+  .liquor-table td:nth-child(5) {
+    width: var(--liquor-col-glass);
+  }
+
+  /* Reglas de tabla movidas al bloque unificado landscape al final del archivo */
+}
+@media (max-width: 1024px) {
+
+
+  .view-toggle-btn {
+    min-height: 50px;
+    min-width: 50px;
+  }
+
+  .hamburger-btn {
+    min-height: 40px;
+    min-width: 40px;
+  }
+
+  .back-button {
+    min-height: 50px;
+    min-width: 50px;
+  }
+
+
+  .counter-btn {
+    width: 36px;
+    height: 36px;
+  }
+}
+@media (min-width: 1200px) {
+  /* Order sidebar - consolidated in main section */
+
+  #order-sidebar h3 {
+    font-size: 1.6rem;
+    margin-bottom: 18px;
+  }
+
+  .order-item {
+    padding: 12px 0;
+    margin-bottom: 12px;
+  }
+
+  .order-item-name {
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+
+  .order-item-price {
+    font-size: 0.95rem;
+  }
+
+  .order-item-customization {
+    font-size: 0.9rem;
+    margin-top: 6px;
+  }
+
+  .order-total {
+    margin-top: 25px;
+    padding-top: 12px;
+  }
+
+  .order-total h4 {
+    font-size: 1.3rem;
+  }
+
+  .order-actions {
+    margin-top: 25px;
+    gap: 12px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1400px;
+    gap: 25px;
+    padding: 25px;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(5, 1fr);
+    max-width: 1400px;
+    gap: 25px;
+    padding: 25px;
+  }
+
+  .category-image {
+    width: clamp(110px, 13vw, 150px);
+    height: clamp(110px, 13vw, 150px);
+  }
+
+
+
+}
+@media (max-width: 768px) {
+  .settings-title {
+    font-size: 1.1rem;
+    margin: 10px 0 20px 0;
+  }
+
+  .drawer-content {
+    padding: 15px;
+  }
+}
+@media (max-width: 480px) {
+  .drawer-menu {
+    width: 240px;
+  }
+
+  /* Settings sidebar positioning for mobile */
+  #settings-menu {
+    width: 240px;
+    right: -240px;
+  }
+
+  #settings-menu.open {
+    right: 0;
+  }
+
+  .settings-title {
+    font-size: 1rem;
+    margin: 10px 0 15px 0;
+  }
+
+  .drawer-menu .nav-button {
+    font-size: 0.7rem;
+    padding: 10px 15px;
+  }
+
+  .back-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
+@media (orientation: landscape) and (max-width: 768px) {
+  .drawer-menu {
+    top: 50px;
+    max-height: calc(100vh - 50px);
+  }
+
+  /* Settings sidebar positioning for small landscape devices */
+  #settings-menu {
+    width: 270px;
+    right: -270px;
+  }
+
+  #settings-menu.open {
+    right: 0;
+  }
+
+  .drawer-content {
+    padding: 10px;
+    gap: 10px;
+  }
+}
+@media (orientation: landscape) {
+
+  /* ConsolidaciÃ³n de anchos de columna - elimina duplicaciÃ³n */
+  .product-table th:nth-child(1),
+  .product-table td:nth-child(1) {
+    width: 45%;
+  }
+
+  .product-table th:nth-child(2),
+  .product-table td:nth-child(2) {
+    width: 30%;
+  }
+
+  .product-table th:nth-child(3),
+  .product-table td:nth-child(3) {
+    width: 25%;
+  }
+
+  /* TipografÃ­a base consolidada para landscape - elimina duplicaciÃ³n */
+  .product-table th,
+  .liquor-table th {
+    white-space: nowrap;
+    word-break: keep-all;
+    hyphens: none;
+    min-width: 0;
+  }
+}
+@media (max-width: 768px) and (orientation: landscape) {
+
+  /* Ajustes especÃ­ficos para mÃ³vil landscape */
+  .product-table th,
+  .liquor-table th {
+    font-size: 0.75rem;
+    padding: 8px 4px;
+  }
+
+  /* Mantener imÃ¡genes consistentes en mÃ³vil landscape */
+  .product-table[data-category="cervezas"] td.image-icon img,
+  .product-table[data-category="refrescos"] td.image-icon img {
+    width: 45px;
+    height: 45px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+  /* Ajustes especÃ­ficos para tablet landscape */
+  .product-table th,
+  .liquor-table th {
+    font-size: 0.85rem;
+    padding: 10px 6px;
+  }
+
+  /* Mantener imÃ¡genes consistentes en tablet landscape */
+  .product-table[data-category="cervezas"] td.image-icon img,
+  .product-table[data-category="refrescos"] td.image-icon img {
+    width: 48px;
+    height: 48px;
+  }
+}
+@media (orientation: portrait) {
+
+  /* AlineaciÃ³n base para columnas de texto */
+  .product-table td:first-child,
+  .product-table td.product-name,
+  .product-table td:nth-child(2),
+  .product-table td.product-ingredients {
+    text-align: left;
+    vertical-align: top;
+    white-space: normal;
+  }
+}
+@media (max-width: 768px) and (orientation: portrait) {
+
+  .product-table td:first-child,
+  .product-table td.product-name {
+    padding-left: 15px;
+  }
+
+  .product-table td:nth-child(2),
+  .product-table td.product-ingredients {
+    padding-left: 10px;
+  }
+}
+@media (max-width: 480px) and (orientation: portrait) {
+
+  .product-table td:first-child,
+  .product-table td.product-name {
+    padding-left: 10px;
+    /* Consolidated - using the more compact value */
+  }
+
+  .product-table td:nth-child(2),
+  .product-table td.product-ingredients {
+    padding-left: 6px;
+    /* Consolidated - using the more compact value */
+  }
+}
+@media (min-width: 1200px) {
+  .drawer-menu {
+    width: 240px;
+    /* ReducciÃ³n del 20% desde 300px */
+  }
+
+  .drawer-menu .nav-button {
+    font-size: 1.001rem;
+    /* Aumento del 30% desde 0.77rem */
+    padding: 10px 13px;
+    /* Ajuste proporcional del padding */
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .drawer-menu {
+    width: 270px;
+    /* ReducciÃ³n del 10% desde 300px */
+  }
+
+  .drawer-menu .nav-button {
+    font-size: 0.886rem;
+    /* Aumento del 15% desde 0.77rem */
+    padding: 9px 11px;
+    /* Ajuste proporcional del padding */
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .drawer-menu {
+    width: 270px;
+    /* ReducciÃ³n del 10% desde 300px */
+  }
+
+  .drawer-menu .nav-button {
+    font-size: 0.886rem;
+    /* Aumento del 15% desde 0.77rem */
+    padding: 9px 11px;
+    /* Ajuste proporcional del padding */
+  }
+}
+@media (min-width: 769px) {
+
+  /* Evitar doble espacio: el ancho del contenedor ya descuenta el sidebar */
+  .content-wrapper.order-active #content-container {
+    margin-right: 0;
+  }
+
+  /* Asegurar que el contenedor con sidebar use el ancho disponible menos el sidebar */
+  body .content-wrapper.with-sidebar {
+    width: calc(100vw - 284px);
+  }
+}
+@media (max-width: 768px) and (orientation: landscape) {
+  :root {
+    /* Variable Ãºnica para ancho del sidebar en mÃ³vil landscape */
+    --order-sidebar-width-mobile: clamp(160px, 22vw, 220px);
+    /* SeparaciÃ³n mÃ­nima entre contenido y sidebar */
+    --content-separation: 4px;
+  }
+
+  /* Forzar #app a ocupar todo el ancho disponible y anclar a la izquierda */
+  body.order-mode-active #app {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    left: 0 !important;
+  }
+
+  /* Eliminar espacio/centrado residual de cabecera en landscape */
+  body.order-mode-active .page-header {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    max-width: 100vw !important;
+  }
+
+  /* Reservar espacio para el sidebar, replicando lÃ³gica de tablet */
+  body.order-mode-active #app {
+    padding-right: calc(var(--order-sidebar-width-mobile) + var(--content-separation)) !important;
+  }
+
+  .content-wrapper.order-active {
+    /* Evitar doble reserva de espacio: el ancho se calcula con .with-sidebar */
+    padding-right: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    /* Asegurar adaptaciÃ³n del contenedor padre cuando el sidebar estÃ¡ activo */
+    width: calc(100vw - var(--order-sidebar-width-mobile));
+  }
+
+  /* Anclar el contenedor al borde izquierdo y eliminar centrado cuando el sidebar estÃ¡ activo */
+  body.order-mode-active #app,
+  body.order-mode-active .content-wrapper,
+  body.order-mode-active #content-container {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+  }
+
+  body.order-mode-active .content-wrapper.with-sidebar {
+    width: calc(100vw - var(--order-sidebar-width-mobile)) !important;
+  }
+
+  /* Reservar ancho del contenido aunque falte la clase with-sidebar */
+  body.order-mode-active .content-wrapper #content-container {
+    flex: 0 1 calc(100vw - var(--order-sidebar-width-mobile)) !important;
+    width: calc(100vw - var(--order-sidebar-width-mobile)) !important;
+    max-width: calc(100vw - var(--order-sidebar-width-mobile)) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    box-sizing: border-box;
+  }
+
+  body.order-mode-active .content-wrapper.order-active #content-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  body.order-mode-active #order-sidebar {
+    position: fixed;
+    right: 0;
+    top: var(--topbar-height, 56px);
+    bottom: auto;
+    width: var(--order-sidebar-width-mobile);
+    max-height: calc(100vh - var(--topbar-height, 56px));
+    overflow: auto;
+  }
+
+  /* ContracciÃ³n real del contenedor padre y del Ã¡rea de contenido */
+  body.order-mode-active .content-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    gap: var(--content-separation) !important;
+    /* SeparaciÃ³n similar a tablet */
+    box-sizing: border-box;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+
+  body.order-mode-active .content-wrapper.with-sidebar #content-container {
+    flex: 0 0 auto;
+    width: calc(100vw - var(--order-sidebar-width-mobile)) !important;
+    max-width: calc(100vw - var(--order-sidebar-width-mobile)) !important;
+    min-width: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Alinear con estructura flex real del contenedor de contenido */
+  body.order-mode-active .content-wrapper.with-sidebar .content-container-flex {
+    flex: 0 1 calc(100vw - var(--order-sidebar-width-mobile) - var(--content-separation)) !important;
+    width: calc(100vw - var(--order-sidebar-width-mobile) - var(--content-separation)) !important;
+    max-width: calc(100vw - var(--order-sidebar-width-mobile) - var(--content-separation)) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    box-sizing: border-box;
+    overflow-x: hidden !important;
+  }
+
+  /* Asegurar la contracciÃ³n aunque falte la clase with-sidebar */
+  body.order-mode-active .content-wrapper .content-container-flex {
+    flex: 0 1 calc(100vw - var(--order-sidebar-width-mobile) - var(--content-separation)) !important;
+    width: calc(100vw - var(--order-sidebar-width-mobile) - var(--content-separation)) !important;
+    max-width: calc(100vw - var(--order-sidebar-width-mobile) - var(--content-separation)) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    box-sizing: border-box;
+    overflow-x: hidden !important;
+  }
+
+  .content-wrapper.order-active #content-container {
+    margin-right: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    min-width: 0;
+    /* Permitir que el contenido se comprima sin overflow */
+  }
+
+  /* ConfiguraciÃ³n consolidada para mÃ³vil landscape con sidebar activo */
+  .content-wrapper.order-active.with-sidebar {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: var(--content-separation);
+    width: calc(100vw - var(--order-sidebar-width-mobile));
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .content-wrapper.order-active.with-sidebar .content-container-flex,
+  .content-wrapper.order-active.with-sidebar #content-container {
+    flex: 0 1 calc(100vw - var(--order-sidebar-width-mobile) - var(--content-separation));
+    width: calc(100vw - var(--order-sidebar-width-mobile) - var(--content-separation));
+    max-width: calc(100vw - var(--order-sidebar-width-mobile) - var(--content-separation));
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    transform: none;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  /* ReducciÃ³n de paddings internos para pantallas pequeÃ±as en landscape */
+  .product-table th,
+  .product-table td,
+  .liquor-table th,
+  .liquor-table td {
+    padding: 6px 4px !important;
+  }
+
+  .product-table,
+  .liquor-table {
+    font-size: 0.85rem !important;
+  }
+}
+@media (min-width: 481px) and (max-width: 768px) and (orientation: portrait) {
+
+  /* Variable de altura del sidebar de Ã³rdenes en este rango */
+  :root {
+    --order-sidebar-height-portrait-tablet: clamp(220px, 34vh, 360px);
+  }
+
+  /* Forzar contenedor principal a ocupar todo el ancho */
+  #app,
+  .content-wrapper,
+  .content-wrapper.with-sidebar {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Evitar restricciones que recortan columnas en este rango */
+  .content-wrapper {
+    display: block !important;
+    gap: 0 !important;
+  }
+
+  /* Sidebar inferior fijo como en mÃ³vil portrait */
+  #order-sidebar {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    width: 100vw !important;
+    height: auto !important;
+    max-height: 52vh !important;
+    min-height: var(--order-sidebar-height-portrait-tablet) !important;
+    margin: 0 !important;
+    padding: 16px !important;
+    overflow-y: auto !important;
+    border-radius: 15px 15px 0 0 !important;
+    z-index: 1000 !important;
+    background: var(--card-bg) !important;
+    border-top: 2px solid var(--border-color) !important;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3) !important;
+    transform: translateY(100%) !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  body #order-sidebar.active {
+    transform: translateY(0) !important;
+  }
+
+  /* Asegurar visibilidad del sidebar cuando estÃ¡ activo en este rango */
+  #order-sidebar.active,
+  body.order-mode-active #order-sidebar {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+
+  /* Reservar espacio inferior para que el contenido no se ensime */
+  .content-container-flex,
+  #content-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-bottom: var(--order-sidebar-height-portrait-tablet) !important;
+    box-sizing: border-box !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) and (min-height: 641px) and (max-height: 641px) {
+  :root {
+    --parent-left-padding-tl: 5%;
+  }
+
+  /* Sidebar reducido y padding izquierdo del contenedor padre cuando el modo orden estÃ¡ activo */
+  body.order-mode-active #app {
+    padding-left: calc(var(--parent-left-padding-tl) + max(15px, calc((100vw - var(--table-max-width)) / 2)));
+    padding-right: calc(max(15px, calc((100vw - var(--table-max-width)) / 2)) + var(--order-sidebar-width-tl-reduced));
+  }
+
+  /* Ajustar el ancho del contenedor con sidebar usando el ancho reducido del sidebar */
+  body .content-wrapper.with-sidebar {
+    width: calc(100vw - var(--order-sidebar-width-tl-reduced));
+  }
+
+  /* Reducir el ancho del sidebar de Ã³rdenes en 5% especÃ­fico de esta resoluciÃ³n */
+  #order-sidebar {
+    width: var(--order-sidebar-width-tl-reduced);
+  }
+}
+@media (max-width: 480px) {
+
+  .logo,
+  .drawer-logo {
+    transform: scale(0.75);
+    transform-origin: center;
+  }
+
+}
+@media (min-width: 481px) {
+
+  .logo,
+  .drawer-logo {
+    transform: none !important;
+  }
+}
+@media (max-width: 480px) {
+
+
+
+}
