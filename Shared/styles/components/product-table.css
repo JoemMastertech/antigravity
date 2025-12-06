@@ -15,13 +15,13 @@ PRODUCT TABLE & GRID COMPONENT
     /* Reset margin as we use padding on parent */
 }
 
-/* Grid Layout */
+/* Grid Layout - Mobile First (2 columns) */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
     width: 100%;
-    padding: 20px 0;
+    padding: 12px;
     margin-top: 0;
 }
 
@@ -111,16 +111,20 @@ PRODUCT TABLE & GRID COMPONENT
     box-shadow: 0 0 10px var(--accent-color);
 }
 
-/* Responsive Grid */
+/* Responsive Grid - Tablet Portrait & up (3 columns) */
 @media (min-width: 768px) {
     .product-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        padding: 16px;
     }
 }
 
-@media (min-width: 1200px) {
+/* Landscape & Desktop (3 columns with more gap) */
+@media (min-width: 1024px) {
     .product-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 25px;
+        gap: 20px;
+        padding: 20px;
     }
 }
