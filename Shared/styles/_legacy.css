@@ -150,53 +150,10 @@ body.no-scrollbars {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-}/* Responsive adjustments for navigation sidebar */.drawer-content {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}.drawer-logo-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-}.drawer-logo {
-  width: 100px;
-  height: auto;
-  object-fit: contain;
-  margin-bottom: 10px;
-}.drawer-footer {
-  margin-top: 20px;
-  text-align: center;
-  font-size: 0.9rem;
-  color: var(--primary-color);
-  opacity: 0.8;
-  font-style: italic;
-}/* === REGION: OVERLAYS (Drawer Overlay) === */.drawer-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 998;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}.drawer-overlay.active {
-  opacity: 1;
-  pointer-events: all;
-}/* === REGION: ORDER SIDEBAR (Right) === *//* ===== SIDEBAR 2: ORDERS SIDEBAR (Right Side - Create Order) ===== *//* === REGION: BREAKPOINT TABLET 481â€“767 === *//* Responsive adjustments for orders sidebar *//* === REGION: BREAKPOINT MOBILE LANDSCAPE â‰¤480 === *//* === REGION: BREAKPOINT DESKTOP â‰¥1200 === *//* Active states - Show sidebar */#order-sidebar.active,
+}/* Responsive adjustments for navigation sidebar *//* === REGION: OVERLAYS (Drawer Overlay) === *//* === REGION: ORDER SIDEBAR (Right) === *//* ===== SIDEBAR 2: ORDERS SIDEBAR (Right Side - Create Order) ===== *//* === REGION: BREAKPOINT TABLET 481â€“767 === *//* Responsive adjustments for orders sidebar *//* === REGION: BREAKPOINT MOBILE LANDSCAPE â‰¤480 === *//* === REGION: BREAKPOINT DESKTOP â‰¥1200 === *//* Active states - Show sidebar */#order-sidebar.active,
 body.order-mode-active #order-sidebar {
   display: flex;
-}/* Semantic open state for BEM-friendly toggling *//* Order sidebar title - Responsive *//* Order content and items */.order-item-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 5px;
-  width: 100%;
-  box-sizing: border-box;
-}/* ===== SIDEBAR 3: SETTINGS MENU (Right Side - Settings Panel) ===== */#settings-menu {
+}/* Semantic open state for BEM-friendly toggling *//* Order sidebar title - Responsive *//* Order content and items *//* ===== SIDEBAR 3: SETTINGS MENU (Right Side - Settings Panel) ===== */#settings-menu {
   position: fixed;
   top: 70px;
   right: -270px;
@@ -221,39 +178,9 @@ body.order-mode-active #order-sidebar {
   pointer-events: auto;
 }/* Responsive adjustments for settings sidebar *//* =============================
    RANGE FIX: 481pxâ€“768px HEIGHT STABILITY
-   ============================= *//* Theme and language buttons */.language-btn,
-.theme-btn {
-  width: 100%;
-  text-align: left;
-  padding: 8px 10px;
-  font: 700 0.77rem 'Playfair Display', serif;
-  text-transform: none;
-  transition: all 0.3s ease;
-  border: 1.4px solid var(--border-color);
-  box-shadow: var(--glow-shadow);
-  background: transparent;
-  border-radius: 5px;
-  margin-bottom: 8px;
-}.language-btn:hover,
-.theme-btn:hover {
-  transform: translateX(5px);
-  background-color: transparent;
-  border-color: var(--price-color);
-  color: var(--price-color);
-  box-shadow: var(--glow-shadow-hover);
-}/* Responsive settings menu *//* =================================================================
+   ============================= *//* Theme and language buttons *//* Responsive settings menu *//* =================================================================
    TABLES & GRID CONTAINERS - CONSOLIDATED
-   ================================================================= */.container,
-.category-grid,
-.product-grid {
-  width: var(--table-width);
-  max-width: 100%;
-  margin: var(--table-margin) auto;
-  background: var(--card-bg);
-  border-radius: 15px;
-  box-shadow: 0 0 20px var(--border-color);
-  position: relative;
-}/* === REGION: HISTORIAL Y LISTA DE Ã“RDENES === *//* Contenedores de Ã³rdenes con scroll vertical *//* Estilos para la barra de scroll - CONSOLIDADOS *//* Removidos estilos especÃ­ficos redundantes - los globales al final manejan todos los scrollbars */.delete-order-btn {
+   ================================================================= *//* === REGION: HISTORIAL Y LISTA DE Ã“RDENES === *//* Contenedores de Ã³rdenes con scroll vertical *//* Estilos para la barra de scroll - CONSOLIDADOS *//* Removidos estilos especÃ­ficos redundantes - los globales al final manejan todos los scrollbars */.delete-order-btn {
   background: rgba(255, 99, 71, 0.2);
   border-color: rgba(255, 99, 71, 0.5);
   color: rgba(255, 99, 71, 1);
@@ -348,11 +275,7 @@ body.order-mode-active #order-sidebar {
 }.title-row td {
   padding: 0;
   background: transparent;
-}/* Cuando el modo orden estÃ¡ activo en desktop, ajustar padding para el sidebar */.content-wrapper.order-active {
-  gap: 1px;
-  justify-content: flex-start;
-  transition: gap 0.2s ease-in-out;
-}.content-container-flex {
+}/* Cuando el modo orden estÃ¡ activo en desktop, ajustar padding para el sidebar */.content-container-flex {
   margin-right: -1.5px;
 }/* =================================================================
    CATEGORY-SPECIFIC STYLES
@@ -398,13 +321,7 @@ body.order-mode-active #order-sidebar {
     opacity: 1;
     transform: translateX(0);
   }
-}/* Language and theme buttons - using existing nav-button styles but adding some specificities */.language-btn,
-.theme-btn {
-  transition: all 0.3s ease;
-}.language-btn:hover,
-.theme-btn:hover {
-  transform: translateX(5px);
-}/* Active state for selected options *//* =================================================================
+}/* Language and theme buttons - using existing nav-button styles but adding some specificities *//* Active state for selected options *//* =================================================================
    RESPONSIVE SETTINGS MENU STYLES
    ================================================================= *//* Tablet styles *//* Mobile phone styles *//* Duplicate portrait media query removed - consolidated above *//* Landscape orientation styles for smaller devices */.hamburger-visible {
   display: block;
@@ -448,13 +365,7 @@ body.order-mode-active #order-sidebar {
   left: 0;
 }.left-auto {
   left: auto;
-}/* Product image size utilities */.product-image-small {
-  width: 40px !important;
-  height: 40px !important;
-}.product-image-large {
-  width: 70px !important;
-  height: 70px !important;
-}/* Height and min-height utilities */.height-auto {
+}/* Product image size utilities *//* Height and min-height utilities */.height-auto {
   height: auto !important;
 }.min-height-auto {
   min-height: auto !important;

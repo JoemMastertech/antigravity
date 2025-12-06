@@ -315,3 +315,26 @@
 .product-table td.image-icon {
   text-align: center;
 }
+
+/* ===== MIGRATED FROM LEGACY (Round 5) ===== */
+.container,
+.category-grid,
+.product-grid {
+  width: var(--table-width);
+  max-width: 100%;
+  margin: var(--table-margin) auto;
+  background: var(--card-bg);
+  border-radius: 15px;
+  box-shadow: 0 0 20px var(--border-color);
+  position: relative;
+}
+
+.product-image-small {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.product-image-large {
+  width: 70px !important;
+  height: 70px !important;
+}

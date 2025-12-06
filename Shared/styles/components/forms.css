@@ -420,3 +420,38 @@ textarea:focus {
   gap: 15px;
   /* SeparaciÃ³n entre botones igual que en el menÃº lateral izquierdo */
 }
+
+/* ===== MIGRATED FROM LEGACY (Round 5) ===== */
+.language-btn,
+.theme-btn {
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  font: 700 0.77rem 'Playfair Display', serif;
+  text-transform: none;
+  transition: all 0.3s ease;
+  border: 1.4px solid var(--border-color);
+  box-shadow: var(--glow-shadow);
+  background: transparent;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+
+.language-btn:hover,
+.theme-btn:hover {
+  transform: translateX(5px);
+  background-color: transparent;
+  border-color: var(--price-color);
+  color: var(--price-color);
+  box-shadow: var(--glow-shadow-hover);
+}
+
+.language-btn,
+.theme-btn {
+  transition: all 0.3s ease;
+}
+
+.language-btn:hover,
+.theme-btn:hover {
+  transform: translateX(5px);
+}

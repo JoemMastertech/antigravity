@@ -518,3 +518,20 @@ body.order-mode-active #app {
   font-weight: 500;
   color: var(--text-color);
 }
+
+/* ===== MIGRATED FROM LEGACY (Round 5) ===== */
+.order-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.content-wrapper.order-active {
+  gap: 1px;
+  justify-content: flex-start;
+  transition: gap 0.2s ease-in-out;
+}
