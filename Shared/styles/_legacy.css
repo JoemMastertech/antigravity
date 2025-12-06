@@ -322,7 +322,7 @@ body.order-mode-active .order-sidebar {
   gap: 5px;
   width: 100%;
   box-sizing: border-box;
-}/* ===== SIDEBAR 3: SETTINGS MENU (Right Side - Settings Panel) ===== */#settings-menu {
+}/* ===== SIDEBAR 3: SETTINGS MENU (Right Side - Settings Panel) ===== */.settings-menu {
   position: fixed;
   top: 70px;
   right: -270px;
@@ -339,7 +339,7 @@ body.order-mode-active .order-sidebar {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-}#settings-menu.open {
+}.settings-menu.open {
   right: 0;
   left: auto;
   opacity: 1;
@@ -594,7 +594,7 @@ body.order-mode-active .order-sidebar {
   backdrop-filter: blur(10px);
   font-weight: bold;
   border-radius: 8px;
-}/* Centrar el botÃ³n Volver en el menÃº lateral derecho */#settings-menu .back-button {
+}/* Centrar el botÃ³n Volver en el menÃº lateral derecho */.settings-menu .back-button {
   margin: 0 auto;
   display: block;
 }.title-row {
@@ -717,7 +717,7 @@ body.order-mode-active .order-sidebar {
   display: block;
 }.modal-flex {
   display: flex;
-}/* Semantic state for drink modal open (BEM-friendly) */#drink-options-modal.is-open,
+}/* Semantic state for drink modal open (BEM-friendly) */.drink-modal.is-open,
 .drink-modal.is-open {
   display: flex;
 }/* Body overflow control */.body-no-scroll {

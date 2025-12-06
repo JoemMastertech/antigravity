@@ -59,7 +59,7 @@
 }
 
 /* Modal open state */
-#drink-options-modal.is-open,
+.drink-modal.is-open,
 .drink-modal.is-open {
     display: flex;
 }

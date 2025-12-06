@@ -510,7 +510,7 @@
 }
 
 /* Tema blanco: sidebar de ajustes estilo claro */
-[data-theme="light-white"] #settings-menu {
+[data-theme="light-white"] .settings-menu {
   background: rgba(255, 255, 255, 0.95);
   border-left: 1px solid var(--border-color);
   backdrop-filter: blur(10px);

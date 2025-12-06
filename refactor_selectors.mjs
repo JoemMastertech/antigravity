@@ -12,6 +12,12 @@ const replacements = [
     { from: /#drawer-menu(?![-\w])/g, to: '.drawer-menu' },
     // #app -> .app-container
     { from: /#app(?![-\w])/g, to: '.app-container' },
+    // #settings-menu -> .settings-menu
+    { from: /#settings-menu(?![-\w])/g, to: '.settings-menu' },
+    // #content-container -> .content-container
+    { from: /#content-container(?![-\w])/g, to: '.content-container' },
+    // #drink-options-modal -> .drink-modal
+    { from: /#drink-options-modal(?![-\w])/g, to: '.drink-modal' },
 ];
 
 const files = globSync('Shared/styles/**/*.css', { ignore: 'Shared/styles/settings/variables.css' });

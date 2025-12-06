@@ -141,14 +141,14 @@ textarea:focus {
 }
 
 /* Theme specific overrides */
-[data-theme="light-white"] #drink-options-modal .drink-option {
+[data-theme="light-white"] .drink-modal .drink-option {
     background: rgba(30, 64, 175, 0.05);
     border: 1.4px solid var(--border-color);
     color: var(--text-color);
     box-shadow: var(--glow-shadow);
 }
 
-[data-theme="light-white"] #drink-options-modal .drink-option.selected {
+[data-theme="light-white"] .drink-modal .drink-option.selected {
     background-color: rgba(133, 199, 255, 0.1);
     border-color: var(--price-color);
     color: var(--price-color);

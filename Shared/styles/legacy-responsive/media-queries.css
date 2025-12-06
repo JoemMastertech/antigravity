@@ -93,7 +93,7 @@
     margin: 10px 0 20px 0;
   }
 
-  #settings-menu {
+  .settings-menu {
     width: 250px;
     right: -250px;
   }
@@ -132,7 +132,7 @@
     margin: 8px 0 15px 0;
   }
 
-  #settings-menu {
+  .settings-menu {
     width: 220px;
     right: -220px;
   }
@@ -202,7 +202,7 @@
 }
 
 @media (max-width: 768px) {
-  #settings-menu {
+  .settings-menu {
     width: 240px;
     right: -240px;
   }
@@ -232,12 +232,12 @@
     pointer-events: auto;
   }
 
-  #settings-menu {
+  .settings-menu {
     width: 240px;
     right: -240px;
   }
 
-  #settings-menu.open {
+  .settings-menu.open {
     right: 0;
   }
 }
@@ -440,7 +440,7 @@
 
 
   /* Product table styles consolidated in main section */
-  #content-container {
+  .content-container {
     padding: 0 3px;
   }
 
@@ -556,7 +556,7 @@
     padding: 0 15px;
   }
 
-  .options-grid:not(#drink-options-modal .options-grid) {
+  .options-grid:not(.drink-modal .options-grid) {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 8px;
   }
@@ -714,7 +714,7 @@
 
   /* Reservar espacio inferior para el sidebar en el contenido */
   .content-container-flex,
-  #content-container {
+  .content-container {
     width: 100% !important;
     max-width: 100% !important;
     padding-bottom: var(--order-sidebar-height-portrait-tablet) !important;
@@ -863,7 +863,7 @@
   }
 
   /* Contenedor principal ocupa todo el ancho disponible */
-  #content-container {
+  .content-container {
     width: 100%;
     padding: 8px;
     /* Padding interno mÃ­nimo */
@@ -872,7 +872,7 @@
   }
 
   /* Ajustar margen derecho cuando sidebar estÃ¡ activo (se gestiona por breakpoints especÃ­ficos) */
-  .content-wrapper.order-active #content-container {
+  .content-wrapper.order-active .content-container {
     margin-right: 0;
     /* Evitar conflictos en mÃ³vil; tablet tiene su propio ajuste */
   }
@@ -1041,8 +1041,8 @@
   }
 
   /* Ajuste especÃ­fico cuando el sidebar estÃ¡ visible */
-  body #content-container .product-table,
-  body #content-container .liquor-table {
+  body .content-container .product-table,
+  body .content-container .liquor-table {
     width: 100%;
     max-width: 100%;
     table-layout: auto;
@@ -1052,10 +1052,10 @@
   }
 
   /* Permitir expansiÃ³n del texto en mÃºltiples lÃ­neas como en portrait */
-  #content-container .product-table td,
-  #content-container .product-table th,
-  #content-container .liquor-table td,
-  #content-container .liquor-table th {
+  .content-container .product-table td,
+  .content-container .product-table th,
+  .content-container .liquor-table td,
+  .content-container .liquor-table th {
     overflow: visible !important;
     white-space: normal !important;
     word-break: break-word !important;
@@ -1063,16 +1063,16 @@
   }
 
   /* Reglas especÃ­ficas para nombres de productos e ingredientes */
-  #content-container .product-table td.product-name,
-  #content-container .liquor-table td.product-name {
+  .content-container .product-table td.product-name,
+  .content-container .liquor-table td.product-name {
     overflow: visible !important;
     white-space: normal !important;
     word-break: break-word !important;
     line-height: 1.2 !important;
   }
 
-  #content-container .product-table td.product-ingredients,
-  #content-container .liquor-table td.product-ingredients {
+  .content-container .product-table td.product-ingredients,
+  .content-container .liquor-table td.product-ingredients {
     overflow: visible !important;
     white-space: normal !important;
     word-break: break-word !important;
@@ -1080,14 +1080,14 @@
   }
 
   /* Sobrescribir reglas especÃ­ficas de categorÃ­as cuando el sidebar estÃ¡ visible */
-  body #content-container .product-table[data-category="refrescos"],
-  body #content-container .product-table[data-category="cervezas"] {
+  body .content-container .product-table[data-category="refrescos"],
+  body .content-container .product-table[data-category="cervezas"] {
     width: 100%;
     max-width: 100%;
     table-layout: auto;
   }
 
-  #content-container {
+  .content-container {
     padding: 0;
     width: 100%;
   }
@@ -1204,7 +1204,7 @@
     }
 
     /* Configurar botones de acompaÃ±amiento en dos columnas para portrait - optimized specificity */
-    body #drink-options-modal.modal-flex .options-grid {
+    body .drink-modal.modal-flex .options-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
@@ -1213,7 +1213,7 @@
       box-sizing: border-box;
     }
 
-    body #drink-options-modal .drink-option-container {
+    body .drink-modal .drink-option-container {
       width: 100%;
       margin: 0;
       box-sizing: border-box;
@@ -1407,7 +1407,7 @@
         /* Sin gap */
       }
 
-      #content-container {
+      .content-container {
         padding: 6px !important;
         /* Padding reducido para pantallas pequeÃ±as */
       }
@@ -1543,7 +1543,7 @@
     margin: 0;
   }
 
-  #content-container {
+  .content-container {
     padding: 0 1px;
     width: 100%;
     box-sizing: border-box;
@@ -1699,7 +1699,7 @@
   }
 
   /* Contenedor de contenido optimizado */
-  #content-container {
+  .content-container {
     width: 100%;
     max-width: none;
     padding: 0 !important;
@@ -2108,12 +2108,12 @@
   }
 
   /* Settings sidebar positioning for mobile */
-  #settings-menu {
+  .settings-menu {
     width: 240px;
     right: -240px;
   }
 
-  #settings-menu.open {
+  .settings-menu.open {
     right: 0;
   }
 
@@ -2141,12 +2141,12 @@
   }
 
   /* Settings sidebar positioning for small landscape devices */
-  #settings-menu {
+  .settings-menu {
     width: 270px;
     right: -270px;
   }
 
-  #settings-menu.open {
+  .settings-menu.open {
     right: 0;
   }
 
@@ -2304,7 +2304,7 @@
 @media (min-width: 769px) {
 
   /* Evitar doble espacio: el ancho del contenedor ya descuenta el sidebar */
-  .content-wrapper.order-active #content-container {
+  .content-wrapper.order-active .content-container {
     margin-right: 0;
   }
 
@@ -2355,7 +2355,7 @@
   /* Anclar el contenedor al borde izquierdo y eliminar centrado cuando el sidebar estÃ¡ activo */
   body.order-mode-active .app-container,
   body.order-mode-active .content-wrapper,
-  body.order-mode-active #content-container {
+  body.order-mode-active .content-container {
     padding-left: 0 !important;
     margin-left: 0 !important;
     left: 0 !important;
@@ -2367,7 +2367,7 @@
   }
 
   /* Reservar ancho del contenido aunque falte la clase with-sidebar */
-  body.order-mode-active .content-wrapper #content-container {
+  body.order-mode-active .content-wrapper .content-container {
     flex: 0 1 calc(100vw - var(--order-sidebar-width-mobile)) !important;
     width: calc(100vw - var(--order-sidebar-width-mobile)) !important;
     max-width: calc(100vw - var(--order-sidebar-width-mobile)) !important;
@@ -2378,7 +2378,7 @@
     box-sizing: border-box;
   }
 
-  body.order-mode-active .content-wrapper.order-active #content-container {
+  body.order-mode-active .content-wrapper.order-active .content-container {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
@@ -2407,7 +2407,7 @@
     align-items: stretch;
   }
 
-  body.order-mode-active .content-wrapper.with-sidebar #content-container {
+  body.order-mode-active .content-wrapper.with-sidebar .content-container {
     flex: 0 0 auto;
     width: calc(100vw - var(--order-sidebar-width-mobile)) !important;
     max-width: calc(100vw - var(--order-sidebar-width-mobile)) !important;
@@ -2441,7 +2441,7 @@
     overflow-x: hidden !important;
   }
 
-  .content-wrapper.order-active #content-container {
+  .content-wrapper.order-active .content-container {
     margin-right: 0;
     width: 100%;
     max-width: 100%;
@@ -2464,7 +2464,7 @@
   }
 
   .content-wrapper.order-active.with-sidebar .content-container-flex,
-  .content-wrapper.order-active.with-sidebar #content-container {
+  .content-wrapper.order-active.with-sidebar .content-container {
     flex: 0 1 calc(100vw - var(--order-sidebar-width-mobile) - var(--content-separation));
     width: calc(100vw - var(--order-sidebar-width-mobile) - var(--content-separation));
     max-width: calc(100vw - var(--order-sidebar-width-mobile) - var(--content-separation));
@@ -2555,7 +2555,7 @@
 
   /* Reservar espacio inferior para que el contenido no se ensime */
   .content-container-flex,
-  #content-container {
+  .content-container {
     width: 100% !important;
     max-width: 100% !important;
     padding-bottom: var(--order-sidebar-height-portrait-tablet) !important;

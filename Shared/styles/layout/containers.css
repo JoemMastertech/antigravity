@@ -70,7 +70,7 @@ body.order-mode-active .app-container {
 }
 
 /* Content Container */
-#content-container {
+.content-container {
     flex: 1;
     padding: 0;
     margin-right: 0;

@@ -2,9 +2,9 @@
   "summary": {
     "total": 591,
     "critical": 104,
-    "high": 60,
-    "medium": 52,
-    "low": 375
+    "high": 4,
+    "medium": 60,
+    "low": 423
   },
   "critical": [
     {
@@ -232,13 +232,13 @@
       "file": "_legacy.css"
     },
     {
-      "selector": "#app",
+      "selector": ".app-container",
       "line": 642,
       "specificity": {
-        "ids": 1,
-        "classes": 0,
+        "ids": 0,
+        "classes": 1,
         "elements": 0,
-        "score": 100
+        "score": 10
       },
       "hasImportant": true,
       "importantCount": 1,
@@ -246,13 +246,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "#app",
+      "selector": ".app-container",
       "line": 667,
       "specificity": {
-        "ids": 1,
-        "classes": 0,
+        "ids": 0,
+        "classes": 1,
         "elements": 0,
-        "score": 100
+        "score": 10
       },
       "hasImportant": true,
       "importantCount": 5,
@@ -288,13 +288,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "#order-sidebar",
+      "selector": ".order-sidebar",
       "line": 682,
       "specificity": {
-        "ids": 1,
-        "classes": 0,
+        "ids": 0,
+        "classes": 1,
         "elements": 0,
-        "score": 100
+        "score": 10
       },
       "hasImportant": true,
       "importantCount": 19,
@@ -316,13 +316,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "#content-container",
+      "selector": ".content-container",
       "line": 705,
       "specificity": {
-        "ids": 1,
-        "classes": 0,
+        "ids": 0,
+        "classes": 1,
         "elements": 0,
-        "score": 100
+        "score": 10
       },
       "hasImportant": true,
       "importantCount": 4,
@@ -330,13 +330,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "#order-sidebar.active",
+      "selector": ".order-sidebar.active",
       "line": 714,
       "specificity": {
-        "ids": 1,
-        "classes": 1,
+        "ids": 0,
+        "classes": 2,
         "elements": 0,
-        "score": 110
+        "score": 20
       },
       "hasImportant": true,
       "importantCount": 5,
@@ -344,13 +344,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "body.order-mode-active #order-sidebar",
+      "selector": "body.order-mode-active .order-sidebar",
       "line": 714,
       "specificity": {
-        "ids": 1,
-        "classes": 1,
+        "ids": 0,
+        "classes": 2,
         "elements": 1,
-        "score": 111
+        "score": 21
       },
       "hasImportant": true,
       "importantCount": 5,
@@ -358,13 +358,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "#content-container .product-table td",
+      "selector": ".content-container .product-table td",
       "line": 1033,
       "specificity": {
-        "ids": 1,
-        "classes": 1,
+        "ids": 0,
+        "classes": 2,
         "elements": 1,
-        "score": 111
+        "score": 21
       },
       "hasImportant": true,
       "importantCount": 4,
@@ -372,13 +372,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "#content-container .product-table th",
+      "selector": ".content-container .product-table th",
       "line": 1033,
       "specificity": {
-        "ids": 1,
-        "classes": 1,
+        "ids": 0,
+        "classes": 2,
         "elements": 1,
-        "score": 111
+        "score": 21
       },
       "hasImportant": true,
       "importantCount": 4,
@@ -386,13 +386,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "#content-container .liquor-table td",
+      "selector": ".content-container .liquor-table td",
       "line": 1033,
       "specificity": {
-        "ids": 1,
-        "classes": 1,
+        "ids": 0,
+        "classes": 2,
         "elements": 1,
-        "score": 111
+        "score": 21
       },
       "hasImportant": true,
       "importantCount": 4,
@@ -400,13 +400,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "#content-container .liquor-table th",
+      "selector": ".content-container .liquor-table th",
       "line": 1033,
       "specificity": {
-        "ids": 1,
-        "classes": 1,
+        "ids": 0,
+        "classes": 2,
         "elements": 1,
-        "score": 111
+        "score": 21
       },
       "hasImportant": true,
       "importantCount": 4,
@@ -414,13 +414,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "#content-container .product-table td.product-name",
+      "selector": ".content-container .product-table td.product-name",
       "line": 1044,
       "specificity": {
-        "ids": 1,
-        "classes": 2,
+        "ids": 0,
+        "classes": 3,
         "elements": 1,
-        "score": 121
+        "score": 31
       },
       "hasImportant": true,
       "importantCount": 4,
@@ -428,13 +428,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "#content-container .liquor-table td.product-name",
+      "selector": ".content-container .liquor-table td.product-name",
       "line": 1044,
       "specificity": {
-        "ids": 1,
-        "classes": 2,
+        "ids": 0,
+        "classes": 3,
         "elements": 1,
-        "score": 121
+        "score": 31
       },
       "hasImportant": true,
       "importantCount": 4,
@@ -442,13 +442,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "#content-container .product-table td.product-ingredients",
+      "selector": ".content-container .product-table td.product-ingredients",
       "line": 1053,
       "specificity": {
-        "ids": 1,
-        "classes": 2,
+        "ids": 0,
+        "classes": 3,
         "elements": 1,
-        "score": 121
+        "score": 31
       },
       "hasImportant": true,
       "importantCount": 4,
@@ -456,13 +456,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "#content-container .liquor-table td.product-ingredients",
+      "selector": ".content-container .liquor-table td.product-ingredients",
       "line": 1053,
       "specificity": {
-        "ids": 1,
-        "classes": 2,
+        "ids": 0,
+        "classes": 3,
         "elements": 1,
-        "score": 121
+        "score": 31
       },
       "hasImportant": true,
       "importantCount": 4,
@@ -596,13 +596,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "body.order-mode-active #app",
+      "selector": "body.order-mode-active .app-container",
       "line": 1342,
       "specificity": {
-        "ids": 1,
-        "classes": 1,
+        "ids": 0,
+        "classes": 2,
         "elements": 1,
-        "score": 111
+        "score": 21
       },
       "hasImportant": true,
       "importantCount": 1,
@@ -666,13 +666,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "#content-container",
+      "selector": ".content-container",
       "line": 1386,
       "specificity": {
-        "ids": 1,
-        "classes": 0,
+        "ids": 0,
+        "classes": 1,
         "elements": 0,
-        "score": 100
+        "score": 10
       },
       "hasImportant": true,
       "importantCount": 1,
@@ -764,13 +764,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "#content-container",
+      "selector": ".content-container",
       "line": 1669,
       "specificity": {
-        "ids": 1,
-        "classes": 0,
+        "ids": 0,
+        "classes": 1,
         "elements": 0,
-        "score": 100
+        "score": 10
       },
       "hasImportant": true,
       "importantCount": 1,
@@ -1044,13 +1044,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "body.order-mode-active #app",
+      "selector": "body.order-mode-active .app-container",
       "line": 2282,
       "specificity": {
-        "ids": 1,
-        "classes": 1,
+        "ids": 0,
+        "classes": 2,
         "elements": 1,
-        "score": 111
+        "score": 21
       },
       "hasImportant": true,
       "importantCount": 5,
@@ -1072,13 +1072,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "body.order-mode-active #app",
+      "selector": "body.order-mode-active .app-container",
       "line": 2298,
       "specificity": {
-        "ids": 1,
-        "classes": 1,
+        "ids": 0,
+        "classes": 2,
         "elements": 1,
-        "score": 111
+        "score": 21
       },
       "hasImportant": true,
       "importantCount": 1,
@@ -1086,13 +1086,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "body.order-mode-active #app",
+      "selector": "body.order-mode-active .app-container",
       "line": 2312,
       "specificity": {
-        "ids": 1,
-        "classes": 1,
+        "ids": 0,
+        "classes": 2,
         "elements": 1,
-        "score": 111
+        "score": 21
       },
       "hasImportant": true,
       "importantCount": 4,
@@ -1114,13 +1114,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "body.order-mode-active #content-container",
+      "selector": "body.order-mode-active .content-container",
       "line": 2312,
       "specificity": {
-        "ids": 1,
-        "classes": 1,
+        "ids": 0,
+        "classes": 2,
         "elements": 1,
-        "score": 111
+        "score": 21
       },
       "hasImportant": true,
       "importantCount": 4,
@@ -1142,13 +1142,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "body.order-mode-active .content-wrapper #content-container",
+      "selector": "body.order-mode-active .content-wrapper .content-container",
       "line": 2326,
       "specificity": {
-        "ids": 1,
-        "classes": 2,
+        "ids": 0,
+        "classes": 3,
         "elements": 1,
-        "score": 121
+        "score": 31
       },
       "hasImportant": true,
       "importantCount": 7,
@@ -1156,13 +1156,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "body.order-mode-active .content-wrapper.order-active #content-container",
+      "selector": "body.order-mode-active .content-wrapper.order-active .content-container",
       "line": 2338,
       "specificity": {
-        "ids": 1,
-        "classes": 3,
+        "ids": 0,
+        "classes": 4,
         "elements": 1,
-        "score": 131
+        "score": 41
       },
       "hasImportant": true,
       "importantCount": 2,
@@ -1184,13 +1184,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "body.order-mode-active .content-wrapper.with-sidebar #content-container",
+      "selector": "body.order-mode-active .content-wrapper.with-sidebar .content-container",
       "line": 2367,
       "specificity": {
-        "ids": 1,
-        "classes": 3,
+        "ids": 0,
+        "classes": 4,
         "elements": 1,
-        "score": 131
+        "score": 41
       },
       "hasImportant": true,
       "importantCount": 4,
@@ -1310,13 +1310,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "#app",
+      "selector": ".app-container",
       "line": 2458,
       "specificity": {
-        "ids": 1,
-        "classes": 0,
+        "ids": 0,
+        "classes": 1,
         "elements": 0,
-        "score": 100
+        "score": 10
       },
       "hasImportant": true,
       "importantCount": 6,
@@ -1366,13 +1366,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "#order-sidebar",
+      "selector": ".order-sidebar",
       "line": 2476,
       "specificity": {
-        "ids": 1,
-        "classes": 0,
+        "ids": 0,
+        "classes": 1,
         "elements": 0,
-        "score": 100
+        "score": 10
       },
       "hasImportant": true,
       "importantCount": 19,
@@ -1380,13 +1380,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "body #order-sidebar.active",
+      "selector": "body .order-sidebar.active",
       "line": 2499,
       "specificity": {
-        "ids": 1,
-        "classes": 1,
+        "ids": 0,
+        "classes": 2,
         "elements": 1,
-        "score": 111
+        "score": 21
       },
       "hasImportant": true,
       "importantCount": 1,
@@ -1394,13 +1394,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "#order-sidebar.active",
+      "selector": ".order-sidebar.active",
       "line": 2503,
       "specificity": {
-        "ids": 1,
-        "classes": 1,
+        "ids": 0,
+        "classes": 2,
         "elements": 0,
-        "score": 110
+        "score": 20
       },
       "hasImportant": true,
       "importantCount": 5,
@@ -1408,13 +1408,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "body.order-mode-active #order-sidebar",
+      "selector": "body.order-mode-active .order-sidebar",
       "line": 2503,
       "specificity": {
-        "ids": 1,
-        "classes": 1,
+        "ids": 0,
+        "classes": 2,
         "elements": 1,
-        "score": 111
+        "score": 21
       },
       "hasImportant": true,
       "importantCount": 5,
@@ -1436,13 +1436,13 @@
       "file": "media-queries.css"
     },
     {
-      "selector": "#content-container",
+      "selector": ".content-container",
       "line": 2513,
       "specificity": {
-        "ids": 1,
-        "classes": 0,
+        "ids": 0,
+        "classes": 1,
         "elements": 0,
-        "score": 100
+        "score": 10
       },
       "hasImportant": true,
       "importantCount": 4,
@@ -1494,104 +1494,6 @@
       "file": "_legacy.css"
     },
     {
-      "selector": "#drawer-menu",
-      "line": 113,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "_legacy.css"
-    },
-    {
-      "selector": "#drawer-menu.open",
-      "line": 117,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 0,
-        "score": 110
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "_legacy.css"
-    },
-    {
-      "selector": "#order-sidebar",
-      "line": 174,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "_legacy.css"
-    },
-    {
-      "selector": "#order-sidebar.active",
-      "line": 197,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 0,
-        "score": 110
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "_legacy.css"
-    },
-    {
-      "selector": "body.order-mode-active #order-sidebar",
-      "line": 197,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 1,
-        "score": 111
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "_legacy.css"
-    },
-    {
-      "selector": "#order-sidebar.is-open",
-      "line": 200,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 0,
-        "score": 110
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "_legacy.css"
-    },
-    {
-      "selector": "#order-sidebar h3",
-      "line": 203,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 1,
-        "score": 101
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "_legacy.css"
-    },
-    {
       "selector": "#order-content",
       "line": 210,
       "specificity": {
@@ -1618,692 +1520,6 @@
       "importantCount": 0,
       "riskLevel": "HIGH",
       "file": "_legacy.css"
-    },
-    {
-      "selector": "#settings-menu",
-      "line": 228,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "_legacy.css"
-    },
-    {
-      "selector": "#settings-menu.open",
-      "line": 245,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 0,
-        "score": 110
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "_legacy.css"
-    },
-    {
-      "selector": ".top-nav-visible~#app .main-content-screen",
-      "line": 333,
-      "specificity": {
-        "ids": 1,
-        "classes": 2,
-        "elements": 0,
-        "score": 120
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "_legacy.css"
-    },
-    {
-      "selector": "#settings-menu .back-button",
-      "line": 476,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 0,
-        "score": 110
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "_legacy.css"
-    },
-    {
-      "selector": "body.order-mode-active #app",
-      "line": 484,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 1,
-        "score": 111
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "_legacy.css"
-    },
-    {
-      "selector": "#drink-options-modal.is-open",
-      "line": 591,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 0,
-        "score": 110
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "_legacy.css"
-    },
-    {
-      "selector": "#order-sidebar h3",
-      "line": 82,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 1,
-        "score": 101
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#settings-menu",
-      "line": 94,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#order-sidebar",
-      "line": 108,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#order-sidebar h3",
-      "line": 120,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 1,
-        "score": 101
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#settings-menu",
-      "line": 133,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#drawer-menu",
-      "line": 218,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#drawer-menu.open",
-      "line": 226,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 0,
-        "score": 110
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#settings-menu",
-      "line": 233,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#settings-menu.open",
-      "line": 238,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 0,
-        "score": 110
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "body #app",
-      "line": 258,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 1,
-        "score": 101
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "body.order-mode-active #app",
-      "line": 265,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 1,
-        "score": 111
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#content-container",
-      "line": 435,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#app",
-      "line": 441,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "body.order-mode-active #app",
-      "line": 447,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 1,
-        "score": 111
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": ".options-grid:not(#drink-options-modal .options-grid)",
-      "line": 549,
-      "specificity": {
-        "ids": 1,
-        "classes": 3,
-        "elements": 0,
-        "score": 130
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "body #order-sidebar.active",
-      "line": 773,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 1,
-        "score": 111
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "body #app",
-      "line": 827,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 1,
-        "score": 101
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#content-container",
-      "line": 851,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": ".content-wrapper.order-active #content-container",
-      "line": 860,
-      "specificity": {
-        "ids": 1,
-        "classes": 2,
-        "elements": 0,
-        "score": 120
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#app",
-      "line": 966,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "body #content-container .product-table",
-      "line": 1022,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 1,
-        "score": 111
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "body #content-container .liquor-table",
-      "line": 1022,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 1,
-        "score": 111
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "body #content-container .product-table[data-category=\"refrescos\"]",
-      "line": 1061,
-      "specificity": {
-        "ids": 1,
-        "classes": 2,
-        "elements": 1,
-        "score": 121
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "body #content-container .product-table[data-category=\"cervezas\"]",
-      "line": 1061,
-      "specificity": {
-        "ids": 1,
-        "classes": 2,
-        "elements": 1,
-        "score": 121
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#content-container",
-      "line": 1069,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "body #drink-options-modal.modal-flex .options-grid",
-      "line": 1183,
-      "specificity": {
-        "ids": 1,
-        "classes": 2,
-        "elements": 1,
-        "score": 121
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "body #drink-options-modal .drink-option-container",
-      "line": 1193,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 1,
-        "score": 111
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "}\r\n\r\n  }\r\n\r\n  #order-sidebar h3",
-      "line": 1428,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 1,
-        "score": 101
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#app",
-      "line": 1513,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#content-container",
-      "line": 1522,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#app",
-      "line": 1810,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "body.order-mode-active #app",
-      "line": 1828,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 1,
-        "score": 111
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "body.order-mode-active #order-sidebar",
-      "line": 1838,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 1,
-        "score": 111
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#order-sidebar h3",
-      "line": 1888,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 1,
-        "score": 101
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#settings-menu",
-      "line": 2067,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#settings-menu.open",
-      "line": 2073,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 0,
-        "score": 110
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#settings-menu",
-      "line": 2100,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#settings-menu.open",
-      "line": 2106,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 0,
-        "score": 110
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "body.order-mode-active #order-sidebar",
-      "line": 2343,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 1,
-        "score": 111
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": ".content-wrapper.order-active #content-container",
-      "line": 2401,
-      "specificity": {
-        "ids": 1,
-        "classes": 2,
-        "elements": 0,
-        "score": 120
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": ".content-wrapper.order-active.with-sidebar #content-container",
-      "line": 2423,
-      "specificity": {
-        "ids": 1,
-        "classes": 3,
-        "elements": 0,
-        "score": 130
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "body.order-mode-active #app",
-      "line": 2528,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 1,
-        "score": 111
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
-    },
-    {
-      "selector": "#order-sidebar",
-      "line": 2539,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH",
-      "file": "media-queries.css"
     }
   ],
   "medium": [
@@ -2371,6 +1587,20 @@
         "classes": 5,
         "elements": 0,
         "score": 50
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".top-nav-visible~.app-container .main-content-screen",
+      "line": 333,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 0,
+        "score": 30
       },
       "hasImportant": false,
       "importantCount": 0,
@@ -2518,6 +1748,20 @@
       "file": "media-queries.css"
     },
     {
+      "selector": ".options-grid:not(.drink-modal .options-grid)",
+      "line": 549,
+      "specificity": {
+        "ids": 0,
+        "classes": 4,
+        "elements": 0,
+        "score": 40
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
       "selector": "}\r\n\r\n  \r\n  .product-table[data-category=\"refrescos\"] th:nth-child(2)",
       "line": 600,
       "specificity": {
@@ -2590,6 +1834,20 @@
     {
       "selector": ".modal-content.image-modal .nav-button",
       "line": 629,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 0,
+        "score": 30
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active .content-container",
+      "line": 860,
       "specificity": {
         "ids": 0,
         "classes": 3,
@@ -2826,6 +2084,34 @@
       "file": "media-queries.css"
     },
     {
+      "selector": "body .content-container .product-table[data-category=\"refrescos\"]",
+      "line": 1061,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 1,
+        "score": 31
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "body .content-container .product-table[data-category=\"cervezas\"]",
+      "line": 1061,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 1,
+        "score": 31
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
       "selector": ".modal-content.image-modal.video-modal",
       "line": 1149,
       "specificity": {
@@ -2833,6 +2119,20 @@
         "classes": 3,
         "elements": 0,
         "score": 30
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "body .drink-modal.modal-flex .options-grid",
+      "line": 1183,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 1,
+        "score": 31
       },
       "hasImportant": false,
       "importantCount": 0,
@@ -3008,6 +2308,20 @@
       "file": "media-queries.css"
     },
     {
+      "selector": ".content-wrapper.order-active .content-container",
+      "line": 2401,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 0,
+        "score": 30
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
       "selector": ".content-wrapper.order-active.with-sidebar",
       "line": 2410,
       "specificity": {
@@ -3023,6 +2337,20 @@
     },
     {
       "selector": ".content-wrapper.order-active.with-sidebar .content-container-flex",
+      "line": 2423,
+      "specificity": {
+        "ids": 0,
+        "classes": 4,
+        "elements": 0,
+        "score": 40
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active.with-sidebar .content-container",
       "line": 2423,
       "specificity": {
         "ids": 0,
