@@ -36,3 +36,18 @@
   border-left: 1px solid var(--border-color);
   backdrop-filter: blur(10px);
 }
+
+/* ===== MIGRATED FROM LEGACY (Round 4) ===== */
+.drawer-menu {
+  position: fixed;
+  top: 70px;
+  left: -300px;
+  width: 300px;
+  height: calc(100vh - 70px);
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+  transition: left 0.3s ease-in-out;
+  overflow-y: auto;
+  border-right: 1px solid var(--border-color);
+}
