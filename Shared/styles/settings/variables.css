@@ -4,10 +4,30 @@
 
 :root {
     /* Default theme (dark-blue) */
-    --primary-color: #f3f6f6;
+    /* Semantic Colors - Base Palette */
+    --color-white: #ffffff;
+    --color-black: #000000;
+
+    --color-gray-50: #f9fafb;
+    --color-gray-100: #f3f6f6;
+    --color-gray-200: #ECE9D8;
+    --color-gray-300: #e0e0e0;
+    --color-gray-400: #cccccc;
+    --color-gray-500: #9ca3af;
+    --color-gray-800: #1e293b;
+    --color-gray-900: #111827;
+
+    --color-info: #3b82f6;
+    --color-success: #28a745;
+    --color-warning: #ffc107;
+    --color-error: #dc3545;
+    --color-error-light: #ff4d4d;
+    --color-error-dark: #b91c1c;
+
+    --primary-color: var(--color-gray-100);
     --accent-color: #00f7ff;
-    --background-color: #000;
-    --text-color: #ECE9D8;
+    --background-color: var(--color-black);
+    --text-color: var(--color-gray-200);
     --price-color: #00f7ff;
 
     /* Component Colors */

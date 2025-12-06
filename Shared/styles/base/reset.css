@@ -12,10 +12,10 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    color: #ECE9D8;
+    color: var(--color-gray-200);
     /* Fallback */
     color: var(--text-color);
-    background: #000;
+    background: var(--color-black);
     /* Fallback */
     background: var(--background-color);
     min-height: 100vh;

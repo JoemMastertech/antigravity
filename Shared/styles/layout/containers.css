@@ -139,7 +139,7 @@ body.order-mode-active #app {
 }
 
 .saved-order-item-customization {
-  color: #ccc;
+  color: var(--color-gray-400);
   font-size: 0.85rem;
   font-style: italic;
   margin-top: 3px;
@@ -190,7 +190,7 @@ body.order-mode-active #app {
 .refrescos-section:not(:last-child),
 .jarras-section:not(:last-child),
 .vasos-section:not(:last-child) {
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 2px solid var(--color-gray-300);
   padding-bottom: 1.5rem;
 }
 
@@ -223,7 +223,7 @@ body.order-mode-active #app {
 .cervezas-botella-section:not(:last-child),
 .tarros-section:not(:last-child),
 .vasos-cerveza-section:not(:last-child) {
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 2px solid var(--color-gray-300);
   padding-bottom: 1.5rem;
 }
 

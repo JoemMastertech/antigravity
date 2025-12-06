@@ -56,7 +56,7 @@ PRODUCT TABLE & GRID COMPONENT
 
 .product-ingredients {
     font-size: 0.9rem;
-    color: #ccc;
+    color: var(--color-gray-400);
     text-align: center;
     font-style: italic;
     margin-bottom: 10px;
@@ -106,7 +106,7 @@ PRODUCT TABLE & GRID COMPONENT
 
 .price-button:hover {
     background: var(--accent-color);
-    color: #000;
+    color: var(--color-black);
     box-shadow: 0 0 10px var(--accent-color);
 }
 

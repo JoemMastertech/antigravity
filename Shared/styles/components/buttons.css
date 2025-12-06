@@ -131,6 +131,6 @@
 
 [data-theme="light-white"] .back-button:hover {
   background-color: #85C7FF;
-  color: #ffffff;
+  color: var(--color-white);
   box-shadow: 0 0 10px #85C7FF;
 }
