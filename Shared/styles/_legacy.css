@@ -83,8 +83,6 @@ body.no-scrollbars {
   position: relative;
   z-index: 1;
   min-width: 120px;
-}#create-order-btn {
-  margin-left: auto;
 }.orders-screen {
   position: absolute;
   top: 0;
@@ -121,8 +119,6 @@ body.no-scrollbars {
 .history-btn {
   position: relative;
   z-index: 1;
-}.history-btn {
-  margin-left: auto;
 }/* Media queries para evitar sobreposiciÃ³n en pantallas pequeÃ±as *//* REGLAS ESPECÃFICAS PARA TABLET EN LANDSCAPE Y PORTRAIT - MODO BLANCO *//* REGLAS ESPECÃFICAS PARA MÃ“VIL EN LANDSCAPE - MODO BLANCO */.video-icon,
 .image-icon {
   cursor: pointer;
@@ -148,8 +144,6 @@ body.no-scrollbars {
   height: 60px;
 }[data-category="postres"] .video-thumb:hover {
   transform: rotate(-2deg) scale(1.05);
-}[data-category="sopas"] .video-thumb {
-  border: 1px solid rgba(255, 165, 0, 0.3);
 }/* Consolidated responsive styles for video thumbnails *//* =================================================================
    RESPONSIVE BREAKPOINTS - CONSOLIDATED MEDIA QUERIES
    ================================================================= *//* TABLET AND MOBILE (â‰¤768px) - Consolidated Rules *//* === REGION: BREAKPOINT MOBILE â‰¤480 === *//* MOBILE (â‰¤480px) - Consolidated Rules *//* ===== BEM METHODOLOGY IMPLEMENTATION ===== *//* === REGION: NAV (BEM) === *//* Navigation Component - BEM Structure */.nav {
@@ -171,10 +165,6 @@ body.no-scrollbars {
   font: 600 1rem 'Montserrat', sans-serif;
   cursor: pointer;
   transition: all var(--transition-time) ease;
-}.nav__button--active,
-.nav__button:hover {
-  background-color: var(--primary-color);
-  color: var(--background-color);
 }.nav__button--toggle {
   font-size: 1.2rem;
   width: 40px;
@@ -377,10 +367,6 @@ body.order-mode-active #order-sidebar {
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
-}.back-button:hover {
-  background-color: var(--primary-color);
-  color: var(--background-color);
-  box-shadow: var(--glow-shadow-hover);
 }/* Theme and language buttons */.language-btn,
 .theme-btn {
   width: 100%;
@@ -413,9 +399,6 @@ body.order-mode-active #order-sidebar {
   border-radius: 15px;
   box-shadow: 0 0 20px var(--border-color);
   position: relative;
-}.container {
-  border: 1px solid var(--primary-color);
-  background: var(--card-bg);
 }.saved-orders {
   width: 100%;
   margin-bottom: 20px;
@@ -444,47 +427,12 @@ body.order-mode-active #order-sidebar {
   padding: 15px;
   margin-bottom: 15px;
   transition: all var(--transition-time) ease;
-}.saved-order h3 {
-  color: var(--primary-color);
-  font: 1.3rem 'Playfair Display', serif;
-  margin-bottom: 10px;
-  text-align: center;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 5px;
-}.saved-order-items {
-  margin-bottom: 10px;
-}.saved-order-item {
-  padding: 5px 0;
-  margin-bottom: 5px;
-  border-bottom: 1px solid rgba(0, 247, 255, 0.1);
-}.saved-order-item-name {
-  font-weight: 600;
-  color: var(--primary-color);
-  margin-bottom: 3px;
-}.saved-order-item-price {
-  color: var(--price-color);
-  font-weight: 500;
-  font-size: 0.9rem;
-}.saved-order-item-customization {
-  color: #ccc;
-  font-size: 0.85rem;
-  font-style: italic;
-  margin-top: 3px;
-}.saved-order-total {
-  color: var(--price-color);
-  font-weight: 600;
-  text-align: right;
-  margin: 10px 0;
-  font-size: 1.1rem;
 }.delete-order-btn {
   background: rgba(255, 99, 71, 0.2);
   border-color: rgba(255, 99, 71, 0.5);
   color: rgba(255, 99, 71, 1);
   margin: 0 auto;
   display: block;
-}.delete-order-btn:hover {
-  background: rgba(255, 99, 71, 0.8);
-  color: white;
 }/* Consolidated tablet responsive styles *//* Optimized disabled states and selection modes */.price-selection-mode .price-button.non-selectable,
 .price-selection-mode .price-button:disabled {
   animation: none;
@@ -501,9 +449,7 @@ body.order-mode-active #order-sidebar {
    RESPONSIVE DESIGN - MOBILE LANDSCAPE (max-width: 480px)
    ================================================================= *//* =================================================================
    RESPONSIVE DESIGN - MOBILE PORTRAIT (max-width: 480px)
-   ================================================================= */.nav-center {
-  font-size: 1rem;
-}/* Ajustar contenido principal para barra mÃ¡s compacta */.top-nav-visible~#app .main-content-screen,
+   ================================================================= *//* Ajustar contenido principal para barra mÃ¡s compacta */.top-nav-visible~#app .main-content-screen,
 .main-content-screen.with-top-nav {
   padding-top: 56px;
 }/* Botones hamburguesa y volver superpuestos - ajustados */.hamburger-btn,
@@ -536,17 +482,6 @@ body.order-mode-active #order-sidebar {
   margin: 15px 0;
   font-family: 'Montserrat', sans-serif;
   transition: all var(--transition-time) ease;
-}.password-input:focus {
-  outline: none;
-  border-color: var(--price-color);
-}.clear-history-btn {
-  background: rgba(255, 99, 71, 0.2);
-  border-color: rgba(255, 99, 71, 0.5);
-  color: rgba(255, 99, 71, 1);
-  margin-left: auto;
-}.clear-history-btn:hover {
-  background: rgba(255, 99, 71, 0.8);
-  color: white;
 }/* =================================================================
    TOP NAVIGATION BAR
    ================================================================= */.top-nav-bar {
@@ -678,9 +613,6 @@ body.order-mode-active #order-sidebar {
   backdrop-filter: blur(10px);
   font-weight: bold;
   border-radius: 8px;
-}.back-button:hover {
-  background-color: var(--primary-color);
-  color: var(--background-color);
 }/* Centrar el botÃ³n Volver en el menÃº lateral derecho */#settings-menu .back-button {
   margin: 0 auto;
   display: block;
@@ -689,9 +621,7 @@ body.order-mode-active #order-sidebar {
 }.title-row td {
   padding: 0;
   background: transparent;
-}/* Cuando el modo orden estÃ¡ activo en desktop, ajustar padding para el sidebar */body.order-mode-active #app {
-  padding-right: calc(max(20px, calc((100vw - var(--table-max-width)) / 2)) + 284px);
-}.content-wrapper.order-active {
+}/* Cuando el modo orden estÃ¡ activo en desktop, ajustar padding para el sidebar */.content-wrapper.order-active {
   gap: 1px;
   justify-content: flex-start;
   transition: gap 0.2s ease-in-out;
@@ -944,15 +874,7 @@ body.order-mode-active #order-sidebar {
 }/* =================================================================
    SOLUCIÃ“N DEFINITIVA PARA ALINEACIÃ“N DE NOMBRES EN PORTRAIT
    ================================================================= *//* Estas reglas tienen mÃ¡xima especificidad para sobrescribir 
-   las reglas generales de portrait que centran todas las celdas *//* ===== CONFIGURACIONES ESPECÃFICAS DEL MENÃš LATERAL DE NAVEGACIÃ“N ===== *//* DESKTOP - Aumentar texto 30% y reducir ancho 20% *//* TABLET PORTRAIT - Aumentar texto 15% y reducir ancho 10% *//* TABLET LANDSCAPE - Aumentar texto 15% y reducir ancho 10% *//* ===== TEMA LIGHT-WHITE CONSOLIDADO ===== *//* Reglas base con especificidad optimizada - sin !important */[data-theme="light-white"] .back-button {
-  background: var(--card-bg);
-  border: 2px solid var(--primary-color);
-  color: var(--text-color);
-}[data-theme="light-white"] .back-button:hover {
-  background-color: #85C7FF;
-  color: #ffffff;
-  box-shadow: 0 0 10px #85C7FF;
-}/* Botones de tema con especificidad optimizada *//* Botones especÃ­ficos con texto azul permanente *//* === REGION: BREAKPOINT LAPTOP/DESKTOP â‰¥769 === *//* Desktop spacing when order mode is active (avoid overlap with fixed sidebar) *//* === REGION: MOBILE LANDSCAPE â‰¤768 === *//* Sidebar fijo a la derecha y espacio reservado vÃ­a ancho del wrapper *//* =================================================================
+   las reglas generales de portrait que centran todas las celdas *//* ===== CONFIGURACIONES ESPECÃFICAS DEL MENÃš LATERAL DE NAVEGACIÃ“N ===== *//* DESKTOP - Aumentar texto 30% y reducir ancho 20% *//* TABLET PORTRAIT - Aumentar texto 15% y reducir ancho 10% *//* TABLET LANDSCAPE - Aumentar texto 15% y reducir ancho 10% *//* ===== TEMA LIGHT-WHITE CONSOLIDADO ===== *//* Reglas base con especificidad optimizada - sin !important *//* Botones de tema con especificidad optimizada *//* Botones especÃ­ficos con texto azul permanente *//* === REGION: BREAKPOINT LAPTOP/DESKTOP â‰¥769 === *//* Desktop spacing when order mode is active (avoid overlap with fixed sidebar) *//* === REGION: MOBILE LANDSCAPE â‰¤768 === *//* Sidebar fijo a la derecha y espacio reservado vÃ­a ancho del wrapper *//* =================================================================
    RANGE PORTRAIT: 481pxâ€“768px (phablet / tablet pequeÃ±a)
    Replicar comportamiento de mÃ³vil portrait: ancho completo y sidebar inferior
    ================================================================= *//* ConfiguraciÃ³n especÃ­fica para resoluciones 768â€“1024 de ancho y 641px de alto *//* Responsive logos: solo mÃ³viles â‰¤480px *//* Reset en â‰¥481px para evitar escala en tablet/escritorio *//* =================================================================

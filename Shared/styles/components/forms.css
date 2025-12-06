@@ -397,3 +397,9 @@ textarea:focus {
 [data-theme="light-white"] .settings-title {
   color: var(--text-color);
 }
+
+/* ===== MIGRATED FROM LEGACY (Round 2) ===== */
+.password-input:focus {
+  outline: none;
+  border-color: var(--price-color);
+}

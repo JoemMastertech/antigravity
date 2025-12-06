@@ -501,3 +501,9 @@
   background: var(--price-bg, transparent);
   color: var(--price-color);
 }
+
+
+/* ===== MIGRATED FROM LEGACY (Round 2) ===== */
+[data-category="sopas"] .video-thumb {
+  border: 1px solid rgba(255, 165, 0, 0.3);
+}

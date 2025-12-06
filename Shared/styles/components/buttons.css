@@ -112,3 +112,58 @@
   color: #1e40af;
   box-shadow: 0 0 20px #85C7FF;
 }
+
+/* ===== MIGRATED FROM LEGACY (Round 2) ===== */
+#create-order-btn {
+  margin-left: auto;
+}
+
+.history-btn {
+  margin-left: auto;
+}
+
+.nav__button--active,
+.nav__button:hover {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+}
+
+.back-button:hover {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  box-shadow: var(--glow-shadow-hover);
+}
+
+.delete-order-btn:hover {
+  background: rgba(255, 99, 71, 0.8);
+  color: white;
+}
+
+.clear-history-btn {
+  background: rgba(255, 99, 71, 0.2);
+  border-color: rgba(255, 99, 71, 0.5);
+  color: rgba(255, 99, 71, 1);
+  margin-left: auto;
+}
+
+.clear-history-btn:hover {
+  background: rgba(255, 99, 71, 0.8);
+  color: white;
+}
+
+.back-button:hover {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+}
+
+[data-theme="light-white"] .back-button {
+  background: var(--card-bg);
+  border: 2px solid var(--primary-color);
+  color: var(--text-color);
+}
+
+[data-theme="light-white"] .back-button:hover {
+  background-color: #85C7FF;
+  color: #ffffff;
+  box-shadow: 0 0 10px #85C7FF;
+}
