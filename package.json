@@ -18,7 +18,11 @@
     "fix:css": "stylelint Shared/styles/main.css --fix",
     "watch:css": "postcss Shared/styles/main.css -o dist/main.css -w",
     "build:css:report": "npm run build:css && node -e \"const fs=require('fs');const s=fs.statSync('dist/main.css');console.log('dist/main.css size:',s.size,'bytes');\"",
-    "build:css:prod:report": "set NODE_ENV=production&& npm run build:css:prod && node -e \"const fs=require('fs');const s=fs.statSync('dist/main.min.css');console.log('dist/main.min.css size:',s.size,'bytes');\""
+    "build:css:prod:report": "set NODE_ENV=production&& npm run build:css:prod && node -e \"const fs=require('fs');const s=fs.statSync('dist/main.min.css');console.log('dist/main.min.css size:',s.size,'bytes');\"",
+    "css:analyze": "npx wallace Shared/styles/_legacy.css",
+    "css:analyze:all": "npx wallace Shared/styles/legacy-responsive/media-queries.css && npx wallace Shared/styles/_legacy.css",
+    "css:stats": "npx cssstats Shared/styles/_legacy.css",
+    "css:audit": "npm run css:analyze && npm run lint:css"
   },
   "repository": {
     "type": "git",
@@ -34,9 +38,11 @@
   "homepage": "https://github.com/JoemMastertech/NuevoJoel#readme",
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^7.0.2",
+    "@projectwallace/css-analyzer": "^7.6.3",
     "autoprefixer": "^10.4.21",
     "backstopjs": "^6.3.25",
     "cssnano": "^7.1.1",
+    "cssstats-cli": "^4.0.5",
     "jscpd": "^4.0.5",
     "madge": "^8.0.0",
     "postcss": "^8.5.6",
@@ -44,7 +50,8 @@
     "postcss-import": "^16.1.1",
     "stylelint": "^16.26.1",
     "stylelint-config-standard": "^39.0.1",
-    "vite": "^7.2.4"
+    "vite": "^7.2.4",
+    "wallace-cli": "^3.2.0"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.74.0",
