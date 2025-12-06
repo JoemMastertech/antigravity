@@ -183,8 +183,6 @@ body.no-scrollbars {
   overflow-y: auto;
 }.sidebar--open {
   left: 0;
-}.sidebar__nav-item {
-  margin-bottom: 10px;
 }.sidebar__nav-link {
   display: block;
   padding: 10px 15px;
@@ -193,10 +191,6 @@ body.no-scrollbars {
   border-radius: 5px;
   transition: all 0.3s ease;
   font: 500 0.9rem 'Montserrat', sans-serif;
-}.sidebar__nav-link:hover,
-.sidebar__nav-link--active {
-  background-color: var(--primary-color);
-  color: var(--background-color);
 }/* =================================================================
    SIDEBAR SYSTEM - NAVIGATION, ORDERS & SETTINGS
    ================================================================= *//* ===== SIDEBAR 1: NAVIGATION MENU (Left Side - Hamburger) ===== */.drawer-menu {
@@ -358,20 +352,6 @@ body.order-mode-active #order-sidebar {
   display: flex;
   flex-direction: column;
   gap: 15px;
-}.settings-title {
-  font-family: 'Playfair Display', serif;
-  color: var(--primary-color);
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 1.2rem;
-}.settings-section {
-  margin-bottom: 20px;
-}.settings-section h3,
-.settings-section h4 {
-  font-family: 'Playfair Display', serif;
-  color: var(--primary-color);
-  margin-bottom: 10px;
-  font-size: 1rem;
 }.back-button {
   background: var(--card-bg);
   border: 2px solid var(--primary-color);
@@ -380,10 +360,6 @@ body.order-mode-active #order-sidebar {
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
-}.back-button:hover {
-  background-color: var(--primary-color);
-  color: var(--background-color);
-  box-shadow: var(--glow-shadow-hover);
 }/* Theme and language buttons */.language-btn,
 .theme-btn {
   width: 100%;
@@ -404,12 +380,6 @@ body.order-mode-active #order-sidebar {
   border-color: var(--price-color);
   color: var(--price-color);
   box-shadow: var(--glow-shadow-hover);
-}.language-btn.active,
-.theme-btn.active {
-  background-color: transparent;
-  border-color: var(--price-color);
-  color: var(--price-color);
-  box-shadow: var(--glow-shadow-hover);
 }/* Responsive settings menu *//* =================================================================
    TABLES & GRID CONTAINERS - CONSOLIDATED
    ================================================================= */.container,
@@ -422,12 +392,6 @@ body.order-mode-active #order-sidebar {
   border-radius: 15px;
   box-shadow: 0 0 20px var(--border-color);
   position: relative;
-}.container {
-  border: 1px solid var(--primary-color);
-  background: var(--card-bg);
-}.saved-orders {
-  width: 100%;
-  margin-bottom: 20px;
 }/* === REGION: HISTORIAL Y LISTA DE Ã“RDENES === *//* Contenedores de Ã³rdenes con scroll vertical */.orders-list-container {
   max-height: 70vh;
   overflow-y: auto;
@@ -453,13 +417,6 @@ body.order-mode-active #order-sidebar {
   padding: 15px;
   margin-bottom: 15px;
   transition: all var(--transition-time) ease;
-}.saved-order h3 {
-  color: var(--primary-color);
-  font: 1.3rem 'Playfair Display', serif;
-  margin-bottom: 10px;
-  text-align: center;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 5px;
 }.saved-order-items {
   margin-bottom: 10px;
 }.saved-order-item {

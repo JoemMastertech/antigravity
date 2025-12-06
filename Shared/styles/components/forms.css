@@ -363,3 +363,32 @@ textarea:focus {
 .jager-radio {
     margin-right: 8px;
 }
+
+/* ===== MIGRATED FROM LEGACY ===== */
+.settings-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.settings-section {
+  margin-bottom: 20px;
+}
+
+.settings-section h3,
+.settings-section h4 {
+  font-family: 'Playfair Display', serif;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.language-btn.active,
+.theme-btn.active {
+  background-color: transparent;
+  border-color: var(--price-color);
+  color: var(--price-color);
+  box-shadow: var(--glow-shadow-hover);
+}
