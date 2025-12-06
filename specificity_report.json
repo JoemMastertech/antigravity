@@ -1,54 +1,15 @@
 {
   "summary": {
-    "total": 731,
-    "critical": 106,
-    "high": 61,
-    "medium": 53,
-    "low": 511
+    "total": 591,
+    "critical": 104,
+    "high": 60,
+    "medium": 52,
+    "low": 375
   },
   "critical": [
     {
-      "selector": "#app",
-      "line": 1406,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": true,
-      "importantCount": 1,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": "#app",
-      "line": 1431,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": true,
-      "importantCount": 5,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".content-wrapper",
-      "line": 1431,
-      "specificity": {
-        "ids": 0,
-        "classes": 1,
-        "elements": 0,
-        "score": 10
-      },
-      "hasImportant": true,
-      "importantCount": 5,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".content-wrapper",
-      "line": 1442,
+      "selector": ".back-btn-hidden",
+      "line": 387,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -57,11 +18,278 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".back-button-container",
+      "line": 459,
+      "specificity": {
+        "ids": 0,
+        "classes": 1,
+        "elements": 0,
+        "score": 10
+      },
+      "hasImportant": true,
+      "importantCount": 1,
+      "riskLevel": "CRITICAL",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".screen-hidden",
+      "line": 519,
+      "specificity": {
+        "ids": 0,
+        "classes": 1,
+        "elements": 0,
+        "score": 10
+      },
+      "hasImportant": true,
+      "importantCount": 1,
+      "riskLevel": "CRITICAL",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".screen-visible",
+      "line": 521,
+      "specificity": {
+        "ids": 0,
+        "classes": 1,
+        "elements": 0,
+        "score": 10
+      },
+      "hasImportant": true,
+      "importantCount": 1,
+      "riskLevel": "CRITICAL",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".screen-flex",
+      "line": 525,
+      "specificity": {
+        "ids": 0,
+        "classes": 1,
+        "elements": 0,
+        "score": 10
+      },
+      "hasImportant": true,
+      "importantCount": 1,
+      "riskLevel": "CRITICAL",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".screen-block",
+      "line": 527,
+      "specificity": {
+        "ids": 0,
+        "classes": 1,
+        "elements": 0,
+        "score": 10
+      },
+      "hasImportant": true,
+      "importantCount": 1,
+      "riskLevel": "CRITICAL",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".sidebar-hidden",
+      "line": 558,
+      "specificity": {
+        "ids": 0,
+        "classes": 1,
+        "elements": 0,
+        "score": 10
+      },
+      "hasImportant": true,
+      "importantCount": 1,
+      "riskLevel": "CRITICAL",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".sidebar-visible",
+      "line": 560,
+      "specificity": {
+        "ids": 0,
+        "classes": 1,
+        "elements": 0,
+        "score": 10
+      },
+      "hasImportant": true,
+      "importantCount": 1,
+      "riskLevel": "CRITICAL",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".sidebar-mobile-portrait",
+      "line": 562,
+      "specificity": {
+        "ids": 0,
+        "classes": 1,
+        "elements": 0,
+        "score": 10
+      },
+      "hasImportant": true,
+      "importantCount": 3,
+      "riskLevel": "CRITICAL",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".sidebar-mobile-landscape",
+      "line": 566,
+      "specificity": {
+        "ids": 0,
+        "classes": 1,
+        "elements": 0,
+        "score": 10
+      },
+      "hasImportant": true,
+      "importantCount": 3,
+      "riskLevel": "CRITICAL",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".sidebar-mobile-hidden",
+      "line": 570,
+      "specificity": {
+        "ids": 0,
+        "classes": 1,
+        "elements": 0,
+        "score": 10
+      },
+      "hasImportant": true,
+      "importantCount": 1,
+      "riskLevel": "CRITICAL",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".sidebar-landscape-hidden",
+      "line": 572,
+      "specificity": {
+        "ids": 0,
+        "classes": 1,
+        "elements": 0,
+        "score": 10
+      },
+      "hasImportant": true,
+      "importantCount": 1,
+      "riskLevel": "CRITICAL",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".product-image-small",
+      "line": 608,
+      "specificity": {
+        "ids": 0,
+        "classes": 1,
+        "elements": 0,
+        "score": 10
+      },
+      "hasImportant": true,
+      "importantCount": 2,
+      "riskLevel": "CRITICAL",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".product-image-large",
+      "line": 611,
+      "specificity": {
+        "ids": 0,
+        "classes": 1,
+        "elements": 0,
+        "score": 10
+      },
+      "hasImportant": true,
+      "importantCount": 2,
+      "riskLevel": "CRITICAL",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".height-auto",
+      "line": 614,
+      "specificity": {
+        "ids": 0,
+        "classes": 1,
+        "elements": 0,
+        "score": 10
+      },
+      "hasImportant": true,
+      "importantCount": 1,
+      "riskLevel": "CRITICAL",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".min-height-auto",
+      "line": 616,
+      "specificity": {
+        "ids": 0,
+        "classes": 1,
+        "elements": 0,
+        "score": 10
+      },
+      "hasImportant": true,
+      "importantCount": 1,
+      "riskLevel": "CRITICAL",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": "#app",
+      "line": 642,
+      "specificity": {
+        "ids": 1,
+        "classes": 0,
+        "elements": 0,
+        "score": 100
+      },
+      "hasImportant": true,
+      "importantCount": 1,
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "#app",
+      "line": 667,
+      "specificity": {
+        "ids": 1,
+        "classes": 0,
+        "elements": 0,
+        "score": 100
+      },
+      "hasImportant": true,
+      "importantCount": 5,
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper",
+      "line": 667,
+      "specificity": {
+        "ids": 0,
+        "classes": 1,
+        "elements": 0,
+        "score": 10
+      },
+      "hasImportant": true,
+      "importantCount": 5,
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper",
+      "line": 678,
+      "specificity": {
+        "ids": 0,
+        "classes": 1,
+        "elements": 0,
+        "score": 10
+      },
+      "hasImportant": true,
+      "importantCount": 1,
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "#order-sidebar",
-      "line": 1446,
+      "line": 682,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -70,11 +298,12 @@
       },
       "hasImportant": true,
       "importantCount": 19,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".content-container-flex",
-      "line": 1469,
+      "line": 705,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -83,11 +312,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "#content-container",
-      "line": 1469,
+      "line": 705,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -96,11 +326,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "#order-sidebar.active",
-      "line": 1478,
+      "line": 714,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -109,11 +340,12 @@
       },
       "hasImportant": true,
       "importantCount": 5,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active #order-sidebar",
-      "line": 1478,
+      "line": 714,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -122,11 +354,12 @@
       },
       "hasImportant": true,
       "importantCount": 5,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "#content-container .product-table td",
-      "line": 1825,
+      "line": 1033,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -135,11 +368,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "#content-container .product-table th",
-      "line": 1825,
+      "line": 1033,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -148,11 +382,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "#content-container .liquor-table td",
-      "line": 1825,
+      "line": 1033,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -161,11 +396,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "#content-container .liquor-table th",
-      "line": 1825,
+      "line": 1033,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -174,11 +410,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "#content-container .product-table td.product-name",
-      "line": 1836,
+      "line": 1044,
       "specificity": {
         "ids": 1,
         "classes": 2,
@@ -187,11 +424,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "#content-container .liquor-table td.product-name",
-      "line": 1836,
+      "line": 1044,
       "specificity": {
         "ids": 1,
         "classes": 2,
@@ -200,11 +438,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "#content-container .product-table td.product-ingredients",
-      "line": 1845,
+      "line": 1053,
       "specificity": {
         "ids": 1,
         "classes": 2,
@@ -213,11 +452,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "#content-container .liquor-table td.product-ingredients",
-      "line": 1845,
+      "line": 1053,
       "specificity": {
         "ids": 1,
         "classes": 2,
@@ -226,11 +466,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".liquor-table tr",
-      "line": 1876,
+      "line": 1084,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -239,11 +480,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".liquor-table th",
-      "line": 1880,
+      "line": 1088,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -252,11 +494,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".liquor-table td",
-      "line": 1880,
+      "line": 1088,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -265,11 +508,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".product-table",
-      "line": 2053,
+      "line": 1261,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -278,11 +522,12 @@
       },
       "hasImportant": true,
       "importantCount": 2,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".liquor-table",
-      "line": 2053,
+      "line": 1261,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -291,11 +536,12 @@
       },
       "hasImportant": true,
       "importantCount": 2,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".product-table th",
-      "line": 2097,
+      "line": 1305,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -304,11 +550,12 @@
       },
       "hasImportant": true,
       "importantCount": 7,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".liquor-table th",
-      "line": 2097,
+      "line": 1305,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -317,11 +564,12 @@
       },
       "hasImportant": true,
       "importantCount": 7,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".product-table td",
-      "line": 2110,
+      "line": 1318,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -330,11 +578,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".liquor-table td",
-      "line": 2110,
+      "line": 1318,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -343,11 +592,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active #app",
-      "line": 2134,
+      "line": 1342,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -356,11 +606,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "}\r\n\r\n    \r\n    @media (max-width: 480px) and (orientation: landscape)",
-      "line": 2143,
+      "line": 1351,
       "specificity": {
         "ids": 0,
         "classes": 0,
@@ -369,11 +620,12 @@
       },
       "hasImportant": true,
       "importantCount": 3,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".content-wrapper.with-sidebar",
-      "line": 2154,
+      "line": 1362,
       "specificity": {
         "ids": 0,
         "classes": 2,
@@ -382,11 +634,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".content-wrapper",
-      "line": 2166,
+      "line": 1374,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -395,11 +648,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".content-wrapper.order-active",
-      "line": 2173,
+      "line": 1381,
       "specificity": {
         "ids": 0,
         "classes": 2,
@@ -408,11 +662,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "#content-container",
-      "line": 2178,
+      "line": 1386,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -421,11 +676,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".product-table",
-      "line": 2183,
+      "line": 1391,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -434,11 +690,12 @@
       },
       "hasImportant": true,
       "importantCount": 2,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".liquor-table",
-      "line": 2183,
+      "line": 1391,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -447,11 +704,12 @@
       },
       "hasImportant": true,
       "importantCount": 2,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".product-table .price-button",
-      "line": 2190,
+      "line": 1398,
       "specificity": {
         "ids": 0,
         "classes": 2,
@@ -460,11 +718,12 @@
       },
       "hasImportant": true,
       "importantCount": 12,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".liquor-table .price-button",
-      "line": 2190,
+      "line": 1398,
       "specificity": {
         "ids": 0,
         "classes": 2,
@@ -473,11 +732,12 @@
       },
       "hasImportant": true,
       "importantCount": 12,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".content-container-flex",
-      "line": 2482,
+      "line": 1649,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -486,11 +746,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
-      "selector": "}\r\n\r\n\r\n@media (orientation: portrait) and (max-width: 480px)",
-      "line": 2490,
+      "selector": "}\r\n\r\n@media (orientation: portrait) and (max-width: 480px)",
+      "line": 1657,
       "specificity": {
         "ids": 0,
         "classes": 0,
@@ -499,11 +760,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "#content-container",
-      "line": 2503,
+      "line": 1669,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -512,11 +774,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".content-wrapper",
-      "line": 2512,
+      "line": 1678,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -525,11 +788,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".content-container-flex",
-      "line": 2521,
+      "line": 1687,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -538,11 +802,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".product-table",
-      "line": 2530,
+      "line": 1696,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -551,11 +816,12 @@
       },
       "hasImportant": true,
       "importantCount": 2,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".liquor-table",
-      "line": 2530,
+      "line": 1696,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -564,11 +830,12 @@
       },
       "hasImportant": true,
       "importantCount": 2,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".product-table th",
-      "line": 2545,
+      "line": 1711,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -577,11 +844,12 @@
       },
       "hasImportant": true,
       "importantCount": 2,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".liquor-table th",
-      "line": 2545,
+      "line": 1711,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -590,11 +858,12 @@
       },
       "hasImportant": true,
       "importantCount": 2,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".product-table td",
-      "line": 2553,
+      "line": 1719,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -603,11 +872,12 @@
       },
       "hasImportant": true,
       "importantCount": 2,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".liquor-table td",
-      "line": 2553,
+      "line": 1719,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -616,11 +886,12 @@
       },
       "hasImportant": true,
       "importantCount": 2,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".product-table td.product-name",
-      "line": 2559,
+      "line": 1725,
       "specificity": {
         "ids": 0,
         "classes": 2,
@@ -629,11 +900,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".liquor-table td.product-name",
-      "line": 2559,
+      "line": 1725,
       "specificity": {
         "ids": 0,
         "classes": 2,
@@ -642,11 +914,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".product-table td.product-ingredients",
-      "line": 2568,
+      "line": 1734,
       "specificity": {
         "ids": 0,
         "classes": 2,
@@ -655,11 +928,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".product-table td.image-icon img",
-      "line": 2576,
+      "line": 1742,
       "specificity": {
         "ids": 0,
         "classes": 2,
@@ -668,11 +942,12 @@
       },
       "hasImportant": true,
       "importantCount": 2,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".liquor-table td.image-icon img",
-      "line": 2576,
+      "line": 1742,
       "specificity": {
         "ids": 0,
         "classes": 2,
@@ -681,11 +956,12 @@
       },
       "hasImportant": true,
       "importantCount": 2,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".product-table[data-category=\"cervezas\"] td.image-icon img",
-      "line": 2583,
+      "line": 1749,
       "specificity": {
         "ids": 0,
         "classes": 3,
@@ -694,11 +970,12 @@
       },
       "hasImportant": true,
       "importantCount": 2,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".product-table[data-category=\"refrescos\"] td.image-icon img",
-      "line": 2583,
+      "line": 1749,
       "specificity": {
         "ids": 0,
         "classes": 3,
@@ -707,11 +984,12 @@
       },
       "hasImportant": true,
       "importantCount": 2,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".product-table td.product-price",
-      "line": 2590,
+      "line": 1756,
       "specificity": {
         "ids": 0,
         "classes": 2,
@@ -720,11 +998,12 @@
       },
       "hasImportant": true,
       "importantCount": 2,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".liquor-table td.product-price",
-      "line": 2590,
+      "line": 1756,
       "specificity": {
         "ids": 0,
         "classes": 2,
@@ -733,24 +1012,12 @@
       },
       "hasImportant": true,
       "importantCount": 2,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".price-button",
-      "line": 2597,
-      "specificity": {
-        "ids": 0,
-        "classes": 1,
-        "elements": 0,
-        "score": 10
-      },
-      "hasImportant": true,
-      "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".product-table .price-button",
-      "line": 2693,
+      "line": 1843,
       "specificity": {
         "ids": 0,
         "classes": 2,
@@ -759,11 +1026,12 @@
       },
       "hasImportant": true,
       "importantCount": 14,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".product-table td.product-price",
-      "line": 2713,
+      "line": 1863,
       "specificity": {
         "ids": 0,
         "classes": 2,
@@ -772,219 +1040,12 @@
       },
       "hasImportant": true,
       "importantCount": 8,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".back-btn-hidden",
-      "line": 3045,
-      "specificity": {
-        "ids": 0,
-        "classes": 1,
-        "elements": 0,
-        "score": 10
-      },
-      "hasImportant": true,
-      "importantCount": 1,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".back-button-container",
-      "line": 3134,
-      "specificity": {
-        "ids": 0,
-        "classes": 1,
-        "elements": 0,
-        "score": 10
-      },
-      "hasImportant": true,
-      "importantCount": 1,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".screen-hidden",
-      "line": 3286,
-      "specificity": {
-        "ids": 0,
-        "classes": 1,
-        "elements": 0,
-        "score": 10
-      },
-      "hasImportant": true,
-      "importantCount": 1,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".screen-visible",
-      "line": 3293,
-      "specificity": {
-        "ids": 0,
-        "classes": 1,
-        "elements": 0,
-        "score": 10
-      },
-      "hasImportant": true,
-      "importantCount": 1,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".screen-flex",
-      "line": 3299,
-      "specificity": {
-        "ids": 0,
-        "classes": 1,
-        "elements": 0,
-        "score": 10
-      },
-      "hasImportant": true,
-      "importantCount": 1,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".screen-block",
-      "line": 3303,
-      "specificity": {
-        "ids": 0,
-        "classes": 1,
-        "elements": 0,
-        "score": 10
-      },
-      "hasImportant": true,
-      "importantCount": 1,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".sidebar-hidden",
-      "line": 3445,
-      "specificity": {
-        "ids": 0,
-        "classes": 1,
-        "elements": 0,
-        "score": 10
-      },
-      "hasImportant": true,
-      "importantCount": 1,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".sidebar-visible",
-      "line": 3451,
-      "specificity": {
-        "ids": 0,
-        "classes": 1,
-        "elements": 0,
-        "score": 10
-      },
-      "hasImportant": true,
-      "importantCount": 1,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".sidebar-mobile-portrait",
-      "line": 3455,
-      "specificity": {
-        "ids": 0,
-        "classes": 1,
-        "elements": 0,
-        "score": 10
-      },
-      "hasImportant": true,
-      "importantCount": 3,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".sidebar-mobile-landscape",
-      "line": 3462,
-      "specificity": {
-        "ids": 0,
-        "classes": 1,
-        "elements": 0,
-        "score": 10
-      },
-      "hasImportant": true,
-      "importantCount": 3,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".sidebar-mobile-hidden",
-      "line": 3468,
-      "specificity": {
-        "ids": 0,
-        "classes": 1,
-        "elements": 0,
-        "score": 10
-      },
-      "hasImportant": true,
-      "importantCount": 1,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".sidebar-landscape-hidden",
-      "line": 3472,
-      "specificity": {
-        "ids": 0,
-        "classes": 1,
-        "elements": 0,
-        "score": 10
-      },
-      "hasImportant": true,
-      "importantCount": 1,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".product-image-small",
-      "line": 3604,
-      "specificity": {
-        "ids": 0,
-        "classes": 1,
-        "elements": 0,
-        "score": 10
-      },
-      "hasImportant": true,
-      "importantCount": 2,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".product-image-large",
-      "line": 3610,
-      "specificity": {
-        "ids": 0,
-        "classes": 1,
-        "elements": 0,
-        "score": 10
-      },
-      "hasImportant": true,
-      "importantCount": 2,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".height-auto",
-      "line": 3615,
-      "specificity": {
-        "ids": 0,
-        "classes": 1,
-        "elements": 0,
-        "score": 10
-      },
-      "hasImportant": true,
-      "importantCount": 1,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".min-height-auto",
-      "line": 3620,
-      "specificity": {
-        "ids": 0,
-        "classes": 1,
-        "elements": 0,
-        "score": 10
-      },
-      "hasImportant": true,
-      "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active #app",
-      "line": 4015,
+      "line": 2282,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -993,11 +1054,12 @@
       },
       "hasImportant": true,
       "importantCount": 5,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active .page-header",
-      "line": 4024,
+      "line": 2291,
       "specificity": {
         "ids": 0,
         "classes": 2,
@@ -1006,11 +1068,12 @@
       },
       "hasImportant": true,
       "importantCount": 3,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active #app",
-      "line": 4031,
+      "line": 2298,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -1019,11 +1082,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active #app",
-      "line": 4045,
+      "line": 2312,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -1032,11 +1096,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active .content-wrapper",
-      "line": 4045,
+      "line": 2312,
       "specificity": {
         "ids": 0,
         "classes": 2,
@@ -1045,11 +1110,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active #content-container",
-      "line": 4045,
+      "line": 2312,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -1058,11 +1124,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active .content-wrapper.with-sidebar",
-      "line": 4055,
+      "line": 2322,
       "specificity": {
         "ids": 0,
         "classes": 3,
@@ -1071,11 +1138,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active .content-wrapper #content-container",
-      "line": 4059,
+      "line": 2326,
       "specificity": {
         "ids": 1,
         "classes": 2,
@@ -1084,11 +1152,12 @@
       },
       "hasImportant": true,
       "importantCount": 7,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active .content-wrapper.order-active #content-container",
-      "line": 4071,
+      "line": 2338,
       "specificity": {
         "ids": 1,
         "classes": 3,
@@ -1097,11 +1166,12 @@
       },
       "hasImportant": true,
       "importantCount": 2,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active .content-wrapper",
-      "line": 4086,
+      "line": 2353,
       "specificity": {
         "ids": 0,
         "classes": 2,
@@ -1110,11 +1180,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active .content-wrapper.with-sidebar #content-container",
-      "line": 4100,
+      "line": 2367,
       "specificity": {
         "ids": 1,
         "classes": 3,
@@ -1123,11 +1194,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active .content-wrapper.with-sidebar .content-container-flex",
-      "line": 4108,
+      "line": 2375,
       "specificity": {
         "ids": 0,
         "classes": 4,
@@ -1136,11 +1208,12 @@
       },
       "hasImportant": true,
       "importantCount": 8,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active .content-wrapper .content-container-flex",
-      "line": 4121,
+      "line": 2388,
       "specificity": {
         "ids": 0,
         "classes": 3,
@@ -1149,11 +1222,12 @@
       },
       "hasImportant": true,
       "importantCount": 8,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".product-table th",
-      "line": 4170,
+      "line": 2437,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -1162,11 +1236,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".product-table td",
-      "line": 4170,
+      "line": 2437,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -1175,11 +1250,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".liquor-table th",
-      "line": 4170,
+      "line": 2437,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -1188,11 +1264,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".liquor-table td",
-      "line": 4170,
+      "line": 2437,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -1201,11 +1278,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".product-table",
-      "line": 4178,
+      "line": 2445,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -1214,11 +1292,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".liquor-table",
-      "line": 4178,
+      "line": 2445,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -1227,11 +1306,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "#app",
-      "line": 4192,
+      "line": 2458,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1240,11 +1320,12 @@
       },
       "hasImportant": true,
       "importantCount": 6,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".content-wrapper",
-      "line": 4192,
+      "line": 2458,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -1253,11 +1334,12 @@
       },
       "hasImportant": true,
       "importantCount": 6,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".content-wrapper.with-sidebar",
-      "line": 4192,
+      "line": 2458,
       "specificity": {
         "ids": 0,
         "classes": 2,
@@ -1266,11 +1348,12 @@
       },
       "hasImportant": true,
       "importantCount": 6,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".content-wrapper",
-      "line": 4204,
+      "line": 2470,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -1279,11 +1362,12 @@
       },
       "hasImportant": true,
       "importantCount": 2,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "#order-sidebar",
-      "line": 4210,
+      "line": 2476,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1292,11 +1376,12 @@
       },
       "hasImportant": true,
       "importantCount": 19,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "body #order-sidebar.active",
-      "line": 4233,
+      "line": 2499,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -1305,11 +1390,12 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "#order-sidebar.active",
-      "line": 4237,
+      "line": 2503,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -1318,11 +1404,12 @@
       },
       "hasImportant": true,
       "importantCount": 5,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active #order-sidebar",
-      "line": 4237,
+      "line": 2503,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -1331,11 +1418,12 @@
       },
       "hasImportant": true,
       "importantCount": 5,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": ".content-container-flex",
-      "line": 4247,
+      "line": 2513,
       "specificity": {
         "ids": 0,
         "classes": 1,
@@ -1344,11 +1432,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
       "selector": "#content-container",
-      "line": 4247,
+      "line": 2513,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1357,11 +1446,12 @@
       },
       "hasImportant": true,
       "importantCount": 4,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     },
     {
-      "selector": "}\r\n\r\n\r\n@media (min-width: 481px)",
-      "line": 4289,
+      "selector": "}\r\n\r\n@media (min-width: 481px)",
+      "line": 2553,
       "specificity": {
         "ids": 0,
         "classes": 0,
@@ -1370,20 +1460,8 @@
       },
       "hasImportant": true,
       "importantCount": 1,
-      "riskLevel": "CRITICAL"
-    },
-    {
-      "selector": ".product-card.variant-card .price-button",
-      "line": 4365,
-      "specificity": {
-        "ids": 0,
-        "classes": 3,
-        "elements": 0,
-        "score": 30
-      },
-      "hasImportant": true,
-      "importantCount": 10,
-      "riskLevel": "CRITICAL"
+      "riskLevel": "CRITICAL",
+      "file": "media-queries.css"
     }
   ],
   "high": [
@@ -1398,7 +1476,8 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "_legacy.css"
     },
     {
       "selector": "#orders-btn",
@@ -1411,89 +1490,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
-    },
-    {
-      "selector": "#create-order-btn",
-      "line": 35,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH"
-    },
-    {
-      "selector": "#order-sidebar h3",
-      "line": 208,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 1,
-        "score": 101
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH"
-    },
-    {
-      "selector": "#settings-menu",
-      "line": 220,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH"
-    },
-    {
-      "selector": "#order-sidebar",
-      "line": 236,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH"
-    },
-    {
-      "selector": "#order-sidebar h3",
-      "line": 248,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 1,
-        "score": 101
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH"
-    },
-    {
-      "selector": "#settings-menu",
-      "line": 261,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "_legacy.css"
     },
     {
       "selector": "#drawer-menu",
-      "line": 407,
+      "line": 113,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1502,11 +1504,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "_legacy.css"
     },
     {
       "selector": "#drawer-menu.open",
-      "line": 414,
+      "line": 117,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -1515,11 +1518,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "_legacy.css"
     },
     {
       "selector": "#order-sidebar",
-      "line": 514,
+      "line": 174,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1528,11 +1532,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "_legacy.css"
     },
     {
-      "selector": "}\r\n\r\n\r\n\r\n#order-sidebar.active",
-      "line": 579,
+      "selector": "#order-sidebar.active",
+      "line": 197,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -1541,11 +1546,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "_legacy.css"
     },
     {
       "selector": "body.order-mode-active #order-sidebar",
-      "line": 579,
+      "line": 197,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -1554,11 +1560,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "_legacy.css"
     },
     {
       "selector": "#order-sidebar.is-open",
-      "line": 587,
+      "line": 200,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -1567,11 +1574,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "_legacy.css"
     },
     {
       "selector": "#order-sidebar h3",
-      "line": 593,
+      "line": 203,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1580,11 +1588,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "_legacy.css"
     },
     {
       "selector": "#order-content",
-      "line": 603,
+      "line": 210,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1593,11 +1602,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "_legacy.css"
     },
     {
       "selector": "#order-items",
-      "line": 618,
+      "line": 218,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1606,11 +1616,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "_legacy.css"
     },
     {
       "selector": "#settings-menu",
-      "line": 632,
+      "line": 228,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1619,11 +1630,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "_legacy.css"
     },
     {
       "selector": "#settings-menu.open",
-      "line": 652,
+      "line": 245,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -1632,50 +1644,26 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "_legacy.css"
     },
     {
-      "selector": "#drawer-menu",
-      "line": 678,
+      "selector": ".top-nav-visible~#app .main-content-screen",
+      "line": 333,
       "specificity": {
         "ids": 1,
-        "classes": 0,
+        "classes": 2,
         "elements": 0,
-        "score": 100
+        "score": 120
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "_legacy.css"
     },
     {
-      "selector": "#drawer-menu.open",
-      "line": 686,
-      "specificity": {
-        "ids": 1,
-        "classes": 1,
-        "elements": 0,
-        "score": 110
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH"
-    },
-    {
-      "selector": "#settings-menu",
-      "line": 693,
-      "specificity": {
-        "ids": 1,
-        "classes": 0,
-        "elements": 0,
-        "score": 100
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH"
-    },
-    {
-      "selector": "#settings-menu.open",
-      "line": 698,
+      "selector": "#settings-menu .back-button",
+      "line": 476,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -1684,11 +1672,40 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "_legacy.css"
     },
     {
-      "selector": "body #app",
-      "line": 952,
+      "selector": "body.order-mode-active #app",
+      "line": 484,
+      "specificity": {
+        "ids": 1,
+        "classes": 1,
+        "elements": 1,
+        "score": 111
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "HIGH",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": "#drink-options-modal.is-open",
+      "line": 591,
+      "specificity": {
+        "ids": 1,
+        "classes": 1,
+        "elements": 0,
+        "score": 110
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "HIGH",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": "#order-sidebar h3",
+      "line": 82,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1697,11 +1714,138 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "#settings-menu",
+      "line": 94,
+      "specificity": {
+        "ids": 1,
+        "classes": 0,
+        "elements": 0,
+        "score": 100
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "#order-sidebar",
+      "line": 108,
+      "specificity": {
+        "ids": 1,
+        "classes": 0,
+        "elements": 0,
+        "score": 100
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "#order-sidebar h3",
+      "line": 120,
+      "specificity": {
+        "ids": 1,
+        "classes": 0,
+        "elements": 1,
+        "score": 101
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "#settings-menu",
+      "line": 133,
+      "specificity": {
+        "ids": 1,
+        "classes": 0,
+        "elements": 0,
+        "score": 100
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "#drawer-menu",
+      "line": 218,
+      "specificity": {
+        "ids": 1,
+        "classes": 0,
+        "elements": 0,
+        "score": 100
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "#drawer-menu.open",
+      "line": 226,
+      "specificity": {
+        "ids": 1,
+        "classes": 1,
+        "elements": 0,
+        "score": 110
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "#settings-menu",
+      "line": 233,
+      "specificity": {
+        "ids": 1,
+        "classes": 0,
+        "elements": 0,
+        "score": 100
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "#settings-menu.open",
+      "line": 238,
+      "specificity": {
+        "ids": 1,
+        "classes": 1,
+        "elements": 0,
+        "score": 110
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "body #app",
+      "line": 258,
+      "specificity": {
+        "ids": 1,
+        "classes": 0,
+        "elements": 1,
+        "score": 101
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active #app",
-      "line": 959,
+      "line": 265,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -1710,11 +1854,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "#content-container",
-      "line": 1169,
+      "line": 435,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1723,11 +1868,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "#app",
-      "line": 1174,
+      "line": 441,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1736,11 +1882,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active #app",
-      "line": 1180,
+      "line": 447,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -1749,11 +1896,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": ".options-grid:not(#drink-options-modal .options-grid)",
-      "line": 1312,
+      "line": 549,
       "specificity": {
         "ids": 1,
         "classes": 3,
@@ -1762,11 +1910,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "body #order-sidebar.active",
-      "line": 1537,
+      "line": 773,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -1775,11 +1924,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "body #app",
-      "line": 1598,
+      "line": 827,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1788,11 +1938,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "#content-container",
-      "line": 1625,
+      "line": 851,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1801,11 +1952,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": ".content-wrapper.order-active #content-container",
-      "line": 1634,
+      "line": 860,
       "specificity": {
         "ids": 1,
         "classes": 2,
@@ -1814,11 +1966,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "#app",
-      "line": 1740,
+      "line": 966,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1827,11 +1980,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "body #content-container .product-table",
-      "line": 1814,
+      "line": 1022,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -1840,11 +1994,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "body #content-container .liquor-table",
-      "line": 1814,
+      "line": 1022,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -1853,11 +2008,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "body #content-container .product-table[data-category=\"refrescos\"]",
-      "line": 1853,
+      "line": 1061,
       "specificity": {
         "ids": 1,
         "classes": 2,
@@ -1866,11 +2022,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "body #content-container .product-table[data-category=\"cervezas\"]",
-      "line": 1853,
+      "line": 1061,
       "specificity": {
         "ids": 1,
         "classes": 2,
@@ -1879,11 +2036,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "#content-container",
-      "line": 1861,
+      "line": 1069,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1892,11 +2050,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "body #drink-options-modal.modal-flex .options-grid",
-      "line": 1975,
+      "line": 1183,
       "specificity": {
         "ids": 1,
         "classes": 2,
@@ -1905,11 +2064,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "body #drink-options-modal .drink-option-container",
-      "line": 1985,
+      "line": 1193,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -1918,11 +2078,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "}\r\n\r\n  }\r\n\r\n  #order-sidebar h3",
-      "line": 2220,
+      "line": 1428,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1931,11 +2092,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "#app",
-      "line": 2306,
+      "line": 1513,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1944,11 +2106,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "#content-container",
-      "line": 2315,
+      "line": 1522,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1957,24 +2120,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
-    },
-    {
-      "selector": ".top-nav-visible~#app .main-content-screen",
-      "line": 2422,
-      "specificity": {
-        "ids": 1,
-        "classes": 2,
-        "elements": 0,
-        "score": 120
-      },
-      "hasImportant": false,
-      "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "#app",
-      "line": 2660,
+      "line": 1810,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -1983,11 +2134,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active #app",
-      "line": 2678,
+      "line": 1828,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -1996,11 +2148,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "body.order-mode-active #order-sidebar",
-      "line": 2688,
+      "line": 1838,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -2009,11 +2162,12 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
       "selector": "#order-sidebar h3",
-      "line": 2738,
+      "line": 1888,
       "specificity": {
         "ids": 1,
         "classes": 0,
@@ -2022,11 +2176,26 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
     },
     {
-      "selector": "#settings-menu .back-button",
-      "line": 3161,
+      "selector": "#settings-menu",
+      "line": 2067,
+      "specificity": {
+        "ids": 1,
+        "classes": 0,
+        "elements": 0,
+        "score": 100
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "#settings-menu.open",
+      "line": 2073,
       "specificity": {
         "ids": 1,
         "classes": 1,
@@ -2035,22 +2204,836 @@
       },
       "hasImportant": false,
       "importantCount": 0,
-      "riskLevel": "HIGH"
-    }
-  ],
-  "screenHidden": [
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
+    },
     {
-      "selector": ".screen-hidden",
-      "line": 3286,
+      "selector": "#settings-menu",
+      "line": 2100,
       "specificity": {
-        "ids": 0,
+        "ids": 1,
+        "classes": 0,
+        "elements": 0,
+        "score": 100
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "#settings-menu.open",
+      "line": 2106,
+      "specificity": {
+        "ids": 1,
         "classes": 1,
         "elements": 0,
-        "score": 10
+        "score": 110
       },
-      "hasImportant": true,
-      "importantCount": 1,
-      "riskLevel": "CRITICAL"
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "body.order-mode-active #order-sidebar",
+      "line": 2343,
+      "specificity": {
+        "ids": 1,
+        "classes": 1,
+        "elements": 1,
+        "score": 111
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active #content-container",
+      "line": 2401,
+      "specificity": {
+        "ids": 1,
+        "classes": 2,
+        "elements": 0,
+        "score": 120
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active.with-sidebar #content-container",
+      "line": 2423,
+      "specificity": {
+        "ids": 1,
+        "classes": 3,
+        "elements": 0,
+        "score": 130
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "body.order-mode-active #app",
+      "line": 2528,
+      "specificity": {
+        "ids": 1,
+        "classes": 1,
+        "elements": 1,
+        "score": 111
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "#order-sidebar",
+      "line": 2539,
+      "specificity": {
+        "ids": 1,
+        "classes": 0,
+        "elements": 0,
+        "score": 100
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "HIGH",
+      "file": "media-queries.css"
+    }
+  ],
+  "medium": [
+    {
+      "selector": "[data-category=\"postres\"] .video-thumb:hover",
+      "line": 45,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 0,
+        "score": 30
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".drawer-menu .nav-button:hover",
+      "line": 146,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 0,
+        "score": 30
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".drawer-menu .nav-button.active",
+      "line": 146,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 0,
+        "score": 30
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".price-selection-mode .price-button.non-selectable",
+      "line": 325,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 0,
+        "score": 30
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".price-selection-mode .product-grid .product-card.liquor-card .price-button",
+      "line": 330,
+      "specificity": {
+        "ids": 0,
+        "classes": 5,
+        "elements": 0,
+        "score": 50
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".top-nav-bar .hamburger-btn:hover",
+      "line": 431,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 0,
+        "score": 30
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "_legacy.css"
+    },
+    {
+      "selector": ".product-table[data-category=\"refrescos\"] th:nth-child(2)",
+      "line": 339,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 1,
+        "score": 31
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".product-table[data-category=\"refrescos\"] td:nth-child(2)",
+      "line": 339,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 1,
+        "score": 31
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".product-table[data-category=\"cervezas\"] th:nth-child(2)",
+      "line": 339,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 1,
+        "score": 31
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".product-table[data-category=\"cervezas\"] td:nth-child(2)",
+      "line": 339,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 1,
+        "score": 31
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".modal-content.image-modal.video-modal",
+      "line": 395,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 0,
+        "score": 30
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".modal-content.image-modal .nav-button",
+      "line": 407,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 0,
+        "score": 30
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".product-grid .product-card.liquor-card .price-button",
+      "line": 524,
+      "specificity": {
+        "ids": 0,
+        "classes": 4,
+        "elements": 0,
+        "score": 40
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".product-grid .product-card.liquor-card .price-button:not(.non-selectable)",
+      "line": 524,
+      "specificity": {
+        "ids": 0,
+        "classes": 6,
+        "elements": 0,
+        "score": 60
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".product-grid .product-card.liquor-card .price-button:not(:disabled)",
+      "line": 524,
+      "specificity": {
+        "ids": 0,
+        "classes": 5,
+        "elements": 0,
+        "score": 50
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "}\r\n\r\n  \r\n  .product-table[data-category=\"refrescos\"] th:nth-child(2)",
+      "line": 600,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 1,
+        "score": 31
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".product-table[data-category=\"refrescos\"] td:nth-child(2)",
+      "line": 600,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 1,
+        "score": 31
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".product-table[data-category=\"cervezas\"] th:nth-child(2)",
+      "line": 600,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 1,
+        "score": 31
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".product-table[data-category=\"cervezas\"] td:nth-child(2)",
+      "line": 600,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 1,
+        "score": 31
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".modal-content.image-modal.video-modal",
+      "line": 617,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 0,
+        "score": 30
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".modal-content.image-modal .nav-button",
+      "line": 629,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 0,
+        "score": 30
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active .product-table",
+      "line": 866,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 0,
+        "score": 30
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active .liquor-table",
+      "line": 866,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 0,
+        "score": 30
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active .product-table th",
+      "line": 875,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 1,
+        "score": 31
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active .liquor-table th",
+      "line": 875,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 1,
+        "score": 31
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active .product-table td",
+      "line": 883,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 1,
+        "score": 31
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active .liquor-table td",
+      "line": 883,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 1,
+        "score": 31
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active .product-table td.product-name",
+      "line": 890,
+      "specificity": {
+        "ids": 0,
+        "classes": 4,
+        "elements": 1,
+        "score": 41
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active .liquor-table td.product-name",
+      "line": 890,
+      "specificity": {
+        "ids": 0,
+        "classes": 4,
+        "elements": 1,
+        "score": 41
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active .product-table td.product-ingredients",
+      "line": 899,
+      "specificity": {
+        "ids": 0,
+        "classes": 4,
+        "elements": 1,
+        "score": 41
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active .product-table td.image-icon img",
+      "line": 907,
+      "specificity": {
+        "ids": 0,
+        "classes": 4,
+        "elements": 2,
+        "score": 42
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active .liquor-table td.image-icon img",
+      "line": 907,
+      "specificity": {
+        "ids": 0,
+        "classes": 4,
+        "elements": 2,
+        "score": 42
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active .product-table[data-category=\"cervezas\"] td.image-icon img",
+      "line": 914,
+      "specificity": {
+        "ids": 0,
+        "classes": 5,
+        "elements": 2,
+        "score": 52
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active .product-table[data-category=\"refrescos\"] td.image-icon img",
+      "line": 914,
+      "specificity": {
+        "ids": 0,
+        "classes": 5,
+        "elements": 2,
+        "score": 52
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active .product-table td.product-price",
+      "line": 921,
+      "specificity": {
+        "ids": 0,
+        "classes": 4,
+        "elements": 1,
+        "score": 41
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active .liquor-table td.product-price",
+      "line": 921,
+      "specificity": {
+        "ids": 0,
+        "classes": 4,
+        "elements": 1,
+        "score": 41
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active .price-button",
+      "line": 928,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 0,
+        "score": 30
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".modal-content.image-modal.video-modal",
+      "line": 1149,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 0,
+        "score": 30
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "html body div.main-container .product-table tbody tr td:first-child",
+      "line": 1205,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 6,
+        "score": 36
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "html body div.main-container .product-table tbody tr td.product-name",
+      "line": 1205,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 6,
+        "score": 36
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "html body div.main-container .liquor-table tbody tr td:first-child",
+      "line": 1205,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 6,
+        "score": 36
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "html body div.main-container .liquor-table tbody tr td.product-name",
+      "line": 1205,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 6,
+        "score": 36
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "html body div.main-container .product-table tbody tr td:nth-child(2)",
+      "line": 1221,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 6,
+        "score": 36
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "html body div.main-container .product-table tbody tr td.product-ingredients",
+      "line": 1221,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 6,
+        "score": 36
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "html body div.main-container .liquor-table tbody tr td:nth-child(2)",
+      "line": 1221,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 6,
+        "score": 36
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": "html body div.main-container .liquor-table tbody tr td.ingredients",
+      "line": 1221,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 6,
+        "score": 36
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".product-table[data-category=\"cervezas\"] td.image-icon img",
+      "line": 2153,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 2,
+        "score": 32
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".product-table[data-category=\"refrescos\"] td.image-icon img",
+      "line": 2153,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 2,
+        "score": 32
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".product-table[data-category=\"cervezas\"] td.image-icon img",
+      "line": 2170,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 2,
+        "score": 32
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".product-table[data-category=\"refrescos\"] td.image-icon img",
+      "line": 2170,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 2,
+        "score": 32
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active.with-sidebar",
+      "line": 2410,
+      "specificity": {
+        "ids": 0,
+        "classes": 3,
+        "elements": 0,
+        "score": 30
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
+    },
+    {
+      "selector": ".content-wrapper.order-active.with-sidebar .content-container-flex",
+      "line": 2423,
+      "specificity": {
+        "ids": 0,
+        "classes": 4,
+        "elements": 0,
+        "score": 40
+      },
+      "hasImportant": false,
+      "importantCount": 0,
+      "riskLevel": "MEDIUM",
+      "file": "media-queries.css"
     }
   ]
 }

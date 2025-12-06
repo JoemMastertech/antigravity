@@ -35,7 +35,7 @@ Archivo CSS funcional optimizado con mejoras organizacionales:
    -----------------------------------------------------------------------------
    Convenciones:
    - Nombres en BEM: bloque__elemento--modificador
-   - Especificidad baja: evite ids salvo para legacy (#order-sidebar)
+   - Especificidad baja: evite ids salvo para legacy (.order-sidebar)
    - Breakpoints Ãºnicos y coherentes: 
      MOBILE â‰¤480, TABLET 481â€“767, LAPTOP 768â€“1023, DESKTOP â‰¥1024
    - Marcadores de regiÃ³n: === REGION: NOMBRE ===
@@ -268,7 +268,7 @@ body.no-scrollbars {
 }.drawer-overlay.active {
   opacity: 1;
   pointer-events: all;
-}/* === REGION: ORDER SIDEBAR (Right) === *//* ===== SIDEBAR 2: ORDERS SIDEBAR (Right Side - Create Order) ===== */#order-sidebar {
+}/* === REGION: ORDER SIDEBAR (Right) === *//* ===== SIDEBAR 2: ORDERS SIDEBAR (Right Side - Create Order) ===== */.order-sidebar {
   /* Base properties */
   background: var(--card-bg);
   border: 1px solid var(--border-color);
@@ -291,13 +291,13 @@ body.no-scrollbars {
   max-height: 70vh;
   overflow-y: auto;
   z-index: 900;
-}/* === REGION: BREAKPOINT TABLET 481â€“767 === *//* Responsive adjustments for orders sidebar *//* === REGION: BREAKPOINT MOBILE LANDSCAPE â‰¤480 === *//* === REGION: BREAKPOINT DESKTOP â‰¥1200 === *//* Active states - Show sidebar */#order-sidebar.active,
-body.order-mode-active #order-sidebar {
+}/* === REGION: BREAKPOINT TABLET 481â€“767 === *//* Responsive adjustments for orders sidebar *//* === REGION: BREAKPOINT MOBILE LANDSCAPE â‰¤480 === *//* === REGION: BREAKPOINT DESKTOP â‰¥1200 === *//* Active states - Show sidebar */.order-sidebar.active,
+body.order-mode-active .order-sidebar {
   display: flex;
-}/* Semantic open state for BEM-friendly toggling */#order-sidebar.is-open,
+}/* Semantic open state for BEM-friendly toggling */.order-sidebar.is-open,
 .order-sidebar.is-open {
   display: flex;
-}/* Order sidebar title - Responsive */#order-sidebar h3 {
+}/* Order sidebar title - Responsive */.order-sidebar h3 {
   color: var(--primary-color);
   font-family: 'Playfair Display', serif;
   font-size: 1.5rem;

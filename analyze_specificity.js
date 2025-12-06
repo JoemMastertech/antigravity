@@ -1,6 +1,6 @@
 /**
  * CSS Specificity Analyzer
- * Analyzes legacy.css to find high-specificity rules that block migration
+ * Analyzes legacy.css and media-queries.css to find high-specificity rules
  */
 
 import { readFileSync, writeFileSync } from 'fs';
@@ -8,11 +8,13 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const legacyPath = join(__dirname, 'Shared/styles/_legacy.css');
+const filesToAnalyze = [
+    join(__dirname, 'Shared/styles/_legacy.css'),
+    join(__dirname, 'Shared/styles/legacy-responsive/media-queries.css')
+];
 const reportPath = join(__dirname, 'specificity_report.json');
 
 // Calculate specificity of a selector
-// Returns [inline, IDs, classes, elements]
 function calculateSpecificity(selector) {
     let ids = 0;
     let classes = 0;
@@ -27,7 +29,6 @@ function calculateSpecificity(selector) {
     classes += (selector.match(/:(not|first-child|last-child|nth-child|hover|focus|active|visited)/g) || []).length;
 
     // Count element selectors and pseudo-elements
-    // This is simplified - real calculation is more complex
     elements = (selector.match(/^[a-zA-Z]+|[\s>+~][a-zA-Z]+/g) || []).length;
     elements += (selector.match(/::(before|after|first-line|first-letter)/g) || []).length;
 
@@ -62,7 +63,7 @@ function parseCSSSelectors(css) {
         const selectors = selectorGroup.split(',').map(s => s.trim());
 
         for (const selector of selectors) {
-            if (selector && !selector.startsWith('@')) {
+            if (selector && !selector.startsWith('@') && !selector.startsWith('from') && !selector.startsWith('to') && !selector.includes('%')) {
                 const specificity = calculateSpecificity(selector);
 
                 results.push({
@@ -83,7 +84,7 @@ function parseCSSSelectors(css) {
 function calculateRiskLevel(specificity, hasImportant) {
     if (hasImportant) return 'CRITICAL';
     if (specificity.ids > 0) return 'HIGH';
-    if (specificity.score > 30) return 'MEDIUM';
+    if (specificity.score >= 30) return 'MEDIUM';
     return 'LOW';
 }
 
@@ -91,15 +92,29 @@ function calculateRiskLevel(specificity, hasImportant) {
 try {
     console.log('🔍 Analyzing CSS specificity...\n');
 
-    const css = readFileSync(legacyPath, 'utf8');
-    const results = parseCSSSelectors(css);
+    let allResults = [];
+
+    for (const file of filesToAnalyze) {
+        console.log(`Reading: ${file}`);
+        try {
+            const css = readFileSync(file, 'utf8');
+            const results = parseCSSSelectors(css);
+            // Add filename to results
+            results.forEach(r => r.file = file.split('\\').pop().split('/').pop());
+            allResults = allResults.concat(results);
+        } catch (e) {
+            console.error(`Error reading ${file}: ${e.message}`);
+        }
+    }
+
+    const results = allResults;
 
     // Group by risk level
     const critical = results.filter(r => r.riskLevel === 'CRITICAL');
     const high = results.filter(r => r.riskLevel === 'HIGH');
     const medium = results.filter(r => r.riskLevel === 'MEDIUM');
 
-    console.log('📊 SPECIFICITY REPORT');
+    console.log('\n📊 SPECIFICITY REPORT');
     console.log('='.repeat(50));
     console.log(`Total selectors analyzed: ${results.length}`);
     console.log(`\n🔴 CRITICAL (!important): ${critical.length}`);
@@ -110,36 +125,20 @@ try {
     // Show critical issues
     if (critical.length > 0) {
         console.log('\n🔴 CRITICAL - Rules with !important:');
-        console.log('-'.repeat(50));
-        critical.slice(0, 20).forEach(r => {
-            console.log(`  Line ${r.line}: ${r.selector.substring(0, 50)}... (${r.importantCount} !important)`);
+        console.log('-'.repeat(80));
+        critical.forEach(r => {
+            console.log(`  [${r.file}:${r.line}] ${r.selector.substring(0, 50)}... (${r.importantCount} !important)`);
         });
-        if (critical.length > 20) {
-            console.log(`  ... and ${critical.length - 20} more`);
-        }
     }
 
     // Show high risk issues
     if (high.length > 0) {
         console.log('\n🟠 HIGH - Rules using ID selectors:');
-        console.log('-'.repeat(50));
-        high.slice(0, 15).forEach(r => {
-            console.log(`  Line ${r.line}: ${r.selector.substring(0, 60)}`);
+        console.log('-'.repeat(80));
+        high.forEach(r => {
+            console.log(`  [${r.file}:${r.line}] ${r.selector.substring(0, 60)}`);
         });
-        if (high.length > 15) {
-            console.log(`  ... and ${high.length - 15} more`);
-        }
     }
-
-    // Look for screen-hidden specifically
-    const screenHiddenRules = results.filter(r => r.selector.includes('screen-hidden'));
-    console.log('\n🎯 SCREEN-HIDDEN related rules:');
-    console.log('-'.repeat(50));
-    screenHiddenRules.forEach(r => {
-        console.log(`  Line ${r.line}: ${r.selector}`);
-        console.log(`    Specificity: IDs=${r.specificity.ids}, Classes=${r.specificity.classes}, Elements=${r.specificity.elements}`);
-        console.log(`    Risk: ${r.riskLevel}, Has !important: ${r.hasImportant}`);
-    });
 
     // Save full report
     writeFileSync(reportPath, JSON.stringify({
@@ -151,8 +150,8 @@ try {
             low: results.length - critical.length - high.length - medium.length
         },
         critical: critical,
-        high: high.slice(0, 50),
-        screenHidden: screenHiddenRules
+        high: high,
+        medium: medium
     }, null, 2));
 
     console.log(`\n✅ Full report saved to: specificity_report.json`);
