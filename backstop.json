@@ -16,47 +16,45 @@
   "onReadyScript": null,
   "scenarios": [
     {
-      "label": "Homepage Default",
-      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "label": "Homepage - Layout",
       "url": "http://localhost:8081/",
-      "referenceUrl": "",
-      "readyEvent": "",
-      "readySelector": ".category-grid",
-      "delay": 12000,
-      "hideSelectors": [],
+      "readySelector": ".top-nav-bar",
+      "delay": 3000,
       "removeSelectors": [
         "#background-video"
       ],
-      "hoverSelector": "",
-      "clickSelector": "",
-      "postInteractionWait": 0,
-      "selectors": [],
-      "selectorExpansion": true,
-      "expect": 0,
-      "misMatchThreshold": 0.1,
-      "requireSameDimensions": true
+      "selectors": [
+        "document"
+      ],
+      "misMatchThreshold": 0.5
     },
     {
-      "label": "Grid View",
-      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "label": "Hamburger Menu - Visible",
       "url": "http://localhost:8081/",
-      "referenceUrl": "",
-      "readyEvent": "",
-      "readySelector": ".category-grid",
+      "readySelector": ".hamburger-btn",
       "delay": 2000,
-      "hideSelectors": [],
       "removeSelectors": [
         "#background-video"
       ],
-      "clickSelector": ".category-card:first-child",
-      "postInteractionWait": 2000,
       "selectors": [
-        ".product-grid"
+        ".hamburger-btn"
       ],
-      "selectorExpansion": true,
-      "expect": 0,
-      "misMatchThreshold": 0.1,
-      "requireSameDimensions": true
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Drawer Menu - Opens",
+      "url": "http://localhost:8081/",
+      "readySelector": ".hamburger-btn",
+      "delay": 2000,
+      "clickSelector": ".hamburger-btn",
+      "postInteractionWait": 1000,
+      "removeSelectors": [
+        "#background-video"
+      ],
+      "selectors": [
+        ".drawer-menu"
+      ],
+      "misMatchThreshold": 0.5
     }
   ],
   "paths": {

@@ -503,34 +503,7 @@
 }
 
 
-/* ===== MIGRATED FROM LEGACY (Round 2) ===== */
-[data-category="sopas"] .video-thumb {
-  border: 1px solid rgba(255, 165, 0, 0.3);
-}
-
-/* ===== MIGRATED FROM LEGACY (Round 3 - Structural) ===== */
-.video-icon,
-.image-icon {
-  cursor: pointer;
-  text-align: center;
-  opacity: 0.8;
-  transition: all 0.3s ease;
-  /* backdrop-filter: blur(5px); */
-}
-
-.video-thumb {
-  width: 80px;
-  height: 56px;
-  object-fit: cover;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.video-thumb:hover {
-  transform: scale(1.05);
-}
-
+/* ===== MIGRATED FROM LEGACY ===== */
 [data-category="carnes"] .video-thumb {
   width: 100px;
   height: 56px;
@@ -542,47 +515,6 @@
   height: 60px;
 }
 
-[data-category="postres"] .video-thumb:hover {
-  transform: rotate(-2deg) scale(1.05);
-}
-
-.product-table[data-category="refrescos"],
-.product-table[data-category="cervezas"] {
-  width: calc(var(--table-width) * 0.75);
-  max-width: calc(var(--table-max-width) * 0.75);
-  table-layout: fixed;
-}
-
-.product-table[data-category="refrescos"] th:first-child,
-.product-table[data-category="cervezas"] th:first-child,
-.product-table[data-category="refrescos"] td.product-name,
-.product-table[data-category="cervezas"] td.product-name {
-  text-align: left;
-  padding-left: 15px;
-  width: 45%;
-}
-
-.product-table[data-category="refrescos"] th:nth-child(2),
-.product-table[data-category="cervezas"] th:nth-child(2),
-.product-table[data-category="refrescos"] td:nth-child(2),
-.product-table[data-category="cervezas"] td:nth-child(2) {
-  width: 25%;
-}
-
-.product-table[data-category="refrescos"] th:nth-child(3),
-.product-table[data-category="cervezas"] th:nth-child(3),
-.product-table[data-category="refrescos"] td:nth-child(3),
-.product-table[data-category="cervezas"] td:nth-child(3) {
-  width: 30%;
-}
-
-.modal-content[data-category="refrescos"],
-.modal-content[data-category="cervezas"] {
-  width: 33.6%;
-  max-width: 336px;
-}
-
-.product-table td.image-icon img {
-  display: block;
-  margin: 0 auto;
+[data-category="sopas"] .video-thumb {
+  border: 1px solid rgba(255, 165, 0, 0.3);
 }

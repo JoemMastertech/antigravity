@@ -115,9 +115,62 @@ body.no-scrollbars {
   margin: 0;
   white-space: nowrap;
 }
-*//* Media queries para evitar sobreposiciÃ³n en pantallas pequeÃ±as *//* REGLAS ESPECÃFICAS PARA TABLET EN LANDSCAPE Y PORTRAIT - MODO BLANCO *//* REGLAS ESPECÃFICAS PARA MÃ“VIL EN LANDSCAPE - MODO BLANCO *//* Consolidated responsive styles for video thumbnails *//* =================================================================
+*/.orders-back-btn,
+.history-btn {
+  position: relative;
+  z-index: 1;
+}/* Media queries para evitar sobreposiciÃ³n en pantallas pequeÃ±as *//* REGLAS ESPECÃFICAS PARA TABLET EN LANDSCAPE Y PORTRAIT - MODO BLANCO *//* REGLAS ESPECÃFICAS PARA MÃ“VIL EN LANDSCAPE - MODO BLANCO */.video-icon,
+.image-icon {
+  cursor: pointer;
+  text-align: center;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  /* backdrop-filter: blur(5px); */
+}.video-thumb {
+  width: 80px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}.video-thumb:hover {
+  transform: scale(1.05);
+}[data-category="postres"] .video-thumb:hover {
+  transform: rotate(-2deg) scale(1.05);
+}/* Consolidated responsive styles for video thumbnails *//* =================================================================
    RESPONSIVE BREAKPOINTS - CONSOLIDATED MEDIA QUERIES
-   ================================================================= *//* TABLET AND MOBILE (â‰¤768px) - Consolidated Rules *//* === REGION: BREAKPOINT MOBILE â‰¤480 === *//* MOBILE (â‰¤480px) - Consolidated Rules *//* ===== BEM METHODOLOGY IMPLEMENTATION ===== *//* === REGION: NAV (BEM) === *//* Navigation Component - BEM Structure *//* PRODUCT (BEM) MOVED TO components/cards.css *//* MODALS (BEM) MOVED TO components/modals.css *//* Sidebar Component - BEM Structure */.sidebar {
+   ================================================================= *//* TABLET AND MOBILE (â‰¤768px) - Consolidated Rules *//* === REGION: BREAKPOINT MOBILE â‰¤480 === *//* MOBILE (â‰¤480px) - Consolidated Rules *//* ===== BEM METHODOLOGY IMPLEMENTATION ===== *//* === REGION: NAV (BEM) === *//* Navigation Component - BEM Structure */.nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}.nav__row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}.nav__button {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--text-color);
+  padding: 8px 15px;
+  font: 600 1rem 'Montserrat', sans-serif;
+  cursor: pointer;
+  transition: all var(--transition-time) ease;
+}.nav__button--toggle {
+  font-size: 1.2rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  font-weight: bold;
+}.nav__button--toggle:hover {
+  transform: scale(1.05);
+}/* PRODUCT (BEM) MOVED TO components/cards.css *//* MODALS (BEM) MOVED TO components/modals.css *//* Sidebar Component - BEM Structure */.sidebar {
   position: fixed;
   top: 0;
   left: -300px;
@@ -130,6 +183,8 @@ body.no-scrollbars {
   overflow-y: auto;
 }.sidebar--open {
   left: 0;
+}.sidebar__nav-item {
+  margin-bottom: 10px;
 }.sidebar__nav-link {
   display: block;
   padding: 10px 15px;
@@ -138,9 +193,25 @@ body.no-scrollbars {
   border-radius: 5px;
   transition: all 0.3s ease;
   font: 500 0.9rem 'Montserrat', sans-serif;
+}.sidebar__nav-link:hover,
+.sidebar__nav-link--active {
+  background-color: var(--primary-color);
+  color: var(--background-color);
 }/* =================================================================
    SIDEBAR SYSTEM - NAVIGATION, ORDERS & SETTINGS
-   ================================================================= *//* ===== SIDEBAR 1: NAVIGATION MENU (Left Side - Hamburger) ===== */.drawer-menu.open {
+   ================================================================= *//* ===== SIDEBAR 1: NAVIGATION MENU (Left Side - Hamburger) ===== */.drawer-menu {
+  position: fixed;
+  top: 70px;
+  left: -300px;
+  width: 300px;
+  height: calc(100vh - 70px);
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+  transition: left 0.3s ease-in-out;
+  overflow-y: auto;
+  border-right: 1px solid var(--border-color);
+}.drawer-menu.open {
   left: 0;
 }/* Navigation drawer closed state: hide fully to avoid seam */#drawer-menu {
   opacity: 0;
@@ -150,10 +221,114 @@ body.no-scrollbars {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-}/* Responsive adjustments for navigation sidebar *//* === REGION: OVERLAYS (Drawer Overlay) === *//* === REGION: ORDER SIDEBAR (Right) === *//* ===== SIDEBAR 2: ORDERS SIDEBAR (Right Side - Create Order) ===== *//* === REGION: BREAKPOINT TABLET 481â€“767 === *//* Responsive adjustments for orders sidebar *//* === REGION: BREAKPOINT MOBILE LANDSCAPE â‰¤480 === *//* === REGION: BREAKPOINT DESKTOP â‰¥1200 === *//* Active states - Show sidebar */#order-sidebar.active,
+}/* Responsive adjustments for navigation sidebar */.drawer-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}.drawer-logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}.drawer-logo {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 10px;
+}.drawer-menu .nav-button {
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  font: 700 0.77rem 'Playfair Display', serif;
+  text-transform: none;
+  transition: all 0.3s ease;
+  border: 1.4px solid var(--border-color);
+  box-shadow: var(--glow-shadow);
+  background: transparent;
+  border-radius: 5px;
+}.drawer-menu .nav-button:hover,
+.drawer-menu .nav-button.active {
+  background-color: transparent;
+  transform: scale(1.02);
+  border-color: var(--price-color);
+  color: var(--price-color);
+  box-shadow: var(--glow-shadow-hover);
+}.drawer-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--primary-color);
+  opacity: 0.8;
+  font-style: italic;
+}/* === REGION: OVERLAYS (Drawer Overlay) === */.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}.drawer-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}/* === REGION: ORDER SIDEBAR (Right) === *//* ===== SIDEBAR 2: ORDERS SIDEBAR (Right Side - Create Order) ===== */#order-sidebar {
+  /* Base properties */
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--glow-shadow);
+  transition: all var(--transition-time) ease;
+  box-sizing: border-box;
+  flex-direction: column;
+  overflow-x: hidden;
+  display: none;
+
+  /* DESKTOP DEFAULT (>768px) - Right sidebar */
+  width: 264px;
+  /* +10% para mejorar visualizaciÃ³n */
+  padding: 15px;
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  max-height: 70vh;
+  overflow-y: auto;
+  z-index: 900;
+}/* === REGION: BREAKPOINT TABLET 481â€“767 === *//* Responsive adjustments for orders sidebar *//* === REGION: BREAKPOINT MOBILE LANDSCAPE â‰¤480 === *//* === REGION: BREAKPOINT DESKTOP â‰¥1200 === *//* Active states - Show sidebar */#order-sidebar.active,
 body.order-mode-active #order-sidebar {
   display: flex;
-}/* Semantic open state for BEM-friendly toggling *//* Order sidebar title - Responsive *//* Order content and items *//* ===== SIDEBAR 3: SETTINGS MENU (Right Side - Settings Panel) ===== */#settings-menu {
+}/* Semantic open state for BEM-friendly toggling */#order-sidebar.is-open,
+.order-sidebar.is-open {
+  display: flex;
+}/* Order sidebar title - Responsive */#order-sidebar h3 {
+  color: var(--primary-color);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  text-align: center;
+  order: 1;
+}/* Order content and items */#order-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: none;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column-reverse;
+}#order-items {
+  order: 2;
+}.order-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}/* ===== SIDEBAR 3: SETTINGS MENU (Right Side - Settings Panel) ===== */#settings-menu {
   position: fixed;
   top: 70px;
   right: -270px;
@@ -178,15 +353,156 @@ body.order-mode-active #order-sidebar {
   pointer-events: auto;
 }/* Responsive adjustments for settings sidebar *//* =============================
    RANGE FIX: 481pxâ€“768px HEIGHT STABILITY
-   ============================= *//* Theme and language buttons *//* Responsive settings menu *//* =================================================================
+   ============================= */.settings-panel {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}.settings-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}.settings-section {
+  margin-bottom: 20px;
+}.settings-section h3,
+.settings-section h4 {
+  font-family: 'Playfair Display', serif;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  font-size: 1rem;
+}.back-button {
+  background: var(--card-bg);
+  border: 2px solid var(--primary-color);
+  color: var(--text-color);
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}.back-button:hover {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  box-shadow: var(--glow-shadow-hover);
+}/* Theme and language buttons */.language-btn,
+.theme-btn {
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  font: 700 0.77rem 'Playfair Display', serif;
+  text-transform: none;
+  transition: all 0.3s ease;
+  border: 1.4px solid var(--border-color);
+  box-shadow: var(--glow-shadow);
+  background: transparent;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}.language-btn:hover,
+.theme-btn:hover {
+  transform: translateX(5px);
+  background-color: transparent;
+  border-color: var(--price-color);
+  color: var(--price-color);
+  box-shadow: var(--glow-shadow-hover);
+}.language-btn.active,
+.theme-btn.active {
+  background-color: transparent;
+  border-color: var(--price-color);
+  color: var(--price-color);
+  box-shadow: var(--glow-shadow-hover);
+}/* Responsive settings menu *//* =================================================================
    TABLES & GRID CONTAINERS - CONSOLIDATED
-   ================================================================= *//* === REGION: HISTORIAL Y LISTA DE Ã“RDENES === *//* Contenedores de Ã³rdenes con scroll vertical *//* Estilos para la barra de scroll - CONSOLIDADOS *//* Removidos estilos especÃ­ficos redundantes - los globales al final manejan todos los scrollbars */.delete-order-btn {
+   ================================================================= */.container,
+.category-grid,
+.product-grid {
+  width: var(--table-width);
+  max-width: 100%;
+  margin: var(--table-margin) auto;
+  background: var(--card-bg);
+  border-radius: 15px;
+  box-shadow: 0 0 20px var(--border-color);
+  position: relative;
+}.container {
+  border: 1px solid var(--primary-color);
+  background: var(--card-bg);
+}.saved-orders {
+  width: 100%;
+  margin-bottom: 20px;
+}/* === REGION: HISTORIAL Y LISTA DE Ã“RDENES === *//* Contenedores de Ã³rdenes con scroll vertical */.orders-list-container {
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 10px;
+  margin-top: 20px;
+}.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}.order-history-container {
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}/* Estilos para la barra de scroll - CONSOLIDADOS *//* Removidos estilos especÃ­ficos redundantes - los globales al final manejan todos los scrollbars */.saved-order {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  padding: 15px;
+  margin-bottom: 15px;
+  transition: all var(--transition-time) ease;
+}.saved-order h3 {
+  color: var(--primary-color);
+  font: 1.3rem 'Playfair Display', serif;
+  margin-bottom: 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 5px;
+}.saved-order-items {
+  margin-bottom: 10px;
+}.saved-order-item {
+  padding: 5px 0;
+  margin-bottom: 5px;
+  border-bottom: 1px solid rgba(0, 247, 255, 0.1);
+}.saved-order-item-name {
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 3px;
+}.saved-order-item-price {
+  color: var(--price-color);
+  font-weight: 500;
+  font-size: 0.9rem;
+}.saved-order-item-customization {
+  color: #ccc;
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-top: 3px;
+}.saved-order-total {
+  color: var(--price-color);
+  font-weight: 600;
+  text-align: right;
+  margin: 10px 0;
+  font-size: 1.1rem;
+}.delete-order-btn {
   background: rgba(255, 99, 71, 0.2);
   border-color: rgba(255, 99, 71, 0.5);
   color: rgba(255, 99, 71, 1);
   margin: 0 auto;
   display: block;
-}/* Consolidated tablet responsive styles *//* Optimized disabled states and selection modes *//* =================================================================
+}.delete-order-btn:hover {
+  background: rgba(255, 99, 71, 0.8);
+  color: white;
+}/* Consolidated tablet responsive styles *//* Optimized disabled states and selection modes */.price-selection-mode .price-button.non-selectable,
+.price-selection-mode .price-button:disabled {
+  animation: none;
+  background: transparent;
+  transform: none;
+}.price-selection-mode .product-grid .product-card.liquor-card .price-button {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px var(--price-color);
+}/* =================================================================
    RESPONSIVE DESIGN - TABLET (481px - 768px)
    ================================================================= *//* Consolidated mobile responsive styles *//* =================================================================
    RESPONSIVE DESIGN - PORTRAIT TABLETS (768px - 1024px)
@@ -194,7 +510,12 @@ body.order-mode-active #order-sidebar {
    RESPONSIVE DESIGN - MOBILE LANDSCAPE (max-width: 480px)
    ================================================================= *//* =================================================================
    RESPONSIVE DESIGN - MOBILE PORTRAIT (max-width: 480px)
-   ================================================================= *//* Ajustar contenido principal para barra mÃ¡s compacta *//* Botones hamburguesa y volver superpuestos - ajustados */.hamburger-btn,
+   ================================================================= */.nav-center {
+  font-size: 1rem;
+}/* Ajustar contenido principal para barra mÃ¡s compacta */.top-nav-visible~#app .main-content-screen,
+.main-content-screen.with-top-nav {
+  padding-top: 56px;
+}/* Botones hamburguesa y volver superpuestos - ajustados */.hamburger-btn,
 .back-button-container {
   position: fixed;
   z-index: 900;
@@ -204,6 +525,9 @@ body.order-mode-active #order-sidebar {
   width: 36px;
   height: 36px;
   font-size: 1.3rem;
+}.back-button-container {
+  left: 8px;
+  top: 96px;
 }/* ORDER SIDEBAR - MOBILE PORTRAIT (parte inferior) - SOLO EN PORTRAIT *//* Sidebar visible cuando estÃ¡ activo en portrait - SOLO EN PORTRAIT *//* =================================================================
    REGLAS ESPECÃFICAS PARA PORTRAIT - TABLAS COMPLETAS
    ================================================================= *//* =================================================================
@@ -221,9 +545,85 @@ body.order-mode-active #order-sidebar {
   margin: 15px 0;
   font-family: 'Montserrat', sans-serif;
   transition: all var(--transition-time) ease;
+}.password-input:focus {
+  outline: none;
+  border-color: var(--price-color);
+}.clear-history-btn {
+  background: rgba(255, 99, 71, 0.2);
+  border-color: rgba(255, 99, 71, 0.5);
+  color: rgba(255, 99, 71, 1);
+  margin-left: auto;
+}.clear-history-btn:hover {
+  background: rgba(255, 99, 71, 0.8);
+  color: white;
 }/* =================================================================
    TOP NAVIGATION BAR
-   ================================================================= *//* =================================================================
+   ================================================================= */.top-nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  background: var(--gradient-overlay, linear-gradient(135deg, var(--card-bg) 0%, rgba(0, 0, 0, 0.92) 100%));
+  backdrop-filter: blur(15px);
+  border-bottom: 2px solid var(--border-color);
+  box-shadow: 0 4px 20px rgba(0, 247, 255, 0.1);
+  z-index: 1001;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(-100%);
+  opacity: 0;
+}.top-nav-bar.top-nav-visible {
+  transform: translateY(0);
+  opacity: 1;
+}.top-nav-bar.top-nav-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+}.top-nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  max-width: var(--table-max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}.nav-left {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}.nav-center {
+  flex: 1;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-color);
+}.back-btn-hidden {
+  display: none !important;
+}.nav-buttons-container {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}.top-nav-btn {
+  background: var(--card-bg);
+  border: 2px solid var(--primary-color);
+  color: var(--text-color);
+  padding: 8px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all var(--transition-time) ease;
+  backdrop-filter: blur(10px);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}.top-nav-btn:hover {
+  background-color: transparent;
+  transform: scale(1.02);
+  border-color: var(--price-color);
+  color: var(--price-color);
+  box-shadow: 0 0 15px var(--price-color);
+}/* =================================================================
    NAVIGATION DRAWER & HAMBURGER MENU
    ================================================================= */.top-nav-bar .hamburger-btn {
   position: relative;
@@ -270,16 +670,76 @@ body.order-mode-active #order-sidebar {
   border-color: var(--price-color);
   color: var(--price-color);
   box-shadow: 0 0 15px var(--price-color);
-}/* Back button container - OCULTO: ahora estÃ¡ en la barra superior *//* Centrar el botÃ³n Volver en el menÃº lateral derecho */.title-row {
+}/* Back button container - OCULTO: ahora estÃ¡ en la barra superior */.back-button-container {
+  display: none !important;
+}.back-button {
+  background: var(--card-bg);
+  border: 2px solid var(--primary-color);
+  color: var(--text-color);
+  font-size: 1.1rem;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all var(--transition-time) ease;
+  backdrop-filter: blur(10px);
+  font-weight: bold;
+  border-radius: 8px;
+}.back-button:hover {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+}/* Centrar el botÃ³n Volver en el menÃº lateral derecho */#settings-menu .back-button {
+  margin: 0 auto;
+  display: block;
+}.title-row {
   background: transparent;
 }.title-row td {
   padding: 0;
   background: transparent;
-}/* Cuando el modo orden estÃ¡ activo en desktop, ajustar padding para el sidebar */.content-container-flex {
+}/* Cuando el modo orden estÃ¡ activo en desktop, ajustar padding para el sidebar */body.order-mode-active #app {
+  padding-right: calc(max(20px, calc((100vw - var(--table-max-width)) / 2)) + 284px);
+}.content-wrapper.order-active {
+  gap: 1px;
+  justify-content: flex-start;
+  transition: gap 0.2s ease-in-out;
+}.content-container-flex {
   margin-right: -1.5px;
 }/* =================================================================
    CATEGORY-SPECIFIC STYLES
-   ================================================================= */.exclusive-option-group {
+   ================================================================= */.product-table[data-category="refrescos"],
+.product-table[data-category="cervezas"] {
+  width: calc(var(--table-width) * 0.75);
+  max-width: calc(var(--table-max-width) * 0.75);
+  table-layout: fixed;
+}.product-table[data-category="refrescos"] th,
+.product-table[data-category="cervezas"] th,
+.product-table[data-category="refrescos"] td,
+.product-table[data-category="cervezas"] td {
+  text-align: center;
+}.product-table[data-category="refrescos"] th:first-child,
+.product-table[data-category="cervezas"] th:first-child,
+.product-table[data-category="refrescos"] td.product-name,
+.product-table[data-category="cervezas"] td.product-name {
+  text-align: left;
+  padding-left: 15px;
+  width: 45%;
+}.product-table[data-category="refrescos"] th:nth-child(2),
+.product-table[data-category="cervezas"] th:nth-child(2),
+.product-table[data-category="refrescos"] td:nth-child(2),
+.product-table[data-category="cervezas"] td:nth-child(2) {
+  width: 25%;
+}.product-table[data-category="refrescos"] th:nth-child(3),
+.product-table[data-category="cervezas"] th:nth-child(3),
+.product-table[data-category="refrescos"] td:nth-child(3),
+.product-table[data-category="cervezas"] td:nth-child(3) {
+  width: 30%;
+}.modal-content[data-category="refrescos"],
+.modal-content[data-category="cervezas"] {
+  width: 33.6%;
+  max-width: 336px;
+}.exclusive-option-group {
   background: rgba(0, 247, 255, 0.05);
   border: 1px solid rgba(0, 247, 255, 0.2);
   border-radius: 8px;
@@ -293,6 +753,27 @@ body.order-mode-active #order-sidebar {
   margin: 0 0 10px 0;
   font-size: 1rem;
   text-align: center;
+}.jager-option-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  font-size: 1rem;
+}.jager-option-container:hover {
+  background: rgba(0, 247, 255, 0.1);
+}.jager-option-container.selected {
+  background: rgba(0, 247, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 247, 255, 0.3);
+}.jager-radio {
+  margin-right: 10px;
+  accent-color: var(--primary-color);
+}.jager-label {
+  font-weight: 500;
+  color: var(--text-color);
 }/* =================================================================
    INLINE STYLE REFACTORING - UTILITY CLASSES
    ================================================================= *//* Screen display utilities */.screen-hidden {
@@ -309,7 +790,21 @@ body.order-mode-active #order-sidebar {
   display: none;
 }/* =================================================================
    SETTINGS MENU STYLES
-   ================================================================= *//* Settings panel styles *//* Settings title *//* Fade in animation for panels */.fade-in {
+   ================================================================= *//* Settings panel styles */.settings-panel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  /* SeparaciÃ³n entre botones igual que en el menÃº lateral izquierdo */
+}/* Settings title */.settings-title {
+  font: 700 1.2rem 'Playfair Display', serif;
+  color: var(--primary-color);
+  margin: 15px 0 25px 0;
+  text-align: center;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 10px;
+}/* Fade in animation for panels */.fade-in {
   animation: fadeIn 0.3s ease-in-out;
 }@keyframes fadeIn {
   from {
@@ -321,7 +816,18 @@ body.order-mode-active #order-sidebar {
     opacity: 1;
     transform: translateX(0);
   }
-}/* Language and theme buttons - using existing nav-button styles but adding some specificities *//* Active state for selected options *//* =================================================================
+}/* Language and theme buttons - using existing nav-button styles but adding some specificities */.language-btn,
+.theme-btn {
+  transition: all 0.3s ease;
+}.language-btn:hover,
+.theme-btn:hover {
+  transform: translateX(5px);
+}/* Active state for selected options */.language-btn.active,
+.theme-btn.active {
+  background-color: rgba(0, 247, 255, 0.1);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}/* =================================================================
    RESPONSIVE SETTINGS MENU STYLES
    ================================================================= *//* Tablet styles *//* Mobile phone styles *//* Duplicate portrait media query removed - consolidated above *//* Landscape orientation styles for smaller devices */.hamburger-visible {
   display: block;
@@ -341,13 +847,67 @@ body.order-mode-active #order-sidebar {
   transform: translateY(100%) !important;
 }.sidebar-landscape-hidden {
   transform: translateX(100%) !important;
-}/* Estilos para los bloques organizados de refrescos *//* Estilos para los bloques organizados de cervezas *//* Display Utilities - CONSOLIDADAS */.visible,
+}/* Estilos para los bloques organizados de refrescos */.refrescos-section,
+.jarras-section,
+.vasos-section {
+  margin-bottom: 2rem;
+}.refrescos-section:not(:last-child),
+.jarras-section:not(:last-child),
+.vasos-section:not(:last-child) {
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 1.5rem;
+}.refrescos-section h2,
+.jarras-section h2,
+.vasos-section h2 {
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+  border-left: 4px solid #007bff;
+  padding-left: 1rem;
+}.jarras-section h2 {
+  border-left-color: #28a745;
+}.vasos-section h2 {
+  border-left-color: #ffc107;
+}/* Estilos para los bloques organizados de cervezas */.cervezas-botella-section,
+.tarros-section,
+.vasos-cerveza-section {
+  margin-bottom: 2rem;
+}.cervezas-botella-section:not(:last-child),
+.tarros-section:not(:last-child),
+.vasos-cerveza-section:not(:last-child) {
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 1.5rem;
+}.cervezas-botella-section h2,
+.tarros-section h2,
+.vasos-cerveza-section h2 {
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+  border-left: 4px solid #dc3545;
+  padding-left: 1rem;
+}.tarros-section h2 {
+  border-left-color: #17a2b8;
+}.vasos-cerveza-section h2 {
+  border-left-color: #6f42c1;
+}/* Display Utilities - CONSOLIDADAS */.hidden,
+.content-hidden,
+.input-container-hidden,
+.choice-hidden,
+.error-hidden,
+.modal-hidden,
+.page-title-hidden {
+  display: none;
+}.visible,
 .content-visible,
 .input-container-visible,
 .choice-visible,
 .error-visible,
 .page-title-visible {
   display: block;
+}.modal-flex {
+  display: flex;
 }/* Semantic state for drink modal open (BEM-friendly) */#drink-options-modal.is-open,
 .drink-modal.is-open {
   display: flex;
@@ -365,11 +925,21 @@ body.order-mode-active #order-sidebar {
   left: 0;
 }.left-auto {
   left: auto;
-}/* Product image size utilities *//* Height and min-height utilities */.height-auto {
+}/* Product image size utilities */.product-image-small {
+  width: 40px !important;
+  height: 40px !important;
+}.product-image-large {
+  width: 70px !important;
+  height: 70px !important;
+}/* Height and min-height utilities */.height-auto {
   height: auto !important;
 }.min-height-auto {
   min-height: auto !important;
-}/* Modal subtitle styling *//* Custom Scrollbar Styles - TEMA OSCURO OPTIMIZADO *//* Webkit browsers (Chrome, Safari, Edge) */::-webkit-scrollbar {
+}/* Modal subtitle styling */.modal-subtitle {
+  font-size: 0.85em;
+  font-weight: normal;
+  color: var(--text-color);
+}/* Custom Scrollbar Styles - TEMA OSCURO OPTIMIZADO *//* Webkit browsers (Chrome, Safari, Edge) */::-webkit-scrollbar {
   width: 12px;
   height: 12px;
 }/* Scrollbar vertical - mÃ¡s sutil */::-webkit-scrollbar:vertical {
@@ -430,7 +1000,20 @@ body.order-mode-active #order-sidebar {
 }/* Firefox */* {
   scrollbar-width: thin;
   scrollbar-color: rgba(243, 246, 246, 0.6) rgba(0, 0, 0, 0.4);
-}/* Estilos especÃ­ficos para elementos con scroll en tema oscuro *//* =================================================================
+}/* Estilos especÃ­ficos para elementos con scroll en tema oscuro */.orders-list-container::-webkit-scrollbar,
+.order-history-container::-webkit-scrollbar,
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}.orders-list-container::-webkit-scrollbar-thumb,
+.order-history-container::-webkit-scrollbar-thumb,
+.modal-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 247, 255, 0.4);
+  border-radius: 4px;
+}.orders-list-container::-webkit-scrollbar-thumb:hover,
+.order-history-container::-webkit-scrollbar-thumb:hover,
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 247, 255, 0.7);
+}/* =================================================================
    CORRECCIÃ“N ESPECÃFICA PARA ENCABEZADOS DE DOS PALABRAS EN MÃ“VIL PORTRAIT
    ================================================================= *//* =================================================================
    REGLAS LANDSCAPE UNIFICADAS - PREVENCIÃ“N DE SALTOS DE LÃNEA
@@ -438,10 +1021,58 @@ body.order-mode-active #order-sidebar {
    REGLAS LANDSCAPE CONSOLIDADAS - ANCHOS DE COLUMNA OPTIMIZADOS
    ================================================================= *//* Reglas base consolidadas para todas las orientaciones landscape *//* ===== MÃ“VIL LANDSCAPE (max-width: 768px) ===== *//* ===== TABLET LANDSCAPE (768px - 1024px) ===== *//* =================================================================
    ALINEACIÃ“N PORTRAIT CONSOLIDADA - ESPECIFICIDAD OPTIMIZADA
-   ================================================================= *//* Reglas base para portrait - especificidad reducida y consolidada *//* Ajustes especÃ­ficos de padding por resoluciÃ³n *//* Mantener imÃ¡genes centradas *//* =================================================================
+   ================================================================= *//* Reglas base para portrait - especificidad reducida y consolidada *//* Ajustes especÃ­ficos de padding por resoluciÃ³n *//* Mantener imÃ¡genes centradas */.product-table td.image-icon {
+  text-align: center;
+}.product-table td.image-icon img {
+  display: block;
+  margin: 0 auto;
+}/* =================================================================
    SOLUCIÃ“N DEFINITIVA PARA ALINEACIÃ“N DE NOMBRES EN PORTRAIT
    ================================================================= *//* Estas reglas tienen mÃ¡xima especificidad para sobrescribir 
-   las reglas generales de portrait que centran todas las celdas *//* ===== CONFIGURACIONES ESPECÃFICAS DEL MENÃš LATERAL DE NAVEGACIÃ“N ===== *//* DESKTOP - Aumentar texto 30% y reducir ancho 20% *//* TABLET PORTRAIT - Aumentar texto 15% y reducir ancho 10% *//* TABLET LANDSCAPE - Aumentar texto 15% y reducir ancho 10% *//* ===== TEMA LIGHT-WHITE CONSOLIDADO ===== *//* Reglas base con especificidad optimizada - sin !important *//* Botones de tema con especificidad optimizada *//* Botones especÃ­ficos con texto azul permanente *//* === REGION: BREAKPOINT LAPTOP/DESKTOP â‰¥769 === *//* Desktop spacing when order mode is active (avoid overlap with fixed sidebar) *//* === REGION: MOBILE LANDSCAPE â‰¤768 === *//* Sidebar fijo a la derecha y espacio reservado vÃ­a ancho del wrapper *//* =================================================================
+   las reglas generales de portrait que centran todas las celdas *//* ===== CONFIGURACIONES ESPECÃFICAS DEL MENÃš LATERAL DE NAVEGACIÃ“N ===== *//* DESKTOP - Aumentar texto 30% y reducir ancho 20% *//* TABLET PORTRAIT - Aumentar texto 15% y reducir ancho 10% *//* TABLET LANDSCAPE - Aumentar texto 15% y reducir ancho 10% *//* ===== TEMA LIGHT-WHITE CONSOLIDADO ===== *//* Reglas base con especificidad optimizada - sin !important */[data-theme="light-white"] .drawer-menu {
+  background: rgba(255, 255, 255, 0.95);
+  border-left: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+}[data-theme="light-white"] .drawer-menu .nav-button {
+  background: rgba(30, 64, 175, 0.05);
+  border: 1.4px solid var(--border-color);
+  color: var(--text-color);
+  box-shadow: var(--glow-shadow);
+}[data-theme="light-white"] .drawer-menu .nav-button:hover,
+[data-theme="light-white"] .drawer-menu .nav-button.active {
+  background-color: transparent;
+  border-color: var(--price-color);
+  color: var(--price-color);
+  box-shadow: var(--glow-shadow-hover);
+}[data-theme="light-white"] .back-button {
+  background: var(--card-bg);
+  border: 2px solid var(--primary-color);
+  color: var(--text-color);
+}[data-theme="light-white"] .back-button:hover {
+  background-color: #85C7FF;
+  color: #ffffff;
+  box-shadow: 0 0 10px #85C7FF;
+}[data-theme="light-white"] .settings-title {
+  color: var(--text-color);
+}/* Botones de tema con especificidad optimizada */[data-theme="light-white"] .theme-btn {
+  color: var(--text-color);
+  background: rgba(30, 64, 175, 0.08);
+  border: 1.4px solid var(--border-color);
+}/* Botones especÃ­ficos con texto azul permanente */[data-theme="light-white"] .theme-btn[data-theme="light-blue"],
+[data-theme="light-white"] .theme-btn[data-theme="dark-blue"],
+[data-theme="light-white"] .theme-btn[data-theme="dark-red"] {
+  color: #1e40af;
+}[data-theme="light-white"] .theme-btn:hover {
+  background-color: rgba(133, 199, 255, 0.15);
+  border-color: #85C7FF;
+  color: #1e40af;
+  box-shadow: 0 0 15px #85C7FF;
+}[data-theme="light-white"] .theme-btn.active {
+  background-color: rgba(133, 199, 255, 0.2);
+  border-color: #85C7FF;
+  color: #1e40af;
+  box-shadow: 0 0 20px #85C7FF;
+}/* === REGION: BREAKPOINT LAPTOP/DESKTOP â‰¥769 === *//* Desktop spacing when order mode is active (avoid overlap with fixed sidebar) *//* === REGION: MOBILE LANDSCAPE â‰¤768 === *//* Sidebar fijo a la derecha y espacio reservado vÃ­a ancho del wrapper *//* =================================================================
    RANGE PORTRAIT: 481pxâ€“768px (phablet / tablet pequeÃ±a)
    Replicar comportamiento de mÃ³vil portrait: ancho completo y sidebar inferior
    ================================================================= *//* ConfiguraciÃ³n especÃ­fica para resoluciones 768â€“1024 de ancho y 641px de alto *//* Responsive logos: solo mÃ³viles â‰¤480px *//* Reset en â‰¥481px para evitar escala en tablet/escritorio *//* =================================================================

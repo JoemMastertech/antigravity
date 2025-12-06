@@ -541,39 +541,3 @@
 
 
 
-
-
-/* ===== MIGRATED FROM LEGACY (Decorative) ===== */
-.modal-subtitle {
-  font-size: 0.85em;
-  font-weight: normal;
-  color: var(--text-color);
-}
-
-.orders-list-container::-webkit-scrollbar-thumb,
-.order-history-container::-webkit-scrollbar-thumb,
-.modal-content::-webkit-scrollbar-thumb {
-  background: rgba(0, 247, 255, 0.4);
-  border-radius: 4px;
-}
-
-.orders-list-container::-webkit-scrollbar-thumb:hover,
-.order-history-container::-webkit-scrollbar-thumb:hover,
-.modal-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 247, 255, 0.7);
-}
-
-/* ===== MIGRATED FROM LEGACY (Round 4) ===== */
-.hidden,
-.content-hidden,
-.input-container-hidden,
-.choice-hidden,
-.error-hidden,
-.modal-hidden,
-.page-title-hidden {
-  display: none;
-}
-
-.modal-flex {
-  display: flex;
-}
