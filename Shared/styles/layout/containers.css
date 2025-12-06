@@ -116,3 +116,45 @@ body.order-mode-active #app {
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 5px;
 }
+
+/* ===== MIGRATED FROM LEGACY ===== */
+.saved-order-items {
+  margin-bottom: 10px;
+}
+
+.saved-order-item {
+  padding: 5px 0;
+  margin-bottom: 5px;
+  border-bottom: 1px solid rgba(0, 247, 255, 0.1);
+}
+
+.saved-order-item-name {
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 3px;
+}
+
+.saved-order-item-price {
+  color: var(--price-color);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.saved-order-item-customization {
+  color: #ccc;
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-top: 3px;
+}
+
+.saved-order-total {
+  color: var(--price-color);
+  font-weight: 600;
+  text-align: right;
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+.nav-center {
+  font-size: 1rem;
+}

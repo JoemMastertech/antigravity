@@ -417,40 +417,12 @@ body.order-mode-active #order-sidebar {
   padding: 15px;
   margin-bottom: 15px;
   transition: all var(--transition-time) ease;
-}.saved-order-items {
-  margin-bottom: 10px;
-}.saved-order-item {
-  padding: 5px 0;
-  margin-bottom: 5px;
-  border-bottom: 1px solid rgba(0, 247, 255, 0.1);
-}.saved-order-item-name {
-  font-weight: 600;
-  color: var(--primary-color);
-  margin-bottom: 3px;
-}.saved-order-item-price {
-  color: var(--price-color);
-  font-weight: 500;
-  font-size: 0.9rem;
-}.saved-order-item-customization {
-  color: #ccc;
-  font-size: 0.85rem;
-  font-style: italic;
-  margin-top: 3px;
-}.saved-order-total {
-  color: var(--price-color);
-  font-weight: 600;
-  text-align: right;
-  margin: 10px 0;
-  font-size: 1.1rem;
 }.delete-order-btn {
   background: rgba(255, 99, 71, 0.2);
   border-color: rgba(255, 99, 71, 0.5);
   color: rgba(255, 99, 71, 1);
   margin: 0 auto;
   display: block;
-}.delete-order-btn:hover {
-  background: rgba(255, 99, 71, 0.8);
-  color: white;
 }/* Consolidated tablet responsive styles *//* Optimized disabled states and selection modes */.price-selection-mode .price-button.non-selectable,
 .price-selection-mode .price-button:disabled {
   animation: none;
@@ -467,9 +439,7 @@ body.order-mode-active #order-sidebar {
    RESPONSIVE DESIGN - MOBILE LANDSCAPE (max-width: 480px)
    ================================================================= *//* =================================================================
    RESPONSIVE DESIGN - MOBILE PORTRAIT (max-width: 480px)
-   ================================================================= */.nav-center {
-  font-size: 1rem;
-}/* Ajustar contenido principal para barra mÃ¡s compacta */.top-nav-visible~#app .main-content-screen,
+   ================================================================= *//* Ajustar contenido principal para barra mÃ¡s compacta */.top-nav-visible~#app .main-content-screen,
 .main-content-screen.with-top-nav {
   padding-top: 56px;
 }/* Botones hamburguesa y volver superpuestos - ajustados */.hamburger-btn,
@@ -482,9 +452,6 @@ body.order-mode-active #order-sidebar {
   width: 36px;
   height: 36px;
   font-size: 1.3rem;
-}.back-button-container {
-  left: 8px;
-  top: 96px;
 }/* ORDER SIDEBAR - MOBILE PORTRAIT (parte inferior) - SOLO EN PORTRAIT *//* Sidebar visible cuando estÃ¡ activo en portrait - SOLO EN PORTRAIT *//* =================================================================
    REGLAS ESPECÃFICAS PARA PORTRAIT - TABLAS COMPLETAS
    ================================================================= *//* =================================================================
@@ -502,9 +469,6 @@ body.order-mode-active #order-sidebar {
   margin: 15px 0;
   font-family: 'Montserrat', sans-serif;
   transition: all var(--transition-time) ease;
-}.password-input:focus {
-  outline: none;
-  border-color: var(--price-color);
 }.clear-history-btn {
   background: rgba(255, 99, 71, 0.2);
   border-color: rgba(255, 99, 71, 0.5);

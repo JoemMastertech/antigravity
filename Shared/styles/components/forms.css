@@ -392,3 +392,9 @@ textarea:focus {
   color: var(--price-color);
   box-shadow: var(--glow-shadow-hover);
 }
+
+/* ===== MIGRATED FROM LEGACY ===== */
+.password-input:focus {
+  outline: none;
+  border-color: var(--price-color);
+}

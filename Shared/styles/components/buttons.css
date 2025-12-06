@@ -77,3 +77,14 @@
   color: var(--background-color);
   box-shadow: var(--glow-shadow-hover);
 }
+
+/* ===== MIGRATED FROM LEGACY ===== */
+.delete-order-btn:hover {
+  background: rgba(255, 99, 71, 0.8);
+  color: white;
+}
+
+.back-button-container {
+  left: 8px;
+  top: 96px;
+}
