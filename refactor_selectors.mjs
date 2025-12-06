@@ -8,6 +8,8 @@ import { globSync } from 'glob';
 const replacements = [
     // #order-sidebar -> .order-sidebar
     { from: /#order-sidebar(?![-\w])/g, to: '.order-sidebar' },
+    // #drawer-menu -> .drawer-menu
+    { from: /#drawer-menu(?![-\w])/g, to: '.drawer-menu' },
 ];
 
 const files = [

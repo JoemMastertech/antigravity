@@ -207,11 +207,11 @@ body.no-scrollbars {
   border-right: 1px solid var(--border-color);
 }.drawer-menu.open {
   left: 0;
-}/* Navigation drawer closed state: hide fully to avoid seam */#drawer-menu {
+}/* Navigation drawer closed state: hide fully to avoid seam */.drawer-menu {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-}#drawer-menu.open {
+}.drawer-menu.open {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
