@@ -106,3 +106,31 @@
   background-color: var(--primary-color);
   color: var(--background-color);
 }
+
+/* ===== MIGRATED FROM LEGACY ===== */
+[data-theme="light-white"] .drawer-menu .nav-button {
+  background: rgba(30, 64, 175, 0.05);
+  border: 1.4px solid var(--border-color);
+  color: var(--text-color);
+  box-shadow: var(--glow-shadow);
+}
+
+[data-theme="light-white"] .drawer-menu .nav-button:hover,
+[data-theme="light-white"] .drawer-menu .nav-button.active {
+  background-color: transparent;
+  border-color: var(--price-color);
+  color: var(--price-color);
+  box-shadow: var(--glow-shadow-hover);
+}
+
+[data-theme="light-white"] .back-button {
+  background: var(--card-bg);
+  border: 2px solid var(--primary-color);
+  color: var(--text-color);
+}
+
+[data-theme="light-white"] .back-button:hover {
+  background-color: #85C7FF;
+  color: #ffffff;
+  box-shadow: 0 0 10px #85C7FF;
+}

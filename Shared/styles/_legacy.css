@@ -819,50 +819,7 @@ body.order-mode-active #order-sidebar {
 }/* =================================================================
    SOLUCIÃ“N DEFINITIVA PARA ALINEACIÃ“N DE NOMBRES EN PORTRAIT
    ================================================================= *//* Estas reglas tienen mÃ¡xima especificidad para sobrescribir 
-   las reglas generales de portrait que centran todas las celdas *//* ===== CONFIGURACIONES ESPECÃFICAS DEL MENÃš LATERAL DE NAVEGACIÃ“N ===== *//* DESKTOP - Aumentar texto 30% y reducir ancho 20% *//* TABLET PORTRAIT - Aumentar texto 15% y reducir ancho 10% *//* TABLET LANDSCAPE - Aumentar texto 15% y reducir ancho 10% *//* ===== TEMA LIGHT-WHITE CONSOLIDADO ===== *//* Reglas base con especificidad optimizada - sin !important */[data-theme="light-white"] .drawer-menu {
-  background: rgba(255, 255, 255, 0.95);
-  border-left: 1px solid var(--border-color);
-  backdrop-filter: blur(10px);
-}[data-theme="light-white"] .drawer-menu .nav-button {
-  background: rgba(30, 64, 175, 0.05);
-  border: 1.4px solid var(--border-color);
-  color: var(--text-color);
-  box-shadow: var(--glow-shadow);
-}[data-theme="light-white"] .drawer-menu .nav-button:hover,
-[data-theme="light-white"] .drawer-menu .nav-button.active {
-  background-color: transparent;
-  border-color: var(--price-color);
-  color: var(--price-color);
-  box-shadow: var(--glow-shadow-hover);
-}[data-theme="light-white"] .back-button {
-  background: var(--card-bg);
-  border: 2px solid var(--primary-color);
-  color: var(--text-color);
-}[data-theme="light-white"] .back-button:hover {
-  background-color: #85C7FF;
-  color: #ffffff;
-  box-shadow: 0 0 10px #85C7FF;
-}[data-theme="light-white"] .settings-title {
-  color: var(--text-color);
-}/* Botones de tema con especificidad optimizada */[data-theme="light-white"] .theme-btn {
-  color: var(--text-color);
-  background: rgba(30, 64, 175, 0.08);
-  border: 1.4px solid var(--border-color);
-}/* Botones especÃ­ficos con texto azul permanente */[data-theme="light-white"] .theme-btn[data-theme="light-blue"],
-[data-theme="light-white"] .theme-btn[data-theme="dark-blue"],
-[data-theme="light-white"] .theme-btn[data-theme="dark-red"] {
-  color: #1e40af;
-}[data-theme="light-white"] .theme-btn:hover {
-  background-color: rgba(133, 199, 255, 0.15);
-  border-color: #85C7FF;
-  color: #1e40af;
-  box-shadow: 0 0 15px #85C7FF;
-}[data-theme="light-white"] .theme-btn.active {
-  background-color: rgba(133, 199, 255, 0.2);
-  border-color: #85C7FF;
-  color: #1e40af;
-  box-shadow: 0 0 20px #85C7FF;
-}/* === REGION: BREAKPOINT LAPTOP/DESKTOP â‰¥769 === *//* Desktop spacing when order mode is active (avoid overlap with fixed sidebar) *//* === REGION: MOBILE LANDSCAPE â‰¤768 === *//* Sidebar fijo a la derecha y espacio reservado vÃ­a ancho del wrapper *//* =================================================================
+   las reglas generales de portrait que centran todas las celdas *//* ===== CONFIGURACIONES ESPECÃFICAS DEL MENÃš LATERAL DE NAVEGACIÃ“N ===== *//* DESKTOP - Aumentar texto 30% y reducir ancho 20% *//* TABLET PORTRAIT - Aumentar texto 15% y reducir ancho 10% *//* TABLET LANDSCAPE - Aumentar texto 15% y reducir ancho 10% *//* ===== TEMA LIGHT-WHITE CONSOLIDADO ===== *//* Reglas base con especificidad optimizada - sin !important *//* Botones de tema con especificidad optimizada *//* Botones especÃ­ficos con texto azul permanente *//* === REGION: BREAKPOINT LAPTOP/DESKTOP â‰¥769 === *//* Desktop spacing when order mode is active (avoid overlap with fixed sidebar) *//* === REGION: MOBILE LANDSCAPE â‰¤768 === *//* Sidebar fijo a la derecha y espacio reservado vÃ­a ancho del wrapper *//* =================================================================
    RANGE PORTRAIT: 481pxâ€“768px (phablet / tablet pequeÃ±a)
    Replicar comportamiento de mÃ³vil portrait: ancho completo y sidebar inferior
    ================================================================= *//* ConfiguraciÃ³n especÃ­fica para resoluciones 768â€“1024 de ancho y 641px de alto *//* Responsive logos: solo mÃ³viles â‰¤480px *//* Reset en â‰¥481px para evitar escala en tablet/escritorio *//* =================================================================

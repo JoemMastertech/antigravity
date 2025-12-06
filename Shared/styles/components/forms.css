@@ -415,3 +415,34 @@ textarea:focus {
   border-color: var(--primary-color);
   color: var(--primary-color);
 }
+
+/* ===== MIGRATED FROM LEGACY ===== */
+[data-theme="light-white"] .settings-title {
+  color: var(--text-color);
+}
+
+[data-theme="light-white"] .theme-btn {
+  color: var(--text-color);
+  background: rgba(30, 64, 175, 0.08);
+  border: 1.4px solid var(--border-color);
+}
+
+[data-theme="light-white"] .theme-btn[data-theme="light-blue"],
+[data-theme="light-white"] .theme-btn[data-theme="dark-blue"],
+[data-theme="light-white"] .theme-btn[data-theme="dark-red"] {
+  color: #1e40af;
+}
+
+[data-theme="light-white"] .theme-btn:hover {
+  background-color: rgba(133, 199, 255, 0.15);
+  border-color: #85C7FF;
+  color: #1e40af;
+  box-shadow: 0 0 15px #85C7FF;
+}
+
+[data-theme="light-white"] .theme-btn.active {
+  background-color: rgba(133, 199, 255, 0.2);
+  border-color: #85C7FF;
+  color: #1e40af;
+  box-shadow: 0 0 20px #85C7FF;
+}
