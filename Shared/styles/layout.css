@@ -40,13 +40,13 @@ Contenido:
    2. CONTENEDORES PRINCIPALES (Migrado de main.css)
    ============================================================================= */
 
-#app {
+.app-container {
     width: 100%;
     max-width: var(--table-max-width);
     min-height: 100vh;
     position: relative;
 
-    .top-nav-visible~#app .main-content-screen,
+    .top-nav-visible~.app-container .main-content-screen,
     .main-content-screen.with-top-nav {
         padding-top: 140px !important;
         /* Mantenemos el fix del header */
@@ -77,7 +77,7 @@ Contenido:
 }
 
 /* Sidebar Styles - Migrated from main.css */
-#order-sidebar {
+.order-sidebar {
     /* Base properties */
     background: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -101,12 +101,12 @@ Contenido:
     z-index: 900;
 }
 
-#order-sidebar.active,
-body.order-mode-active #order-sidebar {
+.order-sidebar.active,
+body.order-mode-active .order-sidebar {
     display: flex;
 }
 
-#order-sidebar.sidebar-hidden {
+.order-sidebar.sidebar-hidden {
     display: none !important;
 }
 

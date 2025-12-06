@@ -3,7 +3,7 @@
    ================================================================= */
 
 /* Main App Container */
-#app {
+.app-container {
     width: 100%;
     max-width: var(--table-max-width);
     min-height: 100vh;
@@ -15,12 +15,12 @@
 }
 
 /* Adjust padding when sidebar is active */
-body.order-mode-active #app {
+body.order-mode-active .app-container {
     padding-right: calc(max(20px, calc((100vw - var(--table-max-width)) / 2)) + 284px);
 }
 
 /* Adjust main content when top nav is visible */
-.top-nav-visible~#app .main-content-screen,
+.top-nav-visible~.app-container .main-content-screen,
 .main-content-screen.with-top-nav {
     padding-top: 72px;
 }

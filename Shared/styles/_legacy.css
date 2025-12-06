@@ -439,7 +439,7 @@ body.order-mode-active .order-sidebar {
    RESPONSIVE DESIGN - MOBILE LANDSCAPE (max-width: 480px)
    ================================================================= *//* =================================================================
    RESPONSIVE DESIGN - MOBILE PORTRAIT (max-width: 480px)
-   ================================================================= *//* Ajustar contenido principal para barra mÃ¡s compacta */.top-nav-visible~#app .main-content-screen,
+   ================================================================= *//* Ajustar contenido principal para barra mÃ¡s compacta */.top-nav-visible~.app-container .main-content-screen,
 .main-content-screen.with-top-nav {
   padding-top: 56px;
 }/* Botones hamburguesa y volver superpuestos - ajustados */.hamburger-btn,
@@ -602,7 +602,7 @@ body.order-mode-active .order-sidebar {
 }.title-row td {
   padding: 0;
   background: transparent;
-}/* Cuando el modo orden estÃ¡ activo en desktop, ajustar padding para el sidebar */body.order-mode-active #app {
+}/* Cuando el modo orden estÃ¡ activo en desktop, ajustar padding para el sidebar */body.order-mode-active .app-container {
   padding-right: calc(max(20px, calc((100vw - var(--table-max-width)) / 2)) + 284px);
 }.content-wrapper.order-active {
   gap: 1px;

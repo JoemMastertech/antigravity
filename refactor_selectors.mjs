@@ -10,12 +10,11 @@ const replacements = [
     { from: /#order-sidebar(?![-\w])/g, to: '.order-sidebar' },
     // #drawer-menu -> .drawer-menu
     { from: /#drawer-menu(?![-\w])/g, to: '.drawer-menu' },
+    // #app -> .app-container
+    { from: /#app(?![-\w])/g, to: '.app-container' },
 ];
 
-const files = [
-    'Shared/styles/_legacy.css',
-    'Shared/styles/legacy-responsive/media-queries.css'
-];
+const files = globSync('Shared/styles/**/*.css', { ignore: 'Shared/styles/settings/variables.css' });
 
 let totalChanges = 0;
 

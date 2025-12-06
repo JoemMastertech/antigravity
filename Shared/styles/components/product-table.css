@@ -5,12 +5,12 @@ PRODUCT TABLE & GRID COMPONENT
 */
 
 /* Fix for Header Overlap - High Specificity Override */
-#app .main-content-screen.with-top-nav {
+.app-container .main-content-screen.with-top-nav {
     padding-top: 0;
 }
 
-#app .main-content-screen.with-top-nav .content-wrapper,
-#app .main-content-screen.with-top-nav .product-grid {
+.app-container .main-content-screen.with-top-nav .content-wrapper,
+.app-container .main-content-screen.with-top-nav .product-grid {
     margin-top: 0;
 }
 
