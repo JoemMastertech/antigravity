@@ -1,116 +1,61 @@
-# Master Technology Bar 🍸
+# Proyecto Restaurante Moderno
 
-**Aplicación web premium para gestión de pedidos con arquitectura hexagonal optimizada**
+Aplicación web para gestión de pedidos y menú interactivo, construida con Vanilla JS modular y arquitectura CSS moderna.
 
-[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](#)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Performance](https://img.shields.io/badge/performance-95%25-brightgreen.svg)](#)
-[![Architecture](https://img.shields.io/badge/architecture-hexagonal-purple.svg)](#)
+## 🏗️ Arquitectura
 
-## ✅ **Estado del Proyecto - OPTIMIZADO**
+### CSS y Estilos (ITCSS)
+Utilizamos la metodología **ITCSS (Inverted Triangle CSS)** para organizar los estilos de manera escalable y mantenible.
+La estructura se encuentra en `Shared/styles/` y se compila a un único archivo `main.css`.
 
-🎯 **Proyecto completamente optimizado** con 5 fases de mejora implementadas:
-- ✅ **95% de rendimiento** alcanzado
-- ✅ **30% reducción** en tiempo de carga
-- ✅ **70% reducción** en código duplicado
-- ✅ **Arquitectura hexagonal** consolidada
-- ✅ **Zero memory leaks** y optimización avanzada
+- **Settings/Tools**: Variables, breakpoints y mixins.
+- **Base**: Reset y tipografía base.
+- **Layout**: Estructura de rejilla y contenedores.
+- **Components**: Botones, tarjetas, modales, tablas (modularizados).
+- **Utilities**: Clases utilitarias con `!important` solo cuando es necesario.
 
-## 🚀 **Características Principales**
+Para garantizar la integridad visual, utilizamos **BackstopJS** para pruebas de regresión visual.
 
-### ✨ **Experiencia de Usuario Optimizada**
-- 🎨 Interfaz moderna con transiciones fluidas validadas
-- 📱 Diseño mobile-first con ScreenManager robusto
-- 🎯 Sistema de navegación con manejo de errores avanzado
-- 🔄 Actualizaciones en tiempo real con logging detallado
+### Javascript (Modular Architecture)
+El núcleo de la renderización de productos (`product-table.js`) ha sido refactorizado a una arquitectura modular basada en el patrón Orquestador.
 
-### 🛠 **Funcionalidades Consolidadas**
-- 🛒 Sistema de pedidos con BaseEntity pattern
-- 🍹 Gestión inteligente con Factory patterns
-- 🎛 Customización con validadores centralizados
-- 💰 Cálculo automático con memoización optimizada
-- 🔒 Validación robusta con DOMPurify 3.0.8
+- **Orquestador**: `product-table.js` (Coordina la vista).
+- **Módulos**:
+  - `state.js`: Gestión centralizada del estado.
+  - `api.js`: Capa de acceso a datos (Repository Pattern).
+  - `events.js`: Delegación de eventos global.
+  - `utils.js`: Funciones puras de utilidad.
 
-### ⚡ **Optimizaciones Implementadas**
-- 🧠 **Memoización inteligente** - Cache con estadísticas de hit/miss
-- 💾 **Cache híbrido optimizado** - Memoria + localStorage con TTL
-- 📦 **Code splitting avanzado** - Lazy loading con error handling
-- 🗜 **CSS optimizado** - Eliminación de conflictos de renderizado
-- 🔄 **Transiciones validadas** - Sistema robusto con fallbacks
+Para más detalles técnicos, consulta: [Documentación de Arquitectura JS](docs/JS_ARCHITECTURE.md).
 
-## 🏗 **Arquitectura Técnica**
+## 🚀 Setup y Desarrollo
 
-### 📐 **Arquitectura Hexagonal Optimizada**
-```
-🏛 Dominio/           # BaseEntity + entidades especializadas
-⚙️ Aplicacion/        # Servicios optimizados + ValidationService
-🔌 Infraestructura/   # BaseAdapter + adaptadores especializados
-🖥 Interfaces/        # Componentes UI optimizados
-🔧 Shared/           # Utilidades consolidadas (diUtils, errorHandler)
-```
+1. **Instalar dependencias:**
+   ```bash
+   npm install
+   ```
 
-**Estado actual verificado:**
-- ✅ Estructura de carpetas implementada
-- ✅ BaseEntity y BaseAdapter en desarrollo
-- ✅ Configuración centralizada (AppConfig)
-- ✅ Sistema de caché y optimizaciones
+2. **Iniciar servidor de desarrollo:**
+   ```bash
+   npm run dev
+   ```
+   El servidor iniciará en http://localhost:8081.
 
-### 🛡 **Patrones Optimizados**
-- **Repository Pattern** - Con BaseAdapter para eliminar duplicación
-- **Factory Pattern** - EntityFactory simplificado
-- **Dependency Injection** - diUtils.js centralizado
-- **Memoization Pattern** - Cache inteligente de resultados
-- **Observer Pattern** - StateManager optimizado
-- **Base Classes** - BaseEntity y BaseAdapter implementados
+3. **Compilar CSS (si se hacen cambios):**
+   ```bash
+   npm run build:css
+   ```
+   *Nota: En desarrollo, el script `dev` suele encargarse de esto.*
 
-### Docker (Recomendado)
-```bash
-docker-compose up -d
-```
+4. **Pruebas Visuales:**
+   ```bash
+   npm run test:visual
+   ```
 
-## 📚 **Documentación**
+## 🛠️ Tecnologías
+- **Frontend**: HTML5, CSS3 (PostCSS/ITCSS), Javascript (ES6+ Modules).
+- **Backend/Data**: Supabase.
+- **Testing**: BackstopJS (Visual), Jest (Unit - *en progreso*).
 
-- 📖 **[Arquitectura](docs/ARCHITECTURE.md)** - Estructura y patrones
-- 🚀 **[Guía de Desarrollo](docs/DEVELOPMENT_GUIDE.md)** - Desarrollo de features
-- 🔒 **[Seguridad](docs/SECURITY.md)** - Configuración de seguridad
-- 📊 **[Historial de Optimización](docs/OPTIMIZATION_HISTORY.md)** - Mejoras implementadas
-- ⚙️ **[Configuración Supabase](SUPABASE_SETUP.md)** - Setup de base de datos
-
-## 🛠 **Stack Tecnológico**
-
-- **Frontend**: JavaScript ES2022+, Vite
-- **Backend**: Supabase
-- **Arquitectura**: Hexagonal
-- **Deployment**: Docker + Nginx
-
-## 🚀 **Inicio Rápido**
-
-### 📋 **Prerrequisitos**
-- Node.js 18+ y npm 9+
-- Docker y Docker Compose (opcional)
-- Navegador moderno con soporte ES2022
-
-### ⚡ **Instalación**
-
-```bash
-# Clonar e instalar
-git clone [repo-url]
-cd master-technology-bar
-npm install
-
-# Configurar entorno
-cp .env.example .env
-# Editar .env con tus credenciales de Supabase
-
-# Iniciar desarrollo
-npm run dev
-```
-
-### Docker (Recomendado)
-```bash
-docker-compose up -d
-```
-
-## 📄 **Licencia**
-
-MIT License - ver [LICENSE](LICENSE) para detalles.
+## 📄 Licencia
+Privada.

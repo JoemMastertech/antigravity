@@ -37,7 +37,7 @@ Se ha completado exitosamente la consolidación de las definiciones de los 3 sid
 }
 ```
 
-### 2. Sidebar de Órdenes (#order-sidebar)
+### 2. Sidebar de Órdenes (.order-sidebar)
 - **Ubicación**: Derecha (desktop/tablet landscape), Inferior (tablet portrait/mobile)
 - **Función**: Panel de creación de órdenes
 - **Definiciones consolidadas**: 4 (base + 3 responsivas)
@@ -45,7 +45,7 @@ Se ha completado exitosamente la consolidación de las definiciones de los 3 sid
 **Estructura consolidada:**
 ```css
 /* Base definition */
-#order-sidebar {
+.order-sidebar {
   /* Propiedades base - Desktop por defecto */
   width: 240px;
   position: fixed;
@@ -55,7 +55,7 @@ Se ha completado exitosamente la consolidación de las definiciones de los 3 sid
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  #order-sidebar {
+  .order-sidebar {
     width: 100%;
     position: relative;
     top: auto;
@@ -65,7 +65,7 @@ Se ha completado exitosamente la consolidación de las definiciones de los 3 sid
 }
 
 @media (max-width: 480px) and (orientation: landscape) {
-  #order-sidebar {
+  .order-sidebar {
     width: clamp(160px, 22vw, 200px);
     padding: 6px;
     position: fixed;
@@ -75,7 +75,7 @@ Se ha completado exitosamente la consolidación de las definiciones de los 3 sid
 }
 
 @media (min-width: 1200px) {
-  #order-sidebar {
+  .order-sidebar {
     max-height: 85vh;
   }
 }
@@ -163,7 +163,7 @@ SIDEBAR SYSTEM (Consolidado)
 │   ├── Tablet landscape (≤768px)
 │   ├── Small mobile landscape (≤600px)
 │   └── Mobile portrait (≤480px)
-├── Orders Sidebar (#order-sidebar)
+├── Orders Sidebar (.order-sidebar)
 │   ├── Base definition (desktop)
 │   ├── Tablet/Mobile (≤768px)
 │   ├── Small mobile landscape (≤480px landscape)

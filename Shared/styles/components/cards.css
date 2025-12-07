@@ -272,25 +272,23 @@
   /* NIVEL 1: Altura completamente flexible - se adapta al contenido */
   /* height: removido para permitir expansiÃ³n natural */
 
-  /* NIVEL 2: Contenido se adapta al espacio disponible - aumentado 25% */
+  /* NIVEL 2: Contenido se adapta al espacio disponible */
   font-size: clamp(0.7rem, 1.5vw + 0.3rem, 0.9rem);
   line-height: clamp(1.2, 1.3vw + 1rem, 1.4);
 
-  /* ConfiguraciÃ³n para texto 100% responsivo - sin restricciones */
+  /* UX CHANGE: Mostrar descripción completa (Petición usuario) */
   display: block;
-  overflow: visible;
-  text-overflow: unset;
-  word-wrap: break-word;
-  hyphens: auto;
-
-  /* Sin lÃ­mite de lÃ­neas - texto libre */
   -webkit-line-clamp: unset;
   line-clamp: unset;
+  overflow: visible;
+  text-overflow: unset;
 
-  /* Permitir expansiÃ³n natural del texto */
+  /* Propiedades de posicionamiento */
   position: relative;
+  /* height auto para permitir que line-clamp decida la altura */
   height: auto;
-  min-height: clamp(3.96rem, 4.95vw + 2.2rem, 5.5rem);
+  min-height: auto;
+  /* Permitir contracción si hay poco texto */
   max-height: none;
 }
 

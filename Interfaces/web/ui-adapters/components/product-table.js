@@ -1,29 +1,40 @@
 // ProductData is now accessed through DI Container
-// Import shared utilities
+// Version: Modularized-Fix-v2
 import { getProductRepository } from '../../../../Shared/utils/diUtils.js';
 import { setSafeInnerHTML } from '../../../../Shared/utils/domUtils.js';
 import { logError, logWarning } from '../../../../Shared/utils/errorHandler.js';
 import Logger from '../../../../Shared/utils/logger.js';
 import TranslationService from '../../../../Shared/services/TranslationService.js';
 import DOMTranslator from '../../../../Shared/services/DOMTranslator.js';
+import {
+  simpleHash,
+  formatPrice,
+  normalizeCategory,
+  determineProductType,
+  getCategoryForModal,
+  isPriceField
+} from './modules/utils.js';
+import { eventHandlers } from './modules/events.js';
+import { actions, state } from './modules/state.js';
+import { api } from './modules/api.js';
+
+const DEFAULT_IMAGE = '/assets/no-image.png';
 
 const ProductRenderer = {
-  // Current view mode: 'table' or 'grid'
-  currentViewMode: 'table',
-  // Phase 3: Event delegation system
-  eventDelegationInitialized: false,
-  boundDelegatedHandler: null,
+  ...eventHandlers,
+  // Methods start here (State is now in modules/state.js)
+
 
   // Toggle between table and grid view
   toggleViewMode: async function () {
-    this.currentViewMode = this.currentViewMode === 'table' ? 'grid' : 'table';
-    Logger.info('View mode toggled to:', this.currentViewMode);
+    const newMode = actions.toggleViewMode();
+    Logger.info('View mode toggled to:', newMode);
 
     // Update toggle button text
     const toggleBtn = document.querySelector('.view-toggle-btn');
     if (toggleBtn) {
-      toggleBtn.textContent = this.currentViewMode === 'table' ? '🔲' : '📋';
-      toggleBtn.classList.toggle('active', this.currentViewMode === 'grid');
+      toggleBtn.textContent = newMode === 'table' ? '🔲' : '📋';
+      toggleBtn.classList.toggle('active', newMode === 'grid');
     }
 
     // Refresh the current view to apply the new mode
@@ -34,125 +45,12 @@ const ProductRenderer = {
       this._retranslateIfNeeded(container);
     }
 
-    return this.currentViewMode;
+    return newMode;
   },
 
-  // Phase 3: Initialize intelligent event delegation
-  initEventDelegation: function () {
-    if (this.eventDelegationInitialized) return;
 
-    this.boundDelegatedHandler = this.handleDelegatedEvent.bind(this);
-    document.addEventListener('click', this.boundDelegatedHandler);
-    this.eventDelegationInitialized = true;
 
-    Logger.info('Event delegation system initialized for ProductRenderer');
-  },
 
-  // Phase 3: Centralized event handler
-  handleDelegatedEvent: function (e) {
-    const target = e.target;
-
-    // Handle view toggle buttons
-    if (target.classList && target.classList.contains('view-toggle-btn')) {
-      e.preventDefault();
-      this.toggleViewMode().then(() => {
-        // Refresh the current view to apply the new mode
-        const container = document.getElementById('content-container');
-        if (container) {
-          return this.refreshCurrentView(container);
-        }
-      }).catch(err => {
-        Logger.error('Error in view toggle:', err);
-      });
-      return;
-    }
-
-    // Handle back buttons (both floating and top nav)
-    if (target.classList && (target.classList.contains('back-button') || target.classList.contains('top-back-btn'))) {
-      e.preventDefault();
-      const container = target.closest('.content-wrapper') || document.querySelector('.content-wrapper');
-      if (container) this.handleBackButton(target);
-      return;
-    }
-
-    // Handle price buttons
-    if (target.classList && target.classList.contains('price-button')) {
-      e.preventDefault();
-      this.handlePriceButtonClick(target, e);
-      return;
-    }
-
-    // Handle video thumbnails
-    if ((target.classList && target.classList.contains('video-thumb')) || (target.classList && target.classList.contains('video-thumbnail'))) {
-      e.preventDefault();
-      this.handleVideoClick(target);
-      return;
-    }
-
-    // Handle product images
-    if (target.classList && target.classList.contains('product-image')) {
-      e.preventDefault();
-      this.handleImageClick(target);
-      return;
-    }
-
-    // Handle product cards (grid view)
-    if (target.classList && target.classList.contains('product-card')) {
-      e.preventDefault();
-      this.handleCardClick(target, e);
-      return;
-    }
-
-    // Handle category cards
-    if ((target.classList && target.classList.contains('category-card')) || target.closest('.category-card')) {
-      e.preventDefault();
-      this.handleCategoryCardClick(target);
-      return;
-    }
-
-    // Handle modal close buttons
-    if (target.classList && target.classList.contains('modal-close-btn')) {
-      e.preventDefault();
-      this.handleModalClose(target);
-      return;
-    }
-
-    // Handle modal backdrop clicks
-    if ((target.classList && target.classList.contains('modal-backdrop')) ||
-      (target.classList && target.classList.contains('video-modal-backdrop')) ||
-      (target.classList && target.classList.contains('image-modal-backdrop'))) {
-      this.handleModalBackdropClick(target, e);
-      return;
-    }
-  },
-
-  // Phase 3: Cleanup event delegation
-  destroyEventDelegation: function () {
-    if (this.boundDelegatedHandler) {
-      document.removeEventListener('click', this.boundDelegatedHandler);
-      this.boundDelegatedHandler = null;
-      this.eventDelegationInitialized = false;
-      Logger.info('Event delegation system destroyed');
-    }
-  },
-
-  // Create view toggle button (optimized)
-  createViewToggle: function (container) {
-    // Initialize event delegation if not already done
-    this.initEventDelegation();
-
-    const toggleContainer = document.createElement('div');
-    toggleContainer.className = 'view-toggle-container';
-
-    const toggleBtn = document.createElement('button');
-    toggleBtn.className = 'view-toggle-btn';
-    toggleBtn.textContent = this.currentViewMode === 'table' ? '🔲' : '📋';
-    toggleBtn.classList.toggle('active', this.currentViewMode === 'grid');
-
-    // No individual event listener needed - handled by delegation
-    toggleContainer.appendChild(toggleBtn);
-    return toggleContainer;
-  },
 
   // Refresh current view with new mode
   refreshCurrentView: async function (container) {
@@ -224,208 +122,7 @@ const ProductRenderer = {
     container.appendChild(restoredBackButton);
   },
 
-  // Phase 3: Specific event handlers
-  handleCategoryCardClick: function (target) {
-    const categoryCard = target.closest('.category-card') || target;
-    const category = categoryCard.dataset.category;
 
-    Logger.info(`🎯 Clic en categoría de licor: ${category}`);
-
-    // Log current DOM state before navigation
-    const currentMainScreen = document.getElementById('main-screen');
-    const currentContentContainer = document.getElementById('content-container');
-    const currentOrdersBox = document.getElementById('orders-box');
-
-    Logger.debug('📊 Estado DOM antes de clic en categoría:', {
-      category: category,
-      mainScreen: !!currentMainScreen,
-      contentContainer: !!currentContentContainer,
-      ordersBox: !!currentOrdersBox,
-      mainScreenVisible: currentMainScreen ? !currentMainScreen.classList.contains('hidden') : false,
-      mainScreenClasses: currentMainScreen ? Array.from(currentMainScreen.classList) : []
-    });
-
-    if (category) {
-      const container = categoryCard.closest('.content-wrapper') || document.querySelector('.content-wrapper');
-      if (container) {
-        Logger.debug(`📦 Container encontrado para categoría ${category}`);
-        this.renderLicorSubcategory(container, category);
-      } else {
-        Logger.error(`❌ No se encontró container para categoría ${category}`);
-      }
-    } else {
-      Logger.warn('⚠️ No se encontró categoría en el elemento clickeado');
-    }
-  },
-
-  handleModalClose: function (target) {
-    const modal = target.closest('.modal-backdrop');
-    if (modal) {
-      modal.remove();
-    }
-  },
-
-  handleModalBackdropClick: function (target, event) {
-    // Only close if clicking directly on the backdrop, not on modal content
-    if (event.target === target) {
-      target.remove();
-    }
-  },
-
-  handlePriceButtonClick: function (target, event) {
-    if (target.disabled || (target.classList && target.classList.contains('non-selectable'))) {
-      return;
-    }
-
-    // Si el modo de orden no está activo, mostrar un único modal y no delegar más
-    if (!window.OrderSystem?.isOrderMode) {
-      event.preventDefault();
-      if (window.OrderSystem && typeof window.OrderSystem._showValidationModal === 'function') {
-        window.OrderSystem._showValidationModal('Para agregar productos, primero presiona “Crear orden” en el menú.');
-      }
-      return;
-    }
-
-    const row = target.closest('tr');
-    const card = target.closest('.product-card');
-
-    if (row) {
-      // Table view handling
-      const nameCell = row.querySelector('.product-name');
-      const priceText = target.textContent;
-      const productName = nameCell.textContent;
-
-      if (window.OrderSystem && window.OrderSystem.handleProductSelection) {
-        window.OrderSystem.handleProductSelection(productName, priceText, row, event);
-      }
-    } else if (card) {
-      // Grid view handling
-      const productName = target.dataset.productName;
-      const priceText = target.textContent;
-
-      Logger.debug('[GRID DEBUG] Price button clicked:', {
-        productName,
-        priceText,
-        field: target.dataset.field,
-        orderSystemExists: !!window.OrderSystem,
-        isOrderMode: window.OrderSystem?.isOrderMode
-      });
-
-      if (window.OrderSystem && window.OrderSystem.handleProductSelection) {
-        window.OrderSystem.handleProductSelection(productName, priceText, card, event);
-      }
-    }
-  },
-
-  handleVideoClick: function (target) {
-    const videoUrl = target.dataset.videoUrl || target.src;
-    const fallbackUrl = target.dataset.videoUrlFallback;
-    const productName = target.alt?.replace('Ver video de ', '') || target.alt?.replace('Video de ', '') || 'Producto';
-    const categoryElement = target.closest('table, .product-grid');
-    const category = categoryElement?.dataset.category;
-
-    const modalCategory = (category === 'cervezas' || category === 'refrescos') ? category : null;
-    this.showVideoModal(videoUrl, productName, modalCategory, fallbackUrl);
-  },
-
-  handleImageClick: function (target) {
-    const imageUrl = target.src;
-    const productName = target.alt || 'Producto';
-    const categoryElement = target.closest('table, .product-grid');
-    const category = categoryElement?.dataset.category;
-
-    const modalCategory = (category === 'cervezas' || category === 'refrescos') ? category : null;
-    this.showImageModal(imageUrl, productName, modalCategory);
-  },
-
-  handleCardClick: function (target, event) {
-    // Handle card clicks if needed for future functionality
-    Logger.debug('Product card clicked:', target);
-  },
-
-  handleBackButton: function (target) {
-    // Handle back button navigation based on context
-    const wrapper = target.closest('.content-wrapper') || document.querySelector('.content-wrapper');
-
-    if (wrapper) {
-      // Check if we're in a liquor subcategory and need to go back to licores
-      if (target.title === 'Volver a Licores' || target.dataset.action === 'back-to-licores') {
-        Logger.info('🔄 Navegando de vuelta a Licores desde subcategoría');
-
-        // Log current DOM state before manipulation
-        const currentMainScreen = document.getElementById('main-screen');
-        const currentContentContainer = document.getElementById('content-container');
-        const currentOrdersBox = document.getElementById('orders-box');
-
-        Logger.debug('📊 Estado DOM antes de volver a Licores:', {
-          mainScreen: !!currentMainScreen,
-          contentContainer: !!currentContentContainer,
-          ordersBox: !!currentOrdersBox,
-          mainScreenVisible: currentMainScreen ? !currentMainScreen.classList.contains('hidden') : false
-        });
-
-        // Get or create content container for rendering
-        let container = wrapper.querySelector('#content-container');
-        if (!container) {
-          Logger.warn('⚠️ Content container no encontrado, creando uno nuevo');
-          container = document.createElement('div');
-          container.id = 'content-container';
-          const flexContainer = wrapper.querySelector('.content-container-flex');
-          if (flexContainer) {
-            flexContainer.insertBefore(container, flexContainer.firstChild);
-            Logger.debug('✅ Container insertado en flex container');
-          } else {
-            wrapper.appendChild(container);
-            Logger.debug('✅ Container agregado al wrapper');
-          }
-        } else {
-          Logger.debug('✅ Content container encontrado, limpiando contenido');
-          // Clear only the content container, preserving sidebar
-          container.innerHTML = '';
-        }
-
-        Logger.info('🍷 Renderizando vista de Licores');
-        this.renderLicores(container);
-
-        // Ocultar botón de back en la barra superior y limpiar título
-        const topBackBtn = document.getElementById('top-back-btn');
-        const navTitle = document.getElementById('nav-title');
-
-        if (topBackBtn) {
-          topBackBtn.classList.add('back-btn-hidden');
-          topBackBtn.removeAttribute('data-action');
-          topBackBtn.removeAttribute('title');
-
-          // Limpiar event listener específico
-          if (this._topBackBtnHandler) {
-            topBackBtn.removeEventListener('click', this._topBackBtnHandler);
-            this._topBackBtnHandler = null;
-          }
-        }
-
-        if (navTitle) {
-          navTitle.textContent = '';
-        }
-
-        // Log DOM state after rendering
-        setTimeout(() => {
-          const afterMainScreen = document.getElementById('main-screen');
-          const afterContentContainer = document.getElementById('content-container');
-          const afterOrdersBox = document.getElementById('orders-box');
-
-          Logger.debug('📊 Estado DOM después de renderizar Licores:', {
-            mainScreen: !!afterMainScreen,
-            contentContainer: !!afterContentContainer,
-            ordersBox: !!afterOrdersBox,
-            mainScreenVisible: afterMainScreen ? !afterMainScreen.classList.contains('hidden') : false
-          });
-        }, 100);
-      } else {
-        // Generic back navigation - could be extended for other contexts
-        Logger.debug('Back button clicked - implement specific navigation logic');
-      }
-    }
-  },
 
   _renderCategoryView: async function (container, category) {
     const categoryRenderers = this._getCategoryRenderers();
@@ -484,34 +181,11 @@ const ProductRenderer = {
     const table = document.createElement('table');
     table.className = tableClass;
 
-    const normalizedCategory = this._normalizeCategory(categoryTitle);
+    const normalizedCategory = normalizeCategory(categoryTitle);
     table.dataset.category = normalizedCategory;
-    table.dataset.productType = this._determineProductType(normalizedCategory, tableClass, categoryTitle);
+    table.dataset.productType = determineProductType(normalizedCategory, tableClass, categoryTitle);
 
     return table;
-  },
-
-  _normalizeCategory: function (categoryTitle) {
-    return categoryTitle
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase();
-  },
-
-  _determineProductType: function (normalizedCategory, tableClass, categoryTitle) {
-    const foodCategories = ['pizzas', 'alitas', 'sopas', 'ensaladas', 'carnes', 'platos fuertes', 'snacks'];
-    const beverageCategories = ['cocteleria', 'refrescos', 'cervezas', 'cafe', 'postres'];
-
-    if (foodCategories.includes(normalizedCategory)) {
-      return 'food';
-    } else if (beverageCategories.includes(normalizedCategory)) {
-      return 'beverage';
-    } else if (tableClass === 'liquor-table' || normalizedCategory === 'licores') {
-      return 'liquor';
-    } else {
-      logWarning(`Unknown product type for category: ${categoryTitle} (normalized: ${normalizedCategory})`);
-      return 'unknown';
-    }
   },
 
   _createTitleRow: function (categoryTitle, headerLength) {
@@ -524,7 +198,7 @@ const ProductRenderer = {
     titleElement.textContent = categoryTitle;
     // Marcar título para traducción
     if (categoryTitle) {
-      const key = `category-title_${this.simpleHash((categoryTitle || '').trim())}`;
+      const key = `category-title_${simpleHash((categoryTitle || '').trim())}`;
       titleElement.setAttribute('data-translate', key);
       titleElement.setAttribute('data-original-text', categoryTitle);
       titleElement.setAttribute('data-namespace', 'category.title');
@@ -546,7 +220,7 @@ const ProductRenderer = {
       th.textContent = header;
       // Marcar encabezado para traducción
       if (header) {
-        const key = `table-header_${this.simpleHash((header || '').trim())}`;
+        const key = `table-header_${simpleHash((header || '').trim())}`;
         th.setAttribute('data-translate', key);
         th.setAttribute('data-original-text', header);
         th.setAttribute('data-namespace', 'table.header');
@@ -590,7 +264,7 @@ const ProductRenderer = {
       this._createNameCell(td, item[field]);
     } else if (field === 'ingredientes') {
       this._createIngredientsCell(td, item[field]);
-    } else if (this._isPriceField(field)) {
+    } else if (isPriceField(field)) {
       this._createPriceCell(td, item, field);
     } else if (field === 'video') {
       this._createVideoCell(td, item, categoryTitle);
@@ -606,7 +280,7 @@ const ProductRenderer = {
   _createNameCell: function (td, nombre) {
     td.className = 'product-name';
     td.textContent = nombre;
-    const key = `product-name_${this.simpleHash((nombre || '').trim())}`;
+    const key = `product-name_${simpleHash((nombre || '').trim())}`;
     td.setAttribute('data-translate', key);
     td.setAttribute('data-namespace', 'products');
     td.setAttribute('data-original-text', nombre || '');
@@ -616,31 +290,16 @@ const ProductRenderer = {
     td.className = 'product-ingredients';
     td.textContent = ingredientes || '';
     if (ingredientes) {
-      const key = `product-ingredients_${this.simpleHash((ingredientes || '').trim())}`;
+      const key = `product-ingredients_${simpleHash((ingredientes || '').trim())}`;
       td.setAttribute('data-translate', key);
       td.setAttribute('data-namespace', 'products');
       td.setAttribute('data-original-text', ingredientes || '');
     }
   },
 
-  _isPriceField: function (field) {
-    return field.includes('precio') || field === 'precioBotella' || field === 'precioLitro' || field === 'precioCopa';
-  },
 
-  _formatPrice: function (priceValue) {
-    if (!priceValue || priceValue === '--') return '--';
 
-    // Remove existing $ if present
-    let numericValue = priceValue;
-    if (typeof priceValue === 'string') {
-      numericValue = priceValue.replace('$', '').trim();
-    }
 
-    const floatVal = parseFloat(numericValue);
-    if (isNaN(floatVal)) return priceValue;
-
-    return `$${floatVal.toFixed(2)}`;
-  },
 
   _createPriceCell: function (td, item, field) {
     td.className = 'product-price';
@@ -654,7 +313,7 @@ const ProductRenderer = {
     } else {
       priceButton.className = 'price-button';
       // Add $ symbol for liquor subcategories
-      const formattedPrice = this._formatPrice(priceValue);
+      const formattedPrice = formatPrice(priceValue);
       priceButton.textContent = formattedPrice;
       priceButton.dataset.productName = item.nombre;
       priceButton.dataset.priceType = field;
@@ -679,22 +338,19 @@ const ProductRenderer = {
     td.className = 'video-icon';
 
     if (item.video) {
-      // 1. URL del Video
-      // Intentamos usar la versión .webm cambiando la extensión de la URL original
-      const videoUrl = item.video.replace(/\.(mp4|mov|avi)$/i, '.webm');
-      const videoFallback = item.video; // La URL original de la BD es el fallback
+      // 1. URL del Video: Respetar estrictamente BD
+      const videoUrl = item.video;
 
-      // 2. URL del Thumbnail
-      // Usamos la imagen que viene en la BD. 
-      // Si no hay imagen, podríamos intentar derivarla del video, pero confiamos en la BD.
-      const thumbnailUrl = item.imagen || item.video.replace(/\.(mp4|mov|avi)$/i, '.webp');
+      // 2. URL del Thumbnail: Priorizar imagen explícita de la BD
+      const explicitImage = item.imagen || item.ruta_archivo;
+      const thumbnailUrl = explicitImage || DEFAULT_IMAGE;
 
       const thumbnailImg = document.createElement('img');
       thumbnailImg.className = 'video-thumb';
       thumbnailImg.src = thumbnailUrl;
       thumbnailImg.alt = `Ver video de ${item.nombre}`;
       thumbnailImg.dataset.videoUrl = videoUrl;
-      thumbnailImg.dataset.videoUrlFallback = videoFallback;
+      // dataset.videoUrlFallback removed
 
       // Fallback para el thumbnail
       thumbnailImg.onerror = function () {
@@ -712,7 +368,6 @@ const ProductRenderer = {
           this.dataset.triedJpg = 'true';
           // Try JPG
           const jpgUrl = currentSrc.replace(/\.webp$/i, '.jpg');
-          Logger.debug(`Thumbnail webp falló, intentando jpg: ${jpgUrl}`);
           this.src = jpgUrl;
           return;
         }
@@ -721,7 +376,6 @@ const ProductRenderer = {
           this.dataset.triedPng = 'true';
           // Try PNG
           const pngUrl = currentSrc.replace(/\.jpg$/i, '.png');
-          Logger.debug(`Thumbnail jpg falló, intentando png: ${pngUrl}`);
           this.src = pngUrl;
           return;
         }
@@ -750,8 +404,6 @@ const ProductRenderer = {
       const isLiquorSubcategory = categoryTitle && liquorCategories.includes(categoryTitle.toLowerCase());
 
       img.className = 'product-image';
-      // Legacy sizing classes removed to rely on pure CSS (tables.css)
-      // if (isBeverage || isLiquorSubcategory) { ... }
 
       // No individual event listener - handled by delegation
       td.appendChild(img);
@@ -760,11 +412,182 @@ const ProductRenderer = {
     }
   },
 
-  _getCategoryForModal: function (categoryTitle) {
-    return categoryTitle && (categoryTitle.toLowerCase() === 'cervezas' || categoryTitle.toLowerCase() === 'refrescos') ? categoryTitle.toLowerCase() : null;
+
+
+  // Create a single product card (SRP: UI Logic Separation)
+  createProductCard: function (item, fields, normalizedCategory) {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+
+    // Product name
+    const nameElement = document.createElement('div');
+    nameElement.className = 'product-name';
+    nameElement.textContent = item.nombre;
+    const nameKey = `product-name_${simpleHash((item.nombre || '').trim())}`;
+    nameElement.setAttribute('data-translate', nameKey);
+    nameElement.setAttribute('data-namespace', 'products');
+    nameElement.setAttribute('data-original-text', item.nombre || '');
+    card.appendChild(nameElement);
+
+    // Product ingredients (if available)
+    if (item.ingredientes) {
+      const ingredientsElement = document.createElement('div');
+      ingredientsElement.className = 'product-ingredients';
+      ingredientsElement.textContent = item.ingredientes;
+      const ingKey = `product-ingredients_${simpleHash((item.ingredientes || '').trim())}`;
+      ingredientsElement.setAttribute('data-translate', ingKey);
+      ingredientsElement.setAttribute('data-namespace', 'products');
+      ingredientsElement.setAttribute('data-original-text', item.ingredientes || '');
+      card.appendChild(ingredientsElement);
+    }
+
+    // Media container (video or image)
+    const mediaContainer = document.createElement('div');
+    mediaContainer.className = 'product-media';
+
+    // Prioritize explicit image from DB, fallback to generated thumbnail from video if needed
+    const explicitImage = item.imagen || item.ruta_archivo;
+
+    if (item.video) {
+      // 1. URL del Video: Respetar estrictamente lo que viene de la BD
+      const videoUrl = item.video;
+      // Opcional: Podríamos generar una versión webm si quisieramos fallback, pero por ahora fiel a la BD
+
+      // 2. URL del Thumbnail: Use DB image if available, otherwise use default
+      const thumbnailUrl = explicitImage || DEFAULT_IMAGE;
+
+      const videoThumbnail = document.createElement('img');
+      videoThumbnail.className = 'video-thumbnail';
+      videoThumbnail.src = thumbnailUrl;
+      videoThumbnail.alt = `Video de ${item.nombre}`;
+      videoThumbnail.dataset.videoUrl = videoUrl;
+      // videoFallback removed as we trust the source
+
+      videoThumbnail.onerror = function () {
+        if (!this.dataset.fallenBack) {
+          this.dataset.fallenBack = 'true';
+          // Only log warning if explicit image failing or generated one failing
+          Logger.warn(`Video Thumbnail failed (${explicitImage ? 'DB' : 'Generated'}): ${this.src}`);
+        }
+      };
+
+      mediaContainer.appendChild(videoThumbnail);
+    } else if (explicitImage) {
+      const image = document.createElement('img');
+      image.className = 'product-image';
+      image.src = explicitImage;
+      image.alt = item.nombre;
+
+      image.onerror = function () {
+        Logger.warn(`Grid Image failed: ${this.src}`);
+      };
+
+      mediaContainer.appendChild(image);
+    }
+    card.appendChild(mediaContainer);
+
+    // Prices container
+    const pricesContainer = document.createElement('div');
+    pricesContainer.className = 'product-prices';
+
+    // Check if this is a liquor subcategory
+    const liquorCategories = ['whisky', 'tequila', 'ron', 'vodka', 'ginebra', 'mezcal', 'cognac', 'brandy', 'digestivos', 'espumosos'];
+    const isLiquorCategory = liquorCategories.includes(normalizedCategory);
+
+    if (isLiquorCategory) {
+      card.classList.add('liquor-card');
+      card.dataset.productType = 'liquor';
+      card.dataset.category = normalizedCategory;
+    } else if (normalizedCategory === 'alitas') {
+      card.classList.add('variant-card');
+    }
+
+    // Price labels mapping for liquors
+    const priceLabels = {
+      'precioBotella': 'Botella',
+      'precioLitro': 'Litro',
+      'precioCopa': 'Copa'
+    };
+
+    // Add price buttons based on available fields
+    fields.forEach(field => {
+      if (field.includes('precio') || field === 'precioBotella' || field === 'precioLitro' || field === 'precioCopa') {
+        const priceValue = item[field];
+        if (priceValue && priceValue !== '--') {
+          if (isLiquorCategory && priceLabels[field]) {
+            // Create price item container for liquors
+            const priceItem = document.createElement('div');
+            priceItem.className = 'price-item';
+
+            // Create price label
+            const priceLabel = document.createElement('span');
+            priceLabel.className = 'price-label';
+            priceLabel.textContent = priceLabels[field] + ':';
+            const plKey = `price-label_${simpleHash((priceLabels[field] + ':').trim())}`;
+            priceLabel.setAttribute('data-translate', plKey);
+            priceLabel.setAttribute('data-namespace', 'products');
+            priceLabel.setAttribute('data-original-text', (priceLabels[field] + ':'));
+            priceItem.appendChild(priceLabel);
+
+            // Create price button
+            const priceButton = document.createElement('button');
+            priceButton.className = 'price-button';
+            // Add $ symbol for liquor subcategories
+            const formattedPrice = formatPrice(priceValue);
+            priceButton.textContent = formattedPrice;
+            priceButton.dataset.productName = item.nombre;
+            priceButton.dataset.price = priceValue;
+            priceButton.dataset.field = field;
+
+            // No individual event listener - handled by delegation
+
+            priceItem.appendChild(priceButton);
+            pricesContainer.appendChild(priceItem);
+          } else if (field.includes('_piezas')) {
+            // Logic for Alitas/Food variants (e.g. precio_10_piezas)
+            const pieces = field.replace('precio_', '').replace('_piezas', '');
+            const labelText = `${pieces} piezas`;
+
+            const priceItem = document.createElement('div');
+            priceItem.className = 'price-item';
+
+            const priceLabel = document.createElement('span');
+            priceLabel.className = 'price-label';
+            priceLabel.textContent = labelText + ':';
+
+            priceItem.appendChild(priceLabel);
+
+            const priceButton = document.createElement('button');
+            priceButton.className = 'price-button';
+            priceButton.textContent = formatPrice(priceValue);
+            priceButton.dataset.productName = item.nombre;
+            priceButton.dataset.price = priceValue;
+            priceButton.dataset.field = field;
+
+            priceItem.appendChild(priceButton);
+            pricesContainer.appendChild(priceItem);
+          } else {
+            // Regular price button for non-liquor categories
+            const priceButton = document.createElement('button');
+            priceButton.className = 'price-button';
+            priceButton.textContent = priceValue;
+            priceButton.dataset.productName = item.nombre;
+            priceButton.dataset.price = priceValue;
+            priceButton.dataset.field = field;
+
+            // No individual event listener - handled by delegation
+
+            pricesContainer.appendChild(priceButton);
+          }
+        }
+      }
+    });
+
+    card.appendChild(pricesContainer);
+    return card;
   },
 
-  // Create product grid view
+  // Create product grid view (Refactored: Orchestrator Pattern)
   createProductGrid: function (container, data, fields, categoryTitle) {
     const grid = document.createElement('div');
     grid.className = 'product-grid';
@@ -805,385 +628,24 @@ const ProductRenderer = {
 
     // Create product cards
     data.forEach(item => {
-      const card = document.createElement('div');
-      card.className = 'product-card';
-
-      // Product name
-      const nameElement = document.createElement('div');
-      nameElement.className = 'product-name';
-      nameElement.textContent = item.nombre;
-      const nameKey = `product-name_${this.simpleHash((item.nombre || '').trim())}`;
-      nameElement.setAttribute('data-translate', nameKey);
-      nameElement.setAttribute('data-namespace', 'products');
-      nameElement.setAttribute('data-original-text', item.nombre || '');
-      card.appendChild(nameElement);
-
-      // Product ingredients (if available)
-      if (item.ingredientes) {
-        const ingredientsElement = document.createElement('div');
-        ingredientsElement.className = 'product-ingredients';
-        ingredientsElement.textContent = item.ingredientes;
-        const ingKey = `product-ingredients_${this.simpleHash((item.ingredientes || '').trim())}`;
-        ingredientsElement.setAttribute('data-translate', ingKey);
-        ingredientsElement.setAttribute('data-namespace', 'products');
-        ingredientsElement.setAttribute('data-original-text', item.ingredientes || '');
-        card.appendChild(ingredientsElement);
-      }
-
-      // Media container (video or image)
-      const mediaContainer = document.createElement('div');
-      mediaContainer.className = 'product-media';
-
-      if (item.video) {
-        // 1. URL del Video
-        const videoUrl = item.video.replace(/\.(mp4|mov|avi)$/i, '.webm');
-        const videoFallback = item.video;
-
-        // 2. URL del Thumbnail
-        const thumbnailUrl = item.imagen || item.video.replace(/\.(mp4|mov|avi)$/i, '.webp');
-
-        const videoThumbnail = document.createElement('img');
-        videoThumbnail.className = 'video-thumbnail';
-        videoThumbnail.src = thumbnailUrl;
-        videoThumbnail.alt = `Video de ${item.nombre}`;
-        videoThumbnail.dataset.videoUrl = videoUrl;
-        videoThumbnail.dataset.videoUrlFallback = videoFallback;
-
-        videoThumbnail.onerror = function () {
-          if (!this.dataset.fallenBack) {
-            this.dataset.fallenBack = 'true';
-            Logger.warn(`Grid Thumbnail falló: ${this.src}`);
-          }
-        };
-
-        mediaContainer.appendChild(videoThumbnail);
-      } else if (item.imagen || item.ruta_archivo) {
-        const image = document.createElement('img');
-        image.className = 'product-image';
-        image.src = item.imagen || item.ruta_archivo;
-        image.alt = item.nombre;
-
-        image.onerror = function () {
-          Logger.warn(`Grid Image failed: ${this.src}`);
-        };
-
-        mediaContainer.appendChild(image);
-      }
-      card.appendChild(mediaContainer);
-
-      // Prices container
-      const pricesContainer = document.createElement('div');
-      pricesContainer.className = 'product-prices';
-
-      // Check if this is a liquor subcategory
-      const liquorCategories = ['whisky', 'tequila', 'ron', 'vodka', 'ginebra', 'mezcal', 'cognac', 'brandy', 'digestivos', 'espumosos'];
-      const isLiquorCategory = liquorCategories.includes(normalizedCategory);
-
-      if (isLiquorCategory) {
-        card.classList.add('liquor-card');
-        card.dataset.productType = 'liquor';
-        card.dataset.category = normalizedCategory;
-      } else if (normalizedCategory === 'alitas') {
-        card.classList.add('variant-card');
-      }
-
-      // Price labels mapping for liquors
-      const priceLabels = {
-        'precioBotella': 'Botella',
-        'precioLitro': 'Litro',
-        'precioCopa': 'Copa'
-      };
-
-      // Add price buttons based on available fields
-      fields.forEach(field => {
-        if (field.includes('precio') || field === 'precioBotella' || field === 'precioLitro' || field === 'precioCopa') {
-          const priceValue = item[field];
-          if (priceValue && priceValue !== '--') {
-            if (isLiquorCategory && priceLabels[field]) {
-              // Create price item container for liquors
-              const priceItem = document.createElement('div');
-              priceItem.className = 'price-item';
-
-              // Create price label
-              const priceLabel = document.createElement('span');
-              priceLabel.className = 'price-label';
-              priceLabel.textContent = priceLabels[field] + ':';
-              const plKey = `price-label_${this.simpleHash((priceLabels[field] + ':').trim())}`;
-              priceLabel.setAttribute('data-translate', plKey);
-              priceLabel.setAttribute('data-namespace', 'products');
-              priceLabel.setAttribute('data-original-text', (priceLabels[field] + ':'));
-              priceItem.appendChild(priceLabel);
-
-              // Create price button
-              const priceButton = document.createElement('button');
-              priceButton.className = 'price-button';
-              // Add $ symbol for liquor subcategories
-              const formattedPrice = this._formatPrice(priceValue);
-              priceButton.textContent = formattedPrice;
-              priceButton.dataset.productName = item.nombre;
-              priceButton.dataset.price = priceValue;
-              priceButton.dataset.field = field;
-
-              // No individual event listener - handled by delegation
-
-              priceItem.appendChild(priceButton);
-              pricesContainer.appendChild(priceItem);
-            } else if (field.includes('_piezas')) {
-              // Logic for Alitas/Food variants (e.g. precio_10_piezas)
-              const pieces = field.replace('precio_', '').replace('_piezas', '');
-              const labelText = `${pieces} piezas`;
-
-              const priceItem = document.createElement('div');
-              priceItem.className = 'price-item';
-
-              const priceLabel = document.createElement('span');
-              priceLabel.className = 'price-label';
-              priceLabel.textContent = labelText + ':';
-
-              priceItem.appendChild(priceLabel);
-
-              const priceButton = document.createElement('button');
-              priceButton.className = 'price-button';
-              priceButton.textContent = this._formatPrice(priceValue);
-              priceButton.dataset.productName = item.nombre;
-              priceButton.dataset.price = priceValue;
-              priceButton.dataset.field = field;
-
-              priceItem.appendChild(priceButton);
-              pricesContainer.appendChild(priceItem);
-            } else {
-              // Regular price button for non-liquor categories
-              const priceButton = document.createElement('button');
-              priceButton.className = 'price-button';
-              priceButton.textContent = priceValue;
-              priceButton.dataset.productName = item.nombre;
-              priceButton.dataset.price = priceValue;
-              priceButton.dataset.field = field;
-
-              // No individual event listener - handled by delegation
-
-              pricesContainer.appendChild(priceButton);
-            }
-          }
-        }
-      });
-
-      card.appendChild(pricesContainer);
+      const card = this.createProductCard(item, fields, normalizedCategory);
       grid.appendChild(card);
     });
 
     container.appendChild(grid);
 
-    // Apply intelligent text truncation after grid is rendered
-    this.applyIntelligentTruncation(grid);
     // Ensure grid content is translated if a non-Spanish language is active
     this._retranslateIfNeeded(container);
   },
 
-  // Simple hash to generate stable keys per text
-  simpleHash: function (str) {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-      const char = str.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
-      hash = hash & hash;
-    }
-    return Math.abs(hash).toString(36);
-  },
 
-  // Apply intelligent text truncation to product cards
-  applyIntelligentTruncation: function (gridContainer) {
-    // Wait for the DOM to be fully rendered
-    setTimeout(() => {
-      const productCards = gridContainer.querySelectorAll('.product-card');
 
-      productCards.forEach(card => {
-        // Skip product names - no truncation for titles
-        const nameElement = card.querySelector('.product-name');
-        if (nameElement) {
-          // Remove any previous truncation attributes
-          nameElement.removeAttribute('data-truncated');
-          nameElement.classList.remove('height-auto', 'min-height-auto');
-        }
+  // Text truncation logic removed - handled entirely by CSS line-clamp
+  // See cards.css for implementation details
 
-        // Handle product ingredients only
-        const ingredientsElement = card.querySelector('.product-ingredients');
-        if (ingredientsElement) {
-          this.handleTextOverflow(ingredientsElement, 3); // 3 lines for ingredients
-        }
-      });
-    }, 50); // Small delay to ensure rendering is complete
-  },
 
-  // Handle text overflow for individual elements
-  handleTextOverflow: function (element, maxLines) {
-    if (!element || !element.textContent) return;
 
-    const originalText = element.textContent.trim();
-    if (!originalText) return;
 
-    // Reset any previous modifications
-    element.textContent = originalText;
-    element.removeAttribute('data-truncated');
-    element.classList.remove('height-auto', 'min-height-auto');
-
-    // Force a reflow to get accurate measurements
-    element.offsetHeight;
-
-    // Get the computed dimensions after CSS has been applied
-    const computedStyle = window.getComputedStyle(element);
-    const elementHeight = parseFloat(computedStyle.height);
-    const lineHeight = parseFloat(computedStyle.lineHeight);
-
-    // Check if content overflows the CSS-defined space
-    // Add a small tolerance to account for rounding errors
-    const tolerance = 2;
-    const actualScrollHeight = element.scrollHeight;
-
-    if (actualScrollHeight > (elementHeight + tolerance) && elementHeight > 0) {
-      // Content overflows - apply JavaScript truncation as fallback
-      let start = 0;
-      let end = originalText.length;
-      let bestFit = originalText;
-      let iterations = 0;
-      const maxIterations = 15;
-
-      while (start <= end && iterations < maxIterations) {
-        const mid = Math.floor((start + end) / 2);
-        const testText = originalText.substring(0, mid) + '...';
-        element.textContent = testText;
-
-        // Force reflow for accurate measurement
-        element.offsetHeight;
-
-        if (element.scrollHeight <= (elementHeight + tolerance)) {
-          bestFit = testText;
-          start = mid + 1;
-        } else {
-          end = mid - 1;
-        }
-        iterations++;
-      }
-
-      element.textContent = bestFit;
-
-      // Mark as truncated for CSS pseudo-element
-      if (bestFit !== originalText) {
-        element.setAttribute('data-truncated', 'true');
-      }
-    }
-
-    // Let CSS handle all sizing - don't override heights
-  },
-
-  getProductByName: function (productName, category) {
-    // Obtener el repositorio de productos
-    const productRepository = getProductRepository();
-
-    // Verificar si tenemos datos en caché
-    if (this.productCache && this.productCache[category]) {
-      return this.productCache[category].find(product =>
-        product.nombre && product.nombre.trim().toLowerCase() === productName.trim().toLowerCase()
-      );
-    }
-
-    // Si no hay caché, devolver null (se usará la ruta alternativa)
-    return null;
-  },
-
-  getThumbnailUrl: function (videoUrl, productName, category) {
-    // Extract category from video URL
-    let extractedCategory = '';
-    if (videoUrl.includes('/cocteleria/')) {
-      extractedCategory = 'cocteleria';
-    } else if (videoUrl.includes('/pizzas/')) {
-      extractedCategory = 'pizzas';
-    } else if (videoUrl.includes('/alitas/')) {
-      extractedCategory = 'alitas';
-    } else if (videoUrl.includes('/ensaladas/')) {
-      extractedCategory = 'ensaladas';
-    } else if (videoUrl.includes('/sopas/')) {
-      extractedCategory = 'sopas';
-    } else if (videoUrl.includes('/carnes/')) {
-      extractedCategory = 'carnes';
-    } else if (videoUrl.includes('/cafe/')) {
-      extractedCategory = 'cafes';
-    } else if (videoUrl.includes('/postres/')) {
-      extractedCategory = 'postres';
-    }
-
-    // Extract video filename without extension
-    const videoFilename = videoUrl.split('/').pop().replace('.mp4', '');
-
-    // Special cases mapping for incorrect thumbnail URLs
-    const specialCases = {
-      'bufanda-negra': 'bufanda',
-      'cantarito-fresa': 'Cantarito fresa',
-      'martini-bealys': 'martini-baileys',
-      'mojito-frutos-rojos': 'mojito-frutos-rojo',
-      'alitas- habanero': 'alitas-habanero',
-      'cafe-express': 'cafe-expess',
-      'ensalada-mixta-con-pollo-parrilla': 'ensalada-mixta-con-pollo',
-      'carajillo 1': 'mini-carajillo',
-      'cosmopolitan 1': 'mini-cosmopolitan',
-      'mojito 1': 'mini-mojito',
-      'pina colada 1': 'mini-colada',
-      'negroni 1': 'mini-negroni',
-      'mint julep 1': 'mini-mint-julep',
-      'margarita 1': 'mini-margarita'
-    };
-
-    // Use special case mapping if available, otherwise use the original filename
-    const thumbnailFilename = specialCases[videoFilename] || videoFilename;
-
-    // Para la sección de carnes, usar directamente la URL de imagen almacenada en Supabase
-    if (extractedCategory === 'carnes' || (category && category.toLowerCase() === 'carnes')) {
-      // Buscar si hay una imagen directamente en los datos del producto
-      const productData = this.getProductByName(productName, 'carnes');
-      if (productData && productData.imagen) {
-        // Limpiar la URL de comillas o espacios
-        return productData.imagen.replace(/[`\s]/g, '');
-      }
-
-      // Si no se encuentra, construir la URL basada en el nombre del archivo de video
-      return `https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/thumbnail/cortes%20de%20carne/${videoFilename}.webp`;
-    }
-
-    // Helper para generar slug desde el nombre del producto
-    const slugify = (s) => {
-      if (!s || typeof s !== 'string') return '';
-      return s
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '')
-        .trim();
-    };
-
-    // Para cafés: preferir coincidencia por nombre
-    if (extractedCategory === 'cafes' || (category && (category.toLowerCase() === 'cafes' || category.toLowerCase() === 'café' || category.toLowerCase() === 'cafe'))) {
-      const productData = this.getProductByName(productName, 'cafes');
-      if (productData && productData.imagen) {
-        return productData.imagen.replace(/[`\s]/g, '');
-      }
-      const nameSlug = slugify(productName) || thumbnailFilename;
-      return `https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/imagenes/bebidas/mini-cafes/${nameSlug}.webp`;
-    }
-
-    // Para postres: preferir coincidencia por nombre
-    if (extractedCategory === 'postres' || (category && category.toLowerCase() === 'postres')) {
-      const productData = this.getProductByName(productName, 'postres');
-      if (productData && productData.imagen) {
-        return productData.imagen.replace(/[`\s]/g, '');
-      }
-      const nameSlug = slugify(productName) || thumbnailFilename;
-      return `https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/imagenes/bebidas/mini-postres/${nameSlug}.webp`;
-    }
-
-    // Para otras categorías, mantener la lógica original
-    return `https://udtlqjmrtbcpdqknwuro.supabase.co/storage/v1/object/public/productos/imagenes/bebidas/mini-${extractedCategory}/${thumbnailFilename}.webp`;
-  },
 
   showVideoModal: function (videoUrl, title, category = null, fallbackUrl = null) {
     // Create modal backdrop
@@ -1332,12 +794,11 @@ const ProductRenderer = {
   },
 
   createLicoresCategories: async function () {
-    const productRepository = getProductRepository();
-    const licoresCategories = await productRepository.getLicoresCategories();
+    const licoresCategories = await api.getLicoresCategories();
 
     const html = licoresCategories.map(category => {
       const name = (category.nombre || '').trim();
-      const key = `liquor-category_${ProductRenderer.simpleHash(name)}`;
+      const key = `liquor-category_${simpleHash(name)}`;
       return `
         <div class="category-card" data-category="${name.toLowerCase()}">
           <img src="${category.icono || category.imagen}" alt="${name}" class="category-image">
@@ -1532,19 +993,13 @@ const ProductRenderer = {
 
   // Generic liquor renderer - eliminates code duplication
   renderLiquorCategory: async function (container, subcategory, title) {
-    const productRepository = getProductRepository();
-
-    // Add view toggle button - DISABLED: Using top nav button instead
-    // const toggleElement = this.createViewToggle(container);
-    // container.appendChild(toggleElement);
-
     const liquorFields = ['nombre', 'imagen', 'precioBotella', 'precioLitro', 'precioCopa'];
     const liquorHeaders = ['NOMBRE', 'IMAGEN', 'PRECIO BOTELLA', 'PRECIO LITRO', 'PRECIO COPA'];
 
     try {
-      const data = await productRepository.getLiquorSubcategory(subcategory);
+      const data = await api.getLiquorSubcategory(subcategory);
 
-      if (this.currentViewMode === 'grid') {
+      if (state.currentViewMode === 'grid') {
         this.createProductGrid(container,
           data,
           liquorFields,
@@ -1608,7 +1063,7 @@ const ProductRenderer = {
     try {
       const data = await productRepository.getLiquorSubcategory('digestivos');
 
-      if (this.currentViewMode === 'grid') {
+      if (state.currentViewMode === 'grid') {
         this.createProductGrid(container,
           data,
           ['nombre', 'imagen', 'precioBotella', 'precioLitro', 'precioCopa'],
@@ -1670,7 +1125,7 @@ const ProductRenderer = {
         const cervezasContainer = document.createElement('div');
         cervezasContainer.className = 'cervezas-botella-section';
 
-        if (this.currentViewMode === 'grid') {
+        if (state.currentViewMode === 'grid') {
           this.createProductGrid(cervezasContainer,
             cervezasEnBotella,
             ['nombre', 'ruta_archivo', 'precio'],
@@ -1702,7 +1157,7 @@ const ProductRenderer = {
         const tarrosContainer = document.createElement('div');
         tarrosContainer.className = 'tarros-section';
 
-        if (this.currentViewMode === 'grid') {
+        if (state.currentViewMode === 'grid') {
           this.createProductGrid(tarrosContainer,
             tarros,
             ['nombre', 'ruta_archivo', 'precio'],
@@ -1734,7 +1189,7 @@ const ProductRenderer = {
         const vasosContainer = document.createElement('div');
         vasosContainer.className = 'vasos-cerveza-section';
 
-        if (this.currentViewMode === 'grid') {
+        if (state.currentViewMode === 'grid') {
           this.createProductGrid(vasosContainer,
             vasos,
             ['nombre', 'ruta_archivo', 'precio'],
@@ -1762,27 +1217,8 @@ const ProductRenderer = {
         container.appendChild(vasosContainer);
       }
 
-      // Ajustes específicos para dispositivos móviles en portrait
-      // Esto solucionará el problema de tamaño y alineación de imágenes
-      setTimeout(() => {
-        if (window.innerWidth <= 768 && window.innerHeight > window.innerWidth) {
-          const images = container.querySelectorAll('img');
-          images.forEach(img => {
-            img.style.maxWidth = '100%';
-            img.style.height = 'auto';
-            img.style.objectFit = 'contain';
-            img.style.display = 'block';
-            img.style.margin = '0 auto';
-          });
-
-          // Ajustar alineación de columnas - SOLO para celdas de imagen
-          const imageCells = container.querySelectorAll('td.image-icon, .product-image');
-          imageCells.forEach(cell => {
-            cell.style.textAlign = 'center';
-            cell.style.verticalAlign = 'middle';
-          });
-        }
-      }, 100);
+      // Ajustes específicos para dispositivos móviles en portrait - ELIMINADO: Se debe manejar por CSS
+      // setTimeout(() => { ... }, 100);
 
     } catch (error) {
       logError('Error rendering Cervezas:', error);
@@ -1800,7 +1236,7 @@ const ProductRenderer = {
     try {
       const data = await productRepository.getPizzas();
 
-      if (this.currentViewMode === 'grid') {
+      if (state.currentViewMode === 'grid') {
         this.createProductGrid(container,
           data,
           ['nombre', 'ingredientes', 'video', 'precio'],
@@ -1844,7 +1280,7 @@ const ProductRenderer = {
     try {
       const data = await productRepository[methodName]();
 
-      if (this.currentViewMode === 'grid') {
+      if (state.currentViewMode === 'grid') {
         this.createProductGrid(container,
           data,
           finalFields,
@@ -1872,7 +1308,7 @@ const ProductRenderer = {
     try {
       const data = await productRepository.getAlitas();
 
-      if (this.currentViewMode === 'grid') {
+      if (state.currentViewMode === 'grid') {
         this.createProductGrid(container,
           data,
           ['nombre', 'ingredientes', 'video', 'precio_10_piezas', 'precio_25_piezas'],
@@ -1958,7 +1394,7 @@ const ProductRenderer = {
         const refrescosContainer = document.createElement('div');
         refrescosContainer.className = 'refrescos-section';
 
-        if (this.currentViewMode === 'grid') {
+        if (state.currentViewMode === 'grid') {
           this.createProductGrid(refrescosContainer,
             refrescos,
             ['nombre', 'ruta_archivo', 'precio'],
@@ -1986,7 +1422,7 @@ const ProductRenderer = {
         const jarrasContainer = document.createElement('div');
         jarrasContainer.className = 'jarras-section';
 
-        if (this.currentViewMode === 'grid') {
+        if (state.currentViewMode === 'grid') {
           this.createProductGrid(jarrasContainer,
             jarrasDeJugo,
             ['nombre', 'ruta_archivo', 'precio'],
@@ -2014,7 +1450,7 @@ const ProductRenderer = {
         const vasosContainer = document.createElement('div');
         vasosContainer.className = 'vasos-section';
 
-        if (this.currentViewMode === 'grid') {
+        if (state.currentViewMode === 'grid') {
           this.createProductGrid(vasosContainer,
             vasosDeJugo,
             ['nombre', 'ruta_archivo', 'precio'],
