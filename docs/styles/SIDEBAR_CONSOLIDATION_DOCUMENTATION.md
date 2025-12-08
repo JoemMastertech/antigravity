@@ -7,7 +7,8 @@ Se ha completado exitosamente la consolidación de las definiciones de los 3 sid
 ## Sidebars Identificados y Consolidados
 
 ### 1. Sidebar de Navegación (.drawer-menu)
-- **Ubicación**: Izquierda (hamburguesa)
+- **Ubicación en Archivo**: `Shared/styles/_legacy.css` (Sección Navigation Drawer)
+- **Ubicación en UI**: Izquierda (hamburguesa)
 - **Función**: Menú principal de navegación
 - **Definiciones consolidadas**: 4 (base + 3 responsivas)
 
@@ -38,7 +39,8 @@ Se ha completado exitosamente la consolidación de las definiciones de los 3 sid
 ```
 
 ### 2. Sidebar de Órdenes (.order-sidebar)
-- **Ubicación**: Derecha (desktop/tablet landscape), Inferior (tablet portrait/mobile)
+- **Ubicación en Archivo**: `Shared/styles/layout/sidebar.css` (Migrado completamente)
+- **Ubicación en UI**: Derecha (desktop/tablet landscape), Inferior (tablet portrait/mobile)
 - **Función**: Panel de creación de órdenes
 - **Definiciones consolidadas**: 4 (base + 3 responsivas)
 
