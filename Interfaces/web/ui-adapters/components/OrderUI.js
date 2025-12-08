@@ -382,12 +382,12 @@ export class OrderUI {
                 this.renderOptionsGrid(optionsContainer, drinkOptions);
                 // Hide total count container for Liter/Cup as it's not relevant
                 const totalCount = document.getElementById('total-drinks-count');
-                if (totalCount && totalCount.parentElement) totalCount.parentElement.style.display = 'none';
+                if (totalCount && totalCount.parentElement) totalCount.parentElement.classList.add('hidden');
             } else {
                 this.renderDrinkOptions(optionsContainer, drinkOptions);
                 // Ensure total count is visible for bottles
                 const totalCount = document.getElementById('total-drinks-count');
-                if (totalCount && totalCount.parentElement) totalCount.parentElement.style.display = '';
+                if (totalCount && totalCount.parentElement) totalCount.parentElement.classList.remove('hidden');
                 this.updateTotalDrinkCount();
             }
         }
@@ -777,7 +777,7 @@ export class OrderUI {
                 // Hide the Sí/No buttons
                 const ingredientsChoice = document.querySelector('.ingredients-choice');
                 if (ingredientsChoice) {
-                    ingredientsChoice.style.display = 'none';
+                    ingredientsChoice.classList.add('hidden');
                 }
 
                 // Show textarea for ingredient customization
@@ -845,7 +845,7 @@ export class OrderUI {
                 // Hide the Sí/No buttons
                 const garnishChoice = document.querySelector('.garnish-choice-platos');
                 if (garnishChoice) {
-                    garnishChoice.style.display = 'none';
+                    garnishChoice.classList.add('hidden');
                 }
 
                 // Show textarea for garnish modifications
@@ -901,10 +901,10 @@ export class OrderUI {
 
     _setupMeatModal() {
         const garnishContainer = document.getElementById('garnish-input-container');
-        if (garnishContainer) garnishContainer.className = 'input-container-hidden';
+        if (garnishContainer) garnishContainer.classList.add('hidden');
 
         const garnishActions = document.querySelector('.garnish-actions');
-        if (garnishActions) garnishActions.className = 'modal-actions garnish-actions input-container-hidden';
+        if (garnishActions) garnishActions.classList.add('modal-actions', 'garnish-actions', 'hidden');
 
         const garnishModifications = document.getElementById('garnish-modifications');
         if (garnishModifications) garnishModifications.value = '';
@@ -923,12 +923,13 @@ export class OrderUI {
                 // Hide the Sí/No buttons
                 const garnishChoice = document.querySelector('.garnish-choice');
                 if (garnishChoice) {
-                    garnishChoice.style.display = 'none';
+                    garnishChoice.classList.add('hidden');
                 }
 
                 // Show textarea for garnish modifications
                 if (garnishContainer) {
-                    garnishContainer.className = 'input-container-visible';
+                    garnishContainer.classList.remove('hidden');
+                    garnishContainer.classList.add('input-container-visible');
                 }
                 if (garnishModifications) {
                     garnishModifications.focus();
@@ -936,7 +937,7 @@ export class OrderUI {
 
                 // Show Confirmar/Cancelar buttons
                 if (garnishActions) {
-                    garnishActions.className = 'modal-actions garnish-actions';
+                    garnishActions.classList.remove('hidden');
                 }
             });
         }

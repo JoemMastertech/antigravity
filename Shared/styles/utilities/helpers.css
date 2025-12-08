@@ -330,6 +330,24 @@
     z-index: 50;
 }
 
+/* Opacity Utilities */
+.u-opacity-60 {
+    opacity: 0.6;
+}
+
+.u-opacity-100 {
+    opacity: 1;
+}
+
+/* Pointer Events Utilities */
+.u-pointer-events-none {
+    pointer-events: none;
+}
+
+.u-pointer-events-auto {
+    pointer-events: auto;
+}
+
 /* ORIENTATION-SPECIFIC OPTIMIZATIONS */
 /* Mobile Landscape (â‰¤768px) */
 @media (max-width: 768px) and (orientation: landscape) {
@@ -365,4 +383,52 @@
         max-width: 50px;
         min-width: 45px;
     }
+}
+
+/* Opacity Utilities */
+.u-opacity-100 {
+    opacity: 1;
+}
+
+.u-opacity-60 {
+    opacity: 0.6;
+}
+
+.u-opacity-50 {
+    opacity: 0.5;
+}
+
+.u-opacity-0 {
+    opacity: 0;
+}
+
+/* Pointer Events Utilities */
+.u-pointer-events-none {
+    pointer-events: none;
+}
+
+.u-pointer-events-auto {
+    pointer-events: auto;
+}
+
+/* Visibility Utilities */
+.u-visible {
+    visibility: visible;
+}
+
+.u-invisible {
+    visibility: hidden;
+}
+
+/* Cursor Utilities */
+.u-cursor-pointer {
+    cursor: pointer;
+}
+
+.u-cursor-default {
+    cursor: default;
+}
+
+.u-cursor-not-allowed {
+    cursor: not-allowed;
 }

@@ -274,17 +274,21 @@ class SettingsManager {
       if (theme === 'light-white') {
         // For white theme: use video if provided; otherwise hide
         if (videoUrl) {
-          this.backgroundVideo.style.display = 'block';
+          this.backgroundVideo.classList.remove('u-hidden');
+          this.backgroundVideo.classList.add('u-block');
           // Try to play the video; ignore autoplay errors
           this.backgroundVideo.play().catch(() => { });
         } else {
           this.backgroundVideo.pause();
-          this.backgroundVideo.style.display = 'none';
+          this.backgroundVideo.classList.remove('u-block');
+          this.backgroundVideo.classList.add('u-hidden');
         }
       } else {
         // For other themes always show video
-        this.backgroundVideo.style.display = 'block';
+        this.backgroundVideo.classList.remove('u-hidden');
+        this.backgroundVideo.classList.add('u-block');
         this.backgroundVideo.play().catch(() => { });
+        this.backgroundVideo.style.display = ''; // Clear inline if present
       }
     }
 
@@ -348,11 +352,11 @@ class SettingsManager {
 
     languageButtons.forEach(btn => {
       if (show) {
-        btn.style.opacity = '0.6';
-        btn.style.pointerEvents = 'none';
+        btn.classList.add('u-opacity-60', 'u-pointer-events-none');
+        btn.classList.remove('u-pointer-events-auto', 'u-opacity-100');
       } else {
-        btn.style.opacity = '1';
-        btn.style.pointerEvents = 'auto';
+        btn.classList.add('u-pointer-events-auto', 'u-opacity-100');
+        btn.classList.remove('u-opacity-60', 'u-pointer-events-none');
       }
     });
 
