@@ -74,11 +74,7 @@ export class OrderUI {
 
         const modalMessage = this._createElement('p');
         modalMessage.textContent = message;
-        Object.assign(modalMessage.style, {
-            textAlign: 'center',
-            marginBottom: '20px',
-            color: 'var(--text-color)'
-        });
+        modalMessage.className = 'modal-confirmation-message';
 
         const modalActions = this._createElement('div', 'modal-actions');
         const buttons = [
@@ -1134,12 +1130,7 @@ export class OrderUI {
 
         if (orders.length === 0) {
             const emptyMsg = this._createElement('div');
-            Object.assign(emptyMsg.style, {
-                gridColumn: '1 / -1',
-                textAlign: 'center',
-                padding: '50px',
-                color: 'var(--primary-color)'
-            });
+            emptyMsg.className = 'orders-empty-state';
             emptyMsg.textContent = includeDeleteButton ? 'No hay órdenes en el historial.' : 'No hay órdenes guardadas.';
             container.appendChild(emptyMsg);
             return;
@@ -1200,22 +1191,10 @@ export class OrderUI {
 
     _createFixedBottomButton(parentContainer, buttonText, onClick) {
         const fixedContainer = this._createElement('div', 'fixed-bottom-actions');
-        Object.assign(fixedContainer.style, {
-            position: 'fixed',
-            bottom: '20px',
-            left: '0',
-            right: '0',
-            textAlign: 'center',
-            zIndex: '100'
-        });
+        // Styles moved to .fixed-bottom-actions in _orders.scss
 
         const button = this._createElement('button', 'nav-button clear-history-btn', buttonText);
-        Object.assign(button.style, {
-            width: '90%',
-            maxWidth: '300px',
-            padding: '12px 24px',
-            fontSize: '16px'
-        });
+        // Styles moved to .clear-history-btn in _orders.scss
         button.addEventListener('click', onClick);
 
         fixedContainer.appendChild(button);

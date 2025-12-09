@@ -96,7 +96,9 @@
 
 /* Helper class to show modal */
 .modal.active,
-.modal.is-open {
+.modal.is-open,
+.modal.modal-flex,
+.modal-backdrop.active {
   display: flex;
 }
 

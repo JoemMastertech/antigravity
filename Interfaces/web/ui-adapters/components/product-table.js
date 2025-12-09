@@ -650,7 +650,7 @@ const ProductRenderer = {
   showVideoModal: function (videoUrl, title, category = null, fallbackUrl = null) {
     // Create modal backdrop
     const modalBackdrop = document.createElement('div');
-    modalBackdrop.className = 'modal-backdrop';
+    modalBackdrop.className = 'modal-backdrop active';
 
     // Create modal content
     const modalContent = document.createElement('div');
@@ -709,7 +709,7 @@ const ProductRenderer = {
   showImageModal: function (imageUrl, title, category = null) {
     // Create modal backdrop
     const modalBackdrop = document.createElement('div');
-    modalBackdrop.className = 'modal-backdrop';
+    modalBackdrop.className = 'modal-backdrop active';
 
     // Create modal content
     const modalContent = document.createElement('div');

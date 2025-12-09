@@ -1,0 +1,36 @@
+/* =================================================================
+   ORDERS SCREEN COMPONENT
+   Extracted from OrderUI.js to remove inline styles
+   ================================================================= */
+
+/* Confirmation Modal Message */
+.modal-confirmation-message {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+/* Empty State Message */
+.orders-empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px;
+    color: var(--primary-color);
+}
+
+/* Fixed Bottom Actions (Clear History Button) */
+.fixed-bottom-actions {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 100;
+}
+
+.fixed-bottom-actions .clear-history-btn {
+    width: 90%;
+    max-width: 300px;
+    padding: 12px 24px;
+    font-size: 16px;
+}
