@@ -347,7 +347,7 @@
 }
 
 /* Meat customization modal specific sizing */
-#meat-customization-modal .modal-content {
+.modal--meat-customization .modal-content {
   width: 60%;
   max-width: 650px;
   max-height: 80vh;
@@ -358,7 +358,7 @@
 }
 
 /* Contenedor de contenido scrollable del modal de carnes */
-#meat-customization-modal .modal-scrollable-content {
+.modal--meat-customization .modal-scrollable-content {
   flex: 1;
   overflow-y: auto;
   padding: 21px;
@@ -372,16 +372,16 @@
     max-width: none;
     padding: 0;
   }
-  #meat-customization-modal .modal-content {
+  .modal--meat-customization .modal-content {
     width: 90%;
     max-width: none;
     max-height: 85vh;
   }
-  #meat-customization-modal .modal-scrollable-content {
+  .modal--meat-customization .modal-scrollable-content {
     padding: 17px;
   }
   /* Centrar botones de confirmar y cancelar en dispositivos mÃ³viles landscape */
-  #meat-customization-modal .modal-content .modal-actions.garnish-actions.input-container-visible {
+  .modal--meat-customization .modal-content .modal-actions.garnish-actions.input-container-visible {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -402,16 +402,16 @@
   .modal-content h3 {
     font-size: 1.1rem;
   }
-  #meat-customization-modal .modal-content {
+  .modal--meat-customization .modal-content {
     width: 98%;
     max-width: none;
     max-height: 90vh;
   }
-  #meat-customization-modal .modal-scrollable-content {
+  .modal--meat-customization .modal-scrollable-content {
     padding: 13px;
   }
   /* Centrar botones de confirmar y cancelar en dispositivos mÃ³viles portrait */
-  #meat-customization-modal .modal-content .modal-actions.garnish-actions.input-container-visible {
+  .modal--meat-customization .modal-content .modal-actions.garnish-actions.input-container-visible {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -470,7 +470,7 @@
 }
 
 /* Meat modal specific title sizing */
-#meat-customization-modal .modal-content h3 {
+.modal--meat-customization .modal-content h3 {
   font-size: clamp(0.9rem, 2.5vw, 1.2rem);
   margin-bottom: 2vh;
 }
@@ -713,7 +713,7 @@
     overflow-y: auto;
   }
   /* Adjustment for meat modal in landscape */
-  #meat-customization-modal .modal-content {
+  .modal--meat-customization .modal-content {
     max-height: 85vh;
     width: 80%;
   }

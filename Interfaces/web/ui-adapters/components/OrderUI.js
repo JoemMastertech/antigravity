@@ -1037,7 +1037,8 @@ export class OrderUI {
         let modal = document.getElementById(modalId);
         if (!modal) {
             // Create wrapper if it doesn't exist
-            modal = this._createElement('div', 'modal modal-hidden');
+            const className = `modal modal-hidden modal--${modalId.replace('-modal', '')}`;
+            modal = this._createElement('div', className);
             modal.id = modalId;
             document.body.appendChild(modal);
         } else {
