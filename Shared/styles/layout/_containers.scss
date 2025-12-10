@@ -76,13 +76,28 @@
     margin-right: 0;
     width: 100%;
     /* Ensure it takes available space */
+
+    /* ADDED: Centering for internal elements (tables/grids) */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* UNIVERSAL CHILD CENTERING FIX */
+    &>* {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        /* Removed max-width constraint to prevent double-boxing.
+           App-container already handles the global max-width (1400px). */
+    }
 }
 
 /* Flex Container for Content + Sidebar */
 .content-container-flex {
     display: flex;
     align-items: flex-start;
-    justify-content: flex-start;
+    /* CHANGED: flex-start -> center to fix left-alignment */
+    justify-content: center;
     width: 100%;
     gap: 20px;
 
@@ -93,6 +108,37 @@
         position: sticky;
         top: 20px;
         z-index: 1000;
+    }
+}
+
+/* =================================================================
+   MIGRATED SECTION STYLES (from legacy containers.css)
+   ================================================================= */
+/* =================================================================
+   MIGRATED SECTION STYLES
+   Consolidated for cleaner maintenance.
+   These classes provide spacing/borders for specific product sections.
+   ================================================================= */
+.refrescos-section,
+.jarras-section,
+.vasos-section,
+.cervezas-botella-section,
+.tarros-section,
+.vasos-cerveza-section {
+    margin-bottom: 2rem;
+
+    &:not(:last-child) {
+        border-bottom: 2px solid var(--color-gray-300);
+        padding-bottom: 1.5rem;
+    }
+
+    h2 {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        padding: 0.5rem 0;
+        text-align: center;
+        /* Removed redundant border resets */
     }
 }
 

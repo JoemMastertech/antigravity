@@ -20,7 +20,7 @@
 /* 5. Layout */
 @import "layout/containers";
 /* SASS Refactor (Hit #3) */
-@import "layout/sidebar.css";
+/* @import "layout/sidebar.css"; MIGRATED & DELETED */
 @import "layout/navigation.css";
 
 /* 6. Components */
@@ -36,5 +36,6 @@
 @import "components/sidebar";
 @import "components/header";
 @import "components/orders";
+@import "utilities/display.css";
 @import "utilities/responsive";
 @import "utilities/shame";

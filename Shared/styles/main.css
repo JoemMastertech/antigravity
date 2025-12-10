@@ -20,7 +20,6 @@
    Layout: Containers
    ========================================================================== */
 /* Main App Container */
-@import "layout/sidebar.css";
 @import "layout/navigation.css";
 @import "components/buttons.css";
 @import "components/cards.css";
@@ -28,6 +27,7 @@
 @import "components/drink-options.css";
 @import "components/product-table.css";
 @import "components/lists.css";
+@import "utilities/display.css";
 .app-container {
   width: 100%;
   max-width: var(--table-max-width, 1400px);
@@ -99,13 +99,26 @@
   margin-right: 0;
   width: 100%;
   /* Ensure it takes available space */
+  /* ADDED: Centering for internal elements (tables/grids) */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* UNIVERSAL CHILD CENTERING FIX */
+}
+.content-container > * {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  /* Removed max-width constraint to prevent double-boxing.
+     App-container already handles the global max-width (1400px). */
 }
 
 /* Flex Container for Content + Sidebar */
 .content-container-flex {
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
+  /* CHANGED: flex-start -> center to fix left-alignment */
+  justify-content: center;
   width: 100%;
   gap: 20px;
 }
@@ -116,6 +129,45 @@
   position: sticky;
   top: 20px;
   z-index: 1000;
+}
+
+/* =================================================================
+   MIGRATED SECTION STYLES (from legacy containers.css)
+   ================================================================= */
+/* =================================================================
+   MIGRATED SECTION STYLES
+   Consolidated for cleaner maintenance.
+   These classes provide spacing/borders for specific product sections.
+   ================================================================= */
+.refrescos-section,
+.jarras-section,
+.vasos-section,
+.cervezas-botella-section,
+.tarros-section,
+.vasos-cerveza-section {
+  margin-bottom: 2rem;
+}
+.refrescos-section:not(:last-child),
+.jarras-section:not(:last-child),
+.vasos-section:not(:last-child),
+.cervezas-botella-section:not(:last-child),
+.tarros-section:not(:last-child),
+.vasos-cerveza-section:not(:last-child) {
+  border-bottom: 2px solid var(--color-gray-300);
+  padding-bottom: 1.5rem;
+}
+.refrescos-section h2,
+.jarras-section h2,
+.vasos-section h2,
+.cervezas-botella-section h2,
+.tarros-section h2,
+.vasos-cerveza-section h2 {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+  text-align: center;
+  /* Removed redundant border resets */
 }
 
 /* Page Header */
@@ -188,6 +240,7 @@
 
 /* Apply wrapper to legacy classes */
 /* SASS Refactor (Hit #3) */
+/* @import "layout/sidebar.css"; MIGRATED & DELETED */
 /* 6. Components */
 /* Extracted Modals Styles */
 /* === REGION: MODALES (BEM) === */
@@ -968,6 +1021,12 @@
   display: flex;
 }
 .order-sidebar {
+  /* Legacy JS Support */
+}
+body.order-mode-active .order-sidebar {
+  display: flex;
+}
+.order-sidebar {
   /* --- Tablet Portrait Override (Migrated from legacy media-queries.css) --- */
 }
 @media (min-width: 768px) and (orientation: portrait) and (max-width: 1024px) {
@@ -1019,15 +1078,96 @@
    RESCUED LEGACY LOGIC (Details & Components)
    Migrated from media-queries.css
    ================================================================= */
+/* =================================================================
+   MIGRATED ORDER ITEMS (from legacy sidebar.css)
+   ================================================================= */
 .order-item {
-  padding: 8px 0;
-  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+  padding: 10px 0;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
-.order-item .order-item-name {
+.order-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.order-item-name {
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 5px;
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
   font-size: 0.9rem;
 }
-.order-item .order-item-price {
+.order-item-price {
+  color: var(--price-color);
+  font-weight: 500;
+  white-space: nowrap;
   font-size: 0.85rem;
+}
+.order-item-customization {
+  color: var(--color-gray-400);
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-top: 5px;
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.remove-order-item {
+  font-size: 0.9rem;
+  margin-left: 5px;
+  background: transparent;
+  border: none;
+  color: var(--color-error);
+  cursor: pointer;
+  padding: 4px;
+}
+.remove-order-item:hover {
+  opacity: 0.8;
+}
+
+.order-total {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 2px solid var(--border-color);
+  flex-shrink: 0;
+}
+.order-total h4 {
+  font: 1.2rem "Montserrat", sans-serif;
+  color: var(--price-color);
+  text-align: right;
+  margin: 0;
+}
+
+.order-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: row;
+  flex-shrink: 0;
+}
+.order-actions .nav-button {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 8px;
+  font-size: 0.9rem;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }
 
 /* Settings Sidebar (Legacy Adaptation) */

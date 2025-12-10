@@ -395,8 +395,42 @@ const ProductRenderer = {
       img.src = item[field];
       img.alt = item.nombre;
 
+      // Fallback Logic for Images
       img.onerror = function () {
-        Logger.warn(`Error loading image: ${this.src}`);
+        const currentSrc = this.src;
+        Logger.warn(`Error loading image (attempting fallback): ${currentSrc}`);
+
+        // Avoid infinite loops
+        if (this.dataset.triedJpg && this.dataset.triedPng) {
+          if (!this.dataset.fallenBack) {
+            this.dataset.fallenBack = 'true';
+            Logger.error(`Image failed permanently: ${this.src}`);
+            // Optional: Set a placeholder if all fail
+            // this.src = DEFAULT_IMAGE; 
+          }
+          return;
+        }
+
+        if (!this.dataset.triedJpg) {
+          this.dataset.triedJpg = 'true';
+          // Try JPG if WebP/Original fails
+          // Assumption: URL ends in extension. If not, this regex might need adjustment.
+          const jpgUrl = currentSrc.replace(/\.webp$/i, '.jpg').replace(/\.png$/i, '.jpg');
+          if (jpgUrl !== currentSrc) {
+            this.src = jpgUrl;
+            return;
+          }
+        }
+
+        if (!this.dataset.triedPng) {
+          this.dataset.triedPng = 'true';
+          // Try PNG if JP2/Original fails
+          const pngUrl = currentSrc.replace(/\.webp$/i, '.png').replace(/\.jpg$/i, '.png');
+          if (pngUrl !== currentSrc) {
+            this.src = pngUrl;
+            return;
+          }
+        }
       };
 
       const liquorCategories = ['whisky', 'tequila', 'ron', 'vodka', 'ginebra', 'mezcal', 'cognac', 'brandy', 'digestivos', 'espumosos'];

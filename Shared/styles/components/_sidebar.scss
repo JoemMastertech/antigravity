@@ -30,6 +30,11 @@
         display: flex;
     }
 
+    /* Legacy JS Support */
+    body.order-mode-active & {
+        display: flex;
+    }
+
     /* --- Tablet Portrait Override (Migrated from legacy media-queries.css) --- */
     @include respond-to('tablet-portrait') {
         @media (orientation: portrait) and (max-width: 1024px) {
@@ -85,16 +90,102 @@
    Migrated from media-queries.css
    ================================================================= */
 
+/* =================================================================
+   MIGRATED ORDER ITEMS (from legacy sidebar.css)
+   ================================================================= */
 .order-item {
-    padding: 8px 0;
-    margin-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 0;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 
-    .order-item-name {
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+    }
+
+    &-name {
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 5px;
+        width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
         font-size: 0.9rem;
     }
 
-    .order-item-price {
+    &-price {
+        color: var(--price-color);
+        font-weight: 500;
+        white-space: nowrap;
         font-size: 0.85rem;
+    }
+
+    &-customization {
+        color: var(--color-gray-400);
+        font-size: 0.85rem;
+        font-style: italic;
+        margin-top: 5px;
+        width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+}
+
+.remove-order-item {
+    font-size: 0.9rem;
+    margin-left: 5px;
+    background: transparent;
+    border: none;
+    color: var(--color-error);
+    cursor: pointer;
+    padding: 4px;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.order-total {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 2px solid var(--border-color);
+    flex-shrink: 0;
+
+    h4 {
+        font: 1.2rem 'Montserrat', sans-serif;
+        color: var(--price-color);
+        text-align: right;
+        margin: 0;
+    }
+}
+
+.order-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    flex-direction: row;
+    flex-shrink: 0;
+
+    .nav-button {
+        flex: 1;
+        min-width: 0;
+        padding: 10px 8px;
+        font-size: 0.9rem;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+        align-items: center;
     }
 }
 
