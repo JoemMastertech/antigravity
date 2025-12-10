@@ -113,7 +113,7 @@
     /* --- RESPONSIVE LOGIC --- */
 
     /* Tablet / Mobile Common */
-    @include respond-to('mobile') {
+    @media (min-width: 480px) {
 
         /* Actually max-width 768px in legacy logic */
         @media (max-width: 768px) {
