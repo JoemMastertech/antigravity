@@ -8,6 +8,7 @@ import {
   simpleHash,
   formatPrice
 } from '../../../../Shared/modules/common/utils.js';
+
 import {
   normalizeCategory,
   determineProductType,
