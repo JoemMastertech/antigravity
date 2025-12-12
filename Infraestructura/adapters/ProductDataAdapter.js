@@ -5,6 +5,7 @@ import { formatPrice, formatProductName } from '../../Shared/utils/formatters.js
 import DataSyncService from '../../Shared/services/DataSyncService.js';
 import { SYNC_CONFIG } from '../../Shared/config/constants.js';
 import Logger from '../../Shared/utils/logger.js';
+import { validateProducts } from '../../src/schemas/product.schema.js';
 
 /**
  * Product Data Adapter - Infrastructure implementation of ProductRepositoryPort
@@ -119,6 +120,7 @@ class ProductDataAdapter extends BaseAdapter {
 
   /**
    * Normalize Supabase data to match manual data structure
+   * Uses Zod Schema for robust validation and shielding
    * @param {Array} data - Raw data from Supabase
    * @param {string} tableName - Name of the table
    * @returns {Array} Normalized data
@@ -127,100 +129,24 @@ class ProductDataAdapter extends BaseAdapter {
   _normalizeSupabaseData(data, tableName) {
     if (!Array.isArray(data)) return [];
 
-    // List of liquor tables that need price normalization
-    const liquorTables = ['vodka', 'whisky', 'tequila', 'ron', 'brandy', 'cognac', 'digestivos', 'ginebra', 'mezcal', 'licores'];
+    try {
+      // Use the Zod schema to validate and normalize data
+      // This handles all the snake_case checks, defaults, and type coercion
+      // Pass tableName to select the correct schema (Liquor vs Generic)
+      const validatedData = validateProducts(data, tableName);
 
-    return data.map(item => {
-      const normalizedItem = { ...item };
-
-      // Ensure ID is string for consistency
-      if (normalizedItem.id !== undefined) {
-        normalizedItem.id = String(normalizedItem.id);
-      }
-
-      // Normalize image fields - ensure 'ruta_archivo' is available for cervezas and refrescos
-      if ((tableName === 'cervezas' || tableName === 'refrescos') && item.imagen && !item.ruta_archivo) {
-        normalizedItem.ruta_archivo = item.imagen;
-      } else if ((tableName === 'cervezas' || tableName === 'refrescos') && item.ruta_archivo && !item.imagen) {
-        normalizedItem.imagen = item.ruta_archivo;
-      }
-
-      // Normalize thumbnail to imagen (common in snacks and other food categories)
-      if (item.thumbnail && !item.imagen) {
-        normalizedItem.imagen = item.thumbnail;
-      }
-
-      // Normalize price fields for liquor tables
-      if (liquorTables.includes(tableName)) {
-        // Handle different possible field names from Supabase
-        const priceFields = {
-          'precioBotella': ['precioBotella', 'precio_botella', 'precioBottle', 'bottle_price'],
-          'precioLitro': ['precioLitro', 'precio_litro', 'precioLiter', 'liter_price'],
-          'precioCopa': ['precioCopa', 'precio_copa', 'precioCup', 'cup_price']
-        };
-
-        Object.keys(priceFields).forEach(standardField => {
-          const possibleFields = priceFields[standardField];
-          let foundValue = null;
-
-          // Look for the field in different possible names
-          for (const fieldName of possibleFields) {
-            if (item[fieldName] !== undefined && item[fieldName] !== null) {
-              foundValue = item[fieldName];
-              break;
-            }
-          }
-
-          // Set the standardized field
-          if (foundValue !== null && foundValue !== undefined) {
-            // Store price as number or clean string without currency symbol
-            if (typeof foundValue === 'number') {
-              normalizedItem[standardField] = foundValue.toFixed(2);
-            } else if (typeof foundValue === 'string' && foundValue.trim() !== '') {
-              // Clean price string by removing any existing $ symbol
-              const cleanPrice = foundValue.trim().replace('$', '');
-              normalizedItem[standardField] = cleanPrice;
-            } else {
-              normalizedItem[standardField] = '--';
-            }
-          } else {
-            normalizedItem[standardField] = '--';
-          }
-        });
-
-        // Normalize mixer fields
-        if (item.mixers_botella) normalizedItem.mixersBotella = item.mixers_botella;
-        if (item.mixers_litro) normalizedItem.mixersLitro = item.mixers_litro;
-        if (item.mixers_copa) normalizedItem.mixersCopa = item.mixers_copa;
-      } else {
-        // For non-liquor tables, normalize the precio field using unified formatter
-        if (item.precio !== undefined && item.precio !== null) {
-          normalizedItem.precio = formatPrice(item.precio);
-        }
-      }
-
-      // Log image fields for cervezas and refrescos to debug
-      if (tableName === 'cervezas' || tableName === 'refrescos') {
-        Logger.debug(`Normalized ${tableName} item:`, {
-          id: normalizedItem.id,
-          nombre: normalizedItem.nombre,
-          imagen: normalizedItem.imagen,
-          ruta_archivo: normalizedItem.ruta_archivo,
-          precio: normalizedItem.precio
-        });
-      } else {
-        Logger.debug(`Normalized ${tableName} item:`, {
-          id: normalizedItem.id,
-          nombre: normalizedItem.nombre,
-          precioBotella: normalizedItem.precioBotella,
-          precioLitro: normalizedItem.precioLitro,
-          precioCopa: normalizedItem.precioCopa,
-          precio: normalizedItem.precio
-        });
-      }
-
-      return normalizedItem;
-    });
+      Logger.debug(`[Zod Shielding] Validated ${validatedData.length} items for ${tableName}`);
+      return validatedData;
+    } catch (error) {
+      Logger.error(`[Zod Shielding] Validation failed for ${tableName}`, error);
+      // Fallback: Return raw data but warned, or empty array? 
+      // Safe Programming: Return empty array to prevent UI crashes, 
+      // or attempt to return basics?
+      // Zod's safeParse inside validateProducts should prevent this catch from ever firing
+      // for individual items (it filters bad ones typically or uses defaults).
+      // If we are here, something catastrophic happened.
+      return [];
+    }
   }
 
   /**

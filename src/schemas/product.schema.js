@@ -115,9 +115,28 @@ const normalizeLicorInput = (input) => {
     if (!base || typeof base !== 'object') return base;
 
     // Helper para mixers: Si viene null o vacío, usar DEFAULT
+    // Si viene como string (JSON), intentar parsear
     const normalizeMixer = (val) => {
-        if (!val || (Array.isArray(val) && val.length === 0)) return undefined; // Deja que Zod use el default
-        return val;
+        if (!val) return undefined;
+
+        let parsedVal = val;
+        // Parse JSON string if needed (Supabase sometimes sends JSON as string)
+        if (typeof val === 'string') {
+            try {
+                // If it looks like an array, parse it
+                if (val.trim().startsWith('[')) {
+                    parsedVal = JSON.parse(val);
+                } else {
+                    return undefined;
+                }
+            } catch (e) {
+                console.warn('[Schema] Failed to parse mixer JSON', val);
+                return undefined;
+            }
+        }
+
+        if (Array.isArray(parsedVal) && parsedVal.length === 0) return undefined; // Deja que Zod use el default
+        return parsedVal;
     };
 
     // EXPLICIT MAPPING (User Request Phase 3)
@@ -131,11 +150,14 @@ const normalizeLicorInput = (input) => {
     // Normalizamos lo específico de licores
     return {
         ...base,
-        precioBotella: base.precioBotella ?? base.bottlePrice,
-        precioCopa: base.precioCopa ?? base.glassPrice,
-        precioLitro: base.precioLitro ?? base.literPrice,
+        // Map database columns (snake_case) or English aliases to internal camelCase
+        precioBotella: base.precioBotella ?? base.precio_botella ?? base.bottlePrice ?? base.bottle_price,
+        precioCopa: base.precioCopa ?? base.precio_copa ?? base.glassPrice ?? base.cup_price,
+        precioLitro: base.precioLitro ?? base.precio_litro ?? base.literPrice ?? base.liter_price,
+        // Also map standard price if it's a simple product but came as snake_case (e.g. food)
+        precio: base.precio ?? base.price ?? base.precio_venta,
 
-        // Mapeo Robusto
+        // Mapeo Robusto (Parseado y Limpio)
         mixersBotella: normalizeMixer(mixersBotellaRaw),
         mixersCopa: normalizeMixer(mixersCopaRaw),
         mixersLitro: normalizeMixer(mixersLitroRaw),
@@ -146,11 +168,21 @@ const normalizeLicorInput = (input) => {
 
 export const licorSchema = z.preprocess(normalizeLicorInput, baseLicorShape.passthrough());
 
+// Categories that use the Liquor Schema
+const LIQUOR_CATEGORIES = [
+    'vodka', 'whisky', 'tequila', 'ron', 'brandy',
+    'cognac', 'digestivos', 'ginebra', 'mezcal', 'licores'
+];
+
 // Función helper para validar y limpiar un array de productos
-export const validateProducts = (products) => {
+// UPDATED: Smart Schema Selection
+export const validateProducts = (products, category = '') => {
     if (!Array.isArray(products)) return [];
+
+    const isLiquor = LIQUOR_CATEGORIES.includes(category.toLowerCase());
+    const schemaToUse = isLiquor ? licorSchema : productSchema;
 
     // safeParse individual para no tirar todo el array si uno falla catastróficamente
     // aunque con los .catch() de arriba, no debería fallar nunca.
-    return products.map(p => productSchema.parse(p));
+    return products.map(p => schemaToUse.parse(p));
 };

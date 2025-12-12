@@ -66,32 +66,36 @@ export class OrderUI {
     }
 
     showConfirmationModal(title, message, onConfirm) {
-        const modalBackdrop = this._createElement('div', 'modal-backdrop');
-        const modalContent = this._createElement('div', 'modal-content');
+        try {
+            const modalBackdrop = this._createElement('div', 'modal-backdrop active');
+            const modalContent = this._createElement('div', 'modal-content');
 
-        const modalTitle = this._createElement('h3');
-        modalTitle.textContent = title;
+            const modalTitle = this._createElement('h3');
+            modalTitle.textContent = title;
 
-        const modalMessage = this._createElement('p');
-        modalMessage.textContent = message;
-        modalMessage.className = 'modal-confirmation-message';
+            const modalMessage = this._createElement('p');
+            modalMessage.textContent = message;
+            modalMessage.className = 'modal-confirmation-message';
 
-        const modalActions = this._createElement('div', 'modal-actions');
-        const buttons = [
-            { text: 'Aceptar', handler: () => { onConfirm(); document.body.removeChild(modalBackdrop); } },
-            { text: 'Cancelar', handler: () => document.body.removeChild(modalBackdrop) }
-        ];
+            const modalActions = this._createElement('div', 'modal-actions');
+            const buttons = [
+                { text: 'Aceptar', handler: () => { onConfirm(); document.body.removeChild(modalBackdrop); } },
+                { text: 'Cancelar', handler: () => document.body.removeChild(modalBackdrop) }
+            ];
 
-        buttons.forEach(({ text, handler }) => {
-            const btn = this._createElement('button', 'nav-button');
-            btn.textContent = text;
-            btn.addEventListener('click', handler);
-            modalActions.appendChild(btn);
-        });
+            buttons.forEach(({ text, handler }) => {
+                const btn = this._createElement('button', 'nav-button');
+                btn.textContent = text;
+                btn.addEventListener('click', handler);
+                modalActions.appendChild(btn);
+            });
 
-        [modalTitle, modalMessage, modalActions].forEach(el => modalContent.appendChild(el));
-        modalBackdrop.appendChild(modalContent);
-        document.body.appendChild(modalBackdrop);
+            [modalTitle, modalMessage, modalActions].forEach(el => modalContent.appendChild(el));
+            modalBackdrop.appendChild(modalContent);
+            document.body.appendChild(modalBackdrop);
+        } catch (error) {
+            console.error('[OrderUI] Error in showConfirmationModal:', error);
+        }
     }
 
     // Order Display

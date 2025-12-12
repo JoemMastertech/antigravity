@@ -56,22 +56,22 @@ class OrderSystem {
     // because ProductRenderer.handlePriceButtonClick calls handleProductSelection directly.
 
     // Handle Order Actions
-    if (target.id === 'complete-order-btn') {
+    if (target.closest('#complete-order-btn')) {
       this.handleCompleteOrder();
       return;
     }
 
-    if (target.id === 'cancel-order-btn') {
+    if (target.closest('#cancel-order-btn')) {
       this.handleClearOrder();
       return;
     }
 
-    if (target.id === 'confirm-drinks-btn') {
+    if (target.closest('#confirm-drinks-btn')) {
       this.confirmDrinkOptions();
       return;
     }
 
-    if (target.id === 'cancel-drinks-btn') {
+    if (target.closest('#cancel-drinks-btn')) {
       this.cancelProductSelection();
       return;
     }
@@ -319,13 +319,19 @@ class OrderSystem {
   }
 
   handleClearOrder() {
+    console.log('[OrderSystem] handleClearOrder called');
+    console.log('[OrderSystem] Current Items:', this.core.items);
+
     if (this.core.items.length === 0) {
+      console.log('[OrderSystem] Order empty, toggling mode');
       // If order is empty, just toggle order mode to close sidebar
       if (this.isOrderMode) {
         this.toggleOrderMode();
       }
       return;
     }
+
+    console.log('[OrderSystem] Showing cancellation confirmation modal');
 
     this.ui.showConfirmationModal('Cancelar Orden', '¿Está seguro de cancelar la orden actual?', () => {
       this.core.clearItems();

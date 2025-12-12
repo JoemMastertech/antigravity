@@ -59,12 +59,11 @@ La UI nunca toca estos esquemas directamente. La validación ocurre en los **Dat
 // 1. Obtener datos crudos (sucios)
 const { data } = await supabase.from('tequila').select('*');
 
-// 2. Mapear (Preparar para el input)
-const rawInputs = data.map(item => ({ ...item, categoria: 'tequila' }));
+// 2. BLINDAR (Parsear con Zod via Helper)
+// Usamos el helper centralizado que maneja arrays y errores
+import { validateProducts } from '../../src/schemas/product.schema.js';
 
-// 3. BLINDAR (Parsear con Zod)
-// Aquí ocurre la magia. Si un dato está mal, se limpia o se descarta.
-return z.array(licorSchema).parse(rawInputs);
+return validateProducts(data);
 ```
 
 ## 5. Mantenimiento
