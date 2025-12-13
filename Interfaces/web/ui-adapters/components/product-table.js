@@ -81,31 +81,16 @@ const ProductRenderer = {
   },
 
   _clearAndRestoreContainer: function (container, backButtonHTML) {
-    // Get or create content container without destroying sidebar structure
-    let targetContainer = document.getElementById('content-container');
+    // Standardize: We expect #content-container to exist in index.html
+    const targetContainer = document.getElementById('content-container');
+
     if (!targetContainer) {
-      // Find the content-container-flex to maintain proper structure
-      const flexContainer = document.querySelector('.content-container-flex');
-      if (flexContainer) {
-        targetContainer = document.createElement('div');
-        targetContainer.id = 'content-container';
-        // Insert before the sidebar to maintain proper order
-        const existingSidebar = flexContainer.querySelector('#order-sidebar');
-        if (existingSidebar) {
-          flexContainer.insertBefore(targetContainer, existingSidebar);
-        } else {
-          flexContainer.appendChild(targetContainer);
-        }
-      } else {
-        // Fallback: create in the provided container
-        targetContainer = document.createElement('div');
-        targetContainer.id = 'content-container';
-        container.appendChild(targetContainer);
-      }
-    } else {
-      // Clear only the content container, leaving sidebar untouched
-      targetContainer.innerHTML = '';
+      Logger.error('CRITICAL: #content-container missing from DOM. Static structure compromised.');
+      return container; // Fallback to passed container (likely wrapper)
     }
+
+    // Clear content but preserve structure
+    targetContainer.innerHTML = '';
 
     if (backButtonHTML) {
       this._restoreBackButton(targetContainer, backButtonHTML);
