@@ -235,52 +235,13 @@ export const eventHandlers = {
     },
 
     handleBackButton: function (target) {
-        // Handle back button navigation based on context
-        const wrapper = target.closest('.content-wrapper') || document.querySelector('.content-wrapper');
-
-        if (wrapper) {
-            // Check if we're in a liquor subcategory and need to go back to licores
-            if (target.title === 'Volver a Licores' || target.dataset.action === 'back-to-licores') {
-
-                // Get or create content container for rendering
-                let container = wrapper.querySelector('#content-container');
-                if (!container) {
-                    container = document.createElement('div');
-                    container.id = 'content-container';
-                    const flexContainer = wrapper.querySelector('.content-container-flex');
-                    if (flexContainer) {
-                        flexContainer.insertBefore(container, flexContainer.firstChild);
-                    } else {
-                        wrapper.appendChild(container);
-                    }
-                } else {
-                    // Clear only the content container, preserving sidebar
-                    container.innerHTML = '';
-                }
-
-                this.renderLicores(container);
-
-                // Ocultar botón de back en la barra superior y limpiar título
-                const topBackBtn = document.getElementById('top-back-btn');
-                const navTitle = document.getElementById('nav-title');
-
-                if (topBackBtn) {
-                    topBackBtn.classList.add('back-btn-hidden');
-                    topBackBtn.removeAttribute('data-action');
-                    topBackBtn.removeAttribute('title');
-
-                    // Limpiar event listener específico
-                    if (this._topBackBtnHandler) {
-                        topBackBtn.removeEventListener('click', this._topBackBtnHandler);
-                        this._topBackBtnHandler = null;
-                    }
-                }
-
-                if (navTitle) {
-                    navTitle.textContent = '';
-                }
+        // Handle back button navigation using centralized AppInit controller
+        if (target.title === 'Volver a Licores' || target.dataset.action === 'back-to-licores') {
+            if (window.AppInit && typeof window.AppInit.loadContent === 'function') {
+                Logger.info('Navigating back to Licores via AppInit');
+                window.AppInit.loadContent('licores');
             } else {
-                // Generic back navigation - could be extended for other contexts
+                Logger.error('AppInit not available for back navigation');
             }
         }
     },
