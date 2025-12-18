@@ -1,0 +1,123 @@
+/* ==========================================================================
+   Layout: App Shell (Grid System)
+   Description: The "Holy Grail" Grid Layout for the entire application.
+   ========================================================================== */
+
+.app-container.grid-shell-mode {
+    display: grid;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+
+    /* 
+       COLUMNS DEFINITION:
+       [1] Nav: Fixed width (or auto)
+       [2] Content: Flexible space
+       [3] Sidebar: Dynamic width based on state
+    */
+    grid-template-columns: var(--nav-width, 0px) 1fr var(--sidebar-width, 0px);
+
+    /* 
+       ROWS DEFINITION:
+       [1] Content: Takes full height
+    */
+    grid-template-rows: 1fr;
+
+    /* 
+       AREAS MAP:
+       Defines the semantic zones of the shell.
+    */
+    grid-template-areas: "nav content sidebar";
+
+    /* TRANSITIONS: Smooth resizing when sidebar opens/closes */
+    transition: grid-template-columns 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* GAPS: None by default, handled by internal padding if needed */
+    gap: 0;
+}
+
+
+/* ==========================================================================
+   STATE LOGIC (Dynamic Variables)
+   ========================================================================== */
+
+/* State: Sidebar OPEN */
+.app-container.grid-shell-mode[data-sidebar-state="open"] {
+    --sidebar-width: 350px;
+}
+
+/* State: Sidebar CLOSED */
+.app-container.grid-shell-mode[data-sidebar-state="closed"] {
+    --sidebar-width: 0px;
+}
+
+/* Mobile Override: On mobile, grid might behave differently (e.g. stack or overlay) */
+@media (max-width: 1024px) {
+    .app-container.grid-shell-mode {
+        /* On mobile, usually we don't shift content, we overlay.
+            So sidebar-width might stay 0 or we change the grid.
+            For now, let's keep the desktop logic clean. */
+        --sidebar-width: 0px;
+        /* Force 0 width on mobile to prevent squishing */
+    }
+}
+
+
+/* ==========================================================================
+   AREA ASSIGNMENTS & OVERRIDES
+   ========================================================================== */
+
+.app-container.grid-shell-mode {
+
+    /* 1. Navigation Zone */
+    nav.sidebar-navigation {
+        grid-area: nav;
+        position: static;
+        /* Let Grid control it */
+        z-index: var(--z-nav, 100);
+    }
+
+    /* 2. Main Content Zone */
+    .main-content-screen {
+        grid-area: content;
+        position: static;
+        /* Content flows naturally */
+        overflow-y: auto;
+        /* Internal scroll */
+        height: 100%;
+        width: 100%;
+        z-index: var(--z-content, 50);
+
+        /* Fix for legacy double-padding */
+        padding-right: 0 !important;
+    }
+
+    /* 3. Sidebar Zone */
+    #order-sidebar {
+        grid-area: sidebar;
+
+        /* CRITICAL OVERRIDES: Kill legacy position:fixed */
+        position: static !important;
+        top: unset !important;
+        right: unset !important;
+        bottom: unset !important;
+        left: unset !important;
+        transform: none !important;
+        /* Remove translateX off-screen hacks */
+
+        /* Sizing: Fill the grid cell */
+        width: 100% !important;
+        height: 100% !important;
+        max-height: 100vh !important;
+
+        /* Internal Scroll */
+        overflow-y: auto;
+
+        /* Z-Index */
+        z-index: var(--z-sidebar, 90);
+
+        /* Visibility Logic */
+        /* If width is 0, overflow hidden hides it effectively */
+        overflow-x: hidden;
+    }
+}
