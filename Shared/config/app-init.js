@@ -380,6 +380,11 @@ const AppInit = {
     document.documentElement.classList.add('js-enabled', 'enhanced-features');
     document.documentElement.classList.remove('no-js');
 
+    // [FIX] Initialize ProductRenderer Event Delegation early
+    if (ProductRenderer && typeof ProductRenderer.initEventDelegation === 'function') {
+      ProductRenderer.initEventDelegation();
+    }
+
     Logger.info('Enhanced UI features initialized');
   },
 
