@@ -171,20 +171,31 @@ class SidebarManager {
             // SCROLL LOCK
             this.body.classList.add('sidebar-open');
 
-            // DESKTOP GRID SHIFT (Only for Order Sidebar)
+            // DESKTOP GRID SHIFT
+            // Case A: Order Sidebar (Right)
             if (isDesktop && isOrderSidebar) {
                 if (this.appContainer) {
                     this.appContainer.setAttribute(this.config.openAttribute, this.config.openValue);
+                    this.appContainer.classList.add('grid-shell-mode');
                 }
-                // Hide overlay on desktop if using Grid Shift (User can interact with content?)
-                // Usually Grid Shift implies "Split Screen", so interaction is allowed.
                 this.overlay.style.display = 'none';
-            } else {
+            }
+            // Case B: Navigation Drawer (Left)
+            else if (isDesktop && sidebarId === 'drawer-menu') {
+                if (this.appContainer) {
+                    this.appContainer.style.setProperty('--nav-width', '280px');
+                    this.appContainer.classList.add('grid-shell-mode');
+                }
+                this.overlay.style.display = 'none';
+            }
+            else {
                 // MOBILE / OVERLAY MODE
                 this.overlay.style.display = 'block';
                 // Ensure AppContainer doesn't shift on mobile
                 if (this.appContainer) {
                     this.appContainer.removeAttribute(this.config.openAttribute);
+                    this.appContainer.classList.remove('grid-shell-mode');
+                    this.appContainer.style.removeProperty('--nav-width');
                 }
             }
 
@@ -194,6 +205,7 @@ class SidebarManager {
             this.overlay.style.display = 'none';
             if (this.appContainer) {
                 this.appContainer.removeAttribute(this.config.openAttribute);
+                this.appContainer.style.removeProperty('--nav-width');
             }
         }
     }

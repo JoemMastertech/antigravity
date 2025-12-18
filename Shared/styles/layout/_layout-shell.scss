@@ -70,11 +70,23 @@
 .app-container.grid-shell-mode {
 
     /* 1. Navigation Zone */
-    nav.sidebar-navigation {
+    nav.sidebar-navigation,
+    #drawer-menu {
         grid-area: nav;
-        position: static;
+        position: static !important;
+        /* Force override of _sidebars.scss fixed pos */
+        transform: none !important;
+        /* Kill legacy slide-in */
+        width: 100% !important;
+        /* Fill grid cell */
+        height: 100% !important;
+        border-right: 1px solid var(--border-color);
+
         /* Let Grid control it */
         z-index: var(--z-nav, 100);
+        display: flex;
+        /* Ensure internal flex works */
+        flex-direction: column;
     }
 
     /* 2. Main Content Zone */

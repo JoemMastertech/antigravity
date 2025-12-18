@@ -271,24 +271,12 @@ export class OrderUI {
     }
 
     _initOrientationListener() {
-        window.addEventListener('orientationchange', () => {
-            setTimeout(() => this._handleOrientationChange(), 100);
-        });
-        window.addEventListener('resize', () => {
-            clearTimeout(this.resizeTimeout);
-            this.resizeTimeout = setTimeout(() => this._handleOrientationChange(), 150);
-        });
+        // [LEGACY REMOVED] Grid Shell handles layout. Js listeners not needed.
+        // window.addEventListener('orientationchange', () => { ... });
     }
 
     _handleOrientationChange() {
-        const sidebar = document.getElementById(CONSTANTS.SELECTORS.SIDEBAR);
-        if (sidebar && sidebar.classList.contains('sidebar-visible')) {
-            this._handleMobileOrientation(sidebar);
-            const contentWrapper = document.querySelector('.content-wrapper');
-            if (contentWrapper) {
-                contentWrapper.classList.toggle('with-sidebar', this._isLandscape());
-            }
-        }
+        // [LEGACY REMOVED]
     }
 
     _updateTablesMode(tables, isActive) {

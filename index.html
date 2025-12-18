@@ -87,6 +87,14 @@
     <div class="screen category-title-screen screen-hidden">
       <h2 class="category-title" data-translate="categories.cocktails">Coctelería</h2>
     </div>
+
+    <!-- Mobile Navigation Drawer - Transplanted Inside App Shell -->
+    <nav id="drawer-menu" class="drawer-menu sidebar-navigation">
+      <div class="drawer-content">
+        <!-- Navigation buttons added dynamically -->
+      </div>
+    </nav>
+
     <div class="screen main-content-screen screen-hidden" data-category="cocteleria">
       <!-- Top Navigation Bar -->
       <div id="top-nav-bar" class="top-nav-bar top-nav-hidden">
@@ -114,6 +122,32 @@
         </div>
       </div>
     </div>
+  </div>
+  <!-- Order Sidebar (Right) - Transplanted Inside App Shell -->
+  <div id="order-sidebar" class="order-sidebar">
+    <div class="drawer-content">
+      <h3 class="drawer-title">Tu Orden</h3>
+      <div id="order-items" class="order-items-scroll">
+        <!-- Order items injected here -->
+      </div>
+      <div class="drawer-footer">
+        <div class="order-summary">
+          <div class="total-row">
+            <span>Total:</span>
+            <span id="order-total-amount" class="total-amount">$0.00</span>
+          </div>
+        </div>
+        <div class="order-actions">
+          <button id="complete-order-btn" class="nav-button primary-btn" data-translate="menu.create_order">
+            Completar
+          </button>
+          <button id="cancel-order-btn" class="nav-button secondary-btn" data-translate="menu.cancel_order">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 
   <!-- Modals -->
@@ -221,12 +255,7 @@
     </template>
   </div>
 
-  <!-- Mobile Navigation Drawer -->
-  <div id="drawer-menu" class="drawer-menu">
-    <div class="drawer-content">
-      <!-- Navigation buttons added dynamically -->
-    </div>
-  </div>
+
 
   <!-- Settings Menu -->
   <div id="settings-menu" class="drawer-menu settings-menu">
@@ -277,31 +306,7 @@
     </div>
   </div>
 
-  <!-- Order Sidebar (Right) -->
-  <div id="order-sidebar" class="order-sidebar">
-    <div class="drawer-content">
-      <h3 class="drawer-title">Tu Orden</h3>
-      <div id="order-items" class="order-items-scroll">
-        <!-- Order items injected here -->
-      </div>
-      <div class="drawer-footer">
-        <div class="order-summary">
-          <div class="total-row">
-            <span>Total:</span>
-            <span id="order-total-amount" class="total-amount">$0.00</span>
-          </div>
-        </div>
-        <div class="order-actions">
-          <button id="complete-order-btn" class="nav-button primary-btn" data-translate="menu.create_order">
-            Completar
-          </button>
-          <button id="cancel-order-btn" class="nav-button secondary-btn" data-translate="menu.cancel_order">
-            Cancelar
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   <!-- Load data providers -->
 

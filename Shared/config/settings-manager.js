@@ -77,10 +77,10 @@ class SettingsManager {
       this.closeSettingsMenu();
     });
 
-    // Toggle settings menu
-    this.settingsBtn.addEventListener('click', () => {
-      this.toggleSettingsMenu();
-    });
+    // [DUPLICATE REMOVED] Listener already attached at line 69
+    // this.settingsBtn.addEventListener('click', () => {
+    //   this.toggleSettingsMenu();
+    // });
 
     // Close settings menu when clicking back button
     this.settingsBackBtn.addEventListener('click', () => {
